@@ -1,0 +1,10 @@
+CLAUDE.md
+do_poczytania.txt
+docs/
+.claude/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
