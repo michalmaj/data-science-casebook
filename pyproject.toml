@@ -1,0 +1,30 @@
+[project]
+name = "data-science-casebook"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "jupyterlab>=4.6.1",
+    "numpy>=2.5.1",
+    "pandas>=3.0.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.15.20",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+# check.py (not test_*.py) is this course's self-check convention. Every
+# lesson directory has its own check.py/task.py/solution.py; --import-mode
+# importlib avoids sys.modules collisions between same-named files in
+# different lesson directories (default "prepend" mode does not).
+python_files = ["check.py", "test_*.py"]
+addopts = "--import-mode=importlib"
