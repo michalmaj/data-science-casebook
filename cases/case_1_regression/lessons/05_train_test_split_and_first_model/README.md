@@ -1,0 +1,45 @@
+# Lesson 5 — Train/Test Split and First Regression Model
+
+## Mentor's note
+
+"This is the first model that has to actually earn its keep. Not against a guess on data it memorized — against Lesson 4's baseline, on shipments it's never seen. If you skip the split and score it on the same data it trained on, you're not measuring performance, you're measuring memorization."
+
+## Lesson goal
+
+Fit a real regression model with a proper held-out test set, and prove — with numbers, not intuition — that it beats a fair baseline.
+
+## Today's analytical question
+
+Does a linear regression on the features Lesson 3 flagged as real signal actually predict shipment delay better than TransLine's best naive guess?
+
+## What you're given
+
+- The cleaned data from Lessons 2-4 (reproduced here via `load_clean_shipments`)
+- `task.py` — four functions to implement: `load_clean_shipments`, `split_shipments`, `fit_model`, `predict_delay`
+- `lesson.ipynb` — the notebook where you'll do the actual work
+
+## Working in the notebook
+
+1. Open `lesson.ipynb`.
+2. Once `task.py` is filled in, run the notebook top to bottom.
+3. Confirm the train/test split adds up: 394 + 99 = 493.
+4. Compare the model's MAE/RMSE on the test set against the *fair* baseline (train-mean applied to test, not Lesson 4's whole-dataset baseline).
+5. Look at the model's coefficients — do their signs match what Lesson 3's correlations suggested?
+
+## Self-check
+
+From this lesson's folder, run:
+
+```bash
+uv run pytest
+```
+
+All tests should pass once `task.py` is complete.
+
+## Homework
+
+In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and list one thing you'd try next to improve it further.
+
+## Reflection
+
+The mentor asks: why does this lesson recompute the baseline's mean from the training set only, instead of reusing Lesson 4's mean (which was computed over the whole dataset)? What would go wrong if you used the whole-dataset mean as your "fair" baseline here?
