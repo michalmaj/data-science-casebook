@@ -41,4 +41,4 @@ Dwa do trzech zdań: dlaczego wybrałeś/wybrałaś akurat tę zmienną celu i t
 
 ## Refleksja
 
-Mentor pyta: któremu z trzech klientów z menu najtrudniej byłoby odmówić, gdyby to był prawdziwy klient, nawet gdyby dane nie do końca wspierały odpowiedź na jego prawdziwe pytanie — i jak byś to zakomunikował/zakomunikowała?
+Mentor pyta: któremu z trzech klientów z menu najtrudniej byłoby odmówić, gdyby to był prawdziwy klient, nawet gdyby dane nie do końca wspierały odpowiedź na jego prawdziwe pytanie — i jak byś się temu przeciwstawił/przeciwstawiła?
