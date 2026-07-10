@@ -22,7 +22,7 @@ Które liczbowe cechy Twojego zbioru danych wyglądają na najbardziej powiązan
 
 - Wczytaj i wyczyść swój zbiór danych w jednym kroku.
 - Policz macierz korelacji cech liczbowych.
-- Posortuj zależności, żeby zobaczyć, które wyróżniają się in plus lub in minus.
+- Posortuj zależności, żeby zobaczyć, które wyróżniają się na plus lub na minus.
 
 ## Self-check
 
@@ -36,7 +36,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy spr
 
 ## Zadanie domowe
 
-Dwa do trzech zdań: na podstawie tego, co znalazłeś/znalazłaś, która cecha najbardziej pomoże odpowiedzieć na Twoje pytanie z Lekcji 1, a którą kusi Cię pominąć? Co mogłoby pójść nie tak przy takiej ocenie?
+Dwa do trzech zdań: na podstawie tego, co znalazłeś/znalazłaś, która cecha najbardziej Cię przekonuje, że pomoże odpowiedzieć na Twoje pytanie z Lekcji 1, a którą kusi Cię pominąć? Co mogłoby pójść nie tak przy takiej ocenie?
 
 ## Refleksja
 
