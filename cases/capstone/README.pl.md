@@ -22,7 +22,7 @@ Trzech potencjalnych klientów, każdy z lekkim briefem. Wybierz jednego — bę
 
 ## Co jest inne w projekcie końcowym
 
-- **Wybierasz zbiór danych.** Kod w każdej lekcji działa generycznie dla wszystkich trzech, więc niezależnie od wyboru, dostane narzędzia będą działać.
+- **Wybierasz zbiór danych.** Kod w każdej lekcji działa generycznie dla wszystkich trzech, więc niezależnie od wyboru, dostępne narzędzia będą działać.
 - **Sam/sama definiujesz problem.** Lekcja 1 to moment, w którym zamieniasz niejasną skargę klienta w konkretne, mierzalne pytanie analityczne.
 - **Self-checki są luźniejsze.** `check.py` w tych lekcjach sprawdza strukturę i rozsądność (czy Twoja funkcja zwraca odpowiedni kształt, czy model ma `.predict()`, czy metryka mieści się w sensownym zakresie) — nie konkretne liczby, bo nie ma tu jednej poprawnej odpowiedzi.
 
