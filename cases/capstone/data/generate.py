@@ -152,6 +152,10 @@ def generate_stores(rng: np.random.Generator, n_rows: int) -> pd.DataFrame:
 
 
 def main() -> None:
+    # The three generate_* calls below share this one rng and must stay in
+    # this exact order — reordering them or inserting another rng.* call
+    # between them changes every downstream draw, silently breaking
+    # reproducibility of the committed CSVs even though the seed is fixed.
     rng = np.random.default_rng(SEED)
 
     clinic = generate_clinic_visits(rng, 400)
