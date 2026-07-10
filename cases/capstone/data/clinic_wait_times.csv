@@ -1,0 +1,401 @@
+visit_id,department,num_patients_ahead,staff_on_duty,is_walk_in,hour_of_day,patient_age,wait_time_minutes
+VISIT-0001,Pediatrics,13,2.0,False,11,27,50.6
+VISIT-0002,Cardiology,8,7.0,True,13,30,57.0
+VISIT-0003,Urgent Care,9,3.0,False,11,18,63.2
+VISIT-0004,General,11,5.0,True,14,55,75.8
+VISIT-0005,General,0,3.0,False,9,20,16.4
+VISIT-0006,General,2,7.0,False,16,45,11.8
+VISIT-0007,Pediatrics,13,2.0,False,12,49,65.8
+VISIT-0008,Pediatrics,2,3.0,True,17,27,24.6
+VISIT-0009,Cardiology,4,2.0,False,12,63,23.3
+VISIT-0010,Urgent Care,1,3.0,False,17,17,21.7
+VISIT-0011,Urgent Care,14,6.0,False,14,31,84.7
+VISIT-0012,Urgent Care,12,6.0,True,17,29,91.6
+VISIT-0013,General,3,3.0,True,14,86,33.7
+VISIT-0014,General,5,4.0,False,8,48,26.7
+VISIT-0015,General,13,6.0,True,12,52,78.7
+VISIT-0016,Pediatrics,11,2.0,False,17,59,49.5
+VISIT-0017,Urgent Care,3,3.0,False,10,3,21.2
+VISIT-0018,,14,5.0,True,15,11,65.8
+VISIT-0019,Pediatrics,14,4.0,True,12,10,74.5
+VISIT-0020,General,4,7.0,False,16,48,17.1
+VISIT-0021,Urgent Care,5,7.0,True,15,20,51.6
+VISIT-0022,General,11,2.0,False,10,23,65.3
+VISIT-0023,General,14,4.0,False,8,18,56.2
+VISIT-0024,Pediatrics,13,3.0,False,8,1,73.5
+VISIT-0025,Pediatrics,10,5.0,True,14,10,66.0
+VISIT-0026,Pediatrics,1,5.0,False,8,62,25.1
+VISIT-0027,Pediatrics,0,2.0,False,9,5,2.0
+VISIT-0028,General,7,2.0,True,12,66,55.1
+VISIT-0029,Urgent Care,11,4.0,True,14,32,81.4
+VISIT-0030,General,7,7.0,False,12,43,18.0
+VISIT-0031,Urgent Care,13,5.0,False,10,19,61.8
+VISIT-0032,Urgent Care,5,6.0,False,10,35,33.2
+VISIT-0033,Cardiology,8,3.0,True,14,17,52.7
+VISIT-0034,General,5,5.0,False,10,34,9.5
+VISIT-0035,Urgent Care,13,3.0,False,13,14,75.5
+VISIT-0036,General,2,7.0,True,14,74,14.2
+VISIT-0037,Urgent Care,10,4.0,False,14,39,66.6
+VISIT-0038,General,4,5.0,True,12,36,10.3
+VISIT-0039,General,2,7.0,False,11,54,15.2
+VISIT-0040,Urgent Care,7,2.0,False,15,38,52.8
+VISIT-0041,Urgent Care,1,5.0,False,8,79,15.4
+VISIT-0042,Pediatrics,13,7.0,False,13,82,71.6
+VISIT-0043,Urgent Care,11,6.0,True,9,25,51.4
+VISIT-0044,General,14,6.0,True,10,10,72.3
+VISIT-0045,General,12,7.0,False,9,47,52.4
+VISIT-0046,Pediatrics,4,2.0,False,12,15,23.6
+VISIT-0047,Urgent Care,1,5.0,False,13,39,12.6
+VISIT-0048,Urgent Care,6,5.0,False,12,43,38.2
+VISIT-0049,Pediatrics,10,6.0,False,8,84,38.4
+VISIT-0050,General,3,4.0,False,14,32,5.1
+VISIT-0051,General,5,5.0,False,17,28,14.9
+VISIT-0052,Pediatrics,13,5.0,True,13,83,84.3
+VISIT-0053,Pediatrics,7,3.0,False,17,49,40.8
+VISIT-0054,General,9,5.0,True,14,36,48.5
+VISIT-0055,General,2,2.0,False,17,38,11.6
+VISIT-0056,Pediatrics,6,,False,11,74,21.0
+VISIT-0057,Urgent Care,12,5.0,False,11,73,68.8
+VISIT-0058,Cardiology,6,2.0,False,11,58,34.3
+VISIT-0059,Pediatrics,11,6.0,False,15,66,37.2
+VISIT-0060,General,12,5.0,False,9,54,60.3
+VISIT-0061,General,13,6.0,False,10,57,51.5
+VISIT-0062,Urgent Care,1,6.0,False,11,35,15.8
+VISIT-0063,Pediatrics,0,6.0,True,12,86,7.5
+VISIT-0064,Pediatrics,12,7.0,False,11,38,69.7
+VISIT-0065,Urgent Care,12,5.0,True,15,20,55.2
+VISIT-0066,Pediatrics,6,7.0,False,15,30,30.5
+VISIT-0067,Urgent Care,13,7.0,False,10,89,69.6
+VISIT-0068,Pediatrics,7,6.0,False,16,51,30.7
+VISIT-0069,General,5,5.0,True,8,47,33.3
+VISIT-0070,Cardiology,9,3.0,False,10,42,54.0
+VISIT-0071,Urgent Care,9,2.0,False,15,82,64.2
+VISIT-0072,General,8,2.0,True,11,36,61.8
+VISIT-0073,Cardiology,6,5.0,True,9,81,39.4
+VISIT-0074,Urgent Care,13,4.0,False,16,73,63.5
+VISIT-0075,Urgent Care,2,7.0,False,11,47,23.0
+VISIT-0076,General,0,3.0,True,13,79,26.9
+VISIT-0077,Urgent Care,11,6.0,False,14,16,49.7
+VISIT-0078,General,9,2.0,False,17,39,51.7
+VISIT-0079,Urgent Care,8,3.0,True,8,35,50.1
+VISIT-0080,General,2,5.0,True,8,11,21.4
+VISIT-0081,Pediatrics,8,6.0,True,15,22,35.8
+VISIT-0082,General,7,2.0,True,9,55,46.8
+VISIT-0083,Urgent Care,0,3.0,False,16,89,8.2
+VISIT-0084,Pediatrics,7,5.0,True,13,53,26.9
+VISIT-0085,,0,7.0,True,14,25,10.4
+VISIT-0086,General,12,2.0,True,8,86,68.9
+VISIT-0087,Urgent Care,0,7.0,False,11,18,2.0
+VISIT-0088,Pediatrics,2,,False,10,33,9.9
+VISIT-0089,Urgent Care,11,7.0,False,9,51,52.1
+VISIT-0090,General,0,7.0,True,10,18,10.8
+VISIT-0091,General,8,4.0,False,8,42,40.0
+VISIT-0092,General,14,2.0,True,8,67,86.5
+VISIT-0093,Pediatrics,7,3.0,False,13,26,44.2
+VISIT-0094,Urgent Care,9,3.0,False,13,31,57.9
+VISIT-0095,Pediatrics,12,3.0,False,13,41,55.8
+VISIT-0096,General,14,6.0,False,13,83,66.9
+VISIT-0097,Urgent Care,10,3.0,False,12,9,73.7
+VISIT-0098,Pediatrics,6,6.0,True,17,20,34.3
+VISIT-0099,General,7,7.0,True,8,62,57.1
+VISIT-0100,General,11,2.0,False,12,32,86.9
+VISIT-0101,Pediatrics,11,7.0,True,13,2,63.6
+VISIT-0102,Pediatrics,8,6.0,False,9,7,46.7
+VISIT-0103,Cardiology,3,5.0,False,13,9,20.6
+VISIT-0104,General,14,6.0,False,17,60,58.7
+VISIT-0105,Pediatrics,3,4.0,True,9,5,19.2
+VISIT-0106,Urgent Care,11,6.0,True,15,25,73.8
+VISIT-0107,General,9,2.0,False,13,50,39.7
+VISIT-0108,General,4,2.0,False,9,25,45.8
+VISIT-0109,General,0,2.0,True,11,80,21.5
+VISIT-0110,Pediatrics,1,2.0,False,9,65,27.1
+VISIT-0111,Urgent Care,1,3.0,False,12,39,13.0
+VISIT-0112,Pediatrics,8,4.0,False,9,7,32.9
+VISIT-0113,Pediatrics,12,6.0,True,14,71,70.9
+VISIT-0114,General,11,3.0,True,9,46,90.7
+VISIT-0115,Cardiology,3,7.0,False,9,47,16.5
+VISIT-0116,General,4,,False,10,68,13.6
+VISIT-0117,General,8,4.0,True,8,72,45.9
+VISIT-0118,Urgent Care,2,3.0,True,14,22,31.5
+VISIT-0119,Pediatrics,7,4.0,False,9,26,27.2
+VISIT-0120,Urgent Care,14,4.0,False,8,13,56.7
+VISIT-0121,,0,3.0,True,17,6,6.9
+VISIT-0122,Pediatrics,9,3.0,True,14,62,58.1
+VISIT-0123,Pediatrics,10,7.0,False,11,28,43.9
+VISIT-0124,Pediatrics,4,3.0,False,12,32,18.7
+VISIT-0125,Cardiology,4,2.0,True,9,65,49.2
+VISIT-0126,Urgent Care,2,2.0,True,15,32,43.4
+VISIT-0127,General,1,6.0,False,13,22,12.1
+VISIT-0128,General,14,3.0,False,16,50,81.1
+VISIT-0129,General,12,3.0,True,9,86,56.9
+VISIT-0130,General,13,5.0,True,8,31,59.0
+VISIT-0131,Pediatrics,1,3.0,False,9,40,14.2
+VISIT-0132,General,4,,False,14,25,26.4
+VISIT-0133,Urgent Care,7,4.0,False,14,66,63.8
+VISIT-0134,Pediatrics,14,5.0,False,10,25,63.6
+VISIT-0135,General,1,5.0,True,14,63,3.7
+VISIT-0136,Urgent Care,5,6.0,True,11,81,27.9
+VISIT-0137,Cardiology,7,4.0,True,17,19,41.8
+VISIT-0138,Cardiology,10,2.0,True,9,61,71.1
+VISIT-0139,General,1,6.0,True,12,52,18.0
+VISIT-0140,Urgent Care,10,4.0,False,17,66,53.3
+VISIT-0141,Pediatrics,10,4.0,False,13,22,34.1
+VISIT-0142,Pediatrics,3,2.0,False,10,49,41.2
+VISIT-0143,,12,2.0,False,9,85,57.3
+VISIT-0144,General,6,7.0,False,17,64,14.0
+VISIT-0145,General,13,7.0,False,14,48,41.6
+VISIT-0146,General,9,2.0,True,12,34,72.5
+VISIT-0147,General,11,5.0,False,17,60,57.7
+VISIT-0148,General,1,4.0,False,11,38,14.3
+VISIT-0149,Urgent Care,6,7.0,False,8,20,27.4
+VISIT-0150,Pediatrics,0,5.0,True,14,21,8.6
+VISIT-0151,General,6,4.0,True,13,20,61.1
+VISIT-0152,Urgent Care,3,3.0,True,10,31,36.4
+VISIT-0153,Urgent Care,6,6.0,False,16,60,44.9
+VISIT-0154,General,2,2.0,False,12,51,21.4
+VISIT-0155,Cardiology,10,3.0,False,13,66,52.9
+VISIT-0156,Urgent Care,9,4.0,False,14,33,49.1
+VISIT-0157,General,4,6.0,False,10,74,21.8
+VISIT-0158,Pediatrics,11,7.0,False,8,1,48.0
+VISIT-0159,General,11,3.0,False,13,35,70.0
+VISIT-0160,Urgent Care,11,5.0,False,11,47,50.4
+VISIT-0161,General,11,2.0,False,12,38,78.2
+VISIT-0162,Pediatrics,5,5.0,False,17,40,28.3
+VISIT-0163,General,1,4.0,False,12,11,5.9
+VISIT-0164,General,6,4.0,False,9,52,28.1
+VISIT-0165,General,1,,False,14,78,5.6
+VISIT-0166,Pediatrics,8,5.0,False,13,81,40.4
+VISIT-0167,Pediatrics,3,4.0,True,11,16,12.8
+VISIT-0168,Cardiology,4,5.0,True,15,84,35.6
+VISIT-0169,Urgent Care,10,5.0,True,13,71,47.0
+VISIT-0170,General,2,5.0,False,10,60,17.6
+VISIT-0171,General,6,2.0,False,9,5,44.1
+VISIT-0172,Cardiology,11,5.0,False,9,84,35.3
+VISIT-0173,General,13,3.0,False,13,56,61.8
+VISIT-0174,Urgent Care,7,3.0,False,11,70,31.1
+VISIT-0175,Pediatrics,12,7.0,True,16,32,55.8
+VISIT-0176,General,12,,True,12,16,83.4
+VISIT-0177,Pediatrics,13,4.0,False,12,24,85.5
+VISIT-0178,Urgent Care,7,4.0,False,17,20,31.1
+VISIT-0179,General,13,3.0,False,9,62,36.0
+VISIT-0180,Pediatrics,11,7.0,False,17,60,35.0
+VISIT-0181,Pediatrics,11,4.0,False,10,82,68.3
+VISIT-0182,General,14,4.0,False,16,83,41.3
+VISIT-0183,General,0,4.0,True,8,56,23.6
+VISIT-0184,Urgent Care,5,7.0,True,8,11,35.6
+VISIT-0185,General,4,6.0,False,11,79,20.9
+VISIT-0186,Pediatrics,13,6.0,False,12,72,34.2
+VISIT-0187,General,4,3.0,False,14,82,18.2
+VISIT-0188,Pediatrics,9,6.0,True,8,13,62.6
+VISIT-0189,General,2,3.0,False,11,13,13.2
+VISIT-0190,Cardiology,6,3.0,True,13,27,50.4
+VISIT-0191,General,12,7.0,True,14,32,58.0
+VISIT-0192,Cardiology,13,7.0,False,14,7,40.2
+VISIT-0193,General,2,4.0,False,15,23,2.0
+VISIT-0194,General,12,5.0,False,15,9,43.1
+VISIT-0195,Pediatrics,14,6.0,False,9,32,76.2
+VISIT-0196,General,13,5.0,False,11,72,62.8
+VISIT-0197,General,5,7.0,False,15,84,14.4
+VISIT-0198,Urgent Care,2,4.0,False,16,58,34.0
+VISIT-0199,Pediatrics,7,3.0,True,13,6,52.7
+VISIT-0200,General,1,4.0,True,16,29,2.0
+VISIT-0201,General,13,7.0,False,16,78,40.2
+VISIT-0202,General,2,4.0,True,16,51,18.2
+VISIT-0203,Pediatrics,13,2.0,False,14,45,68.2
+VISIT-0204,Pediatrics,9,3.0,True,15,34,71.8
+VISIT-0205,General,4,4.0,True,8,88,9.1
+VISIT-0206,Pediatrics,2,6.0,False,15,55,15.3
+VISIT-0207,Pediatrics,11,4.0,True,9,53,69.3
+VISIT-0208,Pediatrics,6,6.0,True,15,9,23.2
+VISIT-0209,General,8,7.0,True,15,68,39.3
+VISIT-0210,General,9,7.0,True,14,17,40.6
+VISIT-0211,Pediatrics,0,6.0,False,17,77,6.4
+VISIT-0212,Urgent Care,14,5.0,False,10,55,44.7
+VISIT-0213,,8,7.0,False,16,54,52.5
+VISIT-0214,General,1,6.0,False,17,82,7.5
+VISIT-0215,General,5,5.0,True,11,34,44.2
+VISIT-0216,Urgent Care,6,2.0,False,10,61,42.2
+VISIT-0217,Pediatrics,8,4.0,False,13,22,37.7
+VISIT-0218,Pediatrics,8,5.0,False,12,37,30.1
+VISIT-0219,,5,4.0,True,17,7,67.9
+VISIT-0220,Urgent Care,11,5.0,False,14,10,60.0
+VISIT-0221,General,12,5.0,False,9,9,51.4
+VISIT-0222,General,14,3.0,False,17,54,31.8
+VISIT-0223,General,1,4.0,False,15,39,16.2
+VISIT-0224,General,10,7.0,True,17,83,74.6
+VISIT-0225,General,11,5.0,False,12,14,55.8
+VISIT-0226,Pediatrics,1,3.0,True,12,14,34.8
+VISIT-0227,General,8,6.0,False,9,70,39.1
+VISIT-0228,Pediatrics,7,6.0,False,9,72,15.7
+VISIT-0229,General,1,3.0,False,12,69,14.8
+VISIT-0230,Pediatrics,10,6.0,False,12,45,40.9
+VISIT-0231,General,9,3.0,False,16,33,32.0
+VISIT-0232,Urgent Care,6,5.0,False,15,61,28.9
+VISIT-0233,General,4,2.0,False,14,75,14.4
+VISIT-0234,Urgent Care,8,4.0,True,16,73,67.5
+VISIT-0235,General,11,6.0,False,16,76,54.5
+VISIT-0236,General,13,7.0,True,12,46,58.9
+VISIT-0237,Urgent Care,9,6.0,False,8,64,54.4
+VISIT-0238,Urgent Care,6,5.0,False,16,77,26.9
+VISIT-0239,General,11,7.0,False,14,86,53.3
+VISIT-0240,Cardiology,9,3.0,False,16,63,33.5
+VISIT-0241,General,5,6.0,True,11,45,14.1
+VISIT-0242,Pediatrics,4,2.0,False,12,44,32.0
+VISIT-0243,Urgent Care,7,2.0,False,16,30,55.2
+VISIT-0244,Urgent Care,12,4.0,False,17,65,77.0
+VISIT-0245,Urgent Care,0,2.0,False,9,48,36.7
+VISIT-0246,General,3,5.0,True,8,39,17.6
+VISIT-0247,Urgent Care,14,7.0,True,12,71,78.2
+VISIT-0248,Cardiology,0,6.0,True,10,74,6.3
+VISIT-0249,General,14,4.0,False,11,57,50.5
+VISIT-0250,General,14,5.0,True,9,56,51.7
+VISIT-0251,General,8,3.0,False,12,9,58.9
+VISIT-0252,Urgent Care,1,7.0,False,13,70,12.6
+VISIT-0253,Urgent Care,13,7.0,True,16,86,61.9
+VISIT-0254,Pediatrics,3,5.0,True,15,37,42.0
+VISIT-0255,Cardiology,4,4.0,True,12,46,29.3
+VISIT-0256,General,3,3.0,False,14,76,29.9
+VISIT-0257,General,10,4.0,False,10,52,48.8
+VISIT-0258,Urgent Care,10,7.0,False,17,8,66.1
+VISIT-0259,Pediatrics,10,3.0,False,13,74,57.3
+VISIT-0260,General,7,3.0,False,8,45,47.9
+VISIT-0261,Urgent Care,3,3.0,False,15,44,21.4
+VISIT-0262,General,6,5.0,False,15,40,33.9
+VISIT-0263,General,2,6.0,True,17,79,9.7
+VISIT-0264,General,6,5.0,False,13,6,26.9
+VISIT-0265,Urgent Care,8,,False,8,19,56.6
+VISIT-0266,Cardiology,12,6.0,True,13,35,92.3
+VISIT-0267,Pediatrics,7,7.0,False,12,82,19.7
+VISIT-0268,General,12,,False,8,66,76.9
+VISIT-0269,General,4,6.0,False,10,84,13.6
+VISIT-0270,General,4,3.0,False,15,68,19.4
+VISIT-0271,General,11,7.0,True,14,53,56.9
+VISIT-0272,Cardiology,12,6.0,False,10,79,67.3
+VISIT-0273,Pediatrics,14,6.0,True,13,3,59.2
+VISIT-0274,Urgent Care,1,5.0,False,13,48,17.7
+VISIT-0275,Urgent Care,5,2.0,True,14,44,55.1
+VISIT-0276,Cardiology,11,2.0,False,11,8,77.0
+VISIT-0277,Pediatrics,3,5.0,False,17,37,15.9
+VISIT-0278,Pediatrics,8,3.0,False,15,86,53.1
+VISIT-0279,General,6,4.0,False,8,17,33.3
+VISIT-0280,General,2,6.0,True,16,13,4.4
+VISIT-0281,Urgent Care,7,,True,17,13,57.6
+VISIT-0282,Pediatrics,8,3.0,False,11,43,43.0
+VISIT-0283,General,2,3.0,True,14,58,31.9
+VISIT-0284,Pediatrics,2,2.0,False,15,46,10.8
+VISIT-0285,Pediatrics,4,2.0,False,15,78,46.7
+VISIT-0286,Pediatrics,6,2.0,True,8,56,38.1
+VISIT-0287,Urgent Care,6,7.0,False,13,56,36.4
+VISIT-0288,Urgent Care,5,3.0,False,8,82,28.0
+VISIT-0289,Cardiology,2,4.0,False,11,17,18.7
+VISIT-0290,General,13,6.0,True,16,19,36.7
+VISIT-0291,Cardiology,3,2.0,True,16,88,39.5
+VISIT-0292,Urgent Care,6,2.0,False,10,9,48.8
+VISIT-0293,Pediatrics,2,4.0,True,8,59,40.3
+VISIT-0294,General,0,3.0,False,16,78,2.0
+VISIT-0295,Pediatrics,4,5.0,False,12,62,17.8
+VISIT-0296,General,3,3.0,True,14,25,39.4
+VISIT-0297,General,3,7.0,False,14,26,12.3
+VISIT-0298,Pediatrics,14,7.0,False,9,20,52.6
+VISIT-0299,Urgent Care,6,3.0,True,11,62,45.3
+VISIT-0300,General,4,6.0,True,12,29,20.2
+VISIT-0301,Pediatrics,3,3.0,False,14,9,33.4
+VISIT-0302,Urgent Care,10,3.0,False,11,5,70.1
+VISIT-0303,General,10,2.0,False,16,9,51.2
+VISIT-0304,Cardiology,12,6.0,False,10,22,71.9
+VISIT-0305,General,13,7.0,False,15,78,51.4
+VISIT-0306,Urgent Care,9,5.0,False,10,48,76.5
+VISIT-0307,Urgent Care,4,4.0,True,13,79,35.8
+VISIT-0308,Urgent Care,12,7.0,False,15,62,77.6
+VISIT-0309,Urgent Care,2,5.0,False,14,75,25.3
+VISIT-0310,General,1,7.0,False,9,50,10.7
+VISIT-0311,Urgent Care,12,2.0,False,8,25,72.4
+VISIT-0312,General,10,5.0,True,8,6,49.7
+VISIT-0313,General,3,3.0,False,10,34,20.7
+VISIT-0314,Pediatrics,0,5.0,True,13,89,2.1
+VISIT-0315,Urgent Care,6,,False,9,9,19.2
+VISIT-0316,Cardiology,14,3.0,False,11,88,76.5
+VISIT-0317,Urgent Care,7,6.0,False,10,74,44.3
+VISIT-0318,General,10,4.0,True,17,43,62.7
+VISIT-0319,Pediatrics,7,6.0,False,10,61,13.8
+VISIT-0320,General,12,2.0,True,9,78,61.3
+VISIT-0321,Urgent Care,4,2.0,False,14,80,45.8
+VISIT-0322,General,14,7.0,False,12,15,71.7
+VISIT-0323,General,4,5.0,False,15,84,16.7
+VISIT-0324,Urgent Care,3,4.0,True,13,35,24.7
+VISIT-0325,General,12,3.0,False,13,28,48.8
+VISIT-0326,General,4,3.0,False,15,14,26.8
+VISIT-0327,General,11,4.0,True,13,43,67.6
+VISIT-0328,Urgent Care,0,3.0,False,17,55,10.3
+VISIT-0329,General,8,2.0,True,12,36,64.2
+VISIT-0330,Cardiology,14,7.0,True,12,73,90.9
+VISIT-0331,Cardiology,3,4.0,False,10,16,17.7
+VISIT-0332,General,4,4.0,False,9,8,12.5
+VISIT-0333,Pediatrics,6,5.0,True,17,69,26.4
+VISIT-0334,,13,5.0,True,10,30,47.8
+VISIT-0335,Urgent Care,4,3.0,False,14,38,30.0
+VISIT-0336,Urgent Care,0,4.0,False,13,11,7.0
+VISIT-0337,Cardiology,1,3.0,False,12,76,5.8
+VISIT-0338,General,11,5.0,False,17,36,31.4
+VISIT-0339,Urgent Care,10,3.0,True,16,21,60.6
+VISIT-0340,Cardiology,4,7.0,False,11,31,32.9
+VISIT-0341,Pediatrics,2,3.0,False,8,64,25.0
+VISIT-0342,General,10,4.0,True,12,55,77.6
+VISIT-0343,Urgent Care,2,3.0,False,11,5,26.2
+VISIT-0344,Pediatrics,12,7.0,False,14,57,47.9
+VISIT-0345,Urgent Care,0,6.0,True,14,76,10.7
+VISIT-0346,Cardiology,4,3.0,False,16,26,39.3
+VISIT-0347,General,3,4.0,False,17,59,24.7
+VISIT-0348,General,7,4.0,True,17,29,47.8
+VISIT-0349,Urgent Care,0,7.0,True,9,44,6.1
+VISIT-0350,Urgent Care,10,6.0,False,13,32,49.9
+VISIT-0351,Urgent Care,10,4.0,False,9,38,59.7
+VISIT-0352,Pediatrics,8,2.0,False,15,51,57.1
+VISIT-0353,Urgent Care,11,6.0,False,9,52,74.6
+VISIT-0354,General,10,3.0,False,13,20,48.0
+VISIT-0355,Urgent Care,9,6.0,False,17,76,53.9
+VISIT-0356,,3,6.0,True,11,42,21.8
+VISIT-0357,Pediatrics,7,3.0,True,13,19,27.9
+VISIT-0358,Cardiology,5,5.0,False,15,23,27.3
+VISIT-0359,Pediatrics,14,3.0,False,15,12,90.3
+VISIT-0360,General,11,7.0,False,11,19,67.0
+VISIT-0361,General,3,2.0,False,9,12,19.1
+VISIT-0362,Urgent Care,1,7.0,False,12,49,15.0
+VISIT-0363,General,3,2.0,False,8,22,16.4
+VISIT-0364,General,2,7.0,False,11,87,2.0
+VISIT-0365,General,0,5.0,True,16,31,21.2
+VISIT-0366,Cardiology,14,2.0,True,11,41,64.9
+VISIT-0367,Cardiology,14,3.0,False,10,9,68.7
+VISIT-0368,General,14,5.0,False,10,7,50.5
+VISIT-0369,Urgent Care,1,5.0,False,15,71,18.0
+VISIT-0370,Pediatrics,11,7.0,True,10,81,53.9
+VISIT-0371,Pediatrics,7,4.0,True,12,46,41.7
+VISIT-0372,Cardiology,4,4.0,False,16,13,26.4
+VISIT-0373,General,5,7.0,False,14,87,12.7
+VISIT-0374,Cardiology,14,6.0,False,11,40,50.7
+VISIT-0375,General,5,5.0,True,10,19,36.1
+VISIT-0376,General,14,7.0,True,14,62,39.3
+VISIT-0377,Pediatrics,1,4.0,False,10,13,2.0
+VISIT-0378,General,13,6.0,True,12,38,94.3
+VISIT-0379,General,10,6.0,False,10,67,41.4
+VISIT-0380,Pediatrics,13,4.0,True,8,5,78.9
+VISIT-0381,Urgent Care,14,2.0,False,8,85,99.5
+VISIT-0382,General,10,3.0,True,12,41,62.0
+VISIT-0383,General,14,7.0,False,17,36,49.2
+VISIT-0384,General,2,7.0,False,11,62,10.1
+VISIT-0385,Cardiology,10,7.0,False,8,60,53.4
+VISIT-0386,General,4,4.0,False,9,27,11.5
+VISIT-0387,Urgent Care,10,7.0,False,17,75,52.5
+VISIT-0388,Pediatrics,14,2.0,False,10,11,76.2
+VISIT-0389,General,3,3.0,False,17,7,2.0
+VISIT-0390,General,3,4.0,False,15,28,16.7
+VISIT-0391,Cardiology,12,2.0,False,11,86,84.0
+VISIT-0392,Urgent Care,5,7.0,False,11,5,17.3
+VISIT-0393,Pediatrics,9,4.0,False,16,72,58.7
+VISIT-0394,Pediatrics,8,5.0,False,12,9,41.9
+VISIT-0395,General,9,3.0,False,13,59,41.6
+VISIT-0396,Cardiology,3,2.0,False,8,11,19.9
+VISIT-0397,General,11,4.0,False,9,3,44.8
+VISIT-0398,Pediatrics,5,6.0,False,17,59,2.5
+VISIT-0399,Pediatrics,11,2.0,False,14,55,61.2
+VISIT-0400,General,8,2.0,False,15,75,46.2
