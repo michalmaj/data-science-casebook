@@ -1,0 +1,29 @@
+name: New Case / Lesson Idea
+description: Propose a new case, a new lesson in an existing case, or another addition to the course
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of addition?
+      options:
+        - New case
+        - New lesson in an existing case
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What would this case/lesson cover?
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Why would this be valuable?
+      description: What analytical skill or concept does it teach that isn't already covered?
+    validations:
+      required: true

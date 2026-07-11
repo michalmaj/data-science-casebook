@@ -1,0 +1,32 @@
+name: Translation / .pl.md Issue
+description: Report a typo, awkward phrasing, or meaning mismatch in a Polish translation
+title: "[Translation]: "
+labels: ["translation"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Which file?
+      description: Path to the .pl.md file
+      placeholder: "cases/case_1_regression/lessons/03_exploratory_data_analysis/README.pl.md"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      options:
+        - Typo
+        - Awkward phrasing
+        - Meaning mismatch with English source
+        - Missing .pl.md file
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Quote the problematic text and, if you have one, a suggested fix.
+    validations:
+      required: true
