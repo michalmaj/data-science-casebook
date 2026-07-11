@@ -1,0 +1,46 @@
+name: Bug / Content Error
+description: Report an error in a lesson's code, data, or reference solution
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: case
+    attributes:
+      label: Which case?
+      options:
+        - Case 1 — Regression
+        - Case 2 — Classification
+        - Case 3 — Clustering
+        - Capstone
+        - Other / root-level
+    validations:
+      required: true
+  - type: input
+    id: lesson
+    attributes:
+      label: Which lesson (if applicable)?
+      description: e.g. "03_exploratory_data_analysis"
+      placeholder: "03_exploratory_data_analysis"
+    validations:
+      required: false
+  - type: textarea
+    id: what-is-wrong
+    attributes:
+      label: What's wrong?
+      description: Describe the error — a failing check, a wrong reference value, a bug in solution.py, bad data, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-actual
+    attributes:
+      label: Expected vs. actual
+      description: What did you expect to happen, and what actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: Steps to reproduce, e.g. the exact command you ran
+    validations:
+      required: false

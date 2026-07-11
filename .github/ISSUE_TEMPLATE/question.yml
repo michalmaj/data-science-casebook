@@ -1,0 +1,17 @@
+name: Question / Other
+description: Ask a question that doesn't fit the other templates
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: input
+    id: context
+    attributes:
+      label: Which case/lesson (if relevant)?
+    validations:
+      required: false
