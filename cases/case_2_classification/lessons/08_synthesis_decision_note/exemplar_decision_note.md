@@ -30,12 +30,12 @@ Recall matters more than precision here: a missed return costs Meridian Outlet a
 
 ## 6. Limitations
 
-- The 0.2 threshold was chosen by directly comparing precision/recall on the same test set used for the final evaluation above — that reuses the test set for a tuning decision, which can make the reported numbers look slightly rosier than true out-of-sample performance. A more rigorous version of this analysis would pick the threshold on a separate validation split and touch the test set exactly once, for the final number.
+- (Resolved as of Lesson 6's validation-split fix — kept here as a reminder of what to watch for.) Earlier drafts of this lesson chose the 0.2 threshold by comparing precision/recall directly on the test set, which would have reused it for a tuning decision. Lesson 6 now compares thresholds on a held-out validation split instead, and touches the test set exactly once, for the final number reported above — so this limitation no longer applies to this analysis, but it's exactly the mistake to watch for in your own work.
 - With only 98 returned orders in the full dataset (and 20 in the test set), the precision/recall estimates above have real sampling noise — a few orders going the other way would move these numbers non-trivially.
 
 ## 7. Recommendation
 
-Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~32% of orders it selects for review before or shortly after shipping. Before trusting these exact numbers for a resourcing decision (e.g. "we need N reviewers"), re-run the threshold selection with a held-out validation split so the reported recall/precision reflect genuinely unseen data.
+Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~32% of orders it selects for review before or shortly after shipping. These numbers already reflect Lesson 6's validation-based threshold selection and a single, genuine test-set check, so they're safe to use for a resourcing decision (e.g. "we need N reviewers") as-is.
 
 ---
 
