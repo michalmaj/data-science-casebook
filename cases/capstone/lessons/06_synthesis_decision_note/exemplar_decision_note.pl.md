@@ -25,7 +25,7 @@ To, że MAE na zbiorze testowym (10,60) i MAE treningowe z Lekcji 4 mieszczą si
 
 ## 5. Interpretacja
 
-Średni błąd ~10,6 minuty oznacza, że klinika może teraz powiedzieć pacjentom "spodziewaj się czekać ok. X minut" ze znacząco większą precyzją niż "spodziewaj się czekać ok. 18-19 minut" (obecny efektywny baseline). To wystarczająco precyzyjne, żeby było użyteczne do ustawiania oczekiwań, ale nie na tyle precyzyjne, żeby obiecywać dokładny czas konkretnemu pacjentowi.
+Średni błąd ~10,6 minuty oznacza, że klinika może teraz dać pacjentom spersonalizowane oszacowanie, które zwykle mieści się w granicach ok. 10,6 minuty od prawdy — realna poprawa względem obecnego płaskiego baseline'u, który zawsze mówi każdemu pacjentowi ok. 41,5 minuty i myli się średnio o ok. 18,6 minuty. To wystarczająco precyzyjne, żeby było użyteczne do ustawiania oczekiwań, ale nie na tyle precyzyjne, żeby obiecywać dokładny czas konkretnemu pacjentowi.
 
 ## 6. Ograniczenia
 

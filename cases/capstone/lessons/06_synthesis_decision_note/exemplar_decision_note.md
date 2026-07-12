@@ -25,7 +25,7 @@ The fact that test-set MAE (10.60) and training-set MAE from Lesson 4 land in th
 
 ## 5. Interpretation
 
-A ~10.6 minute average error means the clinic can now tell patients "expect to wait about X minutes" with meaningfully more precision than "expect to wait about 18-19 minutes" (the current effective baseline). It's precise enough to be useful for setting expectations, not precise enough to promise an exact time to any individual patient.
+A ~10.6 minute average error means the clinic can now give patients a personalized estimate that's typically within about 10.6 minutes of the truth — a real improvement over the current flat baseline, which always tells every patient roughly 41.5 minutes and is off by about 18.6 minutes on average. It's precise enough to be useful for setting expectations, not precise enough to promise an exact time to any individual patient.
 
 ## 6. Limitations
 
