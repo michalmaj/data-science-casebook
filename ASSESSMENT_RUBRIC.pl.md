@@ -30,7 +30,7 @@ Każde kryterium jest oceniane na jednym z czterech poziomów: **Wzorowy**, **Do
 - **Wzorowy:** Identyfikuje każdy problem jakościowy (braki danych, ryzyko wycieku, niezbalansowanie klas, niezgodność skal) zanim dotknie modelu, i uzasadnia każdą decyzję dotyczącą jego obsługi.
 - **Dobry:** Identyfikuje główne problemy jakościowe i obsługuje je w rozsądny sposób, z krótkim uzasadnieniem.
 - **Rozwijający się:** Obsługuje problemy jakościowe mechanicznie ("uzupełnij braki") bez wyjaśnienia dlaczego, albo bez sprawdzenia wycieku danych.
-- **Niewystarczający:** Problemy jakościowe są pominięte, zignorowane lub wprowadzone (np. użycie informacji z po zdarzenia jako cechy).
+- **Niewystarczający:** Problemy jakościowe są pominięte, zignorowane lub wprowadzone (np. użycie informacji dostępnej dopiero po zdarzeniu jako cechy).
 
 ### 3. Eksploracja i uzasadnienie decyzji (20%)
 
@@ -49,7 +49,7 @@ Każde kryterium jest oceniane na jednym z czterech poziomów: **Wzorowy**, **Do
 ### 5. Interpretacja i ograniczenia (15%)
 
 - **Wzorowy:** Odróżnia korelację od przyczynowości tam, gdzie to istotne; podaje co najmniej dwa konkretne, specyficzne dla tego case'a ograniczenia i ich praktyczną konsekwencję dla rekomendacji.
-- **Dobry:** Podaje ograniczenia, choć część z nich jest ogólnikowa ("więcej danych by pomogło") zamiast specyficzna dla tej analizy.
+- **Dobry:** Podaje ograniczenia, choć część z nich jest ogólnikowa ("więcej danych by pomogło"), a nie specyficzna dla tej analizy.
 - **Rozwijający się:** Interpretacja powtarza liczby, nie mówiąc, co one oznaczają dla decyzji, o którą chodzi.
 - **Niewystarczający:** Brak podanych ograniczeń, albo analiza jest przedstawiona jako bardziej pewna, niż pozwalają na to dowody.
 
