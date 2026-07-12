@@ -8,7 +8,7 @@ Czy baza subskrybentów Aurora Stream faktycznie dzieli się na odrębne grupy b
 
 ## 2. Podejście
 
-Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowałem/am je `StandardScaler`, i dopasowałem/am KMeans dla kilku wartości k. Porównałem/am inertia i silhouette score dla różnych k, sprawdziłem/am stabilność przypisań do klastrów przy resamplingu, i zdecydowałem/am się na k=2.
+Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowałem/am je za pomocą `StandardScaler`, i dopasowałem/am KMeans dla kilku wartości k. Porównałem/am inertia i silhouette score dla różnych k, sprawdziłem/am stabilność przypisań do klastrów przy resamplingu, i zdecydowałem/am się na k=2.
 
 ## 3. Wyniki (finalna tabela segmentów, k=2)
 
