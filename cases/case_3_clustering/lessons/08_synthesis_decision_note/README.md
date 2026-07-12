@@ -33,7 +33,7 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete. This checks the segment table's numbers — it cannot check your decision note's writing, which is graded on communication and interpretation (see the rubric in `do_poczytania.txt`).
+All tests should pass once `task.py` is complete. This checks the segment table's numbers — it cannot check your decision note's writing, which is graded on communication and interpretation (see [`ASSESSMENT_RUBRIC.md`](../../../../ASSESSMENT_RUBRIC.md) and this lesson's [`exemplar_decision_note.md`](exemplar_decision_note.md) for a model answer).
 
 ## Homework
 
