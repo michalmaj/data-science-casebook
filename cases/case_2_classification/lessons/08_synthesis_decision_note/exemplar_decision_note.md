@@ -18,7 +18,7 @@ I loaded and merged Meridian's Orders and Customers sheets (`discount_percent`, 
 | Model @ 0.5 threshold | 0.000 | 0.000 | 0.000 |
 | Model @ 0.2 threshold | 0.244 | 0.550 | 0.338 |
 
-At the default 0.5 threshold the model never predicts "returned" at all — it's functionally identical to the majority baseline. Lowering the threshold to 0.2 is what actually makes the model useful: it catches 55% of real returns, at the cost of about 3 out of 4 flagged orders turning out fine on inspection.
+At the default 0.5 threshold the model flags only 1 of the 140 test orders — effectively never predicting "returned," functionally identical to the majority baseline. Lowering the threshold to 0.2 is what actually makes the model useful: it catches 55% of real returns, at the cost of about 3 out of 4 flagged orders turning out fine on inspection.
 
 ## 4. Threshold and metric choice
 
@@ -35,7 +35,7 @@ Recall matters more than precision here: a missed return costs Meridian Outlet a
 
 ## 7. Recommendation
 
-Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~28% of orders it selects for review before or shortly after shipping. Before trusting these exact numbers for a resourcing decision (e.g. "we need N reviewers"), re-run the threshold selection with a held-out validation split so the reported recall/precision reflect genuinely unseen data.
+Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~32% of orders it selects for review before or shortly after shipping. Before trusting these exact numbers for a resourcing decision (e.g. "we need N reviewers"), re-run the threshold selection with a held-out validation split so the reported recall/precision reflect genuinely unseen data.
 
 ---
 

@@ -18,7 +18,7 @@ Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_
 | Model @ próg 0,5 | 0,000 | 0,000 | 0,000 |
 | Model @ próg 0,2 | 0,244 | 0,550 | 0,338 |
 
-Przy domyślnym progu 0,5 model w ogóle nigdy nie przewiduje "zwrócone" — jest funkcjonalnie identyczny z baseline'em większościowym. Obniżenie progu do 0,2 jest tym, co faktycznie czyni model użytecznym: wychwytuje 55% prawdziwych zwrotów, kosztem tego, że ok. 3 na 4 oznaczone zamówienia okazują się w porządku.
+Przy domyślnym progu 0,5 model oznacza tylko 1 z 140 zamówień testowych — w praktyce nigdy nie przewiduje "zwrócone", funkcjonalnie identyczny z baseline'em większościowym. Obniżenie progu do 0,2 jest tym, co faktycznie czyni model użytecznym: wychwytuje 55% prawdziwych zwrotów, kosztem tego, że ok. 3 na 4 oznaczone zamówienia okazują się w porządku.
 
 ## 4. Wybór progu i metryki
 
@@ -35,7 +35,7 @@ Recall ma tu większe znaczenie niż precision: przeoczony zwrot kosztuje Meridi
 
 ## 7. Rekomendacja
 
-Wdrożyć model przy progu 0,2 jako flagę do ręcznej weryfikacji, nie jako system automatycznego odrzucania — oznaczać ~28% zamówień, które model wybiera, do weryfikacji przed lub krótko po wysyłce. Zanim te dokładne liczby zostaną użyte do decyzji o zasobach (np. "potrzebujemy N recenzentów"), ponownie przeprowadzić wybór progu z odłożonym zbiorem walidacyjnym, żeby raportowane recall/precision odzwierciedlały faktycznie niewidziane dane.
+Wdrożyć model przy progu 0,2 jako flagę do ręcznej weryfikacji, nie jako system automatycznego odrzucania — oznaczać ~32% zamówień, które model wybiera, do weryfikacji przed lub krótko po wysyłce. Zanim te dokładne liczby zostaną użyte do decyzji o zasobach (np. "potrzebujemy N recenzentów"), ponownie przeprowadzić wybór progu z odłożonym zbiorem walidacyjnym, żeby raportowane recall/precision odzwierciedlały faktycznie niewidziane dane.
 
 ---
 
