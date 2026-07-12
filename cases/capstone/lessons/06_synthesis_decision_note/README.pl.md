@@ -33,7 +33,7 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy sprawdzają liczby w scorecardzie i podsumowaniu segmentów — nie mogą ocenić tego, co napiszesz w notatce decyzyjnej, co jest oceniane pod kątem komunikacji i interpretacji (zobacz rubrykę w `do_poczytania.txt`).
+Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy sprawdzają liczby w scorecardzie i podsumowaniu segmentów — nie mogą ocenić tego, co napiszesz w notatce decyzyjnej, co jest oceniane pod kątem komunikacji i interpretacji (zobacz [`ASSESSMENT_RUBRIC.pl.md`](../../../../ASSESSMENT_RUBRIC.pl.md) oraz [`exemplar_decision_note.pl.md`](exemplar_decision_note.pl.md) tej lekcji po wzorcową odpowiedź).
 
 ## Zadanie domowe
 

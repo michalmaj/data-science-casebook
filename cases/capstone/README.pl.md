@@ -32,6 +32,6 @@ Zwykłe CSV, jeden plik na klienta, generowany przez `data/generate.py`.
 
 ## Ocenianie
 
-Ta sama rubryka co w każdym case'ie w tym repozytorium (zobacz `do_poczytania.txt`): definicja problemu 15%, rozpoznanie/jakość danych 15%, eksploracja/uzasadnienie 20%, poprawność modelowania/oceny 20%, interpretacja/ograniczenia 15%, komunikacja 10%, czytelność/powtarzalność 5% — zastosowana do Twojej finalnej notatki decyzyjnej (Lekcja 6).
+Ta sama rubryka co w każdym case'ie w tym repozytorium (zobacz [`ASSESSMENT_RUBRIC.pl.md`](../../ASSESSMENT_RUBRIC.pl.md)): definicja problemu 15%, rozpoznanie/jakość danych 15%, eksploracja/uzasadnienie 20%, poprawność modelowania/oceny 20%, interpretacja/ograniczenia 15%, komunikacja 10%, czytelność/powtarzalność 5% — zastosowana do Twojej finalnej notatki decyzyjnej (Lekcja 6). Zobacz [`lessons/06_synthesis_decision_note/exemplar_decision_note.pl.md`](lessons/06_synthesis_decision_note/exemplar_decision_note.pl.md) po wzorcową odpowiedź.
 
 Lekcje znajdują się w `lessons/`, ponumerowane w kolejności, w jakiej należy przez nie przechodzić.
