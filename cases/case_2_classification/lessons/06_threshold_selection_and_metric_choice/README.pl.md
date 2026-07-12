@@ -45,4 +45,4 @@ W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania: wybierz próg, 
 
 ## Refleksja
 
-Mentor pyta: Twoje liczby ze zbioru walidacyjnego przewidywały, jak zachowa się próg 0,2. Kiedy w końcu spojrzałeś/aś na `test_df` w ostatniej komórce, czy prawdziwe liczby wypadły blisko tego, co przewidziała walidacja, czy przesunęły się dość mocno? Co powiedziałaby Ci duża różnica między nimi — i dlaczego bezpieczniej jest się o tym dowiedzieć *po* tym, jak już zdecydowałeś/aś się na próg, a nie w trakcie jego wybierania?
+Mentor pyta: Twoje liczby ze zbioru walidacyjnego przewidywały, jak zachowa się próg 0,2. Kiedy w końcu spojrzałeś/spojrzałaś na `test_df` w ostatniej komórce, czy prawdziwe liczby wypadły blisko tego, co przewidziała walidacja, czy przesunęły się dość mocno? Co powiedziałaby Ci duża różnica między nimi — i dlaczego bezpieczniej jest się o tym dowiedzieć *po* tym, jak już zdecydowałeś/zdecydowałaś się na próg, a nie w trakcie jego wybierania?

@@ -8,7 +8,7 @@ Czy możemy zidentyfikować, przed wysyłką lub krótko po niej, które zamówi
 
 ## 2. Podejście
 
-Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzieliłem/am 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach, i dopasowałem/am regresję logistyczną na treningowym. Porównałem/am baseline większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — wszystkie ocenione na tym samym zbiorze testowym.
+Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzieliłem/am 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach, i dopasowałem/am regresję logistyczną na treningowym. Porównałem/am baseline większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — porównanych na odłożonym zbiorze walidacyjnym, a następnie potwierdzonych raz na zbiorze testowym przy wybranym progu.
 
 ## 3. Wyniki
 
@@ -41,4 +41,4 @@ Wdrożyć model przy progu 0,2 jako flagę do ręcznej weryfikacji, nie jako sys
 
 ## Dlaczego to dobra odpowiedź
 
-Ta notatka zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając wprost problem ponownego użycia zbioru testowego i wyjaśniając jego praktyczną konsekwencję (liczby mogą być nieco zbyt optymistyczne), zamiast to pomijać — dokładnie taki rodzaj samoświadomego ograniczenia nagradza rubryka, i jest wartościowszy niż sekcja ograniczeń zawierająca tylko ogólnikowe zastrzeżenia. Zasługuje na "Wzorowy" w **Komunikacji** w sekcji 5, przekładając "55% recall, 24% precision" na konkretne stwierdzenie "1 na 4 oznaczone zamówienia jest prawdziwe", na podstawie którego nietechniczny interesariusz może działać.
+Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny**, porównując progi na odłożonym zbiorze walidacyjnym i dotykając zbioru testowego dokładnie raz, dla finalnej liczby — dokładnie taką dyscyplinę opisuje poziom Wzorowy w rubryce, zamiast ponownie wykorzystywać zbiór testowy do decyzji strojenia. Zasługuje na "Wzorowy" w **Komunikacji** w sekcji 5, przekładając "55% recall, 24% precision" na konkretne stwierdzenie "1 na 4 oznaczone zamówienia jest prawdziwe", na podstawie którego nietechniczny interesariusz może działać.
