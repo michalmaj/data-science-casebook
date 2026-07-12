@@ -26,7 +26,7 @@ The linear model beats the mean baseline by about 1.9 minutes of MAE — a real 
 
 ## 5. What's actually actionable
 
-A 10.21-minute average error is small enough to be useful for triage (flag shipments predicted >20 minutes late for a dispatcher's attention) but too large to promise customers a tight delivery window. The features that matter most for the model's predictions are `distance_km` and `num_stops` — both already known before a shipment leaves the depot, which is exactly when TransLine needs the estimate.
+A 10.21-minute average error is small enough to be useful for triage (flag shipments predicted >20 minutes late for a dispatcher's attention) but too large to promise customers a tight delivery window. `num_stops` drives the model's predictions the most, with `driver_experience_years` a distant second (`distance_km`'s own coefficient was flagged as unstable back in Lesson 7, so it isn't trusted for interpretation here) — both `num_stops` and `driver_experience_years` are already known before a shipment leaves the depot, which is exactly when TransLine needs the estimate.
 
 ## 6. Limitations
 

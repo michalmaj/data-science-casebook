@@ -26,7 +26,7 @@ Model liniowy pokonuje baseline średniej o ok. 1,9 minuty MAE — realna popraw
 
 ## 5. Co jest faktycznie do zastosowania
 
-Średni błąd 10,21 minuty jest wystarczająco mały, żeby był użyteczny do triażu (oznacz dostawy przewidziane na >20 minut opóźnienia do uwagi dyspozytora), ale zbyt duży, żeby obiecywać klientom wąskie okno dostawy. Cechy, które najbardziej wpływają na predykcje modelu, to `distance_km` i `num_stops` — obie znane już zanim dostawa wyjedzie z magazynu, czyli dokładnie wtedy, kiedy TransLine potrzebuje tego oszacowania.
+Średni błąd 10,21 minuty jest wystarczająco mały, żeby był użyteczny do triażu (oznacz dostawy przewidziane na >20 minut opóźnienia do uwagi dyspozytora), ale zbyt duży, żeby obiecywać klientom wąskie okno dostawy. `num_stops` najbardziej wpływa na predykcje modelu, a `driver_experience_years` jest dalekim drugim miejscem (współczynnik `distance_km` był oznaczony jako niestabilny już w Lekcji 7, więc nie ufamy mu tutaj do interpretacji) — zarówno `num_stops`, jak i `driver_experience_years` są znane już zanim dostawa wyjedzie z magazynu, czyli dokładnie wtedy, kiedy TransLine potrzebuje tego oszacowania.
 
 ## 6. Ograniczenia
 
