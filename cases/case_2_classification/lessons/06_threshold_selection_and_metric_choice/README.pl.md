@@ -15,7 +15,7 @@ Ile precision Meridian Outlet jest skłonny poświęcić, żeby złapać więcej
 ## Co dostajesz
 
 - Ten sam plik `data/orders.xlsx` co w Lekcjach 1-5
-- `task.py` — pięć funkcji do zaimplementowania: `load_and_merge_orders`, `split_orders`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`
+- `task.py` — sześć funkcji do zaimplementowania: `load_and_merge_orders`, `split_orders`, `split_for_validation`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
 
 ## Praca w notebooku
@@ -23,9 +23,11 @@ Ile precision Meridian Outlet jest skłonny poświęcić, żeby złapać więcej
 1. Otwórz `lesson.ipynb`.
 2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
 3. Potwierdź, że `split_orders`/`fit_classifier` odtwarzają dokładnie ten sam model co w Lekcji 5.
-4. Wywołaj `predict_at_threshold` przy 0.5, 0.3 i 0.2 — obserwuj, jak rośnie liczba oflagowanych zamówień.
-5. Wywołaj `classification_metrics` przy każdym progu — obserwuj, jak rośnie recall i jak zmienia się precision.
-6. Połącz dwa rodzaje błędów z tym, co naprawdę oznaczają: fałszywy alarm (FP) niesłusznie flaguje dobre zamówienie, a przeoczony przypadek (FN) pozwala prawdziwemu zwrotowi przejść bez flagi.
+4. Wywołaj `split_for_validation` na `train_df`, żeby wydzielić `fit_df`/`val_df` — progi porównasz na `val_df`, nie na `test_df`.
+5. Wywołaj `predict_at_threshold` przy 0.5, 0.3 i 0.2 na `val_df` — obserwuj, jak rośnie liczba oflagowanych zamówień.
+6. Wywołaj `classification_metrics` przy każdym progu na `val_df` — obserwuj, jak rośnie recall i jak zmienia się precision.
+7. Połącz dwa rodzaje błędów z tym, co naprawdę oznaczają: fałszywy alarm (FP) niesłusznie flaguje dobre zamówienie, a przeoczony przypadek (FN) pozwala prawdziwemu zwrotowi przejść bez flagi.
+8. W ostatniej komórce doucz model na pełnym `train_df` i sprawdź wybrany próg na `test_df` — jedyny raz, kiedy ta lekcja go dotyka.
 
 ## Self-check
 
@@ -43,4 +45,4 @@ W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania: wybierz próg, 
 
 ## Refleksja
 
-Mentor pyta: przy progu 0.2 model wciąż przeocza 9 z 20 rzeczywistych zwrotów i niesłusznie flaguje 34 dobre zamówienia na każde 11 trafionych. Czy dla Meridian Outlet ważniejsze jest optymalizowanie precision czy recall — i czy ta odpowiedź zależy od tego, co dzieje się *po* oflagowaniu (człowiek to sprawdza, czy zamówienie zostaje automatycznie zablokowane)?
+Mentor pyta: Twoje liczby ze zbioru walidacyjnego przewidywały, jak zachowa się próg 0,2. Kiedy w końcu spojrzałeś/spojrzałaś na `test_df` w ostatniej komórce, czy prawdziwe liczby wypadły blisko tego, co przewidziała walidacja, czy przesunęły się dość mocno? Co powiedziałaby Ci duża różnica między nimi — i dlaczego bezpieczniej jest się o tym dowiedzieć *po* tym, jak już zdecydowałeś/zdecydowałaś się na próg, a nie w trakcie jego wybierania?

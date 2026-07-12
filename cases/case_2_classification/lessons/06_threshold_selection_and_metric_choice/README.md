@@ -15,7 +15,7 @@ How much precision is Meridian Outlet willing to give up to catch more actual re
 ## What you're given
 
 - The same `data/orders.xlsx` from Lessons 1-5
-- `task.py` — five functions to implement: `load_and_merge_orders`, `split_orders`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`
+- `task.py` — six functions to implement: `load_and_merge_orders`, `split_orders`, `split_for_validation`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`
 - `lesson.ipynb` — the notebook where you'll do the actual work
 
 ## Working in the notebook
@@ -23,9 +23,11 @@ How much precision is Meridian Outlet willing to give up to catch more actual re
 1. Open `lesson.ipynb`.
 2. Once `task.py` is filled in, run the notebook top to bottom.
 3. Confirm `split_orders`/`fit_classifier` reproduce the exact same model as Lesson 5.
-4. Call `predict_at_threshold` at 0.5, 0.3, and 0.2 — watch the number of flagged orders grow.
-5. Call `classification_metrics` at each threshold — watch recall rise, and precision move too.
-6. Connect the two kinds of mistakes to what they actually mean: a false positive wrongly flags a good order, a false negative lets a real return slip through unflagged.
+4. Call `split_for_validation` on `train_df` to carve out `fit_df`/`val_df` — you'll compare thresholds on `val_df`, not on `test_df`.
+5. Call `predict_at_threshold` at 0.5, 0.3, and 0.2 on `val_df` — watch the number of flagged orders grow.
+6. Call `classification_metrics` at each threshold on `val_df` — watch recall rise, and precision move too.
+7. Connect the two kinds of mistakes to what they actually mean: a false positive wrongly flags a good order, a false negative lets a real return slip through unflagged.
+8. In the last cell, retrain on the full `train_df` and check your chosen threshold on `test_df` — the one time this lesson touches it.
 
 ## Self-check
 
@@ -43,4 +45,4 @@ In `lesson.ipynb`'s "Your notes" cell, write two to three sentences: pick a thre
 
 ## Reflection
 
-The mentor asks: at threshold 0.2, the model still misses 9 of 20 actual returns and wrongly flags 34 good orders for every 11 it gets right. Is precision or recall the more important number for Meridian Outlet to optimize — and does that answer depend on what happens *after* a flag (a human reviews it, versus the order gets blocked automatically)?
+The mentor asks: your validation-set numbers predicted what threshold 0.2 would do. When you finally looked at `test_df` in the last cell, did the real numbers land close to what validation predicted, or did they move quite a bit? What would a big gap between the two have told you — and why is it safer to find that out *after* you've already committed to a threshold, rather than while you're still choosing one?

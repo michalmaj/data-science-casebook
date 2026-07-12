@@ -37,6 +37,17 @@ def split_orders(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     raise NotImplementedError("split_orders is not implemented yet")
 
 
+def split_for_validation(train_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Split `train_df` further into (fit_df, val_df), so the threshold comparison
+    doesn't touch the test set.
+
+    TODO: import train_test_split from sklearn.model_selection (if not already
+    imported) and use it on train_df with test_size=0.2, random_state=RANDOM_STATE,
+    and stratify=train_df["is_returned"]. Return (fit_df, val_df) in that order.
+    """
+    raise NotImplementedError("split_for_validation is not implemented yet")
+
+
 def fit_classifier(train_df: pd.DataFrame) -> LogisticRegression:
     """Fit a LogisticRegression on FEATURE_COLUMNS, predicting is_returned.
 

@@ -29,6 +29,13 @@ def split_orders(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return train_df, test_df
 
 
+def split_for_validation(train_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    fit_df, val_df = train_test_split(
+        train_df, test_size=0.2, random_state=RANDOM_STATE, stratify=train_df["is_returned"]
+    )
+    return fit_df, val_df
+
+
 def fit_classifier(train_df: pd.DataFrame) -> LogisticRegression:
     model = LogisticRegression()
     model.fit(train_df[FEATURE_COLUMNS], train_df["is_returned"])
