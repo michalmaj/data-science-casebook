@@ -15,13 +15,13 @@ Does your first model actually do better than the simplest possible baseline for
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — five functions: `load_clean_dataset` (Lessons 1-3, reproduced), `split_dataset` (new, works for any dataset), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (new — use only the one that matches your dataset)
+- `task.py` — seven functions: `load_dataset` (new — no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset), `impute_missing` (new — fills missing values using training-set statistics only, applied to both train and test), `scale_features` (new — standardizes features to zero mean/unit variance, needed before clustering), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
 - `lesson.ipynb` — the notebook where you'll fit your baseline and model
 
 ## Working in the notebook
 
-- Load and split your dataset.
-- Run only the fit-function cell that matches your dataset's problem type.
+- Load, split, and impute your dataset — `impute_missing` fills gaps using training-set statistics only.
+- Run only the fit-function cell that matches your dataset's problem type. The clustering cell also scales its features first — KMeans needs comparable feature magnitudes to measure genuine similarity.
 - Compare your model to the baseline.
 
 ## Self-check

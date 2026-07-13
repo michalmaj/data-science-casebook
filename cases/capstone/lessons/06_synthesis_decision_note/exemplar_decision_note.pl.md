@@ -8,7 +8,7 @@ Czy Riverside Community Clinic może przewidzieć, jak długo pacjent będzie cz
 
 ## 2. Podejście
 
-Wczytałem/am i oczyściłem/am dane kliniki (imputacja medianą/modą dla niewielkiej liczby brakujących wartości `staff_on_duty` i `department`), podzieliłem/am 80/20 na train/test, i porównałem/am baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
+Wczytałem/am dane kliniki, podzieliłem/am je 80/20 na train/test, a następnie zaimputowałem/am niewielką liczbę brakujących wartości `staff_on_duty` i `department` medianą/modą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Porównałem/am baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
 
 ## 3. Wyniki
 
@@ -29,15 +29,15 @@ To, że MAE na zbiorze testowym (10,60) i MAE treningowe z Lekcji 4 mieszczą si
 
 ## 6. Ograniczenia
 
-- Imputacja (uzupełnienie brakujących wartości `staff_on_duty` i `department`) została policzona na podstawie statystyk z całego zbioru danych przed podziałem train/test — niewielka ilość informacji ze zbioru testowego technicznie przeciekła do tych wartości uzupełniających. Przy tak niskim poziomie braków efekt praktyczny jest prawdopodobnie znikomy, ale metodologicznie poprawnym podejściem jest dopasowanie imputacji wyłącznie na zbiorze treningowym.
+- (Rozwiązane) We wcześniejszych wersjach tej analizy brakujące wartości `staff_on_duty` i `department` były imputowane statystykami z całego zbioru danych, przed podziałem train/test — niewielka ilość informacji ze zbioru testowego technicznie przeciekała do tych wartości uzupełniających. Zostało to naprawione: wartości uzupełniające (mediana/moda) są teraz liczone wyłącznie ze zbioru treningowego i stosowane do obu zbiorów.
 - Model użył tylko jednego podziału train/test z jednym seedem losowym; inny podział mógłby dać nieco inne MAE, a ta analiza nie kwantyfikuje, o ile ta liczba mogłaby się przesunąć.
 
 ## 7. Rekomendacja
 
-Użyć modelu, żeby dawać pacjentom spersonalizowane oszacowanie czasu oczekiwania przy rejestracji zamiast obecnej płaskiej średniej — to realna, zweryfikowana na zbiorze testowym poprawa (18,57 → 10,60 minuty MAE). Nie traktować 10,60 minuty jako dokładnej obietnicy dla konkretnego pacjenta; formułować to jako "zwykle w granicach ok. 10 minut od tego oszacowania", i ponownie przemyśleć podejście do imputacji (dopasowanie tylko na treningowym) zanim ten model zostanie użyty do czegoś bardziej krytycznego niż ustawianie oczekiwań.
+Użyć modelu, żeby dawać pacjentom spersonalizowane oszacowanie czasu oczekiwania przy rejestracji zamiast obecnej płaskiej średniej — to realna, zweryfikowana na zbiorze testowym poprawa (18,57 → 10,60 minuty MAE). Nie traktować 10,60 minuty jako dokładnej obietnicy dla konkretnego pacjenta; formułować to jako "zwykle w granicach ok. 10 minut od tego oszacowania".
 
 ---
 
 ## Dlaczego to dobra odpowiedź
 
-Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny**, ponieważ sekcja 4 wprost sprawdza spójność train-vs-test jako podstawę zaufania, zamiast raportować MAE testowe tak, jakby pojedyncza liczba sama się uzasadniała. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając problem preprocessingu przed splitem uczciwie i konkretnie (nie "gdzieś może być wyciek danych", ale dokładnie które wartości i dlaczego efekt jest prawdopodobnie mały) — to dokładnie taki rodzaj konkretnego, specyficznego dla case'a ograniczenia, jaki rubryka nagradza bardziej niż ogólnikowe zastrzeżenie.
+Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny**, ponieważ sekcja 4 wprost sprawdza spójność train-vs-test jako podstawę zaufania, zamiast raportować MAE testowe tak, jakby pojedyncza liczba sama się uzasadniała — a także dlatego, że leżący u podstaw pipeline dopasowuje imputację wyłącznie na zbiorze treningowym, nigdy nie pozwalając informacji ze zbioru testowego wpływać na preprocessing. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając realne, konkretne ograniczenie (jeden podział train/test z jednym seedem losowym) i jasno stwierdzając, że ta analiza nie kwantyfikuje, o ile mogłoby się przesunąć raportowane MAE przy innym podziale — to konkretne, sprawdzalne stwierdzenie, a nie ogólnikowe zastrzeżenie.

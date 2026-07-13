@@ -8,7 +8,7 @@ Can Riverside Community Clinic predict how long a patient will wait, using infor
 
 ## 2. Approach
 
-I loaded and cleaned the clinic dataset (median/mode imputation for the small number of missing `staff_on_duty` and `department` values), split 80/20 into train/test, and compared a mean-baseline (always predict the training set's average wait) against a linear regression fit on `num_patients_ahead`, `staff_on_duty`, `hour_of_day`, and `patient_age`, predicting `wait_time_minutes`.
+I loaded the clinic dataset, split it 80/20 into train/test, then imputed the small number of missing `staff_on_duty` and `department` values using median/mode statistics computed from the training set only (applied to both train and test). I compared a mean-baseline (always predict the training set's average wait) against a linear regression fit on `num_patients_ahead`, `staff_on_duty`, `hour_of_day`, and `patient_age`, predicting `wait_time_minutes`.
 
 ## 3. Results
 
@@ -29,15 +29,15 @@ A ~10.6 minute average error means the clinic can now give patients a personaliz
 
 ## 6. Limitations
 
-- Imputation (filling missing `staff_on_duty` and `department` values) was computed using statistics from the full dataset before the train/test split — a small amount of test-set information technically leaked into those fill values. With missingness this low, the practical effect is likely tiny, but the methodologically correct approach is to fit imputation on the training set only.
+- (Resolved) Earlier drafts of this analysis imputed missing `staff_on_duty` and `department` values using statistics from the full dataset, before the train/test split — a small amount of test-set information technically leaked into those fill values. This has been fixed: the median/mode fill values are now computed from the training set only and applied to both train and test.
 - The model only used one train/test split with one random seed; a different split could give a somewhat different MAE, and this analysis doesn't quantify how much that number might move.
 
 ## 7. Recommendation
 
-Use the model to give patients a personalized wait estimate at check-in instead of the current flat average — it's a real, test-set-verified improvement (18.57 → 10.60 minutes MAE). Don't treat 10.60 minutes as an exact promise to any one patient; frame it as "usually within about 10 minutes of this estimate," and revisit the imputation approach (train-only fitting) before this model is used for anything higher-stakes than expectation-setting.
+Use the model to give patients a personalized wait estimate at check-in instead of the current flat average — it's a real, test-set-verified improvement (18.57 → 10.60 minutes MAE). Don't treat 10.60 minutes as an exact promise to any one patient; frame it as "usually within about 10 minutes of this estimate."
 
 ---
 
 ## Why this is a strong answer
 
-This note earns "Exemplary" on **Modeling/evaluation correctness** because Section 4 explicitly checks train-vs-test consistency as the basis for trust, rather than reporting the test MAE as if a single number were self-justifying. It earns "Exemplary" on **Interpretation and limitations** by naming the preprocessing-before-split issue honestly and specifically (not "there could be data leakage somewhere" but exactly which values and why the effect is likely small), which is precisely the kind of concrete, case-specific limitation the rubric rewards over a generic disclaimer.
+This note earns "Exemplary" on **Modeling/evaluation correctness** because Section 4 explicitly checks train-vs-test consistency as the basis for trust, rather than reporting the test MAE as if a single number were self-justifying — and because the underlying pipeline fits imputation on the training set only, never letting test-set information influence preprocessing. It earns "Exemplary" on **Interpretation and limitations** by naming a genuine, concrete constraint (a single train/test split with one random seed) and being explicit that this analysis doesn't quantify how much the reported MAE might move under a different split — a specific, checkable claim rather than a vague disclaimer.

@@ -15,12 +15,12 @@ Czy wynik Twojego modelu na zbiorze testowym nadal pokonuje baseline, tak jak je
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — pięć funkcji z Lekcji 4, odtworzonych, plus trzy nowe: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — siedem funkcji z Lekcji 4, odtworzonych, plus trzy nowe: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — notebook, w którym uruchomisz cały swój pipeline i go ocenisz
 
 ## Praca w notebooku
 
-- Uruchom tylko komórkę pasującą do typu problemu Twojego zbioru — wczytuje, dzieli, dopasowuje i ocenia w jednym miejscu.
+- Uruchom tylko komórkę pasującą do typu problemu Twojego zbioru — wczytuje, dzieli, imputuje, dopasowuje i ocenia w jednym miejscu (komórka klasteryzacji dodatkowo skaluje cechy przed dopasowaniem).
 - Porównaj wynik na zbiorze testowym z tym, co zobaczyłeś/zobaczyłaś w Lekcji 4.
 - Zdecyduj, czy model jest wystarczająco dobry, żeby na jego podstawie działać.
 

@@ -15,7 +15,7 @@ Given everything you now know, what should your client actually do — and how c
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — the eight functions from Lessons 4-5, reproduced, plus three new ones: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (use only the one that matches your dataset)
+- `task.py` — the ten functions from Lessons 4-5, reproduced, plus three new ones: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (use only the one that matches your dataset)
 - `lesson.ipynb` — this time, most of the notebook is the decision note template itself, not code
 
 ## Working in the notebook
