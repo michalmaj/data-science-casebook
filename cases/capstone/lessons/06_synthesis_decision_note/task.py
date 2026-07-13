@@ -20,16 +20,14 @@ DATASET_MENU = [
 RANDOM_STATE = 42
 
 
-def load_clean_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
-    """Load and clean the dataset called `name`, same as Lessons 1-5.
+def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load the dataset called `name` — no cleaning yet, same as Lessons 4-5.
 
-    TODO: read data_dir / f"{name}.csv" with pandas.read_csv. Then, on a
-    copy of that DataFrame, for every column with any missing values: if
-    the column is numeric (pandas.api.types.is_numeric_dtype), fill it
-    with the column's median; otherwise fill it with the column's most
-    frequent value (column.mode().iloc[0]). Return the cleaned DataFrame.
+    TODO: read data_dir / f"{name}.csv" with pandas.read_csv and return it.
+    Missing values are handled later, after the train/test split, by
+    impute_missing — not here.
     """
-    raise NotImplementedError("load_clean_dataset is not implemented yet")
+    raise NotImplementedError("load_dataset is not implemented yet")
 
 
 def split_dataset(
@@ -42,6 +40,31 @@ def split_dataset(
     result as (train_df, test_df), in that order.
     """
     raise NotImplementedError("split_dataset is not implemented yet")
+
+
+def impute_missing(
+    train_df: pd.DataFrame, test_df: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Fill missing values in both frames using statistics from train_df only, same as Lessons 4-5.
+
+    TODO: on copies of train_df and test_df, for every column where
+    train_df OR test_df has any missing value: if the column is numeric
+    (pandas.api.types.is_numeric_dtype), compute fill_value as
+    train_df[column].median(); otherwise as
+    train_df[column].mode().iloc[0]. Fill that value into both train_df
+    and test_df for that column. Return (train_df, test_df).
+    """
+    raise NotImplementedError("impute_missing is not implemented yet")
+
+
+def scale_features(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+    """Standardize feature_columns to zero mean, unit variance, same as Lessons 4-5.
+
+    TODO: import StandardScaler from sklearn.preprocessing. On a copy of
+    df, replace df[feature_columns] with
+    StandardScaler().fit_transform(df[feature_columns]). Return the copy.
+    """
+    raise NotImplementedError("scale_features is not implemented yet")
 
 
 def fit_regression_baseline_and_model(
@@ -76,7 +99,8 @@ def fit_clustering_model(
     """Fit a KMeans model with k clusters on df[feature_columns], same as Lessons 4-5.
 
     TODO: build KMeans(n_clusters=k, random_state=random_state, n_init=10),
-    fit it on df[feature_columns], and return the fitted model.
+    fit it on df[feature_columns], and return the fitted model. Pass this
+    function an already-scaled df when clustering.
     """
     raise NotImplementedError("fit_clustering_model is not implemented yet")
 
@@ -128,7 +152,8 @@ def evaluate_clustering(model: KMeans, df: pd.DataFrame, feature_columns: list[s
 
     TODO: import silhouette_score from sklearn.metrics. Call
     model.predict(df[feature_columns]) to get cluster labels, then return
-    silhouette_score(df[feature_columns], labels).
+    silhouette_score(df[feature_columns], labels). Pass this function the
+    same scaled df that fit_clustering_model was fit on.
     """
     raise NotImplementedError("evaluate_clustering is not implemented yet")
 
@@ -181,6 +206,9 @@ def final_clustering_summary(
     result DataFrame. Add a "size" column with the number of rows in each
     cluster (group sizes), and a "share" column equal to "size" divided
     by len(df). Return the resulting DataFrame, indexed by cluster label,
-    with columns feature_columns followed by "size" then "share".
+    with columns feature_columns followed by "size" then "share". Pass
+    this function the same scaled df that fit_clustering_model was fit
+    on — the per-feature values in the result will be z-scores, not raw
+    units, same convention as Case 3.
     """
     raise NotImplementedError("final_clustering_summary is not implemented yet")

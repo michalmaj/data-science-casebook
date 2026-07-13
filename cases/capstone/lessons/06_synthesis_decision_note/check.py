@@ -19,8 +19,9 @@ _spec.loader.exec_module(lesson)
 
 
 def test_final_regression_scorecard_shape_and_values():
-    reg_df = lesson.load_clean_dataset("clinic_wait_times")
+    reg_df = lesson.load_dataset("clinic_wait_times")
     train_df, test_df = lesson.split_dataset(reg_df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
     target = "wait_time_minutes"
     baseline, model = lesson.fit_regression_baseline_and_model(train_df, target, features)
@@ -35,8 +36,9 @@ def test_final_regression_scorecard_shape_and_values():
 
 
 def test_final_classification_scorecard_shape_and_values():
-    clf_df = lesson.load_clean_dataset("lendwell_loan_default")
+    clf_df = lesson.load_dataset("lendwell_loan_default")
     train_df, test_df = lesson.split_dataset(clf_df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = [
         "loan_amount",
         "annual_income",
@@ -61,7 +63,7 @@ def test_final_classification_scorecard_shape_and_values():
 
 
 def test_final_clustering_summary_shape_and_values():
-    cluster_df = lesson.load_clean_dataset("retail_store_segments")
+    cluster_df = lesson.load_dataset("retail_store_segments")
     features = [
         "store_size_sqft",
         "monthly_revenue",
@@ -70,20 +72,22 @@ def test_final_clustering_summary_shape_and_values():
         "return_rate",
         "inventory_turnover",
     ]
-    model = lesson.fit_clustering_model(cluster_df, features)
-    summary = lesson.final_clustering_summary(model, cluster_df, features)
+    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df)
+    scaled_df = lesson.scale_features(cluster_df, features)
+    model = lesson.fit_clustering_model(scaled_df, features)
+    summary = lesson.final_clustering_summary(model, scaled_df, features)
 
     assert summary.shape == (3, 8)
     assert list(summary.index) == [0, 1, 2]
     assert list(summary.columns) == [*features, "size", "share"]
-    assert list(summary["size"]) == [137, 49, 64]
-    assert abs(summary.loc[0, "share"] - 0.548) < 1e-9
-    assert abs(summary.loc[1, "share"] - 0.196) < 1e-9
-    assert abs(summary.loc[2, "share"] - 0.256) < 1e-9
+    assert list(summary["size"]) == [108, 92, 50]
+    assert abs(summary.loc[0, "share"] - 0.432) < 1e-9
+    assert abs(summary.loc[1, "share"] - 0.368) < 1e-9
+    assert abs(summary.loc[2, "share"] - 0.2) < 1e-9
 
 
 def test_final_clustering_summary_shares_sum_to_one():
-    cluster_df = lesson.load_clean_dataset("retail_store_segments")
+    cluster_df = lesson.load_dataset("retail_store_segments")
     features = [
         "store_size_sqft",
         "monthly_revenue",
@@ -92,7 +96,9 @@ def test_final_clustering_summary_shares_sum_to_one():
         "return_rate",
         "inventory_turnover",
     ]
-    model = lesson.fit_clustering_model(cluster_df, features)
-    summary = lesson.final_clustering_summary(model, cluster_df, features)
+    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df)
+    scaled_df = lesson.scale_features(cluster_df, features)
+    model = lesson.fit_clustering_model(scaled_df, features)
+    summary = lesson.final_clustering_summary(model, scaled_df, features)
 
     assert abs(summary["share"].sum() - 1.0) < 1e-9

@@ -15,7 +15,7 @@ Mając całą tę wiedzę, co Twój klient powinien faktycznie zrobić — i jak
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — osiem funkcji z Lekcji 4-5, odtworzonych, plus trzy nowe: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — dziesięć funkcji z Lekcji 4-5, odtworzonych, plus trzy nowe: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — tym razem większość notebooka to sam szablon notatki decyzyjnej, nie kod
 
 ## Praca w notebooku
