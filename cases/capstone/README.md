@@ -24,7 +24,7 @@ None of these briefs tell you the target variable, the success metric, or the ex
 
 - **You pick the dataset.** Every lesson's code works generically across all three, so whichever one you choose, the tools you're given will work.
 - **You define the problem.** Lesson 1 is where you turn a vague client complaint into a specific, measurable analytical question.
-- **The self-checks are looser.** `check.py` in these lessons checks structure and reasonableness (does your function return the right shape, does your model expose `.predict()`, is your metric in a sane range) — not exact numbers, because there's no single correct answer here.
+- **The self-checks test your code's correctness, not your analytical choices.** Lessons 1-3's `check.py` verifies structure and reasonableness (does cleaning remove every gap, do correlation numbers compute correctly) but can't judge whether your dataset choice or question is a good one. Lessons 4-6's `check.py` goes further and checks exact values too — but only for the suggested feature set, to confirm your generic functions behave correctly. None of these checks can tell you whether your model, your features, or your recommendation are the right call for your own Lesson 1 question.
 
 ## Data format
 

@@ -32,7 +32,7 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete. Starting this lesson, these checks verify structure and reasonableness (shapes, convergence, "the model beats the baseline on training data") rather than exact prediction values — there's no single correct model once you're choosing your own features.
+All tests should pass once `task.py` is complete. Starting this lesson, these checks verify both structure/reasonableness (shapes, convergence, "the model beats the baseline on training data") and exact values for the suggested feature sets (e.g. the baseline itself, the number of model coefficients) — they confirm your generic functions behave correctly, not that your particular feature choices are the best ones. There's no single correct model once you're choosing your own features, and these checks don't grade that choice.
 
 ## Homework
 

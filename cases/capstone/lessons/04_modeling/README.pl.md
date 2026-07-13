@@ -32,7 +32,7 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Od tej lekcji te testy sprawdzają strukturę i rozsądność (kształty, zbieżność, „model pokonuje baseline na danych treningowych”), a nie dokładne wartości predykcji — nie ma jednego poprawnego modelu, gdy sam/sama wybierasz cechy.
+Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Od tej lekcji te testy sprawdzają zarówno strukturę/rozsądność (kształty, zbieżność, „model pokonuje baseline na danych treningowych”), jak i dokładne wartości dla sugerowanych zestawów cech (np. sam baseline, liczbę współczynników modelu) — potwierdzają, że Twoje generyczne funkcje działają poprawnie, a nie że Twój konkretny wybór cech jest najlepszy. Nie ma jednego poprawnego modelu, gdy sam/sama wybierasz cechy, i te testy tego wyboru nie oceniają.
 
 ## Zadanie domowe
 
