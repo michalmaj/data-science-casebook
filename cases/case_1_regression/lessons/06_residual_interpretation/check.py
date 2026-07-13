@@ -18,29 +18,31 @@ lesson = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(lesson)
 
 
-def test_load_clean_shipments_returns_493_rows():
-    df = lesson.load_clean_shipments()
+def test_load_shipments_returns_493_rows():
+    df = lesson.load_shipments()
     assert len(df) == 493
 
 
 def test_split_shipments_produces_expected_sizes():
-    df = lesson.load_clean_shipments()
+    df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
     assert len(train_df) == 394
     assert len(test_df) == 99
 
 
 def test_train_residuals_sum_to_approximately_zero():
-    df = lesson.load_clean_shipments()
-    train_df, _ = lesson.split_shipments(df)
+    df = lesson.load_shipments()
+    train_df, test_df = lesson.split_shipments(df)
+    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
     model = lesson.fit_model(train_df)
     residuals = lesson.compute_residuals(model, train_df)
     assert abs(residuals.mean()) < 1e-6
 
 
 def test_residuals_are_uncorrelated_with_every_in_model_feature():
-    df = lesson.load_clean_shipments()
-    train_df, _ = lesson.split_shipments(df)
+    df = lesson.load_shipments()
+    train_df, test_df = lesson.split_shipments(df)
+    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
     model = lesson.fit_model(train_df)
     residuals = lesson.compute_residuals(model, train_df)
     for column in lesson.FEATURE_COLUMNS:
@@ -49,13 +51,14 @@ def test_residuals_are_uncorrelated_with_every_in_model_feature():
 
 
 def test_mean_residual_by_weather_reveals_the_missing_predictor():
-    df = lesson.load_clean_shipments()
-    train_df, _ = lesson.split_shipments(df)
+    df = lesson.load_shipments()
+    train_df, test_df = lesson.split_shipments(df)
+    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
     model = lesson.fit_model(train_df)
     residuals = lesson.compute_residuals(model, train_df)
     means = lesson.mean_residual_by_weather(train_df, residuals)
 
     assert list(means.index) == ["snow", "rain", "clear"]
-    assert abs(means["snow"] - 19.324425) < 1e-3
-    assert abs(means["rain"] - 4.136380) < 1e-3
-    assert abs(means["clear"] - (-3.656758)) < 1e-3
+    assert abs(means["snow"] - 19.328648) < 1e-3
+    assert abs(means["rain"] - 4.134309) < 1e-3
+    assert abs(means["clear"] - (-3.656140)) < 1e-3
