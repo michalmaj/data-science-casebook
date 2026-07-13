@@ -14,8 +14,8 @@ Does a linear regression on the features Lesson 3 flagged as real signal actuall
 
 ## What you're given
 
-- The cleaned data from Lessons 2-4 (reproduced here via `load_clean_shipments`)
-- `task.py` — four functions to implement: `load_clean_shipments`, `split_shipments`, `fit_model`, `predict_delay`
+- The data from Lessons 2-4 (reproduced here via `load_shipments`)
+- `task.py` — five functions to implement: `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`, `predict_delay`
 - `lesson.ipynb` — the notebook where you'll do the actual work
 
 ## Working in the notebook
@@ -23,8 +23,9 @@ Does a linear regression on the features Lesson 3 flagged as real signal actuall
 1. Open `lesson.ipynb`.
 2. Once `task.py` is filled in, run the notebook top to bottom.
 3. Confirm the train/test split adds up: 394 + 99 = 493.
-4. Compare the model's MAE/RMSE on the test set against the *fair* baseline (train-mean applied to test, not Lesson 4's whole-dataset baseline).
-5. Look at the model's coefficients — do their signs match what Lesson 3's correlations suggested?
+4. Call `impute_driver_experience` right after splitting — notice it computes the fill value from `train_df` only, then applies that same value to both `train_df` and `test_df`. This is the fix for a real bug this course used to have: computing the median before splitting would let a little test-set information leak into training.
+5. Compare the model's MAE/RMSE on the test set against the *fair* baseline (train-mean applied to test, not Lesson 4's whole-dataset baseline).
+6. Look at the model's coefficients — do their signs match what Lesson 3's correlations suggested?
 
 ## Self-check
 
