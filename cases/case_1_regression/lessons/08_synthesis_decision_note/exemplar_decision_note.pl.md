@@ -8,7 +8,7 @@ Czy możemy przewidzieć, o ile minut opóźni się dostawa TransLine, na podsta
 
 ## 2. Podejście
 
-Użyłem/am oczyszczonych danych o dostawach TransLine (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` jako cechy, `delay_minutes` jako cel), podzieliłem/am 80/20 na train/test z ustalonym seedem. Porównałem/am dwa baseline'y — zawsze przewidujący 0 minut opóźnienia i zawsze przewidujący średnie opóźnienie ze zbioru treningowego — z regresją liniową dopasowaną na czterech cechach. Wszystkie trzy zostały ocenione na tym samym odłożonym zbiorze testowym.
+Użyłem/am danych o dostawach TransLine (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` jako cechy, `delay_minutes` jako cel), podzieliłem/am 80/20 na train/test z ustalonym seedem, a następnie uzupełniłem/am niewielką liczbę brakujących wartości `driver_experience_years` medianą wyłącznie ze zbioru treningowego, zastosowaną do obu zbiorów. Porównałem/am dwa baseline'y — zawsze przewidujący 0 minut opóźnienia i zawsze przewidujący średnie opóźnienie ze zbioru treningowego — z regresją liniową dopasowaną na czterech cechach. Wszystkie trzy zostały ocenione na tym samym odłożonym zbiorze testowym.
 
 ## 3. Wyniki
 

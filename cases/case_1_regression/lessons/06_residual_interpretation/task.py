@@ -15,14 +15,13 @@ RANDOM_STATE = 20260707
 FEATURE_COLUMNS = ["distance_km", "num_stops", "driver_experience_years", "vehicle_age_years"]
 
 
-def load_clean_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
-    """Load the CSV, drop rows missing `weather`, impute `driver_experience_years`.
+def load_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
+    """Load the CSV and drop rows missing `weather`.
 
-    TODO: same cleaning as Lessons 2-5 — drop rows where `weather` is
-    missing, then fill missing `driver_experience_years` with the median
-    of what's left.
+    TODO: read the CSV at `path`, then drop rows where `weather` is
+    missing. Return the result — same as Lesson 5.
     """
-    raise NotImplementedError("load_clean_shipments is not implemented yet")
+    raise NotImplementedError("load_shipments is not implemented yet")
 
 
 def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -33,6 +32,18 @@ def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     (train_df, test_df) in that order — same as Lesson 5.
     """
     raise NotImplementedError("split_shipments is not implemented yet")
+
+
+def impute_driver_experience(
+    train_df: pd.DataFrame, test_df: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Fill missing `driver_experience_years` using the training set's median only.
+
+    TODO: compute the median of train_df["driver_experience_years"], then
+    fill missing values in both train_df and test_df with that single
+    median. Return (train_df, test_df) in that order — same as Lesson 5.
+    """
+    raise NotImplementedError("impute_driver_experience is not implemented yet")
 
 
 def fit_model(train_df: pd.DataFrame) -> LinearRegression:

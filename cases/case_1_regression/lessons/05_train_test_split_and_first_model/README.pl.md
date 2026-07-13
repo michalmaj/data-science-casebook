@@ -14,8 +14,8 @@ Czy regresja liniowa na cechach, które Lekcja 3 oznaczyła jako prawdziwy sygna
 
 ## Co dostajesz
 
-- Wyczyszczone dane z Lekcji 2-4 (odtworzone tutaj przez `load_clean_shipments`)
-- `task.py` — cztery funkcje do zaimplementowania: `load_clean_shipments`, `split_shipments`, `fit_model`, `predict_delay`
+- Dane z Lekcji 2-4 (odtworzone tutaj przez `load_shipments`)
+- `task.py` — pięć funkcji do zaimplementowania: `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`, `predict_delay`
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
 
 ## Praca w notebooku
@@ -23,8 +23,9 @@ Czy regresja liniowa na cechach, które Lekcja 3 oznaczyła jako prawdziwy sygna
 1. Otwórz `lesson.ipynb`.
 2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
 3. Potwierdź, że podział się zgadza: 394 + 99 = 493.
-4. Porównaj MAE/RMSE modelu na zbiorze testowym ze sprawiedliwym modelem bazowym (średnia z treningu zastosowana do testu, nie średnia z całego zbioru z Lekcji 4).
-5. Zobacz współczynniki modelu — czy ich znaki zgadzają się z tym, co sugerowały korelacje z Lekcji 3?
+4. Wywołaj `impute_driver_experience` zaraz po podziale — zauważ, że liczy wartość uzupełniającą wyłącznie z `train_df`, a potem stosuje tę samą wartość do `train_df` i `test_df`. To naprawa prawdziwego błędu, który ten kurs kiedyś miał: liczenie mediany przed podziałem pozwalało odrobinie informacji ze zbioru testowego przeciekać do treningu.
+5. Porównaj MAE/RMSE modelu na zbiorze testowym ze sprawiedliwym modelem bazowym (średnia z treningu zastosowana do testu, nie średnia z całego zbioru z Lekcji 4).
+6. Zobacz współczynniki modelu — czy ich znaki zgadzają się z tym, co sugerowały korelacje z Lekcji 3?
 
 ## Self-check
 

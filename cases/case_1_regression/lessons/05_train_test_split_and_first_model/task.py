@@ -16,14 +16,15 @@ RANDOM_STATE = 20260707
 FEATURE_COLUMNS = ["distance_km", "num_stops", "driver_experience_years", "vehicle_age_years"]
 
 
-def load_clean_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
-    """Load the CSV, drop rows missing `weather`, impute `driver_experience_years`.
+def load_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
+    """Load the CSV and drop rows missing `weather`.
 
-    TODO: same cleaning as Lessons 2-4 — drop rows where `weather` is
-    missing, then fill missing `driver_experience_years` with the median
-    of what's left.
+    TODO: read the CSV at `path` with pandas.read_csv, then drop rows
+    where `weather` is missing. Return the result. (`driver_experience_years`
+    may still have missing values here — that's handled after the split,
+    in `impute_driver_experience`, not here.)
     """
-    raise NotImplementedError("load_clean_shipments is not implemented yet")
+    raise NotImplementedError("load_shipments is not implemented yet")
 
 
 def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -34,6 +35,20 @@ def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     (train_df, test_df) in that order.
     """
     raise NotImplementedError("split_shipments is not implemented yet")
+
+
+def impute_driver_experience(
+    train_df: pd.DataFrame, test_df: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Fill missing `driver_experience_years` using the training set's median only.
+
+    TODO: compute the median of train_df["driver_experience_years"] (pandas'
+    .median() ignores missing values by default). Fill missing values in
+    both train_df and test_df with that single median — never compute a
+    separate median from test_df, and never recompute it from the two
+    frames combined. Return (train_df, test_df) in that order.
+    """
+    raise NotImplementedError("impute_driver_experience is not implemented yet")
 
 
 def fit_model(train_df: pd.DataFrame) -> LinearRegression:

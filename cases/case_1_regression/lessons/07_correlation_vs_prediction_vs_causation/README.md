@@ -14,7 +14,7 @@ Which of the model's coefficients can you trust enough to build a recommendation
 
 ## What you're given
 
-- The same cleaned, split data as Lessons 5-6 (reproduced here via `load_clean_shipments`, `split_shipments`)
+- The same split data as Lessons 5-6 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`)
 - `task.py` — two new functions: `fit_model_on` (fit on any feature list, not just the fixed set) and `coefficient_for` (look up one feature's coefficient)
 - `lesson.ipynb` — the notebook where you'll do the actual work
 

@@ -8,7 +8,7 @@ Can we predict how many minutes a TransLine shipment will be delayed, using info
 
 ## 2. Approach
 
-I used TransLine's cleaned shipment records (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` as features, `delay_minutes` as target), split 80/20 into train/test with a fixed random seed. I compared two baselines — always predicting 0 minutes of delay, and always predicting the training set's mean delay — against a linear regression fit on the four features. All three were scored on the same held-out test set.
+I used TransLine's shipment records (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` as features, `delay_minutes` as target), split 80/20 into train/test with a fixed random seed, then imputed the small number of missing `driver_experience_years` values using the training set's median only, applied to both train and test. I compared two baselines — always predicting 0 minutes of delay, and always predicting the training set's mean delay — against a linear regression fit on the four features. All three were scored on the same held-out test set.
 
 ## 3. Results
 

@@ -14,7 +14,7 @@ Are this model's mistakes random, or do they follow a pattern — and if there's
 
 ## What you're given
 
-- The same split and model as Lesson 5, reproduced here (`load_clean_shipments`, `split_shipments`, `fit_model`)
+- The same split and model as Lesson 5, reproduced here (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
 - `task.py` — three new functions to implement on top of those: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`
 - `lesson.ipynb` — the notebook where you'll do the actual work
 

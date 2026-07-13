@@ -14,7 +14,7 @@ Given everything you now know, what should TransLine actually do — and how con
 
 ## What you're given
 
-- The same cleaned, split data and model as Lessons 5-7 (reproduced here via `load_clean_shipments`, `split_shipments`, `fit_model`)
+- The same split data and model as Lessons 5-7 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
 - `task.py` — one new function, `final_scorecard`, that lays out every predictor this case has built (zero-baseline, mean-baseline, model) side by side on the same held-out data
 - `lesson.ipynb` — this time, most of the notebook is the decision note template itself, not code
 
