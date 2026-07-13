@@ -24,7 +24,7 @@ Trzech potencjalnych klientów, każdy z lekkim briefem. Wybierz jednego — bę
 
 - **Wybierasz zbiór danych.** Kod w każdej lekcji działa generycznie dla wszystkich trzech, więc niezależnie od wyboru, dostępne narzędzia będą działać.
 - **Sam/sama definiujesz problem.** Lekcja 1 to moment, w którym zamieniasz niejasną skargę klienta w konkretne, mierzalne pytanie analityczne.
-- **Self-checki są luźniejsze.** `check.py` w tych lekcjach sprawdza strukturę i rozsądność (czy Twoja funkcja zwraca odpowiedni kształt, czy model ma `.predict()`, czy metryka mieści się w sensownym zakresie) — nie konkretne liczby, bo nie ma tu jednej poprawnej odpowiedzi.
+- **Self-checki sprawdzają poprawność Twojego kodu, nie Twoich wyborów analitycznych.** `check.py` w Lekcjach 1-3 sprawdza strukturę i rozsądność (czy czyszczenie usuwa każdą lukę, czy liczby korelacji są poprawnie policzone), ale nie potrafi ocenić, czy wybór zbioru danych albo pytania jest dobry. `check.py` w Lekcjach 4-6 idzie dalej i sprawdza też dokładne wartości — ale tylko dla sugerowanego zestawu cech, żeby potwierdzić, że Twoje generyczne funkcje działają poprawnie. Żaden z tych checkerów nie powie Ci, czy Twój model, cechy albo rekomendacja są właściwym wyborem dla Twojego własnego pytania z Lekcji 1.
 
 ## Format danych
 

@@ -18,16 +18,24 @@ Four cases, each a full analytical cycle, with the amount of guidance decreasing
 | Case | Scenario | Technique | Lessons | Guidance |
 |---|---|---|---|---|
 | [Case 1 — Regression](cases/case_1_regression/) | TransLine shipment delays | Linear regression | 8 | Heavily guided |
-| [Case 2 — Classification](cases/case_2_classification/) | Meridian Outlet returns | Logistic regression | 8 | Partially guided |
-| [Case 3 — Clustering](cases/case_3_clustering/) | Aurora Stream subscriber segmentation | KMeans | 8 | Brief + data only |
-| [Capstone](cases/capstone/) | Your choice of one of three client engagements | Your choice of technique | 6 | Fully independent |
+| [Case 2 — Classification](cases/case_2_classification/) | Meridian Outlet returns | Logistic regression | 8 | Guided |
+| [Case 3 — Clustering](cases/case_3_clustering/) | Aurora Stream subscriber segmentation | KMeans | 8 | Guided, less interpretive support |
+| [Capstone](cases/capstone/) | Your choice of one of three client engagements | Your choice of technique | 6 | Guided capstone (constrained choice) |
 
 ## Getting started
 
-Install dependencies with [uv](https://docs.astral.sh/uv/):
+Install [uv](https://docs.astral.sh/uv/) — it manages Python versions itself, so you don't need Python pre-installed; the commands below will download a compatible interpreter automatically if needed.
 
 ```bash
+git clone https://github.com/michalmaj/data-science-casebook.git
+cd data-science-casebook
 uv sync
+```
+
+Start JupyterLab:
+
+```bash
+uv run jupyter lab
 ```
 
 Each lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and follows the same shape:
@@ -38,15 +46,24 @@ Each lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and follows the sa
 - `lesson.ipynb` — the notebook where you actually work through the lesson
 - `README.md` / `README.pl.md` — the lesson brief
 
+**Working through a lesson:**
+
+1. Read the lesson's `README.md` (or `README.pl.md`) for context and the analytical question.
+2. Fill in the `TODO`s in `task.py`.
+3. From the lesson's folder, run `uv run pytest` to check your work.
+4. Open `lesson.ipynb` and work through the analysis and reflection.
+
+If you edit `task.py` after already importing it in a running notebook, restart the kernel (or re-run the import cell) — Python caches imported modules, so a plain re-run of a cell won't pick up your change.
+
 Start at `cases/case_1_regression/lessons/01_defining_the_question/`.
 
 ## Bilingual
 
-Every Markdown file has a Polish sibling (`README.md` → `README.pl.md`). English is the source of truth; code, comments, and commit messages are English-only.
+Every Markdown file has a Polish sibling (`README.md` → `README.pl.md`). English is the source of truth; code, comments, and commit messages are English-only. This includes lesson notebooks (`lesson.ipynb`) — their instructional text is English-only even where the accompanying `README.pl.md` is Polish; the lesson brief is bilingual, the workspace you code in is not.
 
 ## Contributing
 
-Found an error in a lesson, a translation issue, or want to propose a new case or lesson? [Open an issue](https://github.com/michalmaj/data-science-casebook/issues/new/choose) — the template picker will route you to the right form.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for local development commands, the bilingual contract, and how to add a lesson or case. Found an error in a lesson, a translation issue, or want to propose a new case or lesson? [Open an issue](https://github.com/michalmaj/data-science-casebook/issues/new/choose) — the template picker will route you to the right form.
 
 ## License
 
