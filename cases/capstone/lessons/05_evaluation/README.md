@@ -15,12 +15,12 @@ Does your model's test-set performance still beat the baseline, the way its trai
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — the five functions from Lesson 4, reproduced, plus three new ones: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (use only the one that matches your dataset)
+- `task.py` — the seven functions from Lesson 4, reproduced, plus three new ones: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (use only the one that matches your dataset)
 - `lesson.ipynb` — the notebook where you'll run your full pipeline and evaluate it
 
 ## Working in the notebook
 
-- Run only the cell matching your dataset's problem type — it loads, splits, fits, and evaluates in one place.
+- Run only the cell matching your dataset's problem type — it loads, splits, imputes, fits, and evaluates in one place (the clustering cell also scales features before fitting).
 - Compare the test-set result to what you saw in Lesson 4.
 - Decide whether the model is actually good enough to act on.
 

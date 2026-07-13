@@ -19,8 +19,9 @@ _spec.loader.exec_module(lesson)
 
 
 def test_evaluate_regression_beats_baseline_on_held_out_test_data():
-    df = lesson.load_clean_dataset("clinic_wait_times")
+    df = lesson.load_dataset("clinic_wait_times")
     train_df, test_df = lesson.split_dataset(df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
     target = "wait_time_minutes"
 
@@ -33,8 +34,9 @@ def test_evaluate_regression_beats_baseline_on_held_out_test_data():
 
 
 def test_evaluate_classification_matches_known_values():
-    df = lesson.load_clean_dataset("lendwell_loan_default")
+    df = lesson.load_dataset("lendwell_loan_default")
     train_df, test_df = lesson.split_dataset(df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = [
         "loan_amount",
         "annual_income",
@@ -57,7 +59,7 @@ def test_evaluate_classification_matches_known_values():
 
 
 def test_evaluate_clustering_matches_known_value():
-    df = lesson.load_clean_dataset("retail_store_segments")
+    df = lesson.load_dataset("retail_store_segments")
     features = [
         "store_size_sqft",
         "monthly_revenue",
@@ -66,8 +68,10 @@ def test_evaluate_clustering_matches_known_value():
         "return_rate",
         "inventory_turnover",
     ]
+    df, _ = lesson.impute_missing(df, df)
+    scaled_df = lesson.scale_features(df, features)
 
-    model = lesson.fit_clustering_model(df, features)
-    score = lesson.evaluate_clustering(model, df, features)
+    model = lesson.fit_clustering_model(scaled_df, features)
+    score = lesson.evaluate_clustering(model, scaled_df, features)
 
-    assert abs(score - 0.6939991062993562) < 1e-9
+    assert abs(score - 0.22231830884063178) < 1e-9
