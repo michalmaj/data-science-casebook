@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import pytest
 from sklearn.metrics import mean_absolute_error
 
@@ -42,17 +43,19 @@ def test_split_dataset_produces_known_sizes_with_no_overlap(
     assert set(train_df.index).isdisjoint(set(test_df.index))
 
 
-def test_impute_missing_fills_from_train_only():
-    df = lesson.load_dataset("clinic_wait_times")
-    train_df, test_df = lesson.split_dataset(df)
-    assert train_df["staff_on_duty"].isna().any() or test_df["staff_on_duty"].isna().any()
+def test_impute_missing_uses_train_statistics_only():
+    # train median is 2.0; if the fill value were computed from test_df or
+    # from the combined frame instead of train_df alone, it would come out
+    # very different (150.0 or 3.0) and these assertions would catch it.
+    train_df = pd.DataFrame({"x": [1.0, 2.0, 3.0, np.nan]})
+    test_df = pd.DataFrame({"x": [100.0, 200.0, np.nan]})
 
-    train_expected_median = train_df["staff_on_duty"].median()
     train_filled, test_filled = lesson.impute_missing(train_df, test_df)
 
-    assert not train_filled.isna().any().any()
-    assert not test_filled.isna().any().any()
-    assert train_filled["staff_on_duty"].median() == train_expected_median
+    assert not train_filled["x"].isna().any()
+    assert not test_filled["x"].isna().any()
+    assert train_filled["x"].iloc[3] == 2.0
+    assert test_filled["x"].iloc[2] == 2.0
 
 
 def test_fit_regression_baseline_and_model_learns_something():
