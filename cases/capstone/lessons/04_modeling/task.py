@@ -20,16 +20,16 @@ DATASET_MENU = [
 RANDOM_STATE = 42
 
 
-def load_clean_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
-    """Load and clean the dataset called `name`, same as Lessons 1-3.
+def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
+    """Load the dataset called `name` — no cleaning yet.
 
-    TODO: read data_dir / f"{name}.csv" with pandas.read_csv. Then, on a
-    copy of that DataFrame, for every column with any missing values: if
-    the column is numeric (pandas.api.types.is_numeric_dtype), fill it
-    with the column's median; otherwise fill it with the column's most
-    frequent value (column.mode().iloc[0]). Return the cleaned DataFrame.
+    TODO: read data_dir / f"{name}.csv" with pandas.read_csv and return it.
+    Missing values are handled later, after the train/test split, by
+    impute_missing — not here. Imputing before splitting would leak
+    information from the test set into the values used to fill the
+    training set.
     """
-    raise NotImplementedError("load_clean_dataset is not implemented yet")
+    raise NotImplementedError("load_dataset is not implemented yet")
 
 
 def split_dataset(
@@ -42,6 +42,37 @@ def split_dataset(
     result as (train_df, test_df), in that order.
     """
     raise NotImplementedError("split_dataset is not implemented yet")
+
+
+def impute_missing(
+    train_df: pd.DataFrame, test_df: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Fill missing values in both frames using statistics from train_df only.
+
+    TODO: on copies of train_df and test_df, for every column where
+    train_df OR test_df has any missing value: if the column is numeric
+    (pandas.api.types.is_numeric_dtype), compute fill_value as
+    train_df[column].median(); otherwise as
+    train_df[column].mode().iloc[0]. Fill that value into both train_df
+    and test_df for that column (never compute a fill value from
+    test_df — only train_df). Return (train_df, test_df).
+    """
+    raise NotImplementedError("impute_missing is not implemented yet")
+
+
+def scale_features(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+    """Standardize feature_columns to zero mean, unit variance (z-scores).
+
+    TODO: import StandardScaler from sklearn.preprocessing. On a copy of
+    df, replace df[feature_columns] with
+    StandardScaler().fit_transform(df[feature_columns]). Return the
+    copy. Used only by the clustering path — KMeans measures distance
+    directly on feature values, so unscaled features with different
+    magnitudes (e.g. monthly_revenue in the tens of thousands vs.
+    return_rate as a small decimal) would dominate the distance metric
+    regardless of which features actually separate the data.
+    """
+    raise NotImplementedError("scale_features is not implemented yet")
 
 
 def fit_regression_baseline_and_model(
@@ -76,6 +107,8 @@ def fit_clustering_model(
     """Fit a KMeans model with k clusters on df[feature_columns].
 
     TODO: build KMeans(n_clusters=k, random_state=random_state, n_init=10),
-    fit it on df[feature_columns], and return the fitted model.
+    fit it on df[feature_columns], and return the fitted model. Pass this
+    function an already-scaled df (see scale_features) when clustering —
+    it does not scale internally.
     """
     raise NotImplementedError("fit_clustering_model is not implemented yet")

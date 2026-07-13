@@ -33,7 +33,7 @@ _spec.loader.exec_module(lesson)
 def test_split_dataset_produces_known_sizes_with_no_overlap(
     name, expected_total, expected_train, expected_test
 ):
-    df = lesson.load_clean_dataset(name)
+    df = lesson.load_dataset(name)
     train_df, test_df = lesson.split_dataset(df)
     assert len(df) == expected_total
     assert len(train_df) == expected_train
@@ -42,9 +42,23 @@ def test_split_dataset_produces_known_sizes_with_no_overlap(
     assert set(train_df.index).isdisjoint(set(test_df.index))
 
 
+def test_impute_missing_fills_from_train_only():
+    df = lesson.load_dataset("clinic_wait_times")
+    train_df, test_df = lesson.split_dataset(df)
+    assert train_df["staff_on_duty"].isna().any() or test_df["staff_on_duty"].isna().any()
+
+    train_expected_median = train_df["staff_on_duty"].median()
+    train_filled, test_filled = lesson.impute_missing(train_df, test_df)
+
+    assert not train_filled.isna().any().any()
+    assert not test_filled.isna().any().any()
+    assert train_filled["staff_on_duty"].median() == train_expected_median
+
+
 def test_fit_regression_baseline_and_model_learns_something():
-    df = lesson.load_clean_dataset("clinic_wait_times")
-    train_df, _ = lesson.split_dataset(df)
+    df = lesson.load_dataset("clinic_wait_times")
+    train_df, test_df = lesson.split_dataset(df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
     target = "wait_time_minutes"
 
@@ -62,8 +76,9 @@ def test_fit_regression_baseline_and_model_learns_something():
 
 
 def test_fit_classification_baseline_and_model_learns_something():
-    df = lesson.load_clean_dataset("lendwell_loan_default")
-    train_df, _ = lesson.split_dataset(df)
+    df = lesson.load_dataset("lendwell_loan_default")
+    train_df, test_df = lesson.split_dataset(df)
+    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = [
         "loan_amount",
         "annual_income",
@@ -85,7 +100,7 @@ def test_fit_classification_baseline_and_model_learns_something():
 
 
 def test_fit_clustering_model_returns_expected_shape():
-    df = lesson.load_clean_dataset("retail_store_segments")
+    df = lesson.load_dataset("retail_store_segments")
     features = [
         "store_size_sqft",
         "monthly_revenue",
@@ -94,13 +109,15 @@ def test_fit_clustering_model_returns_expected_shape():
         "return_rate",
         "inventory_turnover",
     ]
+    df, _ = lesson.impute_missing(df, df)
+    scaled_df = lesson.scale_features(df, features)
 
-    model = lesson.fit_clustering_model(df, features)
+    model = lesson.fit_clustering_model(scaled_df, features)
 
     assert model.n_clusters == 3
     assert model.cluster_centers_.shape == (3, 6)
     assert len(model.labels_) == 250
     assert sorted(set(model.labels_.tolist())) == [0, 1, 2]
 
-    model2 = lesson.fit_clustering_model(df, features)
+    model2 = lesson.fit_clustering_model(scaled_df, features)
     assert (model.labels_ == model2.labels_).all()

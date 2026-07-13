@@ -15,13 +15,13 @@ Czy Twój pierwszy model faktycznie radzi sobie lepiej niż najprostszy możliwy
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — pięć funkcji: `load_clean_dataset` (Lekcje 1-3, odtworzona), `split_dataset` (nowa, działa dla dowolnego zbioru) oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (nowe — użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — siedem funkcji: `load_dataset` (nowa — bez czyszczenia, zastępuje starą `load_clean_dataset`), `split_dataset` (działa dla dowolnego zbioru), `impute_missing` (nowa — uzupełnia braki statystykami wyłącznie ze zbioru treningowego, zastosowanymi do obu zbiorów), `scale_features` (nowa — standaryzuje cechy do zerowej średniej/jednostkowej wariancji, potrzebna przed klasteryzacją), oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — notebook, w którym dopasujesz swój baseline i model
 
 ## Praca w notebooku
 
-- Wczytaj i podziel swój zbiór danych.
-- Uruchom tylko tę komórkę z funkcją dopasowującą, która pasuje do typu problemu Twojego zbioru.
+- Wczytaj, podziel i zaimputuj swój zbiór danych — `impute_missing` uzupełnia braki statystykami wyłącznie ze zbioru treningowego.
+- Uruchom tylko tę komórkę z funkcją dopasowującą, która pasuje do typu problemu Twojego zbioru. Komórka klasteryzacji dodatkowo skaluje cechy przed dopasowaniem — KMeans potrzebuje porównywalnych skal cech, żeby mierzyć rzeczywiste podobieństwo.
 - Porównaj swój model z baseline'em.
 
 ## Self-check
