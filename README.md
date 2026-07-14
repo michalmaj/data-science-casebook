@@ -46,6 +46,8 @@ Each lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and follows the sa
 - `lesson.ipynb` — the notebook where you actually work through the lesson
 - `README.md` / `README.pl.md` — the lesson brief
 
+`task.py` is where you implement your solution; `lesson.ipynb` is where you run it, see the results, and write your interpretation — think of the notebook as your analytical report, not a scratch pad for writing new code from zero.
+
 **Working through a lesson:**
 
 1. Read the lesson's `README.md` (or `README.pl.md`) for context and the analytical question.

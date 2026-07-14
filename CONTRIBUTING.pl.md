@@ -30,6 +30,8 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i potrze
 - `lesson.ipynb` — notebook, w którym student faktycznie pracuje, z wyczyszczonymi outputami komórek (zobacz "Higiena notebooków" poniżej).
 - `README.md` i `README.pl.md` — brief lekcji, w obu językach.
 
+Każdy `lesson.ipynb` zaczyna się od komórki `%load_ext autoreload` / `%autoreload 2` (zaraz po komórce markdown z wprowadzeniem) — to dzięki temu edycje `task.py` pojawiają się w działającym notebooku bez restartu kernela.
+
 **Zasada samodzielności (self-containment)**: jeśli lekcja potrzebuje funkcji, którą zdefiniowała już wcześniejsza lekcja w tym samym case'ie (np. `load_dataset`, `split_dataset`), odtwórz ją bajt-w-bajt w `task.py`/`solution.py` nowej lekcji — nigdy nie importuj jej z modułu innej lekcji. Lekcje muszą dać się uruchomić i ocenić w izolacji; student przechodzący od razu do Lekcji 5 nie powinien potrzebować plików z Lekcji 3. Oznacza to, że pewne powtórzenia między lekcjami case'a są oczekiwane i celowe, nie błędem do posprzątania.
 
 **Wzorzec ładowania modułu w `check.py`**: każdy `check.py` w tym repo używa tego samego boilerplate'u, żeby wczytać `task.py` albo `solution.py` w czasie działania:

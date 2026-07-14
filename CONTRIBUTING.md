@@ -30,6 +30,8 @@ Every lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and needs exactly
 - `lesson.ipynb` — the notebook the student actually works in, with cleared cell outputs (see "Notebook hygiene" below).
 - `README.md` and `README.pl.md` — the lesson brief, in both languages.
 
+Every `lesson.ipynb` starts with a `%load_ext autoreload` / `%autoreload 2` cell (right after the intro markdown cell) — this is what lets edits to `task.py` show up in a running notebook without a kernel restart.
+
 **Self-containment convention**: if a lesson needs a function that an earlier lesson in the same case already defined (e.g. `load_dataset`, `split_dataset`), reproduce it byte-for-byte in the new lesson's `task.py`/`solution.py` — never import it from another lesson's module. Lessons must be runnable and gradable in isolation; a student jumping straight to Lesson 5 shouldn't need Lesson 3's files to exist. This means some duplication across a case's lessons is expected and intentional, not a bug to clean up.
 
 **`check.py` module-loading pattern**: every `check.py` in this repo uses the same boilerplate to load either `task.py` or `solution.py` at runtime:
