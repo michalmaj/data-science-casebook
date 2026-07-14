@@ -2,7 +2,7 @@
 
 ## Głos mentora
 
-"Witaj na pokładzie. Kierownik operacyjny TransLine właśnie powiedział mi — cytuję — 'przesyłki się opóźniają, załatwcie to'. To nie jest jeszcze pytanie, na które możemy odpowiedzieć danymi. Zanim dotkniesz jakiegokolwiek modelu, musisz zamienić tę skargę w coś wystarczająco konkretnego, żeby dało się to sprawdzić."
+"Witaj na pokładzie. Kierownik operacyjny TransLine właśnie powiedział mi — cytuję — 'przesyłki się opóźniają, załatwcie to'. To nie jest jeszcze pytanie, na które możemy odpowiedzieć danymi. Zanim dotkniesz jakiegokolwiek modelu, musisz zamienić tę skargę w coś wystarczająco konkretnego, żeby dało się to sprawdzić. Jeszcze jedno z tego spotkania: cokolwiek zbudujemy, musi działać w momencie, gdy przesyłka wyjeżdża z magazynu — nie na podstawie informacji, które poznajemy dopiero później, jak pogoda, w jaką przesyłka faktycznie trafiła w trasie. Miej to z tyłu głowy, poznając dane."
 
 ## Cel lekcji
 
