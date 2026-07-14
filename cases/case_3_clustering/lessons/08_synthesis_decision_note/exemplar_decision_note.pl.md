@@ -27,15 +27,15 @@ Dwa segmenty rozdzielają się niemal wyłącznie na zaangażowaniu w oglądanie
 
 ## 6. Ograniczenia
 
-- Te profile segmentów są raportowane w ustandaryzowanych jednostkach (z-score), które są poprawne do dopasowania KMeans, ale nie są bezpośrednio zrozumiałe dla nietechnicznego interesariusza — "liczba sesji to 1,46 odchylenia standardowego powyżej średniej" trzeba przełożyć z powrotem na realne liczby sesji, zanim trafi przed zespół retencyjny Aurora Stream.
+- (Rozwiązane) We wcześniejszych wersjach tej analizy profile segmentów były raportowane w ustandaryzowanych jednostkach (z-score) — poprawne do dopasowania KMeans, ale niezrozumiałe bezpośrednio dla nietechnicznego interesariusza. Zostało to naprawione: tabele segmentów klastrują na ustandaryzowanych cechach wewnętrznie, ale raportują rzeczywiste liczby sesji, minuty oglądania i staż każdego segmentu w oryginalnych jednostkach.
 - Segment 1 (81 subskrybentów, 27% bazy) jest znacząco mniejszy niż Segment 0 — każda oferta retencyjna skierowana do niego będzie testowana na mniejszej populacji, więc wczesne odczyty jej skuteczności powinny być traktowane ostrożnie, dopóki nie zbierze się więcej danych.
 
 ## 7. Rekomendacja
 
-Zbudować dwie ścieżki retencyjne zamiast jednej: ścieżkę "ponownego zaangażowania" dla Segmentu 0 (73% większość, obecnie niedostatecznie zaangażowana) skupioną na podniesieniu użycia, i ścieżkę "nagradzania wysokiego zaangażowania" dla Segmentu 1 (27% mniejszość) skupioną na retencji przez docenienie, nie ponowne zaangażowanie, skoro już intensywnie korzystają z produktu. Przed uruchomieniem którejkolwiek, przełożyć powyższe profile segmentów z z-score'ów na rzeczywiste liczby sesji i minuty oglądania, żeby zespół retencyjny mógł zweryfikować segmenty względem subskrybentów, których już zna.
+Zbudować dwie ścieżki retencyjne zamiast jednej: ścieżkę "ponownego zaangażowania" dla Segmentu 0 (73% większość, obecnie niedostatecznie zaangażowana) skupioną na podniesieniu użycia, i ścieżkę "nagradzania wysokiego zaangażowania" dla Segmentu 1 (27% mniejszość) skupioną na retencji przez docenienie, nie ponowne zaangażowanie, skoro już intensywnie korzystają z produktu. Przed uruchomieniem którejkolwiek, zespół retencyjny powinien zweryfikować powyższe profile segmentów względem subskrybentów, których już zna.
 
 ---
 
 ## Dlaczego to dobra odpowiedź
 
-Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny** (sekcja 4), ponieważ wybór k jest uzasadniony stabilnością przy resamplingu, nie tylko tym, które k dało najlepszą pojedynczą metrykę — a liczba ARI=1,0 jest podana precyzyjnie, nie ogólnikowo. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając wprost lukę między z-score'ami a realnymi jednostkami jako konkretne, praktyczne ograniczenie (sekcja 6), zamiast zostawiać interesariuszowi dekodowanie ustandaryzowanych jednostek samodzielnie, i będąc konkretnym co do tego, które cechy faktycznie rozdzielają segmenty (sekcja 5), zamiast opisywać klastry tylko ich rozmiarem.
+Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny** (sekcja 4), ponieważ wybór k jest uzasadniony stabilnością przy resamplingu, nie tylko tym, które k dało najlepszą pojedynczą metrykę — a liczba ARI=1,0 jest podana precyzyjnie, nie ogólnikowo. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając realne, konkretne ograniczenie — mniejszy rozmiar Segmentu 1 (sekcja 6) i co to oznacza dla ostrożności przy testowaniu — zamiast ogólnikowego zastrzeżenia, i będąc konkretnym co do tego, które cechy faktycznie rozdzielają segmenty (sekcja 5), zamiast opisywać klastry tylko ich rozmiarem.
