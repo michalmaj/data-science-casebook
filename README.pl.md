@@ -46,6 +46,8 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i ma tę
 - `lesson.ipynb` — notebook, w którym faktycznie pracujesz nad lekcją
 - `README.md` / `README.pl.md` — brief lekcji
 
+`task.py` to miejsce, w którym implementujesz rozwiązanie; `lesson.ipynb` to miejsce, w którym je uruchamiasz, widzisz wyniki i piszesz interpretację — traktuj notebook jak swój raport analityczny, nie jak brudnopis do pisania kodu od zera.
+
 **Praca nad lekcją:**
 
 1. Przeczytaj `README.md` (albo `README.pl.md`) lekcji, żeby poznać kontekst i pytanie analityczne.
