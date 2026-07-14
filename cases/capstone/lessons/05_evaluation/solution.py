@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import (
+    adjusted_rand_score,
     f1_score,
     mean_absolute_error,
     precision_score,
@@ -24,6 +25,7 @@ DATASET_MENU = [
     "retail_store_segments",
 ]
 RANDOM_STATE = 42
+CLUSTER_STABILITY_SEEDS = [0, 1, 2, 3, 4]
 
 
 def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
@@ -31,18 +33,24 @@ def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
 
 
 def split_dataset(
-    df: pd.DataFrame, test_size: float = 0.2, random_state: int = RANDOM_STATE
+    df: pd.DataFrame,
+    test_size: float = 0.2,
+    random_state: int = RANDOM_STATE,
+    stratify_column: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    train_df, test_df = train_test_split(df, test_size=test_size, random_state=random_state)
+    stratify = df[stratify_column] if stratify_column else None
+    train_df, test_df = train_test_split(
+        df, test_size=test_size, random_state=random_state, stratify=stratify
+    )
     return train_df, test_df
 
 
 def impute_missing(
-    train_df: pd.DataFrame, test_df: pd.DataFrame
+    train_df: pd.DataFrame, test_df: pd.DataFrame, feature_columns: list[str]
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     train_df = train_df.copy()
     test_df = test_df.copy()
-    for column in train_df.columns:
+    for column in feature_columns:
         if train_df[column].isna().any() or test_df[column].isna().any():
             if pd.api.types.is_numeric_dtype(train_df[column]):
                 fill_value = train_df[column].median()
@@ -53,11 +61,13 @@ def impute_missing(
     return train_df, test_df
 
 
-def scale_features(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+def scale_features(
+    df: pd.DataFrame, feature_columns: list[str]
+) -> tuple[pd.DataFrame, StandardScaler]:
     df = df.copy()
     scaler = StandardScaler()
     df[feature_columns] = scaler.fit_transform(df[feature_columns])
-    return df
+    return df, scaler
 
 
 def fit_regression_baseline_and_model(
@@ -123,3 +133,29 @@ def evaluate_classification(
 def evaluate_clustering(model: KMeans, df: pd.DataFrame, feature_columns: list[str]) -> float:
     labels = model.predict(df[feature_columns])
     return silhouette_score(df[feature_columns], labels)
+
+
+def cluster_stability(
+    df: pd.DataFrame,
+    feature_columns: list[str],
+    k: int = 3,
+    fraction: float = 0.8,
+    seeds: list[int] = CLUSTER_STABILITY_SEEDS,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    baseline_model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+    baseline_labels = baseline_model.fit_predict(df[feature_columns])
+    baseline_series = pd.Series(baseline_labels, index=df.index)
+
+    rows = []
+    for seed in seeds:
+        rng = np.random.default_rng(seed)
+        sample_size = int(len(df) * fraction)
+        sample_idx = np.sort(rng.choice(df.index, size=sample_size, replace=False))
+        sub_df = df.loc[sample_idx]
+        model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+        sub_labels = model.fit_predict(sub_df[feature_columns])
+        sub_series = pd.Series(sub_labels, index=sample_idx)
+        ari = adjusted_rand_score(baseline_series.loc[sample_idx], sub_series)
+        rows.append({"seed": seed, "adjusted_rand_index": ari})
+    return pd.DataFrame(rows)

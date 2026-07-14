@@ -5,10 +5,14 @@ your work.
 """
 
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.linear_model import LinearRegression, LogisticRegression
+
+if TYPE_CHECKING:
+    from sklearn.preprocessing import StandardScaler
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 
@@ -18,6 +22,7 @@ DATASET_MENU = [
     "retail_store_segments",
 ]
 RANDOM_STATE = 42
+CLUSTER_STABILITY_SEEDS = [0, 1, 2, 3, 4]
 
 
 def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
@@ -31,11 +36,16 @@ def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
 
 
 def split_dataset(
-    df: pd.DataFrame, test_size: float = 0.2, random_state: int = RANDOM_STATE
+    df: pd.DataFrame,
+    test_size: float = 0.2,
+    random_state: int = RANDOM_STATE,
+    stratify_column: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Split df into (train_df, test_df), same as Lesson 4.
 
-    TODO: import train_test_split from sklearn.model_selection and call it
+    TODO: import train_test_split from sklearn.model_selection. If
+    stratify_column is not None, pass df[stratify_column] as the stratify
+    argument to train_test_split. Otherwise pass stratify=None. Call it
     with test_size=test_size and random_state=random_state. Return the
     result as (train_df, test_df), in that order.
     """
@@ -43,26 +53,28 @@ def split_dataset(
 
 
 def impute_missing(
-    train_df: pd.DataFrame, test_df: pd.DataFrame
+    train_df: pd.DataFrame, test_df: pd.DataFrame, feature_columns: list[str]
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Fill missing values in both frames using statistics from train_df only, same as Lesson 4.
 
-    TODO: on copies of train_df and test_df, for every column where
-    train_df OR test_df has any missing value: if the column is numeric
-    (pandas.api.types.is_numeric_dtype), compute fill_value as
-    train_df[column].median(); otherwise as
+    TODO: on copies of train_df and test_df, for every column in
+    feature_columns where train_df OR test_df has any missing value: if
+    the column is numeric (pandas.api.types.is_numeric_dtype), compute
+    fill_value as train_df[column].median(); otherwise as
     train_df[column].mode().iloc[0]. Fill that value into both train_df
     and test_df for that column. Return (train_df, test_df).
     """
     raise NotImplementedError("impute_missing is not implemented yet")
 
 
-def scale_features(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+def scale_features(
+    df: pd.DataFrame, feature_columns: list[str]
+) -> tuple[pd.DataFrame, "StandardScaler"]:
     """Standardize feature_columns to zero mean, unit variance, same as Lesson 4.
 
-    TODO: import StandardScaler from sklearn.preprocessing. On a copy of
-    df, replace df[feature_columns] with
-    StandardScaler().fit_transform(df[feature_columns]). Return the copy.
+    TODO: import StandardScaler from sklearn.preprocessing. Build a
+    StandardScaler(), and on a copy of df, replace df[feature_columns]
+    with scaler.fit_transform(df[feature_columns]). Return (df, scaler).
     """
     raise NotImplementedError("scale_features is not implemented yet")
 
@@ -154,6 +166,38 @@ def evaluate_clustering(model: KMeans, df: pd.DataFrame, feature_columns: list[s
     TODO: import silhouette_score from sklearn.metrics. Call
     model.predict(df[feature_columns]) to get cluster labels, then return
     silhouette_score(df[feature_columns], labels). Pass this function the
-    same scaled df that fit_clustering_model was fit on.
+    same scaled df that fit_clustering_model was fit on. This is a cluster
+    *quality* check, not a held-out generalization check — it's fine, and
+    standard practice, that df is the same data the model was fit on; see
+    cluster_stability below for the check that plays the role a held-out
+    test set plays for regression/classification.
     """
     raise NotImplementedError("evaluate_clustering is not implemented yet")
+
+
+def cluster_stability(
+    df: pd.DataFrame,
+    feature_columns: list[str],
+    k: int = 3,
+    fraction: float = 0.8,
+    seeds: list[int] = CLUSTER_STABILITY_SEEDS,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    """Check how much k-means cluster assignments change when refit on repeated subsamples.
+
+    TODO: build a baseline KMeans(n_clusters=k, random_state=random_state,
+    n_init=10), fit_predict it on df[feature_columns], and keep the labels
+    as a pandas.Series indexed by df.index. For each seed in seeds: use
+    numpy.random.default_rng(seed) to randomly choose
+    int(len(df) * fraction) row indices from df.index without
+    replacement (numpy.sort the result), take that subsample of df, fit a
+    fresh KMeans (same k/random_state/n_init) on the subsample's
+    feature_columns, and compute sklearn.metrics.adjusted_rand_score
+    comparing the baseline labels (restricted to the subsample's indices)
+    against the subsample's own labels. Collect
+    {"seed": seed, "adjusted_rand_index": ari} per seed into a list, and
+    return it as a pandas.DataFrame. An ARI of 1.0 means the subsample
+    produced the exact same clustering as the full dataset; an ARI near 0
+    means the clustering essentially didn't reproduce.
+    """
+    raise NotImplementedError("cluster_stability is not implemented yet")

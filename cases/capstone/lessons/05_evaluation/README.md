@@ -15,7 +15,7 @@ Does your model's test-set performance still beat the baseline, the way its trai
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — the seven functions from Lesson 4, reproduced, plus three new ones: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (use only the one that matches your dataset)
+- `task.py` — the seven functions from Lesson 4, reproduced, plus four new ones: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering`, `cluster_stability` (use only the ones that match your dataset)
 - `lesson.ipynb` — the notebook where you'll run your full pipeline and evaluate it
 
 ## Working in the notebook
@@ -23,6 +23,8 @@ Does your model's test-set performance still beat the baseline, the way its trai
 - Run only the cell matching your dataset's problem type — it loads, splits, imputes, fits, and evaluates in one place (the clustering cell also scales features before fitting).
 - Compare the test-set result to what you saw in Lesson 4.
 - Decide whether the model is actually good enough to act on.
+
+**A note on clustering evaluation:** unlike regression and classification, clustering here isn't scored on a held-out test set — `evaluate_clustering`'s silhouette score is computed on the same data the model was fit on, which is standard for cluster *quality* (matching Case 3's own approach). The clustering cell also runs `cluster_stability`, which checks something regression/classification's held-out test set already gives you for free: whether the result would hold up on a different sample. Re-fitting on repeated resamples and comparing cluster assignments via Adjusted Rand Index (ARI — 1.0 means identical, near 0 means essentially random) is what tells you whether your segments are real or an artifact of this particular dataset.
 
 ## Self-check
 

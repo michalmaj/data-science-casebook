@@ -21,8 +21,8 @@ _spec.loader.exec_module(lesson)
 def test_evaluate_regression_beats_baseline_on_held_out_test_data():
     df = lesson.load_dataset("clinic_wait_times")
     train_df, test_df = lesson.split_dataset(df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "wait_time_minutes"
 
     baseline, model = lesson.fit_regression_baseline_and_model(train_df, target, features)
@@ -35,8 +35,7 @@ def test_evaluate_regression_beats_baseline_on_held_out_test_data():
 
 def test_evaluate_classification_matches_known_values():
     df = lesson.load_dataset("lendwell_loan_default")
-    train_df, test_df = lesson.split_dataset(df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
+    train_df, test_df = lesson.split_dataset(df, stratify_column="defaulted")
     features = [
         "loan_amount",
         "annual_income",
@@ -45,6 +44,7 @@ def test_evaluate_classification_matches_known_values():
         "employment_years",
         "previous_defaults",
     ]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "defaulted"
 
     baseline, model = lesson.fit_classification_baseline_and_model(train_df, target, features)
@@ -53,9 +53,9 @@ def test_evaluate_classification_matches_known_values():
     assert result["baseline_precision"] == 0.0
     assert result["baseline_recall"] == 0.0
     assert result["baseline_f1"] == 0.0
-    assert abs(result["model_precision"] - 0.5) < 1e-9
+    assert abs(result["model_precision"] - 0.25) < 1e-9
     assert abs(result["model_recall"] - 0.07692307692307693) < 1e-9
-    assert abs(result["model_f1"] - 0.13333333333333333) < 1e-9
+    assert abs(result["model_f1"] - 0.11764705882352941) < 1e-9
 
 
 def test_evaluate_clustering_matches_known_value():
@@ -68,10 +68,39 @@ def test_evaluate_clustering_matches_known_value():
         "return_rate",
         "inventory_turnover",
     ]
-    df, _ = lesson.impute_missing(df, df)
-    scaled_df = lesson.scale_features(df, features)
+    df, _ = lesson.impute_missing(df, df, features)
+    scaled_df, _ = lesson.scale_features(df, features)
 
     model = lesson.fit_clustering_model(scaled_df, features)
     score = lesson.evaluate_clustering(model, scaled_df, features)
 
     assert abs(score - 0.22231830884063178) < 1e-9
+
+
+def test_cluster_stability_matches_known_values():
+    df = lesson.load_dataset("retail_store_segments")
+    features = [
+        "store_size_sqft",
+        "monthly_revenue",
+        "foot_traffic",
+        "avg_transaction_value",
+        "return_rate",
+        "inventory_turnover",
+    ]
+    df, _ = lesson.impute_missing(df, df, features)
+    scaled_df, _ = lesson.scale_features(df, features)
+
+    stability = lesson.cluster_stability(scaled_df, features)
+
+    assert stability.shape == (5, 2)
+    assert list(stability.columns) == ["seed", "adjusted_rand_index"]
+    assert list(stability["seed"]) == [0, 1, 2, 3, 4]
+    expected_ari = [
+        1.0,
+        0.298486552621068,
+        0.3099899620816333,
+        0.9000942897023166,
+        0.949562686665437,
+    ]
+    for actual, expected in zip(stability["adjusted_rand_index"], expected_ari, strict=True):
+        assert abs(actual - expected) < 1e-9
