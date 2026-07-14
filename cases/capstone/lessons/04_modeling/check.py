@@ -43,6 +43,18 @@ def test_split_dataset_produces_known_sizes_with_no_overlap(
     assert set(train_df.index).isdisjoint(set(test_df.index))
 
 
+def test_split_dataset_stratifies_when_requested():
+    df = lesson.load_dataset("lendwell_loan_default")
+    train_df, test_df = lesson.split_dataset(df, stratify_column="defaulted")
+
+    overall_rate = df["defaulted"].mean()
+    train_rate = train_df["defaulted"].mean()
+    test_rate = test_df["defaulted"].mean()
+
+    assert abs(train_rate - overall_rate) < 0.01
+    assert abs(test_rate - overall_rate) < 0.01
+
+
 def test_impute_missing_uses_train_statistics_only():
     # train median is 2.0; if the fill value were computed from test_df or
     # from the combined frame instead of train_df alone, it would come out
@@ -50,7 +62,7 @@ def test_impute_missing_uses_train_statistics_only():
     train_df = pd.DataFrame({"x": [1.0, 2.0, 3.0, np.nan]})
     test_df = pd.DataFrame({"x": [100.0, 200.0, np.nan]})
 
-    train_filled, test_filled = lesson.impute_missing(train_df, test_df)
+    train_filled, test_filled = lesson.impute_missing(train_df, test_df, feature_columns=["x"])
 
     assert not train_filled["x"].isna().any()
     assert not test_filled["x"].isna().any()
@@ -58,11 +70,23 @@ def test_impute_missing_uses_train_statistics_only():
     assert test_filled["x"].iloc[2] == 2.0
 
 
+def test_impute_missing_only_touches_feature_columns():
+    train_df = pd.DataFrame({"x": [1.0, 2.0, np.nan], "y": [np.nan, 5.0, 6.0]})
+    test_df = pd.DataFrame({"x": [1.0], "y": [np.nan]})
+
+    train_filled, test_filled = lesson.impute_missing(train_df, test_df, feature_columns=["x"])
+
+    assert not train_filled["x"].isna().any()
+    assert not test_filled["x"].isna().any()
+    assert train_filled["y"].isna().any()
+    assert test_filled["y"].isna().any()
+
+
 def test_fit_regression_baseline_and_model_learns_something():
     df = lesson.load_dataset("clinic_wait_times")
     train_df, test_df = lesson.split_dataset(df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "wait_time_minutes"
 
     baseline, model = lesson.fit_regression_baseline_and_model(train_df, target, features)
@@ -80,8 +104,7 @@ def test_fit_regression_baseline_and_model_learns_something():
 
 def test_fit_classification_baseline_and_model_learns_something():
     df = lesson.load_dataset("lendwell_loan_default")
-    train_df, test_df = lesson.split_dataset(df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
+    train_df, test_df = lesson.split_dataset(df, stratify_column="defaulted")
     features = [
         "loan_amount",
         "annual_income",
@@ -90,6 +113,7 @@ def test_fit_classification_baseline_and_model_learns_something():
         "employment_years",
         "previous_defaults",
     ]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "defaulted"
 
     baseline, model = lesson.fit_classification_baseline_and_model(train_df, target, features)
@@ -112,8 +136,9 @@ def test_fit_clustering_model_returns_expected_shape():
         "return_rate",
         "inventory_turnover",
     ]
-    df, _ = lesson.impute_missing(df, df)
-    scaled_df = lesson.scale_features(df, features)
+    df, _ = lesson.impute_missing(df, df, features)
+    scaled_df, scaler = lesson.scale_features(df, features)
+    assert len(scaler.mean_) == 6
 
     model = lesson.fit_clustering_model(scaled_df, features)
 

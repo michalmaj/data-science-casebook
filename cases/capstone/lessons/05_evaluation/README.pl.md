@@ -15,7 +15,7 @@ Czy wynik Twojego modelu na zbiorze testowym nadal pokonuje baseline, tak jak je
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — siedem funkcji z Lekcji 4, odtworzonych, plus trzy nowe: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — siedem funkcji z Lekcji 4, odtworzonych, plus cztery nowe: `evaluate_regression`, `evaluate_classification`, `evaluate_clustering`, `cluster_stability` (użyj tylko tych, które pasują do Twojego zbioru)
 - `lesson.ipynb` — notebook, w którym uruchomisz cały swój pipeline i go ocenisz
 
 ## Praca w notebooku
@@ -23,6 +23,8 @@ Czy wynik Twojego modelu na zbiorze testowym nadal pokonuje baseline, tak jak je
 - Uruchom tylko komórkę pasującą do typu problemu Twojego zbioru — wczytuje, dzieli, imputuje, dopasowuje i ocenia w jednym miejscu (komórka klasteryzacji dodatkowo skaluje cechy przed dopasowaniem).
 - Porównaj wynik na zbiorze testowym z tym, co zobaczyłeś/zobaczyłaś w Lekcji 4.
 - Zdecyduj, czy model jest wystarczająco dobry, żeby na jego podstawie działać.
+
+**Uwaga o ocenie klasteryzacji:** w przeciwieństwie do regresji i klasyfikacji, klasteryzacja nie jest tutaj oceniana na zbiorze testowym, którego model nie widział — silhouette score z `evaluate_clustering` jest liczony na tych samych danych, na których model był dopasowany, co jest standardem dla oceny *jakości* klastrów (zgodnie z podejściem Case 3). Komórka klasteryzacji uruchamia też `cluster_stability`, która sprawdza coś, co zbiór testowy daje regresji/klasyfikacji za darmo: czy wynik utrzymałby się na innej próbce. Ponowne dopasowanie na powtarzanych podpróbkach i porównanie przypisań klastrów przez Adjusted Rand Index (ARI — 1,0 oznacza identyczne, blisko 0 oznacza praktycznie losowe) mówi Ci, czy Twoje segmenty są prawdziwe, czy są artefaktem akurat tego zbioru danych.
 
 ## Self-check
 

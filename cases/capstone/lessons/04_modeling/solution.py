@@ -23,18 +23,24 @@ def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
 
 
 def split_dataset(
-    df: pd.DataFrame, test_size: float = 0.2, random_state: int = RANDOM_STATE
+    df: pd.DataFrame,
+    test_size: float = 0.2,
+    random_state: int = RANDOM_STATE,
+    stratify_column: str | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    train_df, test_df = train_test_split(df, test_size=test_size, random_state=random_state)
+    stratify = df[stratify_column] if stratify_column else None
+    train_df, test_df = train_test_split(
+        df, test_size=test_size, random_state=random_state, stratify=stratify
+    )
     return train_df, test_df
 
 
 def impute_missing(
-    train_df: pd.DataFrame, test_df: pd.DataFrame
+    train_df: pd.DataFrame, test_df: pd.DataFrame, feature_columns: list[str]
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     train_df = train_df.copy()
     test_df = test_df.copy()
-    for column in train_df.columns:
+    for column in feature_columns:
         if train_df[column].isna().any() or test_df[column].isna().any():
             if pd.api.types.is_numeric_dtype(train_df[column]):
                 fill_value = train_df[column].median()
@@ -45,11 +51,13 @@ def impute_missing(
     return train_df, test_df
 
 
-def scale_features(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+def scale_features(
+    df: pd.DataFrame, feature_columns: list[str]
+) -> tuple[pd.DataFrame, StandardScaler]:
     df = df.copy()
     scaler = StandardScaler()
     df[feature_columns] = scaler.fit_transform(df[feature_columns])
-    return df
+    return df, scaler
 
 
 def fit_regression_baseline_and_model(
