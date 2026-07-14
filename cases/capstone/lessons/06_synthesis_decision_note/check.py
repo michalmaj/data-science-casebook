@@ -21,8 +21,8 @@ _spec.loader.exec_module(lesson)
 def test_final_regression_scorecard_shape_and_values():
     reg_df = lesson.load_dataset("clinic_wait_times")
     train_df, test_df = lesson.split_dataset(reg_df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
     features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "wait_time_minutes"
     baseline, model = lesson.fit_regression_baseline_and_model(train_df, target, features)
     scorecard = lesson.final_regression_scorecard(baseline, model, test_df, target, features)
@@ -37,8 +37,7 @@ def test_final_regression_scorecard_shape_and_values():
 
 def test_final_classification_scorecard_shape_and_values():
     clf_df = lesson.load_dataset("lendwell_loan_default")
-    train_df, test_df = lesson.split_dataset(clf_df)
-    train_df, test_df = lesson.impute_missing(train_df, test_df)
+    train_df, test_df = lesson.split_dataset(clf_df, stratify_column="defaulted")
     features = [
         "loan_amount",
         "annual_income",
@@ -47,6 +46,7 @@ def test_final_classification_scorecard_shape_and_values():
         "employment_years",
         "previous_defaults",
     ]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
     target = "defaulted"
     baseline, model = lesson.fit_classification_baseline_and_model(train_df, target, features)
     scorecard = lesson.final_classification_scorecard(baseline, model, test_df, target, features)
@@ -57,9 +57,9 @@ def test_final_classification_scorecard_shape_and_values():
     assert scorecard.loc["baseline", "precision"] == 0.0
     assert scorecard.loc["baseline", "recall"] == 0.0
     assert scorecard.loc["baseline", "f1"] == 0.0
-    assert abs(scorecard.loc["model", "precision"] - 0.5) < 1e-9
+    assert abs(scorecard.loc["model", "precision"] - 0.25) < 1e-9
     assert abs(scorecard.loc["model", "recall"] - 0.07692307692307693) < 1e-9
-    assert abs(scorecard.loc["model", "f1"] - 0.13333333333333333) < 1e-9
+    assert abs(scorecard.loc["model", "f1"] - 0.11764705882352941) < 1e-9
 
 
 def test_final_clustering_summary_shape_and_values():
@@ -72,8 +72,8 @@ def test_final_clustering_summary_shape_and_values():
         "return_rate",
         "inventory_turnover",
     ]
-    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df)
-    scaled_df = lesson.scale_features(cluster_df, features)
+    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df, features)
+    scaled_df, _ = lesson.scale_features(cluster_df, features)
     model = lesson.fit_clustering_model(scaled_df, features)
     summary = lesson.final_clustering_summary(model, scaled_df, features)
 
@@ -96,8 +96,8 @@ def test_final_clustering_summary_shares_sum_to_one():
         "return_rate",
         "inventory_turnover",
     ]
-    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df)
-    scaled_df = lesson.scale_features(cluster_df, features)
+    cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df, features)
+    scaled_df, _ = lesson.scale_features(cluster_df, features)
     model = lesson.fit_clustering_model(scaled_df, features)
     summary = lesson.final_clustering_summary(model, scaled_df, features)
 
