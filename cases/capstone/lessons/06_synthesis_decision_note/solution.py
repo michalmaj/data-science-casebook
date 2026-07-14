@@ -194,10 +194,10 @@ def final_classification_scorecard(
 
 
 def final_clustering_summary(
-    model: KMeans, df: pd.DataFrame, feature_columns: list[str]
+    model: KMeans, scaled_df: pd.DataFrame, raw_df: pd.DataFrame, feature_columns: list[str]
 ) -> pd.DataFrame:
-    labels = model.predict(df[feature_columns])
-    labeled_df = df.copy()
+    labels = model.predict(scaled_df[feature_columns])
+    labeled_df = raw_df.copy()
     labeled_df["cluster"] = labels
     summary = labeled_df.groupby("cluster")[feature_columns].mean()
     summary["size"] = labeled_df.groupby("cluster").size()
