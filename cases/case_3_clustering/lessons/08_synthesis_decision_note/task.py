@@ -17,19 +17,24 @@ FEATURE_COLUMNS = [
     "avg_minutes_per_session",
     "tenure_days",
 ]
+SCALED_FEATURE_COLUMNS = [f"{column}_scaled" for column in FEATURE_COLUMNS]
 K = 2
 RANDOM_STATE = 42
 
 
 def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
-    """Load, join, and scale Aurora Stream's subscriber features, same as Lessons 1-7.
+    """Load and join Aurora Stream's subscriber features, keeping both raw and scaled versions.
 
     TODO: run the same SQL as Lesson 1 (LEFT JOIN subscribers to sessions,
     grouped by subscriber_id, using REFERENCE_DATE as a bound query
     parameter) to get subscriber_id, plan_tier, country, and the four
-    FEATURE_COLUMNS. Then standardize the four FEATURE_COLUMNS with
-    sklearn.preprocessing.StandardScaler, same as Lesson 2, and return a
-    DataFrame with subscriber_id plus the scaled FEATURE_COLUMNS.
+    FEATURE_COLUMNS. Keep only subscriber_id and FEATURE_COLUMNS (drop
+    plan_tier/country) in a working copy. Standardize FEATURE_COLUMNS
+    with sklearn.preprocessing.StandardScaler, same as Lesson 2, and
+    write the result into new columns named by SCALED_FEATURE_COLUMNS
+    (don't overwrite the raw FEATURE_COLUMNS). Return the DataFrame with
+    subscriber_id, the 4 raw FEATURE_COLUMNS, and the 4
+    SCALED_FEATURE_COLUMNS.
     """
     raise NotImplementedError("load_scaled_features is not implemented yet")
 
@@ -37,16 +42,16 @@ def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
 def final_segment_table(
     df: pd.DataFrame, k: int = K, random_state: int = RANDOM_STATE
 ) -> pd.DataFrame:
-    """Fit KMeans at k and return each segment's mean feature values, size, and share.
+    """Fit KMeans at k and return each segment's mean feature values (real units), size, and share.
 
     TODO: build sklearn.cluster.KMeans(n_clusters=k, random_state=random_state,
-    n_init=10), fit_predict it on df[FEATURE_COLUMNS] to get cluster labels
-    (same as Lesson 6's segment_profiles). Group df by those labels and
-    compute the mean of each FEATURE_COLUMNS column per cluster, add a
-    "size" column with the number of subscribers in each cluster, and add
-    a "share" column equal to "size" divided by len(df) (each segment's
-    fraction of the total subscriber base). Return the resulting
-    DataFrame, indexed by cluster label, with columns FEATURE_COLUMNS
-    followed by "size" then "share".
+    n_init=10), fit_predict it on df[SCALED_FEATURE_COLUMNS] to get cluster
+    labels (same as Lesson 6's segment_profiles). Group df by those labels
+    and compute the mean of each FEATURE_COLUMNS column (the raw,
+    unscaled ones) per cluster, add a "size" column with the number of
+    subscribers in each cluster, and add a "share" column equal to "size"
+    divided by len(df). Return the resulting DataFrame, indexed by
+    cluster label, with columns FEATURE_COLUMNS followed by "size" then
+    "share".
     """
     raise NotImplementedError("final_segment_table is not implemented yet")

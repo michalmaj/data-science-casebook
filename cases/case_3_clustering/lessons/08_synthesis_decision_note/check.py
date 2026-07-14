@@ -20,8 +20,12 @@ _spec.loader.exec_module(lesson)
 
 def test_load_scaled_features_shape_and_columns():
     df = lesson.load_scaled_features()
-    assert df.shape == (300, 5)
-    assert list(df.columns) == ["subscriber_id", *lesson.FEATURE_COLUMNS]
+    assert df.shape == (300, 9)
+    assert list(df.columns) == [
+        "subscriber_id",
+        *lesson.FEATURE_COLUMNS,
+        *lesson.SCALED_FEATURE_COLUMNS,
+    ]
 
 
 def test_final_segment_table_shape_and_columns():
@@ -35,8 +39,8 @@ def test_final_segment_table_shape_and_columns():
 def test_final_segment_table_matches_known_values():
     df = lesson.load_scaled_features()
     table = lesson.final_segment_table(df)
-    assert abs(table.loc[0, "session_count"] - (-0.539042329134949)) < 1e-6
-    assert abs(table.loc[1, "session_count"] - 1.4574107417352327) < 1e-6
+    assert abs(table.loc[0, "session_count"] - 13.429223744292237) < 1e-6
+    assert abs(table.loc[1, "session_count"] - 46.23456790123457) < 1e-6
     assert table.loc[0, "size"] == 219
     assert table.loc[1, "size"] == 81
     assert abs(table.loc[0, "share"] - 0.73) < 1e-9
@@ -55,5 +59,4 @@ def test_final_segment_table_shows_asymmetric_engagement_segments():
     assert table.loc[1, "share"] < table.loc[0, "share"]
     viewing_columns = ["session_count", "total_minutes_watched", "avg_minutes_per_session"]
     for column in viewing_columns:
-        assert table.loc[1, column] > 1.0
-        assert table.loc[0, column] < -0.4
+        assert table.loc[1, column] > 2 * table.loc[0, column]

@@ -75,7 +75,7 @@ def test_final_clustering_summary_shape_and_values():
     cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df, features)
     scaled_df, _ = lesson.scale_features(cluster_df, features)
     model = lesson.fit_clustering_model(scaled_df, features)
-    summary = lesson.final_clustering_summary(model, scaled_df, features)
+    summary = lesson.final_clustering_summary(model, scaled_df, cluster_df, features)
 
     assert summary.shape == (3, 8)
     assert list(summary.index) == [0, 1, 2]
@@ -84,6 +84,12 @@ def test_final_clustering_summary_shape_and_values():
     assert abs(summary.loc[0, "share"] - 0.432) < 1e-9
     assert abs(summary.loc[1, "share"] - 0.368) < 1e-9
     assert abs(summary.loc[2, "share"] - 0.2) < 1e-9
+    assert abs(summary.loc[0, "store_size_sqft"] - 9530.148148148148) < 1e-6
+    assert abs(summary.loc[1, "store_size_sqft"] - 4104.076086956522) < 1e-6
+    assert abs(summary.loc[2, "store_size_sqft"] - 6477.64) < 1e-6
+    assert abs(summary.loc[0, "monthly_revenue"] - 74347.41666666667) < 1e-6
+    assert abs(summary.loc[1, "monthly_revenue"] - 76154.64130434782) < 1e-6
+    assert abs(summary.loc[2, "monthly_revenue"] - 185517.22) < 1e-6
 
 
 def test_final_clustering_summary_shares_sum_to_one():
@@ -99,6 +105,6 @@ def test_final_clustering_summary_shares_sum_to_one():
     cluster_df, _ = lesson.impute_missing(cluster_df, cluster_df, features)
     scaled_df, _ = lesson.scale_features(cluster_df, features)
     model = lesson.fit_clustering_model(scaled_df, features)
-    summary = lesson.final_clustering_summary(model, scaled_df, features)
+    summary = lesson.final_clustering_summary(model, scaled_df, cluster_df, features)
 
     assert abs(summary["share"].sum() - 1.0) < 1e-9

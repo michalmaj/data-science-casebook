@@ -234,19 +234,21 @@ def final_classification_scorecard(
 
 
 def final_clustering_summary(
-    model: KMeans, df: pd.DataFrame, feature_columns: list[str]
+    model: KMeans, scaled_df: pd.DataFrame, raw_df: pd.DataFrame, feature_columns: list[str]
 ) -> pd.DataFrame:
     """Build the per-cluster profile table this case's segments are described from.
 
-    TODO: call model.predict(df[feature_columns]) to get cluster labels.
-    On a copy of df, add a "cluster" column with those labels. Group by
-    "cluster" and compute the mean of feature_columns per group as the
-    result DataFrame. Add a "size" column with the number of rows in each
-    cluster (group sizes), and a "share" column equal to "size" divided
-    by len(df). Return the resulting DataFrame, indexed by cluster label,
-    with columns feature_columns followed by "size" then "share". Pass
-    this function the same scaled df that fit_clustering_model was fit
-    on — the per-feature values in the result will be z-scores, not raw
-    units, same convention as Case 3.
+    TODO: call model.predict(scaled_df[feature_columns]) to get cluster
+    labels — the model was fit on scaled data, so predictions need scaled
+    data too. On a copy of raw_df (the imputed-but-not-scaled frame, same
+    row order as scaled_df), add a "cluster" column with those labels.
+    Group by "cluster" and compute the mean of feature_columns per group
+    as the result DataFrame — since raw_df's feature_columns are
+    unscaled, this reports each cluster's actual business-unit averages
+    (e.g. real square footage, real revenue), not z-scores. Add a "size"
+    column with the number of rows in each cluster (group sizes), and a
+    "share" column equal to "size" divided by len(raw_df). Return the
+    resulting DataFrame, indexed by cluster label, with columns
+    feature_columns followed by "size" then "share".
     """
     raise NotImplementedError("final_clustering_summary is not implemented yet")

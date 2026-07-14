@@ -27,15 +27,15 @@ The two segments separate almost entirely on viewing engagement — session coun
 
 ## 6. Limitations
 
-- These segment profiles are reported in standardized (z-score) units, which are correct for fitting KMeans but not directly meaningful to a non-technical stakeholder — "session count is 1.46 standard deviations above average" needs to be translated back into real session counts before it goes in front of Aurora Stream's retention team.
+- (Resolved) Earlier drafts of this analysis reported segment profiles in standardized (z-score) units — correct for fitting KMeans, but not directly meaningful to a non-technical stakeholder. This has been fixed: the segment tables now cluster on standardized features internally but report each segment's actual session counts, minutes watched, and tenure in their original units.
 - Segment 1 (81 subscribers, 27% of the base) is meaningfully smaller than Segment 0 — any retention offer aimed at it will be tested on a smaller population, so early read-outs on its effectiveness should be treated cautiously until more data accumulates.
 
 ## 7. Recommendation
 
-Build two retention tracks instead of one: a "re-engagement" track for Segment 0 (the 73% majority, currently under-engaged) focused on nudging usage back up, and a "reward high engagement" track for Segment 1 (the 27% minority) focused on retention through recognition rather than re-engagement, since they're already using the product heavily. Before launching either, translate the segment profiles above out of z-scores into actual session counts and watch-minutes so the retention team can sanity-check the segments against subscribers they already know.
+Build two retention tracks instead of one: a "re-engagement" track for Segment 0 (the 73% majority, currently under-engaged) focused on nudging usage back up, and a "reward high engagement" track for Segment 1 (the 27% minority) focused on retention through recognition rather than re-engagement, since they're already using the product heavily. Before launching either, have the retention team sanity-check the segment profiles above against subscribers they already know.
 
 ---
 
 ## Why this is a strong answer
 
-This note earns "Exemplary" on **Modeling/evaluation correctness** (Section 4) because the k choice is justified by stability under resampling, not just by whichever k happened to produce the best single metric — and the ARI=1.0 number is stated precisely rather than asserted vaguely. It earns "Exemplary" on **Interpretation and limitations** by naming the z-score-vs-real-units translation gap as an explicit, actionable limitation (Section 6) rather than leaving the stakeholder to decode standardized units themselves, and by being specific about which features actually separate the segments (Section 5) rather than describing the clusters only by their size.
+This note earns "Exemplary" on **Modeling/evaluation correctness** (Section 4) because the k choice is justified by stability under resampling, not just by whichever k happened to produce the best single metric — and the ARI=1.0 number is stated precisely rather than asserted vaguely. It earns "Exemplary" on **Interpretation and limitations** by naming a genuine, concrete constraint — Segment 1's smaller size (Section 6) and what that means for testing caution — rather than a generic disclaimer, and by being specific about which features actually separate the segments (Section 5) rather than describing the clusters only by their size.
