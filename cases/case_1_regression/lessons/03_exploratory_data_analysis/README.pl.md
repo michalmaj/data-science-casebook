@@ -25,7 +25,7 @@ Z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki,
 3. Zobacz histogramy — coś skośnego albo zaskakującego?
 4. Zobacz macierz korelacji — która kolumna numeryczna ma najsilniejszy związek z `delay_minutes`?
 5. Porównaj korelację `num_stops` i `actual_duration_min` z celem — jedna to prawdziwy sygnał, druga jest zwodnicza. Ustal, czemu.
-6. Zobacz wykres słupkowy pogody — zauważ, że nigdy nie pojawiła się w macierzy korelacji.
+6. Zobacz wykres słupkowy pogody — zauważ, że nigdy nie pojawiła się w macierzy korelacji. To też jedyna kolumna, którą kierownik operacyjny TransLine już w Lekcji 1 oznaczył jako niemożliwą do poznania, zanim przesyłka wyjedzie z magazynu — miej obie te rzeczy na uwadze przy zadaniu domowym poniżej.
 
 ## Self-check
 

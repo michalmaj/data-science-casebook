@@ -2,7 +2,7 @@
 
 ## Mentor's note
 
-"Welcome aboard. TransLine's ops manager just told me — quote — 'shipments are late, fix it.' That's not a question we can answer with data yet. Before you touch a model, you need to turn that complaint into something specific enough to actually test."
+"Welcome aboard. TransLine's ops manager just told me — quote — 'shipments are late, fix it.' That's not a question we can answer with data yet. Before you touch a model, you need to turn that complaint into something specific enough to actually test. One more thing from that meeting: whatever we build has to work the moment a shipment leaves the depot — not with information we only find out afterward, like the weather it actually drove through. Keep that in mind as you get to know the data."
 
 ## Lesson goal
 

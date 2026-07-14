@@ -25,7 +25,7 @@ Of everything TransLine recorded, what actually predicts a shipment's delay, and
 3. Look at the histograms — anything skewed or surprising?
 4. Look at the correlation matrix — which numeric column has the strongest relationship with `delay_minutes`?
 5. Compare `num_stops` and `actual_duration_min`'s correlation with the target — one is a real signal, the other is deceptive. Figure out why.
-6. Look at the weather bar chart — notice it never appeared in the correlation matrix at all.
+6. Look at the weather bar chart — notice it never appeared in the correlation matrix at all. It's also the one column TransLine's ops manager flagged back in Lesson 1 as unknowable before a shipment leaves the depot — keep both facts in mind for the homework below.
 
 ## Self-check
 
