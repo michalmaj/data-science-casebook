@@ -15,13 +15,13 @@ Czy Twój pierwszy model faktycznie radzi sobie lepiej niż najprostszy możliwy
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — siedem funkcji: `load_dataset` (nowa — bez czyszczenia, zastępuje starą `load_clean_dataset`), `split_dataset` (działa dla dowolnego zbioru), `impute_missing` (nowa — uzupełnia braki statystykami wyłącznie ze zbioru treningowego, zastosowanymi do obu zbiorów), `scale_features` (nowa — standaryzuje cechy do zerowej średniej/jednostkowej wariancji, potrzebna przed klasteryzacją), oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — siedem funkcji: `load_dataset` (bez czyszczenia, zastępuje starą `load_clean_dataset`), `split_dataset` (działa dla dowolnego zbioru — przyjmuje opcjonalny `stratify_column`, żeby zachować balans klas między train/test przy klasyfikacji), `impute_missing` (uzupełnia braki statystykami wyłącznie ze zbioru treningowego, w kolumnach cech, które wskażesz, zastosowanymi do obu zbiorów), `scale_features` (standaryzuje cechy do zerowej średniej/jednostkowej wariancji, potrzebna przed klasteryzacją — zwraca też dopasowany scaler), oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — notebook, w którym dopasujesz swój baseline i model
 
 ## Praca w notebooku
 
-- Wczytaj, podziel i zaimputuj swój zbiór danych — `impute_missing` uzupełnia braki statystykami wyłącznie ze zbioru treningowego.
-- Uruchom tylko tę komórkę z funkcją dopasowującą, która pasuje do typu problemu Twojego zbioru. Komórka klasteryzacji dodatkowo skaluje cechy przed dopasowaniem — KMeans potrzebuje porównywalnych skal cech, żeby mierzyć rzeczywiste podobieństwo.
+- Ustaw `DATASET_NAME` zgodnie z tym, co wybrałeś/wybrałaś w Lekcji 1 — komórka podglądu pokaże rozmiary Twojego podziału train/test.
+- Uruchom komórkę poniżej — wczytuje, dzieli, imputuje (statystykami wyłącznie ze zbioru treningowego) i, dla klasteryzacji, skaluje Twój zbiór danych, a następnie dopasowuje model, wszystko w jednym miejscu.
 - Porównaj swój model z baseline'em.
 
 ## Self-check

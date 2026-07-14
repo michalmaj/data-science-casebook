@@ -15,13 +15,13 @@ Does your first model actually do better than the simplest possible baseline for
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — seven functions: `load_dataset` (new — no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset), `impute_missing` (new — fills missing values using training-set statistics only, applied to both train and test), `scale_features` (new — standardizes features to zero mean/unit variance, needed before clustering), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
+- `task.py` — seven functions: `load_dataset` (no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset — takes an optional `stratify_column` to keep class balance across train/test for classification), `impute_missing` (fills missing values using training-set statistics only, in the feature columns you specify, applied to both train and test), `scale_features` (standardizes features to zero mean/unit variance, needed before clustering — also returns the fitted scaler), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
 - `lesson.ipynb` — the notebook where you'll fit your baseline and model
 
 ## Working in the notebook
 
-- Load, split, and impute your dataset — `impute_missing` fills gaps using training-set statistics only.
-- Run only the fit-function cell that matches your dataset's problem type. The clustering cell also scales its features first — KMeans needs comparable feature magnitudes to measure genuine similarity.
+- Set `DATASET_NAME` to match what you picked in Lesson 1 — the preview cell shows your train/test split sizes.
+- Run the cell below it — it loads, splits, imputes (using training-set statistics only), and, for clustering, scales your dataset, then fits your model, all in one place.
 - Compare your model to the baseline.
 
 ## Self-check
