@@ -20,8 +20,12 @@ _spec.loader.exec_module(lesson)
 
 def test_load_scaled_features_shape_and_columns():
     df = lesson.load_scaled_features()
-    assert df.shape == (300, 5)
-    assert list(df.columns) == ["subscriber_id", *lesson.FEATURE_COLUMNS]
+    assert df.shape == (300, 9)
+    assert list(df.columns) == [
+        "subscriber_id",
+        *lesson.FEATURE_COLUMNS,
+        *lesson.SCALED_FEATURE_COLUMNS,
+    ]
 
 
 def test_segment_profiles_shape_and_columns():
@@ -35,8 +39,8 @@ def test_segment_profiles_shape_and_columns():
 def test_segment_profiles_matches_known_values():
     df = lesson.load_scaled_features()
     profiles = lesson.segment_profiles(df)
-    assert abs(profiles.loc[0, "session_count"] - (-0.539042329134949)) < 1e-6
-    assert abs(profiles.loc[1, "session_count"] - 1.4574107417352327) < 1e-6
+    assert abs(profiles.loc[0, "session_count"] - 13.429223744292237) < 1e-6
+    assert abs(profiles.loc[1, "session_count"] - 46.23456790123457) < 1e-6
     assert profiles.loc[0, "size"] == 219
     assert profiles.loc[1, "size"] == 81
 
@@ -46,11 +50,14 @@ def test_segment_profiles_shows_clear_engagement_split():
     profiles = lesson.segment_profiles(df)
     viewing_columns = ["session_count", "total_minutes_watched", "avg_minutes_per_session"]
     for column in viewing_columns:
-        assert profiles.loc[1, column] > 1.0
-        assert profiles.loc[0, column] < -0.4
+        assert profiles.loc[1, column] > 2 * profiles.loc[0, column]
 
 
 def test_segment_profiles_tenure_barely_differs_between_clusters():
     df = lesson.load_scaled_features()
     profiles = lesson.segment_profiles(df)
-    assert abs(profiles.loc[0, "tenure_days"] - profiles.loc[1, "tenure_days"]) < 0.2
+    # tenure_days has a population standard deviation of ~242 days; a gap
+    # under ~48 days (~0.2 standard deviations) means tenure isn't what
+    # separates these two clusters, unlike the viewing-engagement columns
+    # above. The actual gap is ~34.6 days.
+    assert abs(profiles.loc[0, "tenure_days"] - profiles.loc[1, "tenure_days"]) < 50

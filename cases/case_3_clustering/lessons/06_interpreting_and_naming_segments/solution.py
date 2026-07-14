@@ -16,6 +16,7 @@ FEATURE_COLUMNS = [
     "avg_minutes_per_session",
     "tenure_days",
 ]
+SCALED_FEATURE_COLUMNS = [f"{column}_scaled" for column in FEATURE_COLUMNS]
 K = 2
 RANDOM_STATE = 42
 
@@ -38,18 +39,17 @@ def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
     df = pd.read_sql_query(query, conn, params=(REFERENCE_DATE,))
     conn.close()
 
+    features = df[["subscriber_id", *FEATURE_COLUMNS]].copy()
     scaler = StandardScaler()
-    scaled = scaler.fit_transform(df[FEATURE_COLUMNS])
-    scaled_df = pd.DataFrame(scaled, columns=FEATURE_COLUMNS)
-    scaled_df.insert(0, "subscriber_id", df["subscriber_id"].values)
-    return scaled_df
+    features[SCALED_FEATURE_COLUMNS] = scaler.fit_transform(features[FEATURE_COLUMNS])
+    return features
 
 
 def segment_profiles(
     df: pd.DataFrame, k: int = K, random_state: int = RANDOM_STATE
 ) -> pd.DataFrame:
     model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
-    labels = model.fit_predict(df[FEATURE_COLUMNS])
+    labels = model.fit_predict(df[SCALED_FEATURE_COLUMNS])
 
     working = df.copy()
     working["cluster"] = labels
