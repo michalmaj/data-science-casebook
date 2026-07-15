@@ -90,9 +90,9 @@ def brier_score(model: LogisticRegression, df: pd.DataFrame, target_column: str)
     TODO: import brier_score_loss from sklearn.metrics. Get
     model.predict_proba(df[FEATURE_COLUMNS])[:, 1] as before, and call
     brier_score_loss(df[target_column], probabilities). Lower is better;
-    0 is perfect, 0.25 is what you'd get by always predicting 0.5 on a
-    balanced target. Unlike accuracy or AUC, this single number
-    penalizes both wrong predictions AND overconfident ones — a model
+    0 is perfect, 0.25 is what you'd get by always predicting 0.5,
+    regardless of the target's class balance. Unlike accuracy or AUC,
+    this single number penalizes both wrong predictions AND overconfident ones — a model
     that says "90% risk" and is wrong pays a bigger penalty than one
     that says "60% risk" and is wrong the same way.
     """
