@@ -20,6 +20,8 @@ Three prospective clients, each with a light brief. Pick one — you'll work wit
 
 None of these briefs tell you the target variable, the success metric, or the exact question to answer. That's your job, starting in Lesson 1.
 
+There's also an optional, ungraded Lesson 7 after the six core lessons, showing how you'd package your preprocessing into a `Pipeline`/`ColumnTransformer` for deployment.
+
 ## What's different about the capstone
 
 - **You pick the dataset.** Every lesson's code works generically across all three, so whichever one you choose, the tools you're given will work.
