@@ -26,7 +26,7 @@ The linear model beats the mean baseline by about 1.9 minutes of MAE — a real 
 
 ## 5. What's actually actionable
 
-A 10.21-minute average error is small enough to be useful for triage (flag shipments predicted >20 minutes late for a dispatcher's attention) but too large to promise customers a tight delivery window. `num_stops` drives the model's predictions the most, with `driver_experience_years` a distant second (`distance_km`'s own coefficient was flagged as unstable back in Lesson 7, so it isn't trusted for interpretation here) — both `num_stops` and `driver_experience_years` are already known before a shipment leaves the depot, which is exactly when TransLine needs the estimate.
+A 10.21-minute average error is small enough to be useful for triage (flag shipments predicted >20 minutes late for a dispatcher's attention) but too large to promise customers a tight delivery window. `num_stops` drives the model's predictions the most, with `driver_experience_years` a distant second — this ranking holds even after accounting for each feature's typical range of variation, not just comparing raw coefficients directly (`distance_km`'s own coefficient was flagged as unstable back in Lesson 7, so it isn't trusted for interpretation here) — both `num_stops` and `driver_experience_years` are already known before a shipment leaves the depot, which is exactly when TransLine needs the estimate.
 
 ## 6. Limitations
 
@@ -35,7 +35,7 @@ A 10.21-minute average error is small enough to be useful for triage (flag shipm
 
 ## 7. Recommendation
 
-Deploy the linear model as a triage flag, not a customer-facing delivery-time promise: any shipment predicted to run more than 20 minutes late gets a dispatcher's attention before it happens. Do not use it to quote delivery windows to customers until weather is added as a feature — until then, treat its estimate as a floor on likely delay, not a ceiling.
+Deploy the linear model as a triage flag, not a customer-facing delivery-time promise: any shipment predicted to run more than 20 minutes late gets a dispatcher's attention before it happens — on the test set, that flag catches about a third of genuinely-late shipments and is right roughly two out of five times it fires, useful for triage but not a rule to trust blindly. Do not use it to quote delivery windows to customers until weather is added as a feature — until then, treat its estimate as a likely underestimate specifically for shipments in rain or snow (the test-set residuals average +7 minutes in rain and +33 minutes in snow), not as a universal floor — in clear weather, the majority of shipments, the model tends to overestimate delay slightly instead.
 
 ---
 
