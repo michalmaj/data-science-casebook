@@ -10,7 +10,7 @@ Wytrenować prawdziwy model regresji z właściwym, wydzielonym zbiorem testowym
 
 ## Pytanie analityczne dnia
 
-Czy regresja liniowa na cechach, które Lekcja 3 oznaczyła jako prawdziwy sygnał, faktycznie przewiduje opóźnienie przesyłki lepiej niż najlepsza naiwna zgadywanka TransLine?
+Czy regresja liniowa na czterech cechach liczbowych, które zbadała Lekcja 3, faktycznie przewiduje opóźnienie przesyłki lepiej niż najlepsza naiwna zgadywanka TransLine — mimo że tylko jedna z nich korelowała silnie samodzielnie?
 
 ## Co dostajesz
 

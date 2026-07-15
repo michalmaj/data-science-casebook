@@ -32,7 +32,7 @@ The two segments separate almost entirely on viewing engagement — session coun
 
 ## 7. Recommendation
 
-Build two retention tracks instead of one: a "re-engagement" track for Segment 0 (the 73% majority, currently under-engaged) focused on nudging usage back up, and a "reward high engagement" track for Segment 1 (the 27% minority) focused on retention through recognition rather than re-engagement, since they're already using the product heavily. Before launching either, have the retention team sanity-check the segment profiles above against subscribers they already know.
+Propose two retention tracks as a hypothesis to test, not a settled plan: a "re-engagement" track for Segment 0 (the 73% majority, currently under-engaged) focused on nudging usage back up, and a "reward high engagement" track for Segment 1 (the 27% minority) focused on retention through recognition rather than re-engagement, since they're already using the product heavily. The clustering shows these two groups engage differently — it says nothing about whether either track would actually reduce churn or which subscribers are worth the investment. Before committing budget to both, have the retention team sanity-check the segment profiles against subscribers they already know, and run the two tracks as a controlled test against a holdout group rather than rolling them out everywhere at once.
 
 ---
 

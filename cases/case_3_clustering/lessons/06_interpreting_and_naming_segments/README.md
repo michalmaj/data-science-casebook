@@ -23,6 +23,7 @@ What actually separates Aurora Stream's two segments, and what would you call ea
 - Load the scaled per-subscriber table again.
 - Compute `segment_profiles` for the k=2 solution.
 - Compare the three viewing-intensity columns and tenure_days between the two clusters.
+- Check whether plan tier or country line up with the clusters, even though the clustering never saw them.
 
 ## Self-check
 

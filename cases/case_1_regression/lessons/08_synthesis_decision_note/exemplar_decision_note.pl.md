@@ -26,7 +26,7 @@ Model liniowy pokonuje baseline średniej o ok. 1,9 minuty MAE — realna popraw
 
 ## 5. Co jest faktycznie do zastosowania
 
-Średni błąd 10,21 minuty jest wystarczająco mały, żeby był użyteczny do triażu (oznacz dostawy przewidziane na >20 minut opóźnienia do uwagi dyspozytora), ale zbyt duży, żeby obiecywać klientom wąskie okno dostawy. `num_stops` najbardziej wpływa na predykcje modelu, a `driver_experience_years` jest dalekim drugim miejscem (współczynnik `distance_km` był oznaczony jako niestabilny już w Lekcji 7, więc nie ufamy mu tutaj do interpretacji) — zarówno `num_stops`, jak i `driver_experience_years` są znane już zanim dostawa wyjedzie z magazynu, czyli dokładnie wtedy, kiedy TransLine potrzebuje tego oszacowania.
+Średni błąd 10,21 minuty jest wystarczająco mały, żeby był użyteczny do triażu (oznacz dostawy przewidziane na >20 minut opóźnienia do uwagi dyspozytora), ale zbyt duży, żeby obiecywać klientom wąskie okno dostawy. `num_stops` najbardziej wpływa na predykcje modelu, a `driver_experience_years` jest dalekim drugim miejscem — ta kolejność utrzymuje się nawet po uwzględnieniu typowego zakresu zmienności każdej cechy, nie tylko przy porównaniu surowych współczynników wprost (współczynnik `distance_km` był oznaczony jako niestabilny już w Lekcji 7, więc nie ufamy mu tutaj do interpretacji) — zarówno `num_stops`, jak i `driver_experience_years` są znane już zanim dostawa wyjedzie z magazynu, czyli dokładnie wtedy, kiedy TransLine potrzebuje tego oszacowania.
 
 ## 6. Ograniczenia
 
@@ -35,7 +35,7 @@ Model liniowy pokonuje baseline średniej o ok. 1,9 minuty MAE — realna popraw
 
 ## 7. Rekomendacja
 
-Wdrożyć model liniowy jako flagę do triażu, nie jako obietnicę czasu dostawy dla klienta: każda dostawa przewidziana na ponad 20 minut opóźnienia trafia do uwagi dyspozytora zanim się opóźni. Nie używać go do podawania klientom okien czasowych dostawy, dopóki pogoda nie zostanie dodana jako cecha — do tego czasu traktować jego oszacowanie jako dolną granicę prawdopodobnego opóźnienia, nie jako sufit.
+Wdrożyć model liniowy jako flagę do triażu, nie jako obietnicę czasu dostawy dla klienta: każda dostawa przewidziana na ponad 20 minut opóźnienia trafia do uwagi dyspozytora zanim się opóźni — na zbiorze testowym ta flaga wychwytuje około jednej trzeciej naprawdę mocno spóźnionych dostaw i ma rację mniej więcej dwa razy na pięć uruchomień, użyteczna do triażu, ale nie reguła, której warto ufać bezkrytycznie. Nie używać go do podawania klientom okien czasowych dostawy, dopóki pogoda nie zostanie dodana jako cecha — do tego czasu traktować jego oszacowanie jako prawdopodobne niedoszacowanie konkretnie dla dostaw w deszczu lub śniegu (reszty na zbiorze testowym wynoszą średnio +7 minut w deszczu i +33 minuty w śniegu), a nie jako uniwersalną dolną granicę — w czystej pogodzie, czyli dla większości dostaw, model raczej lekko przeszacowuje opóźnienie.
 
 ---
 

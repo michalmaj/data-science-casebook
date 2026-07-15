@@ -10,7 +10,7 @@ Fit a real regression model with a proper held-out test set, and prove — with 
 
 ## Today's analytical question
 
-Does a linear regression on the features Lesson 3 flagged as real signal actually predict shipment delay better than TransLine's best naive guess?
+Does a linear regression on the four numeric features Lesson 3 examined actually predict shipment delay better than TransLine's best naive guess — even though only one of them correlated strongly on its own?
 
 ## What you're given
 

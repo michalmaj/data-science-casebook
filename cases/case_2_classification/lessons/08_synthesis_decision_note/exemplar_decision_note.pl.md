@@ -22,7 +22,7 @@ Przy domyślnym progu 0,5 model oznacza tylko 1 z 140 zamówień testowych — w
 
 ## 4. Wybór progu i metryki
 
-Recall ma tu większe znaczenie niż precision: przeoczony zwrot kosztuje Meridian Outlet pełny cykl zwrotu pieniędzy, podczas gdy fałszywy alarm kosztuje tylko kilka minut sprawdzenia przez recenzenta zamówienia, które okazuje się w porządku. Dlatego wybrano 0,2 zamiast 0,5 czy 0,3 — to próg spośród testowanych, który znacząco podnosi recall bez zapadania się precision niemal do zera.
+Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, które warto potwierdzić z Meridian Outlet, a nie przyjmować za pewnik: że przeoczony zwrot (pełny cykl zwrotu pieniędzy) kosztuje wyraźnie więcej niż fałszywy alarm (kilka minut sprawdzenia przez recenzenta zamówienia, które okazuje się w porządku). To założenie ma większe znaczenie, niż mogłoby się wydawać, bo wybrany próg oznacza blisko jedną trzecią wszystkich zamówień (45 ze 140 w zbiorze testowym) — nawet mały koszt na zamówienie sumuje się w realny czas recenzenta przy takim wolumenie. Przy tym założeniu, 0,2 to próg spośród testowanych, który znacząco podnosi recall bez zapadania się precision niemal do zera.
 
 ## 5. Komunikowanie ryzyka
 

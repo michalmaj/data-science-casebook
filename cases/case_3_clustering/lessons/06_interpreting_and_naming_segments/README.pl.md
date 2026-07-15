@@ -23,6 +23,7 @@ Co właściwie odróżnia dwa segmenty Aurora Stream i jak nazwałbyś/nazwałab
 - Wczytaj ponownie przeskalowaną tabelę per subskrybent.
 - Policz `segment_profiles` dla rozwiązania k=2.
 - Porównaj trzy kolumny intensywności oglądania oraz tenure_days między dwoma klastrami.
+- Sprawdź, czy poziom planu lub kraj pokrywają się z klastrami, mimo że klasteryzacja nigdy ich nie widziała.
 
 ## Self-check
 
