@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import brier_score_loss
 from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "orders.xlsx"
@@ -47,3 +48,22 @@ def risk_report(model: LogisticRegression, df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(
         {"order_id": df["order_id"].values, "probability": proba, "risk_tier": tiers}
     )
+
+
+def tier_summary(model: LogisticRegression, df: pd.DataFrame, target_column: str) -> pd.DataFrame:
+    proba = model.predict_proba(df[FEATURE_COLUMNS])[:, 1]
+    tiers = [risk_tier(p) for p in proba]
+    combined = pd.DataFrame(
+        {"probability": proba, "risk_tier": tiers, "actual": df[target_column].values}
+    )
+    summary = combined.groupby("risk_tier").agg(
+        count=("actual", "count"),
+        mean_predicted=("probability", "mean"),
+        mean_observed=("actual", "mean"),
+    )
+    return summary.reindex(["Low", "Medium", "High"])
+
+
+def brier_score(model: LogisticRegression, df: pd.DataFrame, target_column: str) -> float:
+    proba = model.predict_proba(df[FEATURE_COLUMNS])[:, 1]
+    return brier_score_loss(df[target_column], proba)

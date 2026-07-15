@@ -64,3 +64,36 @@ def risk_report(model: LogisticRegression, df: pd.DataFrame) -> pd.DataFrame:
     that order), one row per order in `df`.
     """
     raise NotImplementedError("risk_report is not implemented yet")
+
+
+def tier_summary(model: LogisticRegression, df: pd.DataFrame, target_column: str) -> pd.DataFrame:
+    """Group df's predictions by risk tier, comparing predicted probability to actual outcome.
+
+    TODO: use model.predict_proba(df[FEATURE_COLUMNS])[:, 1] to get each
+    row's predicted probability, apply risk_tier to each one, and build a
+    DataFrame with columns "probability", "risk_tier", and "actual" (from
+    df[target_column]). Group by "risk_tier" and compute, per group: the
+    count of rows, the mean of "probability" (name this column
+    "mean_predicted"), and the mean of "actual" (name this column
+    "mean_observed"). Return the result reindexed to
+    ["Low", "Medium", "High"] so tiers always appear in that order, even
+    if one didn't appear in this particular df. Unlike risk_report, this
+    function needs the true outcome (df[target_column]) — it's for
+    checking your own model's honesty, not for the client-facing report.
+    """
+    raise NotImplementedError("tier_summary is not implemented yet")
+
+
+def brier_score(model: LogisticRegression, df: pd.DataFrame, target_column: str) -> float:
+    """Return the Brier score: mean squared error between predicted probability and actual outcome.
+
+    TODO: import brier_score_loss from sklearn.metrics. Get
+    model.predict_proba(df[FEATURE_COLUMNS])[:, 1] as before, and call
+    brier_score_loss(df[target_column], probabilities). Lower is better;
+    0 is perfect, 0.25 is what you'd get by always predicting 0.5 on a
+    balanced target. Unlike accuracy or AUC, this single number
+    penalizes both wrong predictions AND overconfident ones — a model
+    that says "90% risk" and is wrong pays a bigger penalty than one
+    that says "60% risk" and is wrong the same way.
+    """
+    raise NotImplementedError("brier_score is not implemented yet")
