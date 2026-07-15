@@ -87,7 +87,12 @@ def execute_notebook(notebook_path: Path) -> tuple[bool, str]:
     """
     output_dir = REPO_ROOT / ".nbconvert-ci-output"
     output_dir.mkdir(exist_ok=True)
-    output_path = output_dir / f"{notebook_path.stem}-{notebook_path.parent.name}.ipynb"
+    # notebook_path.stem is "lesson" (or ".ci_patched_<dataset>") for every
+    # lesson, and lesson directory names like "01_defining_the_question"
+    # repeat across cases — use the full relative path to guarantee unique
+    # output filenames instead of silently overwriting between cases.
+    unique_name = notebook_path.relative_to(REPO_ROOT).as_posix().replace("/", "__").lstrip(".")
+    output_path = output_dir / f"{unique_name}"
     result = subprocess.run(
         [
             "uv",
@@ -180,8 +185,11 @@ def main() -> int:
     results: list[ExecutionResult] = []
     for notebook_path in notebooks:
         lesson_dir = notebook_path.parent
-        rel_notebook = str(notebook_path.relative_to(REPO_ROOT))
-        lesson_label = str(lesson_dir.relative_to(REPO_ROOT))
+        # .as_posix() (not str()) so MULTI_BRANCH_NOTEBOOKS's forward-slash
+        # keys still match if this ever runs on Windows, where str(Path)
+        # uses backslashes.
+        rel_notebook = notebook_path.relative_to(REPO_ROOT).as_posix()
+        lesson_label = lesson_dir.relative_to(REPO_ROOT).as_posix()
         with solution_as_task(lesson_dir):
             if rel_notebook in MULTI_BRANCH_NOTEBOOKS:
                 dataset_names = MULTI_BRANCH_NOTEBOOKS[rel_notebook]
