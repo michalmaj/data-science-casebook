@@ -32,7 +32,7 @@ Dwa segmenty rozdzielają się niemal wyłącznie na zaangażowaniu w oglądanie
 
 ## 7. Rekomendacja
 
-Zbudować dwie ścieżki retencyjne zamiast jednej: ścieżkę "ponownego zaangażowania" dla Segmentu 0 (73% większość, obecnie niedostatecznie zaangażowana) skupioną na podniesieniu użycia, i ścieżkę "nagradzania wysokiego zaangażowania" dla Segmentu 1 (27% mniejszość) skupioną na retencji przez docenienie, nie ponowne zaangażowanie, skoro już intensywnie korzystają z produktu. Przed uruchomieniem którejkolwiek, zespół retencyjny powinien zweryfikować powyższe profile segmentów względem subskrybentów, których już zna.
+Zaproponować dwie ścieżki retencyjne jako hipotezę do przetestowania, nie jako gotowy plan: ścieżkę "ponownego zaangażowania" dla Segmentu 0 (73% większość, obecnie niedostatecznie zaangażowana) skupioną na podniesieniu użycia, i ścieżkę "nagradzania wysokiego zaangażowania" dla Segmentu 1 (27% mniejszość) skupioną na retencji przez docenienie, nie ponowne zaangażowanie, skoro już intensywnie korzystają z produktu. Klasteryzacja pokazuje, że te dwie grupy różnią się zaangażowaniem — nie mówi nic o tym, czy którakolwiek ścieżka faktycznie zmniejszy odpływ klientów, ani którzy subskrybenci są warci tej inwestycji. Przed zaangażowaniem budżetu w obie, zespół retencyjny powinien zweryfikować profile segmentów względem subskrybentów, których już zna, i uruchomić obie ścieżki jako kontrolowany test wobec grupy kontrolnej, zamiast wdrażać je od razu wszędzie.
 
 ---
 

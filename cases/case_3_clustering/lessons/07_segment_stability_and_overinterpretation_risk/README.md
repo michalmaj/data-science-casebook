@@ -24,6 +24,8 @@ If you'd only seen 80% of these subscribers, would you have found the same segme
 - Run `subsample_stability` at the default k=2 and look at the agreement scores.
 - Run it again at k=4 and compare.
 
+**A note on what this measures:** `subsample_stability` only varies which subscribers get sampled — it always fits KMeans with the same `random_state`, so it doesn't separately test sensitivity to the algorithm's random centroid initialization. That's a real, different question worth asking. For this dataset, it turns out not to matter: refitting the full k=2 solution at five different `random_state` values gives ARI = 1.0 against each other every time — this segmentation is not an artifact of which random start KMeans happened to pick.
+
 ## Self-check
 
 From this lesson's folder, run:

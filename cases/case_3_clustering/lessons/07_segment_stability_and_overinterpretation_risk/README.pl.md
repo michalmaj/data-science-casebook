@@ -24,6 +24,8 @@ Gdybyś widział/widziała tylko 80% tych subskrybentów, czy znalazłbyś/znala
 - Uruchom `subsample_stability` przy domyślnym k=2 i spójrz na wyniki zgodności.
 - Uruchom ją ponownie dla k=4 i porównaj.
 
+**Uwaga o tym, co to mierzy:** `subsample_stability` zmienia tylko to, którzy subskrybenci trafiają do próbki — zawsze dopasowuje KMeans z tym samym `random_state`, więc nie sprawdza osobno wrażliwości na losową inicjalizację centroidów przez algorytm. To osobne, realne pytanie. Dla tego zbioru danych okazuje się nieistotne: ponowne dopasowanie pełnego rozwiązania k=2 przy pięciu różnych wartościach `random_state` daje ARI = 1,0 względem siebie za każdym razem — ta segmentacja nie jest artefaktem tego, który losowy start akurat wybrał KMeans.
+
 ## Self-check
 
 Z katalogu tej lekcji odpal:
