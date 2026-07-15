@@ -22,7 +22,7 @@ At the default 0.5 threshold the model flags only 1 of the 140 test orders — e
 
 ## 4. Threshold and metric choice
 
-Recall matters more than precision here: a missed return costs Meridian Outlet a full refund cycle, while a false alarm just costs a few minutes of a reviewer's time checking an order that turns out fine. That's why 0.2 was chosen over 0.5 or 0.3 — it's the threshold in the set we tried that pushes recall meaningfully higher without precision collapsing to near zero.
+Recall matters more than precision here — but only under an assumption that should be confirmed with Meridian Outlet, not treated as given: that a missed return (a full refund cycle) costs meaningfully more than a false alarm (a few minutes of a reviewer's time checking an order that turns out fine). That assumption matters more than it might look, since the chosen threshold flags close to a third of all orders (45 of 140 in the test set) — even a small per-order cost adds up to real reviewer time at that volume. With that assumption, 0.2 is the threshold in the set we tried that pushes recall meaningfully higher without precision collapsing to near zero.
 
 ## 5. Communicating risk
 
