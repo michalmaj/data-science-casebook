@@ -31,3 +31,20 @@ jobs:
         run: LESSON_MODULE=solution uv run --locked pytest
       - name: Check bilingual Markdown pairs
         run: uv run --locked python tools/check_bilingual_pairs.py
+
+  notebooks:
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.3.2
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: uv sync --locked --all-groups
+      - name: Execute every lesson notebook against its reference solution
+        run: uv run --locked python tools/run_notebooks.py
