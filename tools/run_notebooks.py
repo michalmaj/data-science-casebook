@@ -97,6 +97,7 @@ def execute_notebook(notebook_path: Path) -> tuple[bool, str]:
         [
             "uv",
             "run",
+            "--locked",
             "jupyter",
             "nbconvert",
             "--to",
