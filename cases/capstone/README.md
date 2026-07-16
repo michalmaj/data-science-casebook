@@ -22,6 +22,8 @@ None of these briefs tell you the target variable, the success metric, or the ex
 
 There's also an optional, ungraded Lesson 7 after the six core lessons, showing how you'd package your preprocessing into a `Pipeline`/`ColumnTransformer` for deployment.
 
+There's also a second optional, ungraded Lesson 8 — for the LendWell path only — on explaining individual predictions and where this kind of model needs a human in the loop.
+
 ## What's different about the capstone
 
 - **You pick the dataset.** Every lesson's code works generically across all three, so whichever one you choose, the tools you're given will work.
