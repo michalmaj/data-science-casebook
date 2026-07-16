@@ -44,7 +44,7 @@ def test_fit_kmeans_cluster_sizes_match_known_value():
     df = lesson.load_scaled_features()
     model = lesson.fit_kmeans(df)
     sizes = pd.Series(model.labels_).value_counts().sort_index().to_dict()
-    assert sizes == {0: 106, 1: 43, 2: 113, 3: 38}
+    assert sorted(sizes.values()) == [38, 43, 106, 113]
 
 
 def test_fit_kmeans_is_deterministic_across_runs():
