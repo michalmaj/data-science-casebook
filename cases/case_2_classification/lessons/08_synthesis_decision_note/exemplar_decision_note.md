@@ -22,7 +22,7 @@ At the default 0.5 threshold the model flags only 1 of the 140 test orders — e
 
 ## 4. Threshold and metric choice
 
-Recall matters more than precision here — but only under an assumption that should be confirmed with Meridian Outlet, not treated as given: that a missed return (a full refund cycle) costs meaningfully more than a false alarm (a few minutes of a reviewer's time checking an order that turns out fine). That assumption matters more than it might look, since the chosen threshold flags close to a third of all orders (45 of 140 in the test set) — even a small per-order cost adds up to real reviewer time at that volume. With that assumption, 0.2 is the threshold in the set we tried that pushes recall meaningfully higher without precision collapsing to near zero.
+Recall matters more than precision here — but only under an assumption that should be confirmed with Meridian Outlet, not treated as given: that a missed return (a full refund cycle) costs meaningfully more than a false alarm (a few minutes of a reviewer's time checking an order that turns out fine). That assumption matters more than it might look, since the chosen threshold flags close to a third of all orders (45 of 140 in the test set) — even a small per-order cost adds up to real reviewer time at that volume. With that assumption, 0.2 is the threshold in the set we tried that pushes recall meaningfully higher without precision collapsing to near zero — though it's worth being honest about how weak that signal actually was on the validation split that made the choice: precision 0.071, recall 0.125, F1 0.091, only barely ahead of 0.3's F1 of 0.077. This was the best of three thresholds tried, not a threshold that looked clearly good on its own — the much stronger test-set numbers in Section 3 confirm the choice wasn't obviously wrong, not that it was obviously right.
 
 ## 5. Communicating risk
 
@@ -35,7 +35,7 @@ Recall matters more than precision here — but only under an assumption that sh
 
 ## 7. Recommendation
 
-Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~32% of orders it selects for review before or shortly after shipping. These numbers already reflect Lesson 6's validation-based threshold selection and a single, genuine test-set check, so they're safe to use for a resourcing decision (e.g. "we need N reviewers") as-is.
+Deploy the model at the 0.2 threshold as a manual-review flag, not an automatic-decline system — flag the ~32% of orders it selects for review before or shortly after shipping. Treat the test-set numbers in Section 3 as an optimistic case, not a guarantee: the validation split that actually selected this threshold (Section 4) showed much weaker performance, so before committing reviewer headcount to these numbers, it's worth confirming them against a second batch of orders rather than resourcing off this one test-set read alone.
 
 ---
 
