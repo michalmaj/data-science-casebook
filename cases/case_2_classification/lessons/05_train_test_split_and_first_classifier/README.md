@@ -10,11 +10,13 @@
 
 ## Mentor's note
 
-"You built a baseline that never caught a single return. Now fit an actual model on the signals you found in Lesson 3 — discount, return history, account age — and see if a real classifier does any better at the same 0.5 threshold."
+"You built a baseline that never caught a single return. Now fit an actual model on the three numeric signals from Lesson 3 — discount, return history, account age — and see if a real classifier does any better at the same 0.5 threshold."
 
 ## Lesson goal
 
-Split Meridian Outlet's data properly, fit a real `LogisticRegression` classifier on the signals you found in Lesson 3, and evaluate its predictions at the default 0.5 threshold.
+Split Meridian Outlet's data properly, fit a real `LogisticRegression` classifier on the three numeric signals from Lesson 3, and evaluate its predictions at the default 0.5 threshold.
+
+Lesson 3 also showed `product_category` was the strongest signal you found — clothing returns at roughly 20% versus home_goods at 7%. It's deliberately left out of `FEATURE_COLUMNS` here: a category needs an extra encoding step before a model can use it, which this case doesn't cover. If you want to see that step, Capstone's optional Lesson 7 walks through it with `ColumnTransformer`.
 
 ## Today's analytical question
 
