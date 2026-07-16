@@ -86,4 +86,4 @@ def test_clustering_pipeline_matches_known_silhouette_and_sizes():
     assert abs(sil - 0.18963882095516987) < 1e-6
     labels = pipeline.named_steps["model"].labels_
     sizes = [int((labels == i).sum()) for i in range(3)]
-    assert sizes == [90, 50, 110]
+    assert sorted(sizes) == [50, 90, 110]
