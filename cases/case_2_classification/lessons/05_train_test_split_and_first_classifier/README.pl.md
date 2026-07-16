@@ -6,7 +6,7 @@
 
 - Będziesz umieć poprawnie podzielić dane do klasyfikacji, zachowując balans klas między train a test.
 - Będziesz umieć dopasować klasyfikator `LogisticRegression` i ocenić jego predykcje przy domyślnym progu 0,5.
-- Będziesz umieć porównać, ile faktycznie wyłapuje realny klasyfikator względem baseline'u klasy większościowej, nie tylko jego surową dokładność.
+- Będziesz umieć porównać wskaźnik wykrywalności realnego klasyfikatora z baseline'em klasy większościowej, nie tylko jego surową dokładność.
 
 ## Głos mentora
 

@@ -6,7 +6,7 @@
 
 - Będziesz umieć zamienić przewidywane prawdopodobieństwo w zrozumiały poziom ryzyka, na którym mógłby oprzeć się zespół nietechniczny.
 - Będziesz umieć zbudować raport ryzyka per zamówienie w kształcie, w jakim faktycznie użyłby go zespół operacyjny.
-- Będziesz umieć sprawdzić, czy poziomy ryzyka naprawdę odzwierciedlają ryzyko wyniku, czy tylko wyglądają uporządkowanie bez bycia skalibrowanymi.
+- Będziesz umieć sprawdzić, czy poziomy ryzyka naprawdę odzwierciedlają ryzyko wyniku, czy tylko wyglądają uporządkowane, nie będąc skalibrowanymi.
 
 ## Głos mentora
 
