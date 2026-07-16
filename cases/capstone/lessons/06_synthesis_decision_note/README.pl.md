@@ -1,5 +1,13 @@
 # Lekcja 6 — Synteza: Notatka decyzyjna
 
+**Szacowany czas:** 60-75 min
+
+## Efekty uczenia się
+
+- Będziesz umieć złożyć baseline, model i wyniki ewaluacji z Twojego własnego case'u w jedną tabelę, w formacie pasującym do Twojego typu problemu.
+- Będziesz umieć napisać notatkę decyzyjną dla klienta wybranego w Lekcji 1, uczciwie podając rekomendację i poziom pewności.
+- Będziesz umieć zdecydować, co Twój własny klient powinien faktycznie zrobić, mając za sobą samodzielne zbudowanie i obronienie każdego kroku analizy.
+
 ## Głos mentora
 
 "Pięć lekcji kodu, a Twój klient nigdy nie przeczyta ani linijki. Przeczyta to, co dziś napiszesz. Wszystko, co znalazłeś/znalazłaś — baseline, model, to, jak dobrze poradził sobie na danych, których nigdy nie widział — ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć na tyle jasno, żeby ktoś, kto nigdy nie dopasowywał modelu, mógł na tej podstawie działać."

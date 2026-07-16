@@ -1,5 +1,13 @@
 # Lekcja 5 — Ewaluacja
 
+**Szacowany czas:** 55-70 min
+
+## Efekty uczenia się
+
+- Będziesz umieć ocenić swój model z Lekcji 4 na wydzielonych danych testowych, używając metryki faktycznie pasującej do Twojego typu problemu.
+- Będziesz umieć sprawdzić stabilność rozwiązania klasteryzacyjnego przez resampling zamiast wydzielonego splitu, i wyjaśnić, dlaczego to właściwy zamiennik, gdy nie ma targetu do wydzielenia.
+- Będziesz umieć stwierdzić, czy wynik Twojego modelu na zbiorze testowym nadal przebija baseline, tak jak robił to jego wynik na zbiorze treningowym.
+
 ## Głos mentora
 
 "Lekcja 4 pokazała Ci tylko, jak model radzi sobie z danymi, które już widział. To nie jest ewaluacja, to próba generalna. Teraz sprawdzisz, czy faktycznie się czegoś nauczył."

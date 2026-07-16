@@ -1,5 +1,12 @@
 # Lekcja 1 — Definiowanie pytania
 
+**Szacowany czas:** 45-55 min
+
+## Efekty uczenia się
+
+- Będziesz umieć wybrać dataset i samodzielnie zdefiniować pytanie analityczne, zmienną celu i metrykę sukcesu — bez narzuconego briefu wskazującego odpowiedź.
+- Będziesz umieć samodzielnie zdecydować, która technika (regresja, klasyfikacja czy klasteryzacja) faktycznie pasuje do problemu wybranego przez Ciebie klienta.
+
 ## Głos mentora
 
 "W każdym poprzednim case'ie dawałem Ci klienta i pytanie. Tym razem wybierasz oba. Przeczytaj menu, wybierz klienta, którego problem Cię interesuje, i zamień jego niejasną skargę w coś, wobec czego faktycznie dałoby się zbudować model."

@@ -1,5 +1,12 @@
 # Lesson 1 — Defining the Question
 
+**Estimated time:** 45-55 min
+
+## Learning outcomes
+
+- You'll be able to choose a dataset and independently define an analytical question, target variable, and success metric — with no prescribed brief pointing you at the answer.
+- You'll be able to decide, on your own, which technique (regression, classification, or clustering) actually fits the problem your chosen client has.
+
 ## Mentor's note
 
 "Every other case, I handed you a client and a question. This time you're picking both. Read the menu, pick the client whose problem interests you, and turn their vague complaint into something you could actually build a model against."

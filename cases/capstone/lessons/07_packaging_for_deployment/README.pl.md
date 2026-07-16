@@ -1,5 +1,12 @@
 # Lekcja 7 (Opcjonalna) — Pakowanie preprocessingu jako Pipeline
 
+**Szacowany czas:** 40-55 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zastąpić ręczną sekwencję imputacja→skalowanie→dopasowanie jednym dopasowanym `sklearn.pipeline.Pipeline`.
+- Będziesz umieć użyć `ColumnTransformer`, żeby wprowadzić kategoryczną kolumnę, którą Twój dataset zawsze miał, ale nigdy nie użyłeś/nie użyłaś jej jako cechy, i sprawdzić, czy faktycznie pomaga.
+
 ## Głos mentora
 
 "Ta lekcja nie jest oceniana — potraktuj ją jako rundę bonusową. Sześć lekcji

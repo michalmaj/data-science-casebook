@@ -1,5 +1,12 @@
 # Lekcja 3 — Eksploracja
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zbadać relacje między cechami numerycznymi w wybranym przez siebie datasetcie, bez wcześniejszej lekcji wskazującej istotne kolumny.
+- Będziesz umieć wyrobić sobie wstępny, oparty na dowodach pogląd na to, które cechy Twojego datasetu prawdopodobnie mają znaczenie dla Twojego własnego pytania z Lekcji 1.
+
 ## Głos mentora
 
 "Zanim cokolwiek dopasujesz, zobacz, co faktycznie jest w danych. Niektóre cechy okażą się bardzo ważne dla Twojego pytania, inne prawie wcale — i chcesz wiedzieć, które są które, zanim zbudujesz model wokół niewłaściwych."

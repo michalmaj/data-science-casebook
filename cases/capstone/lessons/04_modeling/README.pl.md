@@ -1,5 +1,13 @@
 # Lekcja 4 — Modelowanie
 
+**Szacowany czas:** 55-65 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zastosować tę samą generyczną sekwencję split/impute/(scale) niezależnie od tego, czy Twój problem okaże się regresją, klasyfikacją, czy klasteryzacją.
+- Będziesz umieć dopasować model bazowy i pierwszy realny model pasujący do techniki, której faktycznie wymaga Twój własny wybrany dataset.
+- Będziesz umieć powiedzieć, co daje "jeden generyczny pipeline na trzy techniki", a gdzie przestaje to wystarczać dla Twojego konkretnego problemu.
+
 ## Głos mentora
 
 "Tu ścieżka faktycznie się rozdziela. Regresja, klasyfikacja, klasteryzacja — cokolwiek wymaga Twój zbiór danych, najpierw dopasuj baseline. Jeśli nie potrafisz go pobić, nie masz jeszcze modelu, masz zbieg okoliczności."
