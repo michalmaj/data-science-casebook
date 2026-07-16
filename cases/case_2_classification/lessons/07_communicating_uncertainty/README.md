@@ -1,5 +1,13 @@
 # Lesson 7 — Communicating Uncertainty
 
+**Estimated time:** 45-55 min
+
+## Learning outcomes
+
+- You'll be able to turn a predicted probability into a plain-language risk tier a non-technical team could actually act on.
+- You'll be able to build a per-order risk report shaped the way an operations team would actually use it.
+- You'll be able to check whether risk tiers genuinely track outcome risk, or just look organized without being calibrated.
+
 ## Mentor's note
 
 "You've picked a threshold — now imagine handing Meridian Outlet a spreadsheet of raw probabilities. Nobody in ops wants to read '0.34'. Turn that number into something a human can act on."

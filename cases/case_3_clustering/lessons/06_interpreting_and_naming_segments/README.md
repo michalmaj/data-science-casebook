@@ -1,5 +1,13 @@
 # Lesson 6 — Interpreting and Naming Segments
 
+**Estimated time:** 45-60 min
+
+## Learning outcomes
+
+- You'll be able to name and profile K-means segments using their raw-unit feature averages, not their scaled/z-score fit values.
+- You'll be able to judge whether a segment's defining trait is actually distinct enough to act on, versus a difference too small to matter operationally.
+- You'll be able to check a naming decision against a variable the clustering never saw (e.g. plan tier), and know that agreement there is suggestive, not confirmation.
+
 ## Mentor's note
 
 "Lesson 5 didn't just create noise — silhouette score clearly pointed at k=2. So let's stop comparing solutions and actually interpret one. Fit it, look at what separates the two clusters, and give them names a business person would actually use."

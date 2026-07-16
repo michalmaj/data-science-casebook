@@ -1,5 +1,13 @@
 # Lekcja 6 — Dobór progu i wybór metryki
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć przesuwać próg decyzyjny i odczytywać, jak precision, recall i F1 wymieniają się między sobą wraz z jego zmianą.
+- Będziesz umieć wydzielić zbiór walidacyjny, żeby decyzja o progu nigdy nie była dostrajana na tych samych danych, na których robisz finalną ewaluację.
+- Będziesz umieć powiązać wybór progu z jego realnym kosztem biznesowym, zamiast wybierać liczbę z najładniej wyglądającą metryką.
+
 ## Głos mentora
 
 "Widziałeś/widziałaś, jak model przypisuje prawdziwe prawdopodobieństwa, ale domyślny próg to wszystko ukrywał. Teraz sam/sama wybierzesz próg — i zobaczysz dokładnie, co tracisz za każdym razem, gdy go obniżasz."

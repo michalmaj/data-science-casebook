@@ -1,5 +1,13 @@
 # Lesson 8 — Synthesis: Decision Note
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to assemble every prior lesson's model and baseline into one comparison table a non-technical stakeholder can actually read.
+- You'll be able to write a decision note that states a recommendation, its confidence, and its limitations in plain language.
+- You'll be able to decide what's genuinely actionable from seven lessons of analysis and what deliberately isn't.
+
 ## Mentor's note
 
 "Seven lessons of code, and TransLine's ops manager will never read a line of it. What they'll read is what you write today. Everything you found — the baseline, the model, the blind spot, what's actionable and what isn't — only matters if you can say it plainly enough that someone who's never seen a p-value can act on it."

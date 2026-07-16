@@ -1,5 +1,13 @@
 # Lesson 2 — Data Wrangling: Multi-Sheet Excel
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to read a real-world Excel sheet whose title row got read as data, and recover its actual header.
+- You'll be able to standardize a column name that's spelled differently across two sheets before joining on it.
+- You'll be able to merge two sheets into one clean, order-level table ready for exploration.
+
 ## Mentor's note
 
 "You noticed the raw load had two rows too many — that was the title row and the real header row both getting read as data. Today you fix that properly, and you'll meet the same kind of mess on the Customers sheet: same idea, different disguise."

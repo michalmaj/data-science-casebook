@@ -1,5 +1,13 @@
 # Lesson 5 — Evaluation
 
+**Estimated time:** 55-70 min
+
+## Learning outcomes
+
+- You'll be able to evaluate your Lesson 4 model on held-out test data, using the metric that actually matches your problem type.
+- You'll be able to check a clustering solution's stability via resampling instead of a held-out split, and explain why that's the right substitute when there's no target to hold out.
+- You'll be able to tell whether your model's test-set performance still beats the baseline, the way its training-set performance did.
+
 ## Mentor's note
 
 "Lesson 4 only told you how your model does on data it already saw. That's not evaluation, that's a rehearsal. This is where you find out if it actually learned anything."

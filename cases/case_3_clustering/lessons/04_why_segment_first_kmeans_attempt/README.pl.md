@@ -1,5 +1,12 @@
 # Lekcja 4 — Po co segmentować? Pierwsza próba z KMeans
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć uzasadnić biznesowo potrzebę segmentacji, zanim dopasujesz jakikolwiek model.
+- Będziesz umieć dopasować pierwszy model `KMeans` przy dowolnie wybranym k i krytycznie odczytać rozmiary klastrów, nie jako dowód, że podział ma już jakikolwiek sens.
+
 ## Głos mentora
 
 "Aurora Stream nie chce modelu dla samego modelu — chcą wiedzieć, czy 'traktuj każdego subskrybenta tak samo' to rzeczywiście zły pomysł. Sprawdźmy to. Dopasuj model KMeans, wybierz na razie jakąś okrągłą liczbę klastrów i zobacz, co z tego wyjdzie. Nie martw się jeszcze, czy to *właściwa* liczba — to problem na następną lekcję."

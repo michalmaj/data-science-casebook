@@ -1,5 +1,12 @@
 # Lekcja 5 — Wybór k: porównanie rozwiązań
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć porównać rozwiązania `KMeans` dla różnych k, używając zarówno inercji (metoda łokcia), jak i silhouette score.
+- Będziesz umieć poradzić sobie z sytuacją, gdy dwie standardowe metryki doboru modelu są ze sobą sprzeczne, i zdecydować, która z nich faktycznie powinna kierować wyborem.
+
 ## Głos mentora
 
 "k=4 z Lekcji 4 było zgadywanką i mówiłem Ci to już wtedy. Teraz naprawdę porównajmy rozwiązania. Dopasuj KMeans dla różnych wartości k, spójrz na inertia tak, jak chce tego metoda łokcia, a potem spójrz na silhouette score. Nie zdziw się, jeśli nie wskażą tej samej odpowiedzi."

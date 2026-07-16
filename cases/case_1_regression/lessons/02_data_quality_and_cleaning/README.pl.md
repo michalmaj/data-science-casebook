@@ -1,5 +1,13 @@
 # Lekcja 2 — Jakość danych i czyszczenie
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć dobrać inną, uzasadnioną strategię czyszczenia dla każdej kolumny zamiast jednego uniwersalnego `dropna()`.
+- Będziesz umieć rozpoznać, kiedy usunięcie wierszy jest właściwą decyzją, a kiedy lepsza jest imputacja, na podstawie tego, co brak w danej konkretnej kolumnie faktycznie oznacza.
+- Będziesz umieć złożyć pojedyncze decyzje czyszczące per kolumna w jedną, powtarzalną funkcję pipeline'u czyszczenia.
+
 ## Głos mentora
 
 "Ostatnio znalazłeś/znalazłaś dwie kolumny z brakami i zapytałem, co byś z nimi zrobił/zrobiła. 'To zależy' było dobrym instynktem — teraz zróbmy to konkretnie. Brakująca wartość `weather` i brakująca wartość `driver_experience_years` to nie ten sam rodzaj problemu i nie zasługują na to samo rozwiązanie."

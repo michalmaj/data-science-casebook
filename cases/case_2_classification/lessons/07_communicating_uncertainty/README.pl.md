@@ -1,5 +1,13 @@
 # Lekcja 7 — Komunikowanie niepewności
 
+**Szacowany czas:** 45-55 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zamienić przewidywane prawdopodobieństwo w zrozumiały poziom ryzyka, na którym mógłby oprzeć się zespół nietechniczny.
+- Będziesz umieć zbudować raport ryzyka per zamówienie w kształcie, w jakim faktycznie użyłby go zespół operacyjny.
+- Będziesz umieć sprawdzić, czy poziomy ryzyka naprawdę odzwierciedlają ryzyko wyniku, czy tylko wyglądają uporządkowane, nie będąc skalibrowanymi.
+
 ## Głos mentora
 
 "Wybrałeś/wybrałaś próg — teraz wyobraź sobie, że dajesz Meridian Outlet arkusz surowych prawdopodobieństw. Nikt w operacjach nie chce czytać '0.34'. Zamień tę liczbę w coś, na czym człowiek może się oprzeć."

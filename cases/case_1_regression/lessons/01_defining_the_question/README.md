@@ -1,5 +1,13 @@
 # Lesson 1 — Defining the Question
 
+**Estimated time:** 25-35 min
+
+## Learning outcomes
+
+- You'll be able to turn a vague stakeholder complaint into a specific, testable analytical question.
+- You'll be able to spot a data-leakage risk hiding in the brief itself, before writing any code.
+- You'll be able to read a missing-value count and start reasoning about what a gap in each column actually means.
+
 ## Mentor's note
 
 "Welcome aboard. TransLine's ops manager just told me — quote — 'shipments are late, fix it.' That's not a question we can answer with data yet. Before you touch a model, you need to turn that complaint into something specific enough to actually test. One more thing from that meeting: whatever we build has to work the moment a shipment leaves the depot — not with information we only find out afterward, like the weather it actually drove through. Keep that in mind as you get to know the data."

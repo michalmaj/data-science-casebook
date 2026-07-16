@@ -1,5 +1,13 @@
 # Lesson 3 — Exploratory Data Analysis
 
+**Estimated time:** 30-40 min
+
+## Learning outcomes
+
+- You'll be able to compute and read a correlation matrix to find which numeric columns actually move with the target.
+- You'll be able to compare group means to detect a categorical variable's effect on the target.
+- You'll be able to recognize when a strongly correlated column still can't be used, because it wouldn't be known at prediction time.
+
 ## Mentor's note
 
 "Data's clean now — good. Don't reach for a model yet. Look first. Half of what you'll 'discover' by modeling too early, you can already see in a correlation matrix and a bar chart, and it's a lot cheaper to look than to fit."

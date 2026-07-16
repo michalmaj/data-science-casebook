@@ -1,5 +1,13 @@
 # Lekcja 3 — Eksploracyjna analiza danych
 
+**Szacowany czas:** 30-40 min
+
+## Efekty uczenia się
+
+- Będziesz umieć policzyć i odczytać macierz korelacji, żeby znaleźć kolumny numeryczne faktycznie powiązane z targetem.
+- Będziesz umieć porównać średnie w grupach, żeby wykryć wpływ zmiennej kategorycznej na target.
+- Będziesz umieć rozpoznać, kiedy silnie skorelowana kolumna i tak nie nadaje się do użycia, bo nie byłaby znana w momencie predykcji.
+
 ## Głos mentora
 
 "Dane są już czyste — dobrze. Nie sięgaj jeszcze po model. Najpierw popatrz. Połowę tego, co 'odkryjesz' modelując za wcześnie, widać już na macierzy korelacji i wykresie słupkowym, a patrzenie jest dużo tańsze niż dopasowywanie modelu."

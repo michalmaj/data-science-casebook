@@ -1,5 +1,12 @@
 # Lekcja 2 — Przygotowanie danych
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć uogólnić strategię czyszczenia, która działa niezależnie od tego, które kolumny w Twoim własnym datasetcie akurat mają braki.
+- Będziesz umieć uzasadnić konkretną decyzję o imputacji jako odpowiednią dla Twoich danych, zamiast stosować ją mechanicznie tylko dlatego, że zadziałała w poprzednim case'ie.
+
 ## Głos mentora
 
 "Cokolwiek brakowało w Lekcji 1, nie zaklejaj tego byle jak. Zdecyduj świadomie, co wypełnienie tych luk zakłada o danych, których nie masz — i bądź gotowy/gotowa obronić ten wybór."

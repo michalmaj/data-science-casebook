@@ -1,5 +1,13 @@
 # Lekcja 8 (Opcjonalna, tylko LendWell) — Wyjaśnialność i granice
 
+**Szacowany czas:** 45-55 min
+
+## Efekty uczenia się
+
+- Będziesz umieć policzyć powody per wnioskodawca, które wyjaśniają indywidualne predykcje klasyfikatora, na wzór realnego "adverse action notice".
+- Będziesz umieć zagregować powody odmowy dla wszystkich przewidzianych odmów, żeby sprawdzić, czy jedna cecha dominuje decyzje modelu.
+- Będziesz umieć precyzyjnie nazwać, czego ta technika wyjaśnialności nie mówi — np. czy model dyskryminuje wg grupy — gdy same dane nie pozwalają tego sprawdzić.
+
 ## Głos mentora
 
 "Lekcja 7 spakowała ten model pod kątem wdrożenia. Ta pyta o to, czego

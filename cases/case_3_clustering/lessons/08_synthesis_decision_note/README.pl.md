@@ -1,5 +1,13 @@
 # Lekcja 8 — Synteza: Notatka decyzyjna
 
+**Szacowany czas:** 45-60 min
+
+## Efekty uczenia się
+
+- Będziesz umieć złożyć wnioski o zbędnych cechach, rozbieżności metryk, profile segmentów i wynik sprawdzenia stabilności w jedną notatkę decyzyjną.
+- Będziesz umieć zarekomendować działanie dla konkretnego segmentu, jasno mówiąc, co klasteryzacja może, a czego nie może potwierdzić jako dowód.
+- Będziesz umieć zdecydować, co Aurora Stream powinno faktycznie zrobić dla każdego segmentu i jak pewni powinni być każdej rekomendacji.
+
 ## Głos mentora
 
 "Siedem lekcji kodu, a zespół retencji Aurora Stream nigdy nie przeczyta ani linijki. Przeczyta to, co napiszesz dzisiaj. Wszystko, co znalazłeś/znalazłaś — redundantne cechy, dowolna pierwsza próba, niezgodność metryk, profile segmentów, sprawdzenie stabilności — ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć na tyle jasno, żeby ktoś, kto nigdy nie dopasowywał modelu KMeans, mógł na tym działać."

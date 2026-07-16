@@ -1,5 +1,13 @@
 # Lesson 8 — Synthesis: Decision Note
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to assemble every case model, baseline, and threshold decision into one comparison scorecard.
+- You'll be able to write a decision note that states a recommendation and its confidence honestly, without overselling a probability-based tool as a certainty.
+- You'll be able to decide what Meridian Outlet should actually do given everything found across the case, not just what the model outputs.
+
 ## Mentor's note
 
 "Seven lessons of code, and Meridian Outlet's ops manager will never read a line of it. What they'll read is what you write today. Everything you found — the baseline, the model, the threshold trade-off, how confident to be in the risk tiers — only matters if you can say it plainly enough that someone who's never seen a p-value can act on it."

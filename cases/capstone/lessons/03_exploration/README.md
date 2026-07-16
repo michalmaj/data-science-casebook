@@ -1,5 +1,12 @@
 # Lesson 3 — Exploration
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to explore numeric feature relationships in a dataset you chose yourself, without an earlier lesson pointing you at the relevant columns.
+- You'll be able to form an initial, evidence-based view on which of your dataset's features are likely to matter for your own Lesson 1 question.
+
 ## Mentor's note
 
 "Before you fit anything, look at what's actually in the data. Some features will turn out to matter a lot for your question, some barely at all — and you want to know which is which before you build a model around the wrong ones."

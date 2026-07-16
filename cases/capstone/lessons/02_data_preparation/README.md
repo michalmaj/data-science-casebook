@@ -1,5 +1,12 @@
 # Lesson 2 — Data Preparation
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to generalize a cleaning strategy that works no matter which columns in your own dataset happen to have gaps.
+- You'll be able to defend a specific imputation choice as appropriate for your data, instead of applying one mechanically because it worked in an earlier case.
+
 ## Mentor's note
 
 "Whatever you found missing in Lesson 1, don't just paper over it. Decide, deliberately, what filling those gaps assumes about the data you don't have — and be ready to defend that choice."

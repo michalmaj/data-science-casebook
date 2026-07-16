@@ -1,5 +1,13 @@
 # Lekcja 3 — Eksploracyjna analiza danych do klasyfikacji
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zmierzyć, jak bardzo niezbalansowany jest target binarny, zanim zbudujesz wokół niego jakikolwiek model.
+- Będziesz umieć policzyć rozkład wskaźnika wg kategorii, żeby znaleźć czynniki faktycznie powiązane z wynikiem.
+- Będziesz umieć odróżnić czynnik, który tylko "wygląda interesująco", od takiego z realnym, mierzalnym związkiem z targetem.
+
 ## Głos mentora
 
 "Masz już połączone dane — teraz prawdziwe pytanie: które z tych sygnałów naprawdę warto wykorzystać przy budowie modelu, a które tylko wyglądają ciekawie? Zanim dotkniesz jakiegokolwiek klasyfikatora, wyrób sobie pogląd na to, co przewiduje zwrot, a co nie."

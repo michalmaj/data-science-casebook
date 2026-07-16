@@ -1,5 +1,13 @@
 # Lesson 6 — Synthesis: Decision Note
 
+**Estimated time:** 60-75 min
+
+## Learning outcomes
+
+- You'll be able to assemble your own case's baseline, model, and evaluation results into one scorecard, in whichever format matches your problem type.
+- You'll be able to write a decision note for the client you chose in Lesson 1, stating a recommendation and its confidence honestly.
+- You'll be able to decide what your own client should actually do, having built and defended every step of the analysis yourself.
+
 ## Mentor's note
 
 "Five lessons of code, and your client will never read a line of it. What they'll read is what you write today. Everything you found — the baseline, the model, how well it generalized to data it never saw — only matters if you can say it plainly enough that someone who's never fit a model can act on it."

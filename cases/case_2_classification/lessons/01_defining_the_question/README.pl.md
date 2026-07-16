@@ -1,5 +1,13 @@
 # Lekcja 1 — Definiowanie pytania
 
+**Szacowany czas:** 25-35 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zamienić skargę klienta w konkretne pytanie analityczne, tym razem wobec bardziej bałaganiarskich, realnych danych.
+- Będziesz umieć uczciwie odczytać surowy eksport z Excela i nazwać jego strukturalne problemy, zanim zrobisz jakąkolwiek analizę.
+- Będziesz umieć wskazać pojedynczą kolumnę odpowiadającą na prawdziwe pytanie klienta, odróżniając ją od reszty tego, co eksport akurat rejestruje.
+
 ## Głos mentora
 
 "Nowy klient, nowy format. Dane Meridian Outlet nie przychodzą w schludnym CSV — przychodzą w eksporcie Excela zbudowanym dla człowieka, nie dla skryptu. Zanim tego dotkniesz, ustal sobie jasno pytanie biznesowe, tak samo jak zrobiłeś/zrobiłaś dla TransLine. Bałagan to problem następnej lekcji."

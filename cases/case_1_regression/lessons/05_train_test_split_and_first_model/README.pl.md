@@ -1,5 +1,13 @@
 # Lekcja 5 — Podział na train/test i pierwszy model regresji
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć wyjaśnić, dlaczego podział train/test musi nastąpić zanim policzona zostanie jakakolwiek statystyka (np. mediana do imputacji) z danych.
+- Będziesz umieć dopasować model bazowy i pierwszy model `LinearRegression`, i odczytać wynikowe MAE jako "lepiej/gorzej niż zawsze przewidywanie średniej", nie jako abstrakcyjną liczbę.
+- Będziesz umieć wskazać, które korelacje kandydujących cech z targetem są wystarczająco silne, by nazwać je "realnym sygnałem", a nie szumem.
+
 ## Głos mentora
 
 "To pierwszy model, który musi naprawdę zapracować na swoje miejsce. Nie wobec zgadywanki na danych, które zapamiętał — wobec modelu bazowego z Lekcji 4, na przesyłkach, których nigdy nie widział. Jeśli przeskoczysz podział i oceniasz go na tych samych danych, na których trenował, nie mierzysz skuteczności — mierzysz zapamiętywanie."

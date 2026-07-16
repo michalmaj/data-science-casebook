@@ -1,5 +1,13 @@
 # Lekcja 6 — Interpretacja reszt
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć policzyć reszty modelu i traktować je jako dane do zbadania, nie tylko wynik dokładności.
+- Będziesz umieć zgrupować reszty wg zmiennej kategorycznej, żeby wychwycić systematyczny wzorzec zamiast losowego szumu.
+- Będziesz umieć powiązać wzorzec w resztach ze zmienną, której model nigdy nie dostał, i nazwać, co to oznacza dla ślepej plamki modelu.
+
 ## Głos mentora
 
 "Model, który się myli, to nie problem — każdy model gdzieś się myli. Problemem jest nie wiedzieć, *gdzie*. Jeśli Twoje błędy to przypadkowy szum, dobrze, to najlepsze, co można osiągnąć. Jeśli układają się w konkretny wzorzec, to nie szum — to sygnał, który ignorujesz."

@@ -1,5 +1,13 @@
 # Lekcja 7 — Korelacja vs. predykcja vs. przyczynowość
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć ponownie dopasować model na różnych podzestawach cech, żeby sprawdzić, czy historia współczynnika przetrwa dodanie skorelowanych zmiennych.
+- Będziesz umieć odróżnić współczynnik, który możesz interpretować przyczynowo, od takiego, którego wolno Ci użyć tylko do predykcji.
+- Będziesz umieć zdecydować, na podstawie konkretnego testu, a nie intuicji, które wnioski są bezpieczne do przekazania klientowi jako rekomendacja przyczynowa.
+
 ## Głos mentora
 
 "Znalazłeś/znalazłaś to, co koreluje z opóźnieniem, i to, co poprawia predykcję. Żadne z tych dwóch nie mówi Ci, co *zmienić*, żeby naprawić opóźnienie. To trzy różne pytania, a TransLine zaraz zada Ci to trzecie — bo to jedyne, na które faktycznie mogą coś poradzić."

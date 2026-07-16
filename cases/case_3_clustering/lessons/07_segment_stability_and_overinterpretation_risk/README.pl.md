@@ -1,5 +1,13 @@
 # Lekcja 7 — Stabilność segmentów i ryzyko nadinterpretacji
 
+**Szacowany czas:** 50-60 min
+
+## Efekty uczenia się
+
+- Będziesz umieć przetestować stabilność rozwiązania klasteryzacyjnego, ponownie dopasowując je na powtarzanych losowych podpróbach i porównując etykiety adjusted Rand index.
+- Będziesz umieć precyzyjnie powiedzieć, co sprawdzenie stabilności na podpróbach mówi, a czego nie mówi — wrażliwość na próbkowanie, nie wrażliwość na inicjalizację K-means.
+- Będziesz umieć zdecydować, mając w ręku liczbę stabilności, czy segment jest wystarczająco solidny, żeby budować wokół niego strategię retencji.
+
 ## Głos mentora
 
 "Segment, którego nie da się odtworzyć, nie jest segmentem, tylko szumem. Zanim powiesz Aurora Stream, żeby zbudowali strategię retencji wokół tych klastrów, sprawdź, czy w ogóle przetrwają ponowne policzenie na nieco innej próbce subskrybentów."

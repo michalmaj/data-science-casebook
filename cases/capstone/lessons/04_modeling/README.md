@@ -1,5 +1,13 @@
 # Lesson 4 — Modeling
 
+**Estimated time:** 55-65 min
+
+## Learning outcomes
+
+- You'll be able to apply the same generic split/impute/(scale) sequence regardless of whether your problem turns out to be regression, classification, or clustering.
+- You'll be able to fit a baseline and a first real model matching whichever technique your own chosen dataset actually calls for.
+- You'll be able to state what "one generic pipeline across three techniques" buys you, and where it stops being enough for your specific problem.
+
 ## Mentor's note
 
 "This is where the path actually splits. Regression, classification, clustering — whichever your dataset calls for, fit a baseline first. If you can't beat a baseline, you don't have a model yet, you have a coincidence."

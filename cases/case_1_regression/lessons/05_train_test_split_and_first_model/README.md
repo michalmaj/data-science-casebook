@@ -1,5 +1,13 @@
 # Lesson 5 — Train/Test Split and First Regression Model
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to explain why a train/test split has to happen before any statistic (like a median for imputation) is computed from the data.
+- You'll be able to fit a baseline and a first `LinearRegression` model, and read the resulting MAE as "better/worse than always predicting the mean," not as an abstract number.
+- You'll be able to name which of a candidate feature set's correlations with the target are strong enough to call "real signal" versus noise.
+
 ## Mentor's note
 
 "This is the first model that has to actually earn its keep. Not against a guess on data it memorized — against Lesson 4's baseline, on shipments it's never seen. If you skip the split and score it on the same data it trained on, you're not measuring performance, you're measuring memorization."

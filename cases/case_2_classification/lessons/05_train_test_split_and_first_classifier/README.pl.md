@@ -1,5 +1,13 @@
 # Lekcja 5 — Podział na train/test i pierwszy klasyfikator
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć poprawnie podzielić dane do klasyfikacji, zachowując balans klas między train a test.
+- Będziesz umieć dopasować klasyfikator `LogisticRegression` i ocenić jego predykcje przy domyślnym progu 0,5.
+- Będziesz umieć porównać wskaźnik wykrywalności realnego klasyfikatora z baseline'em klasy większościowej, nie tylko jego surową dokładność.
+
 ## Głos mentora
 
 "Zbudowałeś/zbudowałaś baseline, który nigdy nie złapał ani jednego zwrotu. Teraz dopasuj prawdziwy model na sygnałach znalezionych w Lekcji 3 — rabat, historia zwrotów, wiek konta — i sprawdź, czy prawdziwy klasyfikator radzi sobie lepiej przy tym samym progu 0.5."

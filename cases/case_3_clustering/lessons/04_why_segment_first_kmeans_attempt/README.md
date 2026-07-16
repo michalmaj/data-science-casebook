@@ -1,5 +1,12 @@
 # Lesson 4 — Why Segment? First KMeans Attempt
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to make a business case for segmentation before fitting any model.
+- You'll be able to fit a first `KMeans` model at an arbitrary k and read its cluster sizes critically, not as proof the split is meaningful yet.
+
 ## Mentor's note
 
 "Aurora Stream doesn't want a model for its own sake — they want to know if 'treat every subscriber the same' is actually the wrong call. Let's find out. Fit a KMeans model, pick some round number of clusters for now, and see what falls out. Don't worry yet about whether it's the *right* number — that's next lesson's problem."

@@ -1,5 +1,13 @@
 # Lesson 8 (Optional, LendWell only) — Explainability & Limits
 
+**Estimated time:** 45-55 min
+
+## Learning outcomes
+
+- You'll be able to compute per-applicant reason codes that explain a classifier's individual predictions, mirroring a real adverse-action notice.
+- You'll be able to aggregate reason codes across every predicted denial to see whether one feature dominates the model's decisions.
+- You'll be able to name, precisely, what this explainability technique can't tell you — like whether the model discriminates by group — when the data itself doesn't support checking that.
+
 ## Mentor's note
 
 "Lesson 7 packaged this model for deployment. This one asks what deploying

@@ -1,5 +1,13 @@
 # Lesson 7 — Segment Stability and the Risk of Overinterpretation
 
+**Estimated time:** 50-60 min
+
+## Learning outcomes
+
+- You'll be able to test a clustering solution's stability by refitting it on repeated random subsamples and comparing labels with an adjusted Rand index.
+- You'll be able to state precisely what a subsample-stability check does and doesn't tell you — sampling sensitivity, not K-means initialization sensitivity.
+- You'll be able to decide, with a stability number in hand, whether a segment is solid enough to build a retention strategy around.
+
 ## Mentor's note
 
 "A segment you can't reproduce isn't a segment, it's noise. Before you tell Aurora Stream to build a retention strategy around these clusters, check whether they actually survive being recomputed on a slightly different sample of subscribers."

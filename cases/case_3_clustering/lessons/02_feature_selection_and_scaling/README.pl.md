@@ -1,5 +1,12 @@
 # Lekcja 2 — Dobór i skalowanie cech
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zdecydować, które kolumny faktycznie opisują zachowanie, wg którego chcesz segmentować, a które nie należą do modelu.
+- Będziesz umieć przeskalować cechy tak, żeby żadna z nich nie zdominowała algorytmu opartego na odległości tylko przez swoje surowe jednostki.
+
 ## Głos mentora
 
 "Liczba sesji waha się od 0 do 65, minuty oglądania od 0 do tysięcy, staż w setkach dni. Wrzuć to prosto do algorytmu opartego na odległości, a staż zdominuje wszystko inne. Napraw to, zanim cokolwiek pogrupujesz."

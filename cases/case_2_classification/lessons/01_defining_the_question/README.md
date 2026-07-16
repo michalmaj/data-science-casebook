@@ -1,5 +1,13 @@
 # Lesson 1 — Defining the Question
 
+**Estimated time:** 25-35 min
+
+## Learning outcomes
+
+- You'll be able to turn a client complaint into a specific analytical question, this time against messier, real-world-shaped data.
+- You'll be able to read a raw Excel export honestly and name its structural problems before doing any analysis on it.
+- You'll be able to identify the single column that answers the client's real question, distinct from everything else the export happens to record.
+
 ## Mentor's note
 
 "New client, new format. Meridian Outlet's data doesn't come in a tidy CSV — it comes in an Excel export built for a human, not a script. Before you touch any of that, get the business question straight, the same way you did for TransLine. The mess is next lesson's problem."

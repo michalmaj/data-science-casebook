@@ -1,5 +1,13 @@
 # Lesson 8 — Synthesis: Decision Note
 
+**Estimated time:** 45-60 min
+
+## Learning outcomes
+
+- You'll be able to assemble redundant-feature findings, metric disagreement, segment profiles, and a stability check into one decision note.
+- You'll be able to recommend a segment-specific action while being explicit about what the clustering can and can't support as evidence.
+- You'll be able to decide what Aurora Stream should actually do for each segment, and how confident they should be in each recommendation.
+
 ## Mentor's note
 
 "Seven lessons of code, and Aurora Stream's retention team will never read a line of it. What they'll read is what you write today. Everything you found — the redundant features, the arbitrary first guess, the metric disagreement, the segment profiles, the stability check — only matters if you can say it plainly enough that someone who's never fit a KMeans model can act on it."

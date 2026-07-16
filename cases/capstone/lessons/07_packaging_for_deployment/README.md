@@ -1,5 +1,12 @@
 # Lesson 7 (Optional) — Packaging Your Preprocessing as a Pipeline
 
+**Estimated time:** 40-55 min
+
+## Learning outcomes
+
+- You'll be able to replace a manual impute-then-scale-then-fit sequence with one fitted `sklearn.pipeline.Pipeline`.
+- You'll be able to use `ColumnTransformer` to bring in a categorical column your dataset always had but never used as a feature, and check whether it actually helps.
+
 ## Mentor's note
 
 "This one's not graded — think of it as a bonus round. Six lessons ago you

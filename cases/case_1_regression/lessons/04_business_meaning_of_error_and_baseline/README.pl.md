@@ -1,5 +1,13 @@
 # Lekcja 4 — Biznesowy sens błędu i model bazowy
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zbudować naiwną predykcję bazową i traktować ją jako poprzeczkę, którą musi przeskoczyć każdy realny model.
+- Będziesz umieć policzyć MAE i RMSE oraz wyjaśnić, co każda z tych miar inaczej karze.
+- Będziesz umieć przełożyć abstrakcyjny wynik błędu na to, co faktycznie znaczy dla klienta, w realnych jednostkach.
+
 ## Głos mentora
 
 "Zanim zbudujesz coś sprytnego, odpowiedz na to: jaka jest najgłupsza możliwa zgadywanka, i jak bardzo się myli? Jeśli to przeskoczysz, nie będziesz mieć sposobu, żeby sprawdzić, czy model z następnej lekcji jest naprawdę dobry — 'lepszy niż nic' to nie to samo, co 'wystarczająco dobry, żeby wdrożyć'."

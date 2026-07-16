@@ -1,5 +1,13 @@
 # Lesson 3 — Exploratory Data Analysis for Classification
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to measure how imbalanced a binary target actually is before building any model around it.
+- You'll be able to compute a rate-by-category breakdown to find which factors are genuinely associated with the outcome.
+- You'll be able to tell a factor that merely "looks interesting" apart from one with a real, measurable relationship to the target.
+
 ## Mentor's note
 
 "Merged data in hand — now the real question: which of these signals are actually worth building a model around, and which just look interesting? Before you touch a single classifier, get a feel for what predicts a return and what doesn't."
