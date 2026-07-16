@@ -1,5 +1,13 @@
 # Lesson 4 — Imbalanced Classes and Baseline
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to build a majority-class baseline and see exactly why its headline accuracy number can be misleading.
+- You'll be able to compute a confusion matrix and read what it reveals that a single accuracy score hides.
+- You'll be able to explain why a model that's "86% accurate" but catches zero real positives isn't actually useful.
+
 ## Mentor's note
 
 "Last lesson I asked what accuracy a model gets by always predicting 'not returned' — you probably guessed something close to 86%. Now build that baseline for real, and look at exactly which orders it gets wrong."

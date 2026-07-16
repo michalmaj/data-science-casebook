@@ -1,5 +1,13 @@
 # Lesson 6 — Threshold Selection and Metric Choice
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to sweep a decision threshold and read how precision, recall, and F1 trade off against each other as it moves.
+- You'll be able to carve out a validation split so a threshold decision never gets tuned against the same data used for the final evaluation.
+- You'll be able to connect a threshold choice to its real business cost, instead of picking the number with the best-looking metric.
+
 ## Mentor's note
 
 "You saw the model assign real probabilities, but the default threshold hid all of it. Now you get to choose the threshold yourself — and see exactly what you trade away every time you lower it."

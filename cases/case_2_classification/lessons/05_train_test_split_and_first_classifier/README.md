@@ -1,5 +1,13 @@
 # Lesson 5 — Train/Test Split and First Classifier
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to split classification data properly while preserving class balance between train and test.
+- You'll be able to fit a `LogisticRegression` classifier and evaluate its predictions at the default 0.5 threshold.
+- You'll be able to compare a real classifier's catch rate against the majority-class baseline, not just its raw accuracy.
+
 ## Mentor's note
 
 "You built a baseline that never caught a single return. Now fit an actual model on the signals you found in Lesson 3 — discount, return history, account age — and see if a real classifier does any better at the same 0.5 threshold."

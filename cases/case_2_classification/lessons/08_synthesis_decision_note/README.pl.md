@@ -1,5 +1,13 @@
 # Lekcja 8 — Synteza: Notatka decyzyjna
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć złożyć modele, baseline'y i decyzję o progu z całego case'u w jedną tabelę porównawczą.
+- Będziesz umieć napisać notatkę decyzyjną, która uczciwie podaje rekomendację i poziom pewności, nie sprzedając narzędzia opartego na prawdopodobieństwie jako pewności.
+- Będziesz umieć zdecydować, co Meridian Outlet powinno faktycznie zrobić na podstawie wszystkiego, co znaleziono w całym case'ie, nie tylko tego, co zwraca model.
+
 ## Głos mentora
 
 "Siedem lekcji kodu, a menedżer operacyjny Meridian Outlet nigdy nie przeczyta ani linijki. Przeczyta to, co napiszesz dzisiaj. Wszystko, co znalazłeś/znalazłaś — baseline, model, kompromis progu, jak bardzo ufać przedziałom ryzyka — ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć na tyle jasno, żeby ktoś, kto nigdy nie widział p-value, mógł na tym działać."

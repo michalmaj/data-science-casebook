@@ -1,5 +1,13 @@
 # Lekcja 2 — Porządkowanie danych: wielo-arkuszowy Excel
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć wczytać realny arkusz Excela, w którym wiersz tytułowy został odczytany jako dane, i odzyskać właściwy nagłówek.
+- Będziesz umieć ujednolicić nazwę kolumny zapisaną inaczej w dwóch arkuszach, zanim połączysz je po niej.
+- Będziesz umieć złączyć dwa arkusze w jedną, czystą tabelę na poziomie zamówienia, gotową do eksploracji.
+
 ## Głos mentora
 
 "Zauważyłeś/zauważyłaś, że surowe wczytanie miało dwa wiersze za dużo — to wiersz tytułowy i prawdziwy nagłówek, oba wczytane jako dane. Dziś naprawiasz to porządnie, a przy okazji spotkasz podobny bałagan w arkuszu Customers: ten sam pomysł, inne przebranie."

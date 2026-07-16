@@ -1,5 +1,13 @@
 # Lekcja 4 — Niezbalansowane klasy i baseline
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć zbudować baseline przewidujący klasę większościową i zobaczyć, dlaczego jego nagłówkowa dokładność może wprowadzać w błąd.
+- Będziesz umieć policzyć macierz pomyłek i odczytać z niej to, co ukrywa pojedynczy wynik dokładności.
+- Będziesz umieć wyjaśnić, dlaczego model "dokładny w 86%", który nie wyłapuje ani jednego prawdziwego przypadku, wcale nie jest użyteczny.
+
 ## Głos mentora
 
 "W poprzedniej lekcji pytałem, jaką dokładność (accuracy) osiągnąłby model, który zawsze przewiduje 'brak zwrotu' — pewnie zgadłeś/zgadłaś coś bliskiego 86%. Teraz zbuduj ten baseline naprawdę i sprawdź dokładnie, w których zamówieniach się myli."
