@@ -1,5 +1,13 @@
 # Lesson 4 — Business Meaning of Error and Baseline Model
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to build a naive baseline prediction and treat it as the bar any real model has to clear.
+- You'll be able to compute MAE and RMSE and explain what each one penalizes differently.
+- You'll be able to translate an abstract error score into what it actually means to the client, in real units.
+
 ## Mentor's note
 
 "Before you build anything clever, answer this: what's the dumbest possible guess, and how wrong is it? If you skip this, you'll have no way to tell whether next lesson's model is actually good — 'better than nothing' isn't the same as 'good enough to ship.'"

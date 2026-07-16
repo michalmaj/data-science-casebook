@@ -1,5 +1,13 @@
 # Lesson 7 — Correlation vs. Prediction vs. Causation
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to refit a model on different feature subsets to test whether a coefficient's story survives adding correlated variables.
+- You'll be able to distinguish a coefficient you can interpret causally from one you're only entitled to use for prediction.
+- You'll be able to decide, with a concrete test rather than intuition, which findings are safe to hand a stakeholder as a causal recommendation.
+
 ## Mentor's note
 
 "You've found what's correlated with delay, and you've found what improves prediction. Neither one tells you what to *change* to fix the delay. Those are three different questions, and TransLine is about to ask you the third one — because that's the one they can actually act on."

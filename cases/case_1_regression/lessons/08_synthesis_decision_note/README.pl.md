@@ -1,5 +1,13 @@
 # Lekcja 8 — Synteza: Notatka decyzyjna
 
+**Szacowany czas:** 40-50 min
+
+## Efekty uczenia się
+
+- Będziesz umieć złożyć modele i wartości bazowe ze wszystkich poprzednich lekcji w jedną tabelę porównawczą, którą przeczyta osoba nietechniczna.
+- Będziesz umieć napisać notatkę decyzyjną, która podaje rekomendację, poziom pewności i ograniczenia prostym językiem.
+- Będziesz umieć zdecydować, co z siedmiu lekcji analizy jest naprawdę do wykorzystania, a co świadomie nie.
+
 ## Głos mentora
 
 "Siedem lekcji kodu, a kierownik operacyjny TransLine nigdy nie przeczyta z niego ani linii. Przeczyta to, co napiszesz dzisiaj. Wszystko, co znalazłeś/znalazłaś — model bazowy, model, ślepy punkt, co jest możliwe do zaadresowania, a co nie — ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć wystarczająco prosto, żeby ktoś, kto nigdy nie widział p-value, mógł na tej podstawie działać."

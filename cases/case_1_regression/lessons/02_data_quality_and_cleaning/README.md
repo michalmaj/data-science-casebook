@@ -1,5 +1,13 @@
 # Lesson 2 — Data Quality and Cleaning
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to decide a different, justified cleaning strategy per column instead of one blanket `dropna()`.
+- You'll be able to tell when dropping rows is the right call versus when imputing is, based on what a missing value in that specific column actually means.
+- You'll be able to assemble individual column-level cleaning decisions into one repeatable cleaning pipeline function.
+
 ## Mentor's note
 
 "Last time you found two columns with gaps and I asked what you'd do about them. 'It depends' was the right instinct — now let's make it concrete. A missing `weather` value and a missing `driver_experience_years` value are not the same kind of problem, and they don't deserve the same fix."

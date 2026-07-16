@@ -1,5 +1,13 @@
 # Lesson 6 — Residual Interpretation
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to compute a model's residuals and treat them as data to be studied, not just an accuracy score.
+- You'll be able to group residuals by a categorical variable to spot a systematic pattern instead of random noise.
+- You'll be able to connect a residual pattern back to a variable the model was never given, and state what that means for the model's blind spot.
+
 ## Mentor's note
 
 "A model that's wrong isn't the problem — every model is wrong somewhere. The problem is not knowing *where*. If your errors are random noise, fine, that's the best you can do. If they line up with something specific, that's not noise — that's a clue you're ignoring."
