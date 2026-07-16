@@ -31,7 +31,7 @@ Jeśli baseline ignorujący wszystkie cechy osiąga już 86% accuracy, co właś
 1. Otwórz `lesson.ipynb`.
 2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
 3. Spójrz na `predict_majority_baseline(df)` — potwierdź, że przewiduje dokładnie tę samą wartość dla każdego zamówienia.
-4. Sprawdź `accuracy(...)` — potwierdź, że niemal pokrywa się z `class_balance` z Lekcji 3.
+4. Sprawdź `accuracy(...)` — potwierdź, że dokładnie pokrywa się z `class_balance` z Lekcji 3 (dokładność baseline'u klasy większościowej to z definicji udział tej klasy).
 5. Spójrz na `confusion_counts(...)` — zwróć uwagę na `tp` i `fn`: baseline nie łapie ani jednego prawdziwego zwrotu.
 
 ## Self-check
