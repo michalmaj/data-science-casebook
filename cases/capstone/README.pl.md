@@ -22,6 +22,8 @@ Trzech potencjalnych klientów, każdy z lekkim briefem. Wybierz jednego — bę
 
 Jest też opcjonalna, nieoceniana Lekcja 7 po sześciu podstawowych lekcjach, pokazująca, jak spakować preprocessing w `Pipeline`/`ColumnTransformer` pod kątem wdrożenia.
 
+Jest też druga opcjonalna, nieoceniana Lekcja 8 — wyłącznie dla ścieżki LendWell — o wyjaśnianiu pojedynczych predykcji i o tym, gdzie taki model potrzebuje człowieka w pętli decyzyjnej.
+
 ## Co jest inne w projekcie końcowym
 
 - **Wybierasz zbiór danych.** Kod w każdej lekcji działa generycznie dla wszystkich trzech, więc niezależnie od wyboru, dostępne narzędzia będą działać.
