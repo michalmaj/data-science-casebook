@@ -1,5 +1,12 @@
 # Lesson 2 — Feature Selection and Scaling
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to decide which columns genuinely describe the behavior you want to segment on, versus which don't belong in the model.
+- You'll be able to scale features so no single one dominates a distance-based algorithm purely because of its raw units.
+
 ## Mentor's note
 
 "Session counts range from 0 to 65, minutes watched from 0 to thousands, tenure in hundreds of days. Feed that straight into a distance-based algorithm and tenure will swamp everything else. Fix that before you cluster anything."

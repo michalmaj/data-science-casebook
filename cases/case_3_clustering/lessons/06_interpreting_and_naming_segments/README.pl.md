@@ -1,5 +1,13 @@
 # Lekcja 6 — Interpretacja i nazywanie segmentów
 
+**Szacowany czas:** 45-60 min
+
+## Efekty uczenia się
+
+- Będziesz umieć nazwać i opisać segmenty K-means na podstawie średnich wartości cech w surowych jednostkach, nie ich przeskalowanych/z-score'owych odpowiedników.
+- Będziesz umieć ocenić, czy cecha definiująca segment jest faktycznie na tyle wyraźna, żeby na niej działać, czy to różnica zbyt mała, żeby miała operacyjne znaczenie.
+- Będziesz umieć sprawdzić decyzję o nazwie względem zmiennej, której klasteryzacja nigdy nie widziała (np. poziom planu), i wiedzieć, że zgodność tam jest sugestywna, nie jest potwierdzeniem.
+
 ## Głos mentora
 
 "Lekcja 5 nie stworzyła tylko szumu — silhouette score wyraźnie wskazał k=2. Przestańmy więc porównywać rozwiązania i rzeczywiście zinterpretujmy jedno z nich. Dopasuj je, zobacz, co odróżnia dwa klastry, i nadaj im nazwy, których faktycznie użyłby ktoś z biznesu."

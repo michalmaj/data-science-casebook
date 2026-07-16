@@ -1,5 +1,12 @@
 # Lesson 3 — Exploratory Data Analysis for Clustering
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to check feature correlations when there's no target to validate them against.
+- You'll be able to recognize when two features are carrying largely the same signal, and reason about what that means before clustering on both.
+
 ## Mentor's note
 
 "No target column this time — nothing to predict, nothing to check your correlations against. Just look at how these four features relate to each other before you decide what KMeans will actually be grouping."

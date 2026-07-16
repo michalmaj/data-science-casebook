@@ -1,5 +1,12 @@
 # Lekcja 3 — Eksploracyjna analiza danych do grupowania
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć sprawdzić korelacje między cechami, gdy nie ma targetu, względem którego mógłbyś je zweryfikować.
+- Będziesz umieć rozpoznać, kiedy dwie cechy niosą w dużej mierze ten sam sygnał, i wyciągnąć z tego wnioski przed klasteryzacją na obu.
+
 ## Głos mentora
 
 "Tym razem żadnej kolumny celu — nic do przewidzenia, nic, z czym można by porównać korelacje. Po prostu spójrz, jak te cztery cechy odnoszą się do siebie nawzajem, zanim zdecydujesz, co właściwie będzie grupował KMeans."

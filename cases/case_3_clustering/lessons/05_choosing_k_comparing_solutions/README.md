@@ -1,5 +1,12 @@
 # Lesson 5 — Choosing k: Comparing Solutions
 
+**Estimated time:** 40-50 min
+
+## Learning outcomes
+
+- You'll be able to compare `KMeans` solutions across a range of k using both inertia (elbow method) and silhouette score.
+- You'll be able to handle the case where two standard model-selection metrics disagree, and decide which one should actually drive the choice.
+
 ## Mentor's note
 
 "Lesson 4's k=4 was a guess, and I told you so at the time. Now let's actually compare solutions. Fit KMeans across a range of k, look at inertia the way the elbow method wants you to, then look at silhouette score. Don't be surprised if they don't point at the same answer."

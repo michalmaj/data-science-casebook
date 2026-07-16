@@ -1,5 +1,12 @@
 # Lekcja 1 — Definiowanie pytania
 
+**Szacowany czas:** 35-45 min
+
+## Efekty uczenia się
+
+- Będziesz umieć napisać SQL, który złączy i zagreguje znormalizowane tabele w jedną tabelę wiersz-na-podmiot, gotową do analizy.
+- Będziesz umieć sformułować pytanie analityczne do klasteryzacji, gdzie nie ma kolumny celu, względem której sprawdziłbyś swoją pracę.
+
 ## Głos mentora
 
 "Nowy case, nowy format — tym razem SQLite. Dwie tabele, żadnych sztuczek z bałaganem w Excelu, tylko prawdziwy SQL. Zobacz kształt danych, a potem zbuduj tabelę, na której naprawdę będziesz pracować."

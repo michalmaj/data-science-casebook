@@ -1,5 +1,12 @@
 # Lesson 1 — Defining the Question
 
+**Estimated time:** 35-45 min
+
+## Learning outcomes
+
+- You'll be able to write SQL that joins and aggregates normalized tables into one row-per-entity table ready for analysis.
+- You'll be able to frame an analytical question for clustering, where there's no target column to check your work against.
+
 ## Mentor's note
 
 "New case, new format — SQLite this time. Two tables, no messy Excel tricks, just real SQL. Get the shape of the data, then build the one table you'll actually work from."
