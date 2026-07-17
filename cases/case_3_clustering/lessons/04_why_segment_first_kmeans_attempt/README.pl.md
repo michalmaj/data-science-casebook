@@ -43,7 +43,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
 
 ## Zadanie domowe
 
-Jedno zdanie: jeden z czterech klastrów jest dużo mniejszy od pozostałych. Co warto by sprawdzić, zanim zarekomendujesz Aurora Stream zbudowanie wokół niego oferty retencyjnej?
+Jedno zdanie: dwa z czterech klastrów są zauważalnie mniejsze od pozostałych dwóch. Co warto by sprawdzić, zanim zarekomendujesz Aurora Stream zbudowanie oferty retencyjnej wokół jednego z mniejszych?
 
 ## Refleksja
 
