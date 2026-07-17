@@ -39,12 +39,13 @@ def test_final_segment_table_shape_and_columns():
 def test_final_segment_table_matches_known_values():
     df = lesson.load_scaled_features()
     table = lesson.final_segment_table(df)
-    assert abs(table.loc[0, "session_count"] - 13.429223744292237) < 1e-6
-    assert abs(table.loc[1, "session_count"] - 46.23456790123457) < 1e-6
-    assert table.loc[0, "size"] == 219
-    assert table.loc[1, "size"] == 81
-    assert abs(table.loc[0, "share"] - 0.73) < 1e-9
-    assert abs(table.loc[1, "share"] - 0.27) < 1e-9
+    session_counts = sorted(table["session_count"].tolist())
+    assert abs(session_counts[0] - 13.429223744292237) < 1e-6
+    assert abs(session_counts[1] - 46.23456790123457) < 1e-6
+    assert sorted(table["size"].tolist()) == [81, 219]
+    shares = sorted(table["share"].tolist())
+    assert abs(shares[0] - 0.27) < 1e-9
+    assert abs(shares[1] - 0.73) < 1e-9
 
 
 def test_final_segment_table_shares_sum_to_one():
@@ -56,7 +57,11 @@ def test_final_segment_table_shares_sum_to_one():
 def test_final_segment_table_shows_asymmetric_engagement_segments():
     df = lesson.load_scaled_features()
     table = lesson.final_segment_table(df)
-    assert table.loc[1, "share"] < table.loc[0, "share"]
+    low_engagement_label = table["session_count"].idxmin()
+    high_engagement_label = table["session_count"].idxmax()
+    assert table.loc[high_engagement_label, "share"] < table.loc[low_engagement_label, "share"]
     viewing_columns = ["session_count", "total_minutes_watched", "avg_minutes_per_session"]
     for column in viewing_columns:
-        assert table.loc[1, column] > 2 * table.loc[0, column]
+        high_value = table.loc[high_engagement_label, column]
+        low_value = table.loc[low_engagement_label, column]
+        assert high_value > 2 * low_value
