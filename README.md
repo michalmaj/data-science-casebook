@@ -22,6 +22,8 @@ Four cases, each a full analytical cycle, with the amount of guidance decreasing
 | [Case 3 — Clustering](cases/case_3_clustering/) | Aurora Stream subscriber segmentation | KMeans | 8 | Guided, less interpretive support |
 | [Capstone](cases/capstone/) | Your choice of one of three client engagements | Your choice of technique | 6 | Guided capstone (constrained choice) |
 
+The Capstone also has two optional, ungraded lessons after its six core lessons: packaging your preprocessing into a `Pipeline`/`ColumnTransformer`, and — for the LendWell path only — explaining individual model predictions. See [`cases/capstone/README.md`](cases/capstone/README.md) for details.
+
 ## Getting started
 
 Install [uv](https://docs.astral.sh/uv/) — it manages Python versions itself, so you don't need Python pre-installed; the commands below will download a compatible interpreter automatically if needed.
