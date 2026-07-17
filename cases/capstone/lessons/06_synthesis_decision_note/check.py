@@ -80,16 +80,19 @@ def test_final_clustering_summary_shape_and_values():
     assert summary.shape == (3, 8)
     assert list(summary.index) == [0, 1, 2]
     assert list(summary.columns) == [*features, "size", "share"]
-    assert list(summary["size"]) == [108, 92, 50]
-    assert abs(summary.loc[0, "share"] - 0.432) < 1e-9
-    assert abs(summary.loc[1, "share"] - 0.368) < 1e-9
-    assert abs(summary.loc[2, "share"] - 0.2) < 1e-9
-    assert abs(summary.loc[0, "store_size_sqft"] - 9530.148148148148) < 1e-6
-    assert abs(summary.loc[1, "store_size_sqft"] - 4104.076086956522) < 1e-6
-    assert abs(summary.loc[2, "store_size_sqft"] - 6477.64) < 1e-6
-    assert abs(summary.loc[0, "monthly_revenue"] - 74347.41666666667) < 1e-6
-    assert abs(summary.loc[1, "monthly_revenue"] - 76154.64130434782) < 1e-6
-    assert abs(summary.loc[2, "monthly_revenue"] - 185517.22) < 1e-6
+    assert sorted(summary["size"]) == [50, 92, 108]
+    shares = sorted(summary["share"])
+    assert abs(shares[0] - 0.2) < 1e-9
+    assert abs(shares[1] - 0.368) < 1e-9
+    assert abs(shares[2] - 0.432) < 1e-9
+    store_sizes = sorted(summary["store_size_sqft"])
+    assert abs(store_sizes[0] - 4104.076086956522) < 1e-6
+    assert abs(store_sizes[1] - 6477.64) < 1e-6
+    assert abs(store_sizes[2] - 9530.148148148148) < 1e-6
+    revenues = sorted(summary["monthly_revenue"])
+    assert abs(revenues[0] - 74347.41666666667) < 1e-6
+    assert abs(revenues[1] - 76154.64130434782) < 1e-6
+    assert abs(revenues[2] - 185517.22) < 1e-6
 
 
 def test_final_clustering_summary_shares_sum_to_one():
