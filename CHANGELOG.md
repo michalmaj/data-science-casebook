@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Cluster profiles reported in scaled/z-score units** instead of real-world units in Case 3 and Capstone decision notes — reversed an earlier design call after two independent audits flagged the same readability problem (#40)
 - **Case 1's brief never disclosed that `weather` isn't known at prediction time** until five lessons after a student first sees it as a seemingly-useful column (#41)
 - **Eight places across Case 1/2/3** where an exemplar or README's interpretation outran what the underlying analysis actually supported — comparing regression coefficients across differently-scaled features without a units caveat, a "floor" claim that was backwards for most of the data, an operational threshold recommended without a precision/recall check, cluster-stability testing conflated with K-means initialization sensitivity, and more (#44)
-- **Two more instances of the same fragility class** — `check.py` tests asserting a cluster property against a specific KMeans label number, which sklearn gives no ordering guarantee for across versions — found and fixed after #47's initial pass missed them, closing the class out repo-wide (#50, #51)
+- **Two more instances of the same fragility class** — `check.py` tests asserting a cluster property against a specific KMeans label number, which sklearn gives no ordering guarantee for across versions — found and fixed after #47's initial pass missed them, closing the class out repo-wide (#51)
 
 ### Changed
 
