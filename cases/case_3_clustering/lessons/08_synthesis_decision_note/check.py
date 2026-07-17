@@ -39,13 +39,17 @@ def test_final_segment_table_shape_and_columns():
 def test_final_segment_table_matches_known_values():
     df = lesson.load_scaled_features()
     table = lesson.final_segment_table(df)
-    session_counts = sorted(table["session_count"].tolist())
-    assert abs(session_counts[0] - 13.429223744292237) < 1e-6
-    assert abs(session_counts[1] - 46.23456790123457) < 1e-6
-    assert sorted(table["size"].tolist()) == [81, 219]
-    shares = sorted(table["share"].tolist())
-    assert abs(shares[0] - 0.27) < 1e-9
-    assert abs(shares[1] - 0.73) < 1e-9
+    # Sort by session_count (itself part of what's being verified) so size
+    # and share are checked in the same, now label-independent row order —
+    # this keeps the correspondence a cluster actually has between columns,
+    # unlike sorting each column independently.
+    by_session_count = table.sort_values("session_count").reset_index(drop=True)
+    assert abs(by_session_count.loc[0, "session_count"] - 13.429223744292237) < 1e-6
+    assert abs(by_session_count.loc[1, "session_count"] - 46.23456790123457) < 1e-6
+    assert by_session_count.loc[0, "size"] == 219
+    assert by_session_count.loc[1, "size"] == 81
+    assert abs(by_session_count.loc[0, "share"] - 0.73) < 1e-9
+    assert abs(by_session_count.loc[1, "share"] - 0.27) < 1e-9
 
 
 def test_final_segment_table_shares_sum_to_one():
