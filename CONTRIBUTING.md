@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for considering a contribution to `data-science-casebook`. This document covers the conventions that aren't obvious from reading a single lesson.
+Thanks for considering a contribution to `data-science-casebook`. This document covers the conventions that aren't obvious from reading a single lesson. If you're teaching this course rather than contributing to it, see [`INSTRUCTOR_GUIDE.md`](INSTRUCTOR_GUIDE.md) instead.
 
 ## Local development
 
@@ -32,6 +32,8 @@ Every lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and needs exactly
 
 Every `lesson.ipynb` starts with a `%load_ext autoreload` / `%autoreload 2` cell (right after the intro markdown cell) — this is what lets edits to `task.py` show up in a running notebook without a kernel restart.
 
+Every `README.md`/`README.pl.md` starts with a `**Estimated time:** X-Y min` line and a `## Learning outcomes` section (2-4 bullets, "You'll be able to...") right after the title, before the lesson's opening section (usually "Mentor's note"). The time range is an editorial estimate, not a measured fact — base it on the case's guidance level and the lesson's actual `task.py` workload, and ground every learning-outcome bullet in what that specific lesson's functions and analytical question actually teach, not generic filler.
+
 **Self-containment convention**: if a lesson needs a function that an earlier lesson in the same case already defined (e.g. `load_dataset`, `split_dataset`), reproduce it byte-for-byte in the new lesson's `task.py`/`solution.py` — never import it from another lesson's module. Lessons must be runnable and gradable in isolation; a student jumping straight to Lesson 5 shouldn't need Lesson 3's files to exist. This means some duplication across a case's lessons is expected and intentional, not a bug to clean up.
 
 **`check.py` module-loading pattern**: every `check.py` in this repo uses the same boilerplate to load either `task.py` or `solution.py` at runtime:
@@ -56,6 +58,8 @@ The `_UNIQUE_NAME` construction matters: many lessons across many cases have a f
 ## Bilingual contract
 
 Every tracked `*.md` file needs a `.pl.md` sibling (`tools/check_bilingual_pairs.py` enforces this in CI — it only considers files git would track, so this doesn't apply to gitignored files). English is the source of truth; when you edit an English Markdown file, update its Polish sibling in the same commit. The sole exemption is `do_poczytania.txt` (private, gitignored planning notes, not student-facing).
+
+The checker also verifies EN/PL structural parity: each pair must have the same sequence of Markdown header levels (`#`, `##`, `###`, ...). It compares structure only, not prose — so a longer or shorter translation never fails the check — but adding, removing, or reordering a section in one language without mirroring it in the other will.
 
 Code, docstrings, comments, and commit messages are English-only — including inside notebooks. `lesson.ipynb` markdown cells are English-only even in lessons whose `README.pl.md` is Polish; only the brief is bilingual, not the workspace.
 

@@ -1,6 +1,6 @@
 # Współtworzenie
 
-Dzięki za rozważenie wkładu w `data-science-casebook`. Ten dokument opisuje konwencje, które nie są oczywiste po przeczytaniu pojedynczej lekcji.
+Dzięki za rozważenie wkładu w `data-science-casebook`. Ten dokument opisuje konwencje, które nie są oczywiste po przeczytaniu pojedynczej lekcji. Jeśli prowadzisz ten kurs zamiast go współtworzyć, zobacz zamiast tego [`INSTRUCTOR_GUIDE.pl.md`](INSTRUCTOR_GUIDE.pl.md).
 
 ## Lokalny rozwój
 
@@ -32,6 +32,8 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i potrze
 
 Każdy `lesson.ipynb` zaczyna się od komórki `%load_ext autoreload` / `%autoreload 2` (zaraz po komórce markdown z wprowadzeniem) — to dzięki temu edycje `task.py` pojawiają się w działającym notebooku bez restartu kernela.
 
+Każdy `README.md`/`README.pl.md` zaczyna się od linii `**Estimated time:** X-Y min` (`**Szacowany czas:**` po polsku) i sekcji `## Learning outcomes` (`## Efekty uczenia się`, 2-4 punkty, "Będziesz umieć...") zaraz po tytule, przed pierwszą sekcją lekcji (zazwyczaj "Mentor's note"). Zakres czasu to edytorska ocena, nie zmierzony fakt — oprzyj go na poziomie prowadzenia case'u i realnym obciążeniu implementacyjnym `task.py` tej lekcji, a każdy punkt efektów uczenia się uzasadnij tym, czego faktycznie uczą funkcje i pytanie analityczne tej konkretnej lekcji, nie generycznym wypełniaczem.
+
 **Zasada samodzielności (self-containment)**: jeśli lekcja potrzebuje funkcji, którą zdefiniowała już wcześniejsza lekcja w tym samym case'ie (np. `load_dataset`, `split_dataset`), odtwórz ją bajt-w-bajt w `task.py`/`solution.py` nowej lekcji — nigdy nie importuj jej z modułu innej lekcji. Lekcje muszą dać się uruchomić i ocenić w izolacji; student przechodzący od razu do Lekcji 5 nie powinien potrzebować plików z Lekcji 3. Oznacza to, że pewne powtórzenia między lekcjami case'a są oczekiwane i celowe, nie błędem do posprzątania.
 
 **Wzorzec ładowania modułu w `check.py`**: każdy `check.py` w tym repo używa tego samego boilerplate'u, żeby wczytać `task.py` albo `solution.py` w czasie działania:
@@ -56,6 +58,8 @@ Konstrukcja `_UNIQUE_NAME` ma znaczenie: wiele lekcji w wielu case'ach ma plik d
 ## Kontrakt dwujęzyczny
 
 Każdy śledzony przez git plik `*.md` potrzebuje polskiego odpowiednika (`tools/check_bilingual_pairs.py` egzekwuje to w CI — bierze pod uwagę tylko pliki, które śledziłby git, więc nie dotyczy to plików gitignored). Angielski jest źródłem prawdy; kiedy edytujesz angielski plik Markdown, zaktualizuj jego polski odpowiednik w tym samym commicie. Jedynym wyjątkiem jest `do_poczytania.txt` (prywatne, gitignored notatki planistyczne, niewidoczne dla studentów).
+
+Checker weryfikuje też strukturalną zgodność EN/PL: każda para musi mieć tę samą sekwencję poziomów nagłówków Markdown (`#`, `##`, `###`...). Porównuje wyłącznie strukturę, nie treść — więc dłuższe albo krótsze tłumaczenie nigdy nie zawiedzie sprawdzenia — ale dodanie, usunięcie albo przestawienie sekcji w jednym języku bez odzwierciedlenia tego w drugim już tak.
 
 Kod, docstringi, komentarze i komunikaty commitów są wyłącznie po angielsku — również wewnątrz notebooków. Komórki markdown w `lesson.ipynb` są wyłącznie po angielsku, nawet w lekcjach, których `README.pl.md` jest po polsku; tylko brief jest dwujęzyczny, nie przestrzeń robocza.
 
