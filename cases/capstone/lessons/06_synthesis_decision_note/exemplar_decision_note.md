@@ -8,7 +8,7 @@ Can Riverside Community Clinic predict how long a patient will wait, using infor
 
 ## 2. Approach
 
-I loaded the clinic dataset, split it 80/20 into train/test, then imputed the small number of missing `staff_on_duty` and `department` values using median/mode statistics computed from the training set only (applied to both train and test). I compared a mean-baseline (always predict the training set's average wait) against a linear regression fit on `num_patients_ahead`, `staff_on_duty`, `hour_of_day`, and `patient_age`, predicting `wait_time_minutes`.
+I loaded the clinic dataset, split it 80/20 into train/test, then imputed the small number of missing `staff_on_duty` values using a median computed from the training set only (applied to both train and test). `department` also has some missing values, but I didn't use it as a feature, so it was never imputed. I compared a mean-baseline (always predict the training set's average wait) against a linear regression fit on `num_patients_ahead`, `staff_on_duty`, `hour_of_day`, and `patient_age`, predicting `wait_time_minutes`.
 
 ## 3. Results
 
@@ -29,7 +29,7 @@ A ~10.6 minute average error means the clinic can now give patients a personaliz
 
 ## 6. Limitations
 
-- (Resolved) Earlier drafts of this analysis imputed missing `staff_on_duty` and `department` values using statistics from the full dataset, before the train/test split — a small amount of test-set information technically leaked into those fill values. This has been fixed: the median/mode fill values are now computed from the training set only and applied to both train and test.
+- (Resolved) Earlier drafts of this analysis imputed missing `staff_on_duty` values using statistics from the full dataset, before the train/test split — a small amount of test-set information technically leaked into those fill values. This has been fixed: the median fill value is now computed from the training set only and applied to both train and test.
 - The model only used one train/test split with one random seed; a different split could give a somewhat different MAE, and this analysis doesn't quantify how much that number might move.
 
 ## 7. Recommendation
