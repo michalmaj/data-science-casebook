@@ -39,18 +39,27 @@ def test_segment_profiles_shape_and_columns():
 def test_segment_profiles_matches_known_values():
     df = lesson.load_scaled_features()
     profiles = lesson.segment_profiles(df)
-    assert abs(profiles.loc[0, "session_count"] - 13.429223744292237) < 1e-6
-    assert abs(profiles.loc[1, "session_count"] - 46.23456790123457) < 1e-6
-    assert profiles.loc[0, "size"] == 219
-    assert profiles.loc[1, "size"] == 81
+    # Sort by session_count (itself part of what's being verified) so size
+    # is checked in the same, now label-independent row order — this keeps
+    # the session_count/size correspondence a cluster actually has, unlike
+    # sorting each column independently.
+    by_session_count = profiles.sort_values("session_count").reset_index(drop=True)
+    assert abs(by_session_count.loc[0, "session_count"] - 13.429223744292237) < 1e-6
+    assert abs(by_session_count.loc[1, "session_count"] - 46.23456790123457) < 1e-6
+    assert by_session_count.loc[0, "size"] == 219
+    assert by_session_count.loc[1, "size"] == 81
 
 
 def test_segment_profiles_shows_clear_engagement_split():
     df = lesson.load_scaled_features()
     profiles = lesson.segment_profiles(df)
     viewing_columns = ["session_count", "total_minutes_watched", "avg_minutes_per_session"]
+    low_engagement_label = profiles["session_count"].idxmin()
+    high_engagement_label = profiles["session_count"].idxmax()
     for column in viewing_columns:
-        assert profiles.loc[1, column] > 2 * profiles.loc[0, column]
+        high_value = profiles.loc[high_engagement_label, column]
+        low_value = profiles.loc[low_engagement_label, column]
+        assert high_value > 2 * low_value
 
 
 def test_segment_profiles_tenure_barely_differs_between_clusters():

@@ -80,16 +80,24 @@ def test_final_clustering_summary_shape_and_values():
     assert summary.shape == (3, 8)
     assert list(summary.index) == [0, 1, 2]
     assert list(summary.columns) == [*features, "size", "share"]
-    assert list(summary["size"]) == [108, 92, 50]
-    assert abs(summary.loc[0, "share"] - 0.432) < 1e-9
-    assert abs(summary.loc[1, "share"] - 0.368) < 1e-9
-    assert abs(summary.loc[2, "share"] - 0.2) < 1e-9
-    assert abs(summary.loc[0, "store_size_sqft"] - 9530.148148148148) < 1e-6
-    assert abs(summary.loc[1, "store_size_sqft"] - 4104.076086956522) < 1e-6
-    assert abs(summary.loc[2, "store_size_sqft"] - 6477.64) < 1e-6
-    assert abs(summary.loc[0, "monthly_revenue"] - 74347.41666666667) < 1e-6
-    assert abs(summary.loc[1, "monthly_revenue"] - 76154.64130434782) < 1e-6
-    assert abs(summary.loc[2, "monthly_revenue"] - 185517.22) < 1e-6
+
+    # Sort by size (itself part of what's being verified) so the rest of
+    # this test can check every column's values in a fixed, label-independent
+    # row order — this preserves the cross-column correspondence a cluster
+    # actually has (e.g. which size goes with which store_size_sqft), unlike
+    # sorting each column independently, which would only verify each set of
+    # values exists somewhere without checking they co-occur correctly.
+    by_size = summary.sort_values("size").reset_index(drop=True)
+    assert list(by_size["size"]) == [50, 92, 108]
+    assert abs(by_size.loc[0, "share"] - 0.2) < 1e-9
+    assert abs(by_size.loc[1, "share"] - 0.368) < 1e-9
+    assert abs(by_size.loc[2, "share"] - 0.432) < 1e-9
+    assert abs(by_size.loc[0, "store_size_sqft"] - 6477.64) < 1e-6
+    assert abs(by_size.loc[1, "store_size_sqft"] - 4104.076086956522) < 1e-6
+    assert abs(by_size.loc[2, "store_size_sqft"] - 9530.148148148148) < 1e-6
+    assert abs(by_size.loc[0, "monthly_revenue"] - 185517.22) < 1e-6
+    assert abs(by_size.loc[1, "monthly_revenue"] - 76154.64130434782) < 1e-6
+    assert abs(by_size.loc[2, "monthly_revenue"] - 74347.41666666667) < 1e-6
 
 
 def test_final_clustering_summary_shares_sum_to_one():

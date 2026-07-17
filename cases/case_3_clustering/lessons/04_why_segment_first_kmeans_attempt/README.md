@@ -43,7 +43,7 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-One sentence: one of the four clusters is much smaller than the rest. What would you want to check before recommending Aurora Stream build a retention offer around it?
+One sentence: two of the four clusters are noticeably smaller than the other two. What would you want to check before recommending Aurora Stream build a retention offer around one of the smaller ones?
 
 ## Reflection
 
