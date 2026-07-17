@@ -10,11 +10,13 @@
 
 ## Głos mentora
 
-"Zbudowałeś/zbudowałaś baseline, który nigdy nie złapał ani jednego zwrotu. Teraz dopasuj prawdziwy model na sygnałach znalezionych w Lekcji 3 — rabat, historia zwrotów, wiek konta — i sprawdź, czy prawdziwy klasyfikator radzi sobie lepiej przy tym samym progu 0.5."
+"Zbudowałeś/zbudowałaś baseline, który nigdy nie złapał ani jednego zwrotu. Teraz dopasuj prawdziwy model na trzech numerycznych sygnałach z Lekcji 3 — rabat, historia zwrotów, wiek konta — i sprawdź, czy prawdziwy klasyfikator radzi sobie lepiej przy tym samym progu 0.5."
 
 ## Cel lekcji
 
-Poprawnie podzielić dane Meridian Outlet, dopasować prawdziwy klasyfikator `LogisticRegression` na sygnałach znalezionych w Lekcji 3, i ocenić jego predykcje przy domyślnym progu 0.5.
+Poprawnie podzielić dane Meridian Outlet, dopasować prawdziwy klasyfikator `LogisticRegression` na trzech numerycznych sygnałach z Lekcji 3, i ocenić jego predykcje przy domyślnym progu 0.5.
+
+Lekcja 3 pokazała też, że `product_category` to najsilniejszy sygnał, jaki znalazłeś/znalazłaś — zwroty w kategorii clothing na poziomie ~20% wobec 7% dla home_goods. Świadomie pomijamy ją tutaj w `FEATURE_COLUMNS`: kategoria wymaga dodatkowego kroku kodowania, zanim model może jej użyć, a to wykracza poza zakres tego case'u. Jeśli chcesz zobaczyć ten krok, opcjonalna Lekcja 7 Projektu końcowego przeprowadza przez to z użyciem `ColumnTransformer`.
 
 ## Pytanie analityczne dnia
 

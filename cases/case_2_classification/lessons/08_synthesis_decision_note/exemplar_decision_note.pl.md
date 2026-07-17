@@ -22,7 +22,7 @@ Przy domyślnym progu 0,5 model oznacza tylko 1 z 140 zamówień testowych — w
 
 ## 4. Wybór progu i metryki
 
-Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, które warto potwierdzić z Meridian Outlet, a nie przyjmować za pewnik: że przeoczony zwrot (pełny cykl zwrotu pieniędzy) kosztuje wyraźnie więcej niż fałszywy alarm (kilka minut sprawdzenia przez recenzenta zamówienia, które okazuje się w porządku). To założenie ma większe znaczenie, niż mogłoby się wydawać, bo wybrany próg oznacza blisko jedną trzecią wszystkich zamówień (45 ze 140 w zbiorze testowym) — nawet mały koszt na zamówienie sumuje się w realny czas recenzenta przy takim wolumenie. Przy tym założeniu, 0,2 to próg spośród testowanych, który znacząco podnosi recall bez zapadania się precision niemal do zera.
+Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, które warto potwierdzić z Meridian Outlet, a nie przyjmować za pewnik: że przeoczony zwrot (pełny cykl zwrotu pieniędzy) kosztuje wyraźnie więcej niż fałszywy alarm (kilka minut sprawdzenia przez recenzenta zamówienia, które okazuje się w porządku). To założenie ma większe znaczenie, niż mogłoby się wydawać, bo wybrany próg oznacza blisko jedną trzecią wszystkich zamówień (45 ze 140 w zbiorze testowym) — nawet mały koszt na zamówienie sumuje się w realny czas recenzenta przy takim wolumenie. Przy tym założeniu, 0,2 to próg spośród testowanych, który znacząco podnosi recall bez zapadania się precision niemal do zera — choć warto być uczciwym co do tego, jak słaby był ten sygnał na zbiorze walidacyjnym, który podjął tę decyzję: precision 0,071, recall 0,125, F1 0,091, ledwie przed F1 0,3 wynoszącym 0,077. To był najlepszy z trzech testowanych progów, nie próg, który sam w sobie wyglądał wyraźnie dobrze — dużo mocniejsze liczby ze zbioru testowego w Sekcji 3 potwierdzają, że wybór nie był wyraźnie błędny, a nie że był wyraźnie trafny.
 
 ## 5. Komunikowanie ryzyka
 
@@ -35,7 +35,7 @@ Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, k
 
 ## 7. Rekomendacja
 
-Wdrożyć model przy progu 0,2 jako flagę do ręcznej weryfikacji, nie jako system automatycznego odrzucania — oznaczać ~32% zamówień, które model wybiera, do weryfikacji przed lub krótko po wysyłce. Te liczby już odzwierciedlają wybór progu oparty na walidacji z Lekcji 6 oraz pojedyncze, prawdziwe sprawdzenie na zbiorze testowym, więc można ich bezpiecznie użyć do decyzji o zasobach (np. "potrzebujemy N recenzentów") bez dodatkowych zastrzeżeń.
+Wdrożyć model przy progu 0,2 jako flagę do ręcznej weryfikacji, nie jako system automatycznego odrzucania — oznaczać ~32% zamówień, które model wybiera, do weryfikacji przed lub krótko po wysyłce. Liczby ze zbioru testowego w Sekcji 3 traktuj jako scenariusz optymistyczny, nie gwarancję: zbiór walidacyjny, który faktycznie wybrał ten próg (Sekcja 4), pokazał dużo słabszy wynik — więc zanim zaangażujesz zasoby recenzentów w te liczby, warto potwierdzić je na kolejnej partii zamówień, zamiast opierać decyzję o zasobach wyłącznie na tym jednym odczycie ze zbioru testowego.
 
 ---
 

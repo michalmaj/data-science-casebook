@@ -31,7 +31,7 @@ If a baseline model that ignores every feature already scores 86% accuracy, what
 1. Open `lesson.ipynb`.
 2. Once `task.py` is filled in, run the notebook top to bottom.
 3. Look at `predict_majority_baseline(df)` — confirm it predicts the exact same value for every single order.
-4. Check `accuracy(...)` — confirm it matches Lesson 3's `class_balance` almost exactly.
+4. Check `accuracy(...)` — confirm it matches Lesson 3's `class_balance` exactly (a majority-class baseline's accuracy is the majority class's share, by definition).
 5. Look at `confusion_counts(...)` — notice `tp` and `fn`: the baseline never catches a single real return.
 
 ## Self-check
