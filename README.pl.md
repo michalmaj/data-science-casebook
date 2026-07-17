@@ -22,6 +22,8 @@ Cztery case'y, każdy to pełny cykl analityczny, z malejącym poziomem wsparcia
 | [Case 3 — Klasteryzacja](cases/case_3_clustering/) | Segmentacja subskrybentów Aurora Stream | KMeans | 8 | Prowadzony, mniej wsparcia w interpretacji |
 | [Capstone](cases/capstone/) | Twój wybór jednego z trzech zleceń klienckich | Twój wybór techniki | 6 | Prowadzony capstone (ograniczony wybór) |
 
+Projekt końcowy ma też dwie opcjonalne, nieoceniane lekcje po sześciu podstawowych: spakowanie preprocessingu w `Pipeline`/`ColumnTransformer` oraz — wyłącznie dla ścieżki LendWell — wyjaśnianie pojedynczych predykcji modelu. Szczegóły w [`cases/capstone/README.pl.md`](cases/capstone/README.pl.md).
+
 ## Szybki start
 
 Zainstaluj [uv](https://docs.astral.sh/uv/) — samo zarządza wersjami Pythona, więc nie musisz mieć go wcześniej zainstalowanego; poniższe komendy same pobiorą odpowiedni interpreter, jeśli będzie potrzebny.

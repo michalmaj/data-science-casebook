@@ -8,7 +8,7 @@ Czy Riverside Community Clinic może przewidzieć, jak długo pacjent będzie cz
 
 ## 2. Podejście
 
-Wczytałem/am dane kliniki, podzieliłem/am je 80/20 na train/test, a następnie zaimputowałem/am niewielką liczbę brakujących wartości `staff_on_duty` i `department` medianą/modą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Porównałem/am baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
+Wczytałem/am dane kliniki, podzieliłem/am je 80/20 na train/test, a następnie zaimputowałem/am niewielką liczbę brakujących wartości `staff_on_duty` medianą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Kolumna `department` też ma braki, ale nie użyłem/am jej jako cechy, więc nigdy nie została zaimputowana. Porównałem/am baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
 
 ## 3. Wyniki
 
@@ -29,7 +29,7 @@ To, że MAE na zbiorze testowym (10,60) i MAE treningowe z Lekcji 4 mieszczą si
 
 ## 6. Ograniczenia
 
-- (Rozwiązane) We wcześniejszych wersjach tej analizy brakujące wartości `staff_on_duty` i `department` były imputowane statystykami z całego zbioru danych, przed podziałem train/test — niewielka ilość informacji ze zbioru testowego technicznie przeciekała do tych wartości uzupełniających. Zostało to naprawione: wartości uzupełniające (mediana/moda) są teraz liczone wyłącznie ze zbioru treningowego i stosowane do obu zbiorów.
+- (Rozwiązane) We wcześniejszych wersjach tej analizy brakujące wartości `staff_on_duty` były imputowane statystykami z całego zbioru danych, przed podziałem train/test — niewielka ilość informacji ze zbioru testowego technicznie przeciekała do tych wartości uzupełniających. Zostało to naprawione: wartość uzupełniająca (mediana) jest teraz liczona wyłącznie ze zbioru treningowego i stosowana do obu zbiorów.
 - Model użył tylko jednego podziału train/test z jednym seedem losowym; inny podział mógłby dać nieco inne MAE, a ta analiza nie kwantyfikuje, o ile ta liczba mogłaby się przesunąć.
 
 ## 7. Rekomendacja
