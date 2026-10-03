@@ -36,33 +36,58 @@ def test_split_orders_produces_expected_sizes_and_preserves_balance():
     assert test_df["is_returned"].sum() == 20
 
 
-def test_split_orders_by_customer_has_no_customer_overlap():
+def test_split_orders_by_customer_has_no_customer_overlap_within_train():
+    # The row-vs-group comparison in this lesson is a validation-level
+    # experiment: it splits train_df further, it does not touch test_df.
     df = lesson.load_and_merge_orders()
-    train_df, test_df = lesson.split_orders_by_customer(df)
-    assert set(train_df["customer_id"]).isdisjoint(set(test_df["customer_id"]))
+    train_df, _test_df = lesson.split_orders(df)
+    fit_df, val_df = lesson.split_orders_by_customer(train_df)
+    assert set(fit_df["customer_id"]).isdisjoint(set(val_df["customer_id"]))
 
 
-def test_split_orders_by_customer_produces_expected_sizes():
+def test_split_orders_by_customer_produces_expected_sizes_within_train():
     df = lesson.load_and_merge_orders()
-    train_df, test_df = lesson.split_orders_by_customer(df)
-    assert len(train_df) == 577
-    assert len(test_df) == 123
-    assert len(train_df) + len(test_df) == len(df)
-    assert train_df["customer_id"].nunique() == 211
-    assert test_df["customer_id"].nunique() == 53
+    train_df, _test_df = lesson.split_orders(df)
+    fit_df, val_df = lesson.split_orders_by_customer(train_df)
+    assert len(fit_df) == 451
+    assert len(val_df) == 109
+    assert len(fit_df) + len(val_df) == len(train_df)
+    assert fit_df["customer_id"].nunique() == 198
+    assert val_df["customer_id"].nunique() == 50
 
 
-def test_split_orders_row_level_does_not_guarantee_disjoint_customers():
+def test_split_orders_row_level_does_not_guarantee_disjoint_customers_within_train():
     # Contrast case: the row-level split this case uses as its main workflow
     # does NOT give disjoint customers — that's expected and fine for the
     # "future orders from known customers" scenario this case teaches, but
     # a test should say so explicitly rather than leaving it to be
-    # discovered by accident.
+    # discovered by accident. Still a validation-level split of train_df,
+    # not the final test_df.
+    df = lesson.load_and_merge_orders()
+    train_df, _test_df = lesson.split_orders(df)
+    fit_df, val_df = lesson.split_orders(train_df)
+    overlap = set(fit_df["customer_id"]) & set(val_df["customer_id"])
+    assert not set(fit_df["customer_id"]).isdisjoint(set(val_df["customer_id"]))
+    assert len(overlap) == 77
+
+
+def test_validation_splits_never_touch_the_final_test_set():
+    # The core methodological property this lesson must not violate: every
+    # demonstration here (the threshold-0.5 catch-rate check, and the
+    # row-vs-group comparison) operates on train_df or a further split of
+    # train_df — never on test_df. This can't catch a notebook that calls
+    # these functions on test_df directly (pytest only sees task.py/
+    # solution.py, not lesson.ipynb) — see the lesson's README for why the
+    # notebook itself is written to never do that. What this test CAN pin
+    # down is that the validation-style splits used for comparison are
+    # built only from train_df and never share a row with test_df.
     df = lesson.load_and_merge_orders()
     train_df, test_df = lesson.split_orders(df)
-    overlap = set(train_df["customer_id"]) & set(test_df["customer_id"])
-    assert not set(train_df["customer_id"]).isdisjoint(set(test_df["customer_id"]))
-    assert len(overlap) == 90
+    row_fit_df, row_val_df = lesson.split_orders(train_df)
+    grp_fit_df, grp_val_df = lesson.split_orders_by_customer(train_df)
+    test_indices = set(test_df.index)
+    for sub_df in (row_fit_df, row_val_df, grp_fit_df, grp_val_df):
+        assert set(sub_df.index).isdisjoint(test_indices)
 
 
 def test_fit_classifier_returns_fitted_logistic_regression():
@@ -73,15 +98,20 @@ def test_fit_classifier_returns_fitted_logistic_regression():
     assert model.n_features_in_ == 3
 
 
-def test_predict_return_still_misses_every_return_at_default_threshold():
+def test_predict_return_in_sample_still_misses_every_return_at_default_threshold():
+    # Deliberately in-sample (train -> train), not train -> test: this
+    # lesson shows the threshold-0.5 problem WITHOUT opening the final test
+    # set. If the model can't even catch a return on the data it was fit
+    # on, that's a threshold problem, not something only visible out of
+    # sample — and it makes the point without spending the holdout early.
     df = lesson.load_and_merge_orders()
-    train_df, test_df = lesson.split_orders(df)
+    train_df, _test_df = lesson.split_orders(df)
     model = lesson.fit_classifier(train_df)
-    predicted = lesson.predict_return(model, test_df)
-    actual = test_df["is_returned"]
+    predicted = lesson.predict_return(model, train_df)
+    actual = train_df["is_returned"]
 
     cm = confusion_matrix(actual, predicted, labels=[0, 1])
-    assert cm.tolist() == [[119, 1], [20, 0]]
+    assert cm.tolist() == [[482, 0], [78, 0]]
 
     acc = accuracy_score(actual, predicted)
-    assert abs(acc - 0.85) < 1e-9
+    assert abs(acc - (482 / 560)) < 1e-9
