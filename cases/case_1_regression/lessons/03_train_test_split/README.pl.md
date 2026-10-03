@@ -46,7 +46,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
 
 ## Zadanie domowe
 
-W komórce "Your notes" w `lesson.ipynb` odpowiedz na pytanie o medianę z całego zbioru kontra medianę tylko z treningu, i czemu różnica o 1 minutę w wartości uzupełnianej ma znaczenie dla uczciwej ewaluacji.
+W komórce "Your notes" w `lesson.ipynb` odpowiedz na pytanie o medianę z całego zbioru kontra medianę tylko z treningu, i czemu różnica o 1 rok w wartości uzupełnianej ma znaczenie dla uczciwej ewaluacji.
 
 ## Refleksja
 

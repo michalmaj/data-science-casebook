@@ -46,7 +46,7 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-In `lesson.ipynb`'s "Your notes" cell, answer the prompt about the whole-dataset median versus the train-only median, and why a 1-minute difference in an imputed value matters for honest evaluation.
+In `lesson.ipynb`'s "Your notes" cell, answer the prompt about the whole-dataset median versus the train-only median, and why a 1-year difference in an imputed value matters for honest evaluation.
 
 ## Reflection
 
