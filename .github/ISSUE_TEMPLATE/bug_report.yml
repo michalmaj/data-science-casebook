@@ -19,8 +19,8 @@ body:
     id: lesson
     attributes:
       label: Which lesson (if applicable)?
-      description: e.g. "03_exploratory_data_analysis"
-      placeholder: "03_exploratory_data_analysis"
+      description: e.g. "04_exploratory_data_analysis"
+      placeholder: "04_exploratory_data_analysis"
     validations:
       required: false
   - type: textarea

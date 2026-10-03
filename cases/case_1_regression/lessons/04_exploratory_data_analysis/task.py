@@ -7,7 +7,6 @@ your work.
 from pathlib import Path
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "transport_delays.csv"
 
