@@ -22,7 +22,7 @@ Czy błędy tego modelu są przypadkowe, czy mają wzorzec — a jeśli mają, n
 
 ## Co dostajesz
 
-- Ten sam podział i model co w Lekcji 5, odtworzone tutaj (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
+- Ten sam podział co w Lekcji 3, i ten sam model co w Lekcji 5, odtworzone tutaj (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
 - `task.py` — trzy nowe funkcje do zaimplementowania: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
 

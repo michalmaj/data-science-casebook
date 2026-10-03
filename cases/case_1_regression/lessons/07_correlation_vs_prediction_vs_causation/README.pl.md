@@ -22,7 +22,7 @@ Którym współczynnikom modelu możesz zaufać na tyle, żeby zbudować na nich
 
 ## Co dostajesz
 
-- Te same podzielone dane co w Lekcji 5-6 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`)
+- Te same podzielone dane co w Lekcji 3, i to samo podejście do dopasowania modelu co w Lekcji 5 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`)
 - `task.py` — dwie nowe funkcje: `fit_model_on` (trenowanie na dowolnym zestawie cech, nie tylko stałym) i `coefficient_for` (odczyt współczynnika konkretnej cechy)
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
 

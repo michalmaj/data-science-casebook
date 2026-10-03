@@ -19,7 +19,7 @@ def load_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
     """Load the CSV and drop rows missing `weather`.
 
     TODO: read the CSV at `path`, then drop rows where `weather` is
-    missing. Return the result — same as Lessons 5-6.
+    missing. Return the result — same as Lesson 3.
     """
     raise NotImplementedError("load_shipments is not implemented yet")
 
@@ -29,7 +29,7 @@ def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     TODO: import `train_test_split` from `sklearn.model_selection` and use
     it with `test_size=0.2` and `random_state=RANDOM_STATE`. Return
-    (train_df, test_df) in that order — same as Lessons 5-6.
+    (train_df, test_df) in that order — same as Lesson 3.
     """
     raise NotImplementedError("split_shipments is not implemented yet")
 
@@ -41,7 +41,7 @@ def impute_driver_experience(
 
     TODO: compute the median of train_df["driver_experience_years"], then
     fill missing values in both train_df and test_df with that single
-    median. Return (train_df, test_df) in that order — same as Lessons 5-6.
+    median. Return (train_df, test_df) in that order — same as Lesson 3.
     """
     raise NotImplementedError("impute_driver_experience is not implemented yet")
 

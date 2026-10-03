@@ -47,7 +47,7 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and list one thing you'd try next to improve it further.
+In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and note what you'd need to do to bring `weather` — which had a real effect in Lesson 4 but isn't in `FEATURE_COLUMNS` — into the model.
 
 ## Reflection
 
