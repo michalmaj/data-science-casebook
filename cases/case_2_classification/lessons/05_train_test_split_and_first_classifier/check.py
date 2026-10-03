@@ -36,6 +36,34 @@ def test_split_orders_produces_expected_sizes_and_preserves_balance():
     assert test_df["is_returned"].sum() == 20
 
 
+def test_split_orders_by_customer_has_no_customer_overlap():
+    df = lesson.load_and_merge_orders()
+    train_df, test_df = lesson.split_orders_by_customer(df)
+    assert set(train_df["customer_id"]).isdisjoint(set(test_df["customer_id"]))
+
+
+def test_split_orders_by_customer_produces_expected_sizes():
+    df = lesson.load_and_merge_orders()
+    train_df, test_df = lesson.split_orders_by_customer(df)
+    assert len(train_df) == 577
+    assert len(test_df) == 123
+    assert len(train_df) + len(test_df) == len(df)
+    assert train_df["customer_id"].nunique() == 211
+    assert test_df["customer_id"].nunique() == 53
+
+
+def test_split_orders_row_level_does_not_guarantee_disjoint_customers():
+    # Contrast case: the row-level split this case uses as its main workflow
+    # does NOT give disjoint customers — that's expected and fine for the
+    # "future orders from known customers" scenario this case teaches, but
+    # a test should say so explicitly rather than leaving it to be
+    # discovered by accident.
+    df = lesson.load_and_merge_orders()
+    train_df, test_df = lesson.split_orders(df)
+    overlap = set(train_df["customer_id"]) & set(test_df["customer_id"])
+    assert len(overlap) == 90
+
+
 def test_fit_classifier_returns_fitted_logistic_regression():
     df = lesson.load_and_merge_orders()
     train_df, _ = lesson.split_orders(df)

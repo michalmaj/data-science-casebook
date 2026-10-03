@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GroupShuffleSplit, train_test_split
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "orders.xlsx"
 
@@ -26,6 +26,12 @@ def split_orders(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         df, test_size=0.2, random_state=RANDOM_STATE, stratify=df["is_returned"]
     )
     return train_df, test_df
+
+
+def split_orders_by_customer(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    splitter = GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=RANDOM_STATE)
+    train_idx, test_idx = next(splitter.split(df, groups=df["customer_id"]))
+    return df.iloc[train_idx], df.iloc[test_idx]
 
 
 def fit_classifier(train_df: pd.DataFrame) -> LogisticRegression:

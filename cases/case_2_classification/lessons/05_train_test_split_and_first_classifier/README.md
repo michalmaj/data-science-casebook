@@ -7,6 +7,7 @@
 - You'll be able to split classification data properly while preserving class balance between train and test.
 - You'll be able to fit a `LogisticRegression` classifier and evaluate its predictions at the default 0.5 threshold.
 - You'll be able to compare a real classifier's catch rate against the majority-class baseline, not just its raw accuracy.
+- You'll be able to tell apart two different "does this generalize?" questions — to known customers' future orders versus to entirely new customers — and pick the one that matches the business scenario.
 
 ## Mentor's note
 
@@ -22,10 +23,39 @@ Lesson 3 also showed `product_category` was the strongest signal you found — c
 
 Does a real classifier, trained on real features, actually catch more returns than the majority baseline — at least at the default threshold?
 
+## "New data" means two different things here
+
+`split_orders` above carves out a test set — but *what* is it testing generalization to? With 264 customers and 700 orders, most customers (78%) placed more than one order, and a plain random split doesn't know that: it's entirely possible (and, as you'll see, actually happens) for customer X's first order to land in `train_df` and their second order to land in `test_df`. That test row isn't from a customer the model has never met — it's a *new order* from a customer it already has on file.
+
+That's a real, useful question — "does this model work on the next order from a customer we already know?" — but it's a different question from "does this model work on a customer we've never seen at all?" Both are legitimate things to ask; which one matters depends entirely on how Meridian Outlet will actually use the model. If the system scores every incoming order regardless of whether it's a repeat customer, scenario A (known customers) is the realistic one. If Meridian Outlet specifically wants to know how the model handles brand-new sign-ups, that's scenario B.
+
+**This case's main workflow — every split from here through Lesson 8 — answers scenario A: does the model work on future orders from customers already in the training data?** That's consistent with Meridian Outlet's actual ask ("which orders are risky," not "which new customers are risky"), and it's what the plain `split_orders` above already does, correctly, for that question.
+
+To see scenario B, group the split by customer instead of by row, so no customer appears on both sides:
+
+```python
+from task import split_orders_by_customer
+
+group_train_df, group_test_df = split_orders_by_customer(df)
+```
+
+One concrete illustration: customer `CUST-0231` placed 7 orders. Under the row-level split, 5 of those land in `train_df` and 2 in `test_df` — the model isn't meeting a stranger in `test_df`, it's being checked on two more orders from someone it already partly knows, the same way you'd check whether a loyal customer named Anna, who's placed ten orders — eight of which went to training — gets her last two orders scored sensibly. Under the group-level split, `CUST-0231` lands entirely on one side or the other; there is no "Anna, mostly known."
+
+| | Row split (main, scenario A) | Group split (scenario B) |
+|---|---:|---:|
+| Train rows / customers | 560 / 248 | 577 / 211 |
+| Test rows / customers | 140 / 106 | 123 / 53 |
+| Customers in both train and test | 90 | 0 |
+| % of test rows whose customer is also in train | 86.4% | 0% |
+| Test confusion matrix @ 0.5 threshold | `[[119, 1], [20, 0]]` | `[[108, 0], [15, 0]]` |
+| Test ROC-AUC | 0.643 | 0.672 |
+
+Notice the two splits' results are *close*, not dramatically different, and the group split's AUC is actually slightly higher here — the opposite of what you might expect if group splits were simply "harder." Don't read that as proof either split is wrong. Two reasons this comparison isn't as dramatic as it could be: the test sets are small (140 and 123 rows, with only 20 and 15 returns respectively — plenty of room for a single split's numbers to wobble), and `previous_returns_count`/`account_age_days` are fixed attributes assigned to each customer independently of their orders (check `data/generate.py` — they're drawn before any order exists), not a running tally built from the customer's own order history. If a feature were instead something like "this customer's return rate computed from their past orders so far," the row-split-vs-group-split gap would matter far more, because a row split could then let a customer's own *future* orders quietly inform a feature describing their *past*.
+
 ## What you're given
 
 - The same `data/orders.xlsx` from Lessons 1-4
-- `task.py` — four functions to implement: `load_and_merge_orders`, `split_orders`, `fit_classifier`, `predict_return`
+- `task.py` — five functions to implement: `load_and_merge_orders`, `split_orders`, `split_orders_by_customer`, `fit_classifier`, `predict_return`
 - `lesson.ipynb` — the notebook where you'll do the actual work
 
 ## Working in the notebook
@@ -33,9 +63,10 @@ Does a real classifier, trained on real features, actually catch more returns th
 1. Open `lesson.ipynb`.
 2. Once `task.py` is filled in, run the notebook top to bottom.
 3. Check `split_orders(df)` — confirm the train/test sizes, and that both sets keep roughly the same return rate.
-4. Fit the model and look at its coefficients.
-5. Predict on the test set and check the confusion matrix — compare `tp` to Lesson 4's baseline.
-6. Look at the actual predicted probabilities, not just the 0/1 labels.
+4. Run `split_orders_by_customer` and compare its customer-overlap numbers against `split_orders` — confirm zero overlap for the group split versus the 90-customer overlap for the row split.
+5. Fit the model and look at its coefficients.
+6. Predict on the test set and check the confusion matrix — compare `tp` to Lesson 4's baseline.
+7. Look at the actual predicted probabilities, not just the 0/1 labels.
 
 ## Self-check
 
