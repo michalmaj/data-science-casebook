@@ -8,7 +8,7 @@ Czy możemy zidentyfikować, przed wysyłką lub krótko po niej, które zamówi
 
 ## 2. Podejście
 
-Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzieliłem/am 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach, i dopasowałem/am regresję logistyczną na treningowym. Porównałem/am baseline większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — porównanych na odłożonym zbiorze walidacyjnym, a następnie potwierdzonych raz na zbiorze testowym przy wybranym progu.
+Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzieliłem/am 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach — podział wierszowy, co znaczy, że ta analiza ocenia model na *kolejnych zamówieniach klientów już obecnych w danych*, nie na zupełnie nowych klientach (zobacz Lekcję 5, co się zmienia przy podziale po kliencie) — i dopasowałem/am regresję logistyczną na treningowym. Porównałem/am baseline większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — porównanych na odłożonym zbiorze walidacyjnym, a następnie potwierdzonych raz na zbiorze testowym przy wybranym progu.
 
 ## 3. Wyniki
 
@@ -32,6 +32,7 @@ Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, k
 
 - (Naprawione w Lekcji 6 poprzez wprowadzenie splitu walidacyjnego — zostawione tutaj jako przypomnienie, na co uważać.) Wcześniejsze wersje tej lekcji wybierały próg 0,2 przez bezpośrednie porównanie precision/recall na zbiorze testowym, co ponownie wykorzystywałoby go do decyzji strojenia. Lekcja 6 porównuje teraz progi na osobnym, odłożonym zbiorze walidacyjnym i dotyka zbioru testowego dokładnie raz, dla finalnej liczby raportowanej powyżej — więc to ograniczenie już nie dotyczy tej analizy, ale to dokładnie ten błąd, na który warto uważać we własnej pracy.
 - Przy zaledwie 98 zwróconych zamówieniach w całym zbiorze (i 20 w zbiorze testowym), powyższe oszacowania precision/recall mają realny szum próbkowania — kilka zamówień idących w drugą stronę przesunęłoby te liczby nietrywialnie.
+- Ta analiza odpowiada na pytanie "czy model działa na kolejnych zamówieniach znanych klientów?", nie "czy działa na zupełnie nowych klientach?" — porównanie podziału po kliencie z Lekcji 5 dało dla tego zbioru danych zbliżone liczby (test ROC-AUC 0,643 dla podziału wierszowego vs. 0,672 dla podziału po kliencie), ale ta różnica mogłaby być dużo większa dla biznesu, w którym cechy klienta są budowane z bieżącej historii zamówień, a nie ze stałych atrybutów przypisanych przy rejestracji. Wróć do tej decyzji, jeśli realny pipeline cech Meridian Outlet kiedykolwiek zmieni kształt.
 
 ## 7. Rekomendacja
 

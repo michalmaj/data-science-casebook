@@ -40,6 +40,23 @@ def split_orders(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     raise NotImplementedError("split_orders is not implemented yet")
 
 
+def split_orders_by_customer(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Split `df` into (train_df, test_df) so no customer appears on both sides.
+
+    TODO: import `GroupShuffleSplit` from `sklearn.model_selection`. Create
+    one with `n_splits=1`, `test_size=0.2`, `random_state=RANDOM_STATE`.
+    Call its `.split(df, groups=df["customer_id"])` and take the first
+    (train_idx, test_idx) pair with `next(...)`. Return
+    `(df.iloc[train_idx], df.iloc[test_idx])`.
+
+    Unlike `split_orders`, this does not stratify by `is_returned` —
+    sklearn has no single-split, group-aware, stratified splitter, so
+    grouping by customer here comes at the cost of only approximate class
+    balance. That trade-off is itself worth noticing.
+    """
+    raise NotImplementedError("split_orders_by_customer is not implemented yet")
+
+
 def fit_classifier(train_df: pd.DataFrame) -> LogisticRegression:
     """Fit a LogisticRegression on FEATURE_COLUMNS, predicting is_returned.
 

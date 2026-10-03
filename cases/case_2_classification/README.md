@@ -8,4 +8,6 @@
 
 **What you'll build across this case:** a classification model that estimates the risk an order will be returned, using only information available at the time of order, plus a decision note explaining which factors matter, how confident to be, and what Meridian Outlet should do about it.
 
+**What "new data" means here:** this case evaluates the model on *future orders from customers Meridian Outlet already has on file* — not on orders from customers it has never seen at all. Those are different questions with different answers; Lesson 5 shows you exactly how and why.
+
 Lessons in this case live under `lessons/`, numbered in the order you should work through them.
