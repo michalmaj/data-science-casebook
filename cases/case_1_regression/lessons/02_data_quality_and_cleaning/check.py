@@ -39,17 +39,7 @@ def test_drop_missing_weather_removes_exactly_seven_rows():
     assert result["weather"].isna().sum() == 0
 
 
-def test_impute_missing_experience_fills_with_median_and_keeps_row_count():
+def test_drop_missing_weather_leaves_driver_experience_gaps_for_later():
     df = lesson.load_shipments()
-    without_missing_weather = df.dropna(subset=["weather"])
-    result = lesson.impute_missing_experience(without_missing_weather)
-    assert len(result) == 493
-    assert result["driver_experience_years"].isna().sum() == 0
-    assert result["driver_experience_years"].median() == 13.0
-
-
-def test_clean_shipments_leaves_no_missing_values():
-    df = lesson.load_shipments()
-    cleaned = lesson.clean_shipments(df)
-    assert len(cleaned) == 493
-    assert cleaned.isna().sum().sum() == 0
+    result = lesson.drop_missing_weather(df)
+    assert result["driver_experience_years"].isna().sum() == 8

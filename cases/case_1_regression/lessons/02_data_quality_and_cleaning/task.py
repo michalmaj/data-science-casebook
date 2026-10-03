@@ -35,20 +35,3 @@ def drop_missing_weather(df: pd.DataFrame) -> pd.DataFrame:
     a category.
     """
     raise NotImplementedError("drop_missing_weather is not implemented yet")
-
-
-def impute_missing_experience(df: pd.DataFrame) -> pd.DataFrame:
-    """Return `df` with missing `driver_experience_years` filled by the column's median.
-
-    TODO: driver experience is numeric, and the median is a defensible,
-    outlier-resistant default when we don't want to lose the row entirely.
-    """
-    raise NotImplementedError("impute_missing_experience is not implemented yet")
-
-
-def clean_shipments(df: pd.DataFrame) -> pd.DataFrame:
-    """Apply the full cleaning pipeline: drop missing weather, then impute experience.
-
-    TODO: call drop_missing_weather, then impute_missing_experience, on `df`.
-    """
-    raise NotImplementedError("clean_shipments is not implemented yet")
