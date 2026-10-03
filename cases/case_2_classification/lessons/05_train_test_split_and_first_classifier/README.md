@@ -39,7 +39,7 @@ from task import split_orders_by_customer
 group_train_df, group_test_df = split_orders_by_customer(df)
 ```
 
-One concrete illustration: customer `CUST-0231` placed 7 orders. Under the row-level split, 5 of those land in `train_df` and 2 in `test_df` — the model isn't meeting a stranger in `test_df`, it's being checked on two more orders from someone it already partly knows, the same way you'd check whether a loyal customer named Anna, who's placed ten orders — eight of which went to training — gets her last two orders scored sensibly. Under the group-level split, `CUST-0231` lands entirely on one side or the other; there is no "Anna, mostly known."
+One concrete illustration: customer `CUST-0231` — call her Anna — placed 7 orders. Under the row-level split, 5 of those land in `train_df` and 2 in `test_df`: the model isn't meeting a stranger in `test_df`, it's being checked on two more orders from someone it already partly knows, the same way you'd check whether a loyal customer with a long order history gets her next couple of orders scored sensibly. Under the group-level split, Anna lands entirely on one side or the other; there is no "Anna, mostly known."
 
 | | Row split (main, scenario A) | Group split (scenario B) |
 |---|---:|---:|
@@ -50,7 +50,7 @@ One concrete illustration: customer `CUST-0231` placed 7 orders. Under the row-l
 | Test confusion matrix @ 0.5 threshold | `[[119, 1], [20, 0]]` | `[[108, 0], [15, 0]]` |
 | Test ROC-AUC | 0.643 | 0.672 |
 
-Notice the two splits' results are *close*, not dramatically different, and the group split's AUC is actually slightly higher here — the opposite of what you might expect if group splits were simply "harder." Don't read that as proof either split is wrong. Two reasons this comparison isn't as dramatic as it could be: the test sets are small (140 and 123 rows, with only 20 and 15 returns respectively — plenty of room for a single split's numbers to wobble), and `previous_returns_count`/`account_age_days` are fixed attributes assigned to each customer independently of their orders (check `data/generate.py` — they're drawn before any order exists), not a running tally built from the customer's own order history. If a feature were instead something like "this customer's return rate computed from their past orders so far," the row-split-vs-group-split gap would matter far more, because a row split could then let a customer's own *future* orders quietly inform a feature describing their *past*.
+Notice the two splits' results are *close*, not dramatically different, and the group split's AUC is actually slightly higher here — the opposite of what you might expect if group splits were simply "harder." Don't read that as proof either split is wrong. Three reasons this comparison isn't as dramatic as it could be: the test sets are small (140 and 123 rows, with only 20 and 15 returns respectively — plenty of room for a single split's numbers to wobble); the group split isn't stratified, so its train/test return rates (14.38% / 12.20%) drift a bit further apart than the row split's (13.93% / 14.29%); and `previous_returns_count`/`account_age_days` are fixed attributes assigned to each customer independently of their orders (check `data/generate.py` — they're drawn before any order exists), not a running tally built from the customer's own order history. If a feature were instead something like "this customer's return rate computed from their past orders so far," the row-split-vs-group-split gap would matter far more, because a row split could then let a customer's own *future* orders quietly inform a feature describing their *past*.
 
 ## What you're given
 
@@ -80,7 +80,7 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-In `lesson.ipynb`'s "Your notes" cell, write two to three sentences: given the probability range you saw, is this model actually useless, or is 0.5 simply the wrong threshold for Meridian Outlet's problem?
+In `lesson.ipynb`'s "Your notes" cell, write two to three sentences: given the probability range you saw, is this model actually useless, or is 0.5 simply the wrong threshold for Meridian Outlet's problem? The same cell also asks why the row-split and group-split numbers came out close rather than dramatically different — answer that too.
 
 ## Reflection
 

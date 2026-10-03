@@ -39,7 +39,7 @@ from task import split_orders_by_customer
 group_train_df, group_test_df = split_orders_by_customer(df)
 ```
 
-Konkretny przykład: klientka `CUST-0231` złożyła 7 zamówień. W podziale wierszowym 5 z nich trafia do `train_df`, a 2 do `test_df` — model nie spotyka w `test_df` kogoś zupełnie nieznanego, tylko jest sprawdzany na dwóch kolejnych zamówieniach osoby, którą już częściowo poznał — tak samo jak sprawdzilibyśmy, czy lojalna klientka Anna, która złożyła dziesięć zamówień — osiem z nich trafiło do treningu — ma sensownie ocenione swoje dwa ostatnie zamówienia. W podziale po kliencie `CUST-0231` trafia w całości na jedną stronę; nie ma "Anny, częściowo znanej".
+Konkretny przykład: klientka `CUST-0231` — nazwiemy ją Anna — złożyła 7 zamówień. W podziale wierszowym 5 z nich trafia do `train_df`, a 2 do `test_df`: model nie spotyka w `test_df` kogoś zupełnie nieznanego, tylko jest sprawdzany na dwóch kolejnych zamówieniach osoby, którą już częściowo poznał — tak samo jak sprawdzilibyśmy, czy lojalna klientka z długą historią zamówień ma sensownie ocenione swoje kolejne zamówienia. W podziale po kliencie Anna trafia w całości na jedną stronę; nie ma "Anny, częściowo znanej".
 
 | | Podział wierszowy (główny, scenariusz A) | Podział po kliencie (scenariusz B) |
 |---|---:|---:|
@@ -50,7 +50,7 @@ Konkretny przykład: klientka `CUST-0231` złożyła 7 zamówień. W podziale wi
 | Macierz pomyłek na teście przy progu 0,5 | `[[119, 1], [20, 0]]` | `[[108, 0], [15, 0]]` |
 | ROC-AUC na teście | 0,643 | 0,672 |
 
-Zauważ, że wyniki obu podziałów są *bliskie*, nie dramatycznie różne, a AUC podziału po kliencie jest tu nawet nieco wyższe — odwrotnie niż mogłoby się wydawać, gdyby podziały grupowe były po prostu "trudniejsze". Nie czytaj tego jako dowodu, że któryś podział jest błędny. Dwa powody, czemu to porównanie nie jest tak dramatyczne, jak mogłoby być: zbiory testowe są małe (140 i 123 wiersze, tylko 20 i 15 zwrotów odpowiednio — co daje dużo miejsca, by wynik jednego podziału się "zakolebał"), a `previous_returns_count`/`account_age_days` to stałe atrybuty przypisane każdemu klientowi niezależnie od jego zamówień (zobacz `data/generate.py` — są losowane, zanim istnieje jakiekolwiek zamówienie), nie bieżąca suma budowana z historii zamówień tego klienta. Gdyby cecha była czymś w stylu "stopa zwrotów tego klienta policzona z jego dotychczasowych zamówień", różnica między podziałem wierszowym a grupowym miałaby dużo większe znaczenie, bo podział wierszowy mógłby wtedy pozwolić przyszłym zamówieniom klienta po cichu wpływać na cechę opisującą jego przeszłość.
+Zauważ, że wyniki obu podziałów są *bliskie*, nie dramatycznie różne, a AUC podziału po kliencie jest tu nawet nieco wyższe — odwrotnie niż mogłoby się wydawać, gdyby podziały grupowe były po prostu "trudniejsze". Nie czytaj tego jako dowodu, że któryś podział jest błędny. Trzy powody, czemu to porównanie nie jest tak dramatyczne, jak mogłoby być: zbiory testowe są małe (140 i 123 wiersze, tylko 20 i 15 zwrotów odpowiednio — co daje dużo miejsca, by wynik jednego podziału się wahał); podział po kliencie nie jest stratyfikowany, więc jego stopy zwrotów train/test (14,38% / 12,20%) rozjeżdżają się bardziej niż w podziale wierszowym (13,93% / 14,29%); a `previous_returns_count`/`account_age_days` to stałe atrybuty przypisane każdemu klientowi niezależnie od jego zamówień (zobacz `data/generate.py` — są losowane, zanim istnieje jakiekolwiek zamówienie), nie bieżąca suma budowana z historii zamówień tego klienta. Gdyby cecha była czymś w stylu "stopa zwrotów tego klienta policzona z jego dotychczasowych zamówień", różnica między podziałem wierszowym a grupowym miałaby dużo większe znaczenie, bo podział wierszowy mógłby wtedy pozwolić przyszłym zamówieniom klienta po cichu wpływać na cechę opisującą jego przeszłość.
 
 ## Co dostajesz
 
@@ -80,7 +80,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
 
 ## Zadanie domowe
 
-W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania: biorąc pod uwagę zakres prawdopodobieństw, jaki zaobserwowałeś/zaobserwowałaś — czy ten model jest naprawdę bezużyteczny, czy 0.5 to po prostu zły próg dla problemu Meridian Outlet?
+W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania: biorąc pod uwagę zakres prawdopodobieństw, jaki zaobserwowałeś/zaobserwowałaś — czy ten model jest naprawdę bezużyteczny, czy 0.5 to po prostu zły próg dla problemu Meridian Outlet? Ta sama komórka pyta też, czemu wyniki podziału wierszowego i grupowego wyszły bliskie, a nie dramatycznie różne — odpowiedz też na to.
 
 ## Refleksja
 

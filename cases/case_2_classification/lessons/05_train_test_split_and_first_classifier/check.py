@@ -61,6 +61,7 @@ def test_split_orders_row_level_does_not_guarantee_disjoint_customers():
     df = lesson.load_and_merge_orders()
     train_df, test_df = lesson.split_orders(df)
     overlap = set(train_df["customer_id"]) & set(test_df["customer_id"])
+    assert not set(train_df["customer_id"]).isdisjoint(set(test_df["customer_id"]))
     assert len(overlap) == 90
 
 
