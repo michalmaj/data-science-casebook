@@ -1,4 +1,4 @@
-"""Self-check for Lesson 5. Run with `uv run pytest` in this directory.
+"""Self-check for Lesson 3. Run with `uv run pytest` in this directory.
 
 Set LESSON_MODULE=solution to check the reference solution instead of
 task.py (used by CI, not by students).
@@ -7,10 +7,6 @@ task.py (used by CI, not by students).
 import importlib.util
 import os
 from pathlib import Path
-
-import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 
 _MODULE_NAME = os.environ.get("LESSON_MODULE", "task")
 _LESSON_DIR = Path(__file__).parent
@@ -35,6 +31,14 @@ def test_split_shipments_produces_expected_sizes():
     assert len(train_df) + len(test_df) == len(df)
 
 
+def test_split_shipments_is_reproducible():
+    df = lesson.load_shipments()
+    train_1, test_1 = lesson.split_shipments(df)
+    train_2, test_2 = lesson.split_shipments(df)
+    assert list(train_1.index) == list(train_2.index)
+    assert list(test_1.index) == list(test_2.index)
+
+
 def test_impute_driver_experience_uses_train_median_only():
     df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
@@ -47,46 +51,14 @@ def test_impute_driver_experience_uses_train_median_only():
     assert abs(train_df["driver_experience_years"].median() - 12.0) < 1e-9
 
 
-def test_fit_model_returns_fitted_linear_regression():
+def test_impute_driver_experience_does_not_use_test_statistics():
     df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
-    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
-    model = lesson.fit_model(train_df)
-    assert isinstance(model, LinearRegression)
-    assert len(model.coef_) == 4
-
-
-def test_model_predictions_match_expected_metrics_on_test_set():
-    df = lesson.load_shipments()
-    train_df, test_df = lesson.split_shipments(df)
-    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
-    model = lesson.fit_model(train_df)
-    predicted = lesson.predict_delay(model, test_df)
-    actual = test_df["delay_minutes"]
-
-    mae = mean_absolute_error(actual, predicted)
-    rmse = root_mean_squared_error(actual, predicted)
-    assert abs(mae - 10.2127) < 1e-3
-    assert abs(rmse - 12.8064) < 1e-3
-
-
-def test_model_beats_train_mean_baseline_on_test_set():
-    df = lesson.load_shipments()
-    train_df, test_df = lesson.split_shipments(df)
-    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
-    model = lesson.fit_model(train_df)
-    predicted = lesson.predict_delay(model, test_df)
-    actual = test_df["delay_minutes"]
-
-    model_mae = mean_absolute_error(actual, predicted)
-    model_rmse = root_mean_squared_error(actual, predicted)
-
-    train_mean_delay = train_df["delay_minutes"].mean()
-    baseline_pred = pd.Series(train_mean_delay, index=test_df.index)
-    baseline_mae = mean_absolute_error(actual, baseline_pred)
-    baseline_rmse = root_mean_squared_error(actual, baseline_pred)
-
-    assert abs(baseline_mae - 12.0751) < 1e-3
-    assert abs(baseline_rmse - 15.1869) < 1e-3
-    assert model_mae < baseline_mae
-    assert model_rmse < baseline_rmse
+    # The full-dataset median (computed before any split) is 13.0 — see
+    # Lesson 2's data-quality check. If a solution accidentally pools
+    # train+test (or uses the test set alone) before imputing, the fill
+    # value drifts away from the train-only median of 12.0 asserted above.
+    full_median_before_split = df["driver_experience_years"].median()
+    assert abs(full_median_before_split - 13.0) < 1e-9
+    train_df, _ = lesson.impute_driver_experience(train_df, test_df)
+    assert abs(train_df["driver_experience_years"].median() - full_median_before_split) > 0.5

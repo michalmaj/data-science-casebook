@@ -1,39 +1,38 @@
-# Lesson 5 — Train/Test Split and First Regression Model
+# Lesson 3 — Train/Test Split and the Sealed Envelope
 
-**Estimated time:** 35-45 min
+**Estimated time:** 30-40 min
 
 ## Learning outcomes
 
-- You'll be able to explain why a train/test split has to happen before any statistic (like a median for imputation) is computed from the data.
-- You'll be able to fit a baseline and a first `LinearRegression` model, and read the resulting MAE as "better/worse than always predicting the mean," not as an abstract number.
-- You'll be able to name which of a candidate feature set's correlations with the target are strong enough to call "real signal" versus noise.
+- You'll be able to explain why a test set has to be carved out before any exploration, feature selection, or statistic (like a median for imputation) touches the data.
+- You'll be able to split a dataset reproducibly with `train_test_split` and keep the split stable across runs.
+- You'll be able to compute an imputation statistic from training data only and apply it, unchanged, to the test set.
 
 ## Mentor's note
 
-"This is the first model that has to actually earn its keep. Not against a guess on data it memorized — against Lesson 4's baseline, on shipments it's never seen. If you skip the split and score it on the same data it trained on, you're not measuring performance, you're measuring memorization."
+"Before you explore anything else about this data, put the test set in a sealed envelope. Not metaphorically — actually stop looking at those rows. Every decision from here on — what correlates with what, what counts as signal, what a 'baseline' guess should be — gets made on the training rows only. You open the envelope exactly once, at the end, to find out if any of it worked."
 
 ## Lesson goal
 
-Fit a real regression model with a proper held-out test set, and prove — with numbers, not intuition — that it beats a fair baseline.
+Split the cleaned shipment data into train and test sets, and perform the one remaining cleaning step — imputing `driver_experience_years` — correctly, using training data only.
 
 ## Today's analytical question
 
-Does a linear regression on the four numeric features Lesson 3 examined actually predict shipment delay better than TransLine's best naive guess — even though only one of them correlated strongly on its own?
+Once we set aside data to test on honestly, what's actually left to explore and build with — and what happens if we get that boundary wrong?
 
 ## What you're given
 
-- The data from Lessons 2-4 (reproduced here via `load_shipments`)
-- `task.py` — five functions to implement: `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`, `predict_delay`
+- The data from Lesson 2 (reproduced here via `load_shipments`)
+- `task.py` — three functions to implement: `load_shipments`, `split_shipments`, `impute_driver_experience`
 - `lesson.ipynb` — the notebook where you'll do the actual work
 
 ## Working in the notebook
 
 1. Open `lesson.ipynb`.
 2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Confirm the train/test split adds up: 394 + 99 = 493.
-4. Call `impute_driver_experience` right after splitting — notice it computes the fill value from `train_df` only, then applies that same value to both `train_df` and `test_df`. This is the fix for a real bug this course used to have: computing the median before splitting would let a little test-set information leak into training.
-5. Compare the model's MAE/RMSE on the test set against the *fair* baseline (train-mean applied to test, not Lesson 4's whole-dataset baseline).
-6. Look at the model's coefficients — do their signs match what Lesson 3's correlations suggested?
+3. Confirm the split adds up: 394 + 99 = 493.
+4. Call `impute_driver_experience` right after splitting — notice it computes the fill value from `train_df` only, then applies that same value to both `train_df` and `test_df`.
+5. Every later lesson in this case (4 onward) reuses exactly this split and this imputation — same `RANDOM_STATE`, same train/test rows.
 
 ## Self-check
 
@@ -47,8 +46,8 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and list one thing you'd try next to improve it further.
+In `lesson.ipynb`'s "Your notes" cell, answer the prompt about the whole-dataset median versus the train-only median, and why a 1-minute difference in an imputed value matters for honest evaluation.
 
 ## Reflection
 
-The mentor asks: why does this lesson recompute the baseline's mean from the training set only, instead of reusing Lesson 4's mean (which was computed over the whole dataset)? What would go wrong if you used the whole-dataset mean as your "fair" baseline here?
+The mentor asks: `test_df` never gets touched in this lesson beyond counting its missing values and filling them with a *train-derived* number. Why is filling test's own missing values with a train-only statistic still safe, when computing that statistic from test data itself would not be?
