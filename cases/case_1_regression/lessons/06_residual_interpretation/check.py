@@ -50,6 +50,28 @@ def test_residuals_are_uncorrelated_with_every_in_model_feature():
         assert abs(corr) < 1e-6
 
 
+def test_compute_residuals_on_test_set_is_not_algebraically_forced_to_zero():
+    # This test only guards compute_residuals' own behavior, not what the
+    # notebook happens to call it with — checking notebook cell content is
+    # out of scope for this check.py. OLS guarantees residuals average to
+    # exact floating-point zero (~1e-16) ONLY on the data a model was fit
+    # on; that is an algebraic identity, not a statistical claim, so it's
+    # not about whether the test-set mean is "large" in absolute terms —
+    # it usually won't be. The signal is the order-of-magnitude gap: the
+    # train-set mean sits at float-zero precision, while the test-set mean
+    # does not, by many orders of magnitude, precisely because it isn't
+    # the data the model was fit on.
+    df = lesson.load_shipments()
+    train_df, test_df = lesson.split_shipments(df)
+    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
+    model = lesson.fit_model(train_df)
+
+    train_residual_mean = abs(lesson.compute_residuals(model, train_df).mean())
+    test_residual_mean = abs(lesson.compute_residuals(model, test_df).mean())
+
+    assert test_residual_mean > train_residual_mean * 1e6
+
+
 def test_mean_residual_by_weather_reveals_the_missing_predictor():
     df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
