@@ -8,7 +8,7 @@ body:
     attributes:
       label: Which file?
       description: Path to the .pl.md file
-      placeholder: "cases/case_1_regression/lessons/03_exploratory_data_analysis/README.pl.md"
+      placeholder: "cases/case_1_regression/lessons/04_exploratory_data_analysis/README.pl.md"
     validations:
       required: true
   - type: dropdown

@@ -31,6 +31,7 @@ a projekt stosuje się do [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - **Brief Case 1 nigdy nie ujawniał, że `weather` nie jest znana w momencie predykcji** aż do pięciu lekcji po tym, jak student po raz pierwszy widzi tę kolumnę jako pozornie użyteczną (#41)
 - **Osiem miejsc w Case 1/2/3**, gdzie interpretacja w exemplarzu lub README wykraczała poza to, co faktycznie potwierdzała analiza — porównanie współczynników regresji między cechami o różnej skali bez zastrzeżenia o jednostkach, twierdzenie o "dolnej granicy", które było odwrotnością prawdy dla większości danych, próg operacyjny rekomendowany bez sprawdzenia precision/recall, mylenie stabilności klastrów z wrażliwością na inicjalizację K-means, i więcej (#44)
 - **Dwie kolejne instancje tej samej kruchości** — testy `check.py` asercjonujące właściwość klastra względem konkretnego numeru etykiety KMeans, dla którego sklearn nie gwarantuje kolejności między wersjami — znalezione i naprawione po tym, jak pierwsze podejście z #47 je przeoczyło, zamykając tę klasę błędu w całym repo (#51)
+- **Case 1 uczyło eksploracyjnej analizy danych świadomej targetu i modelu bazowego, zanim istniał podział train/test** — podział przeniesiono z Lekcji 5 do nowej Lekcji 3 ("zapieczętowana koperta"), EDA (Lekcja 4) i model bazowy (połączony z pierwszym modelem w Lekcji 5) liczą teraz wszystko wyłącznie z `train_df`; sam model, podział i finalne liczby pozostają bez zmian (#55)
 
 ### Zmieniono
 

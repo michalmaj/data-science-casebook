@@ -6,7 +6,7 @@
 
 - Będziesz umieć dobrać inną, uzasadnioną strategię czyszczenia dla każdej kolumny zamiast jednego uniwersalnego `dropna()`.
 - Będziesz umieć rozpoznać, kiedy usunięcie wierszy jest właściwą decyzją, a kiedy lepsza jest imputacja, na podstawie tego, co brak w danej konkretnej kolumnie faktycznie oznacza.
-- Będziesz umieć złożyć pojedyncze decyzje czyszczące per kolumna w jedną, powtarzalną funkcję pipeline'u czyszczenia.
+- Będziesz umieć rozpoznać, które decyzje czyszczące można bezpiecznie podjąć zanim istnieje podział train/test (stała reguła na poziomie wiersza), a które muszą zaczekać do momentu po podziale (statystyka wyliczona z danych).
 
 ## Głos mentora
 
@@ -23,7 +23,7 @@ Dane TransLine mają 15 przesyłek z jakimś brakiem. Które wiersze, które kol
 ## Co dostajesz
 
 - Ten sam `data/transport_delays.csv` z Lekcji 1
-- `task.py` — pięć funkcji do zaimplementowania: `load_shipments`, `rows_with_missing_data`, `drop_missing_weather`, `impute_missing_experience`, `clean_shipments`
+- `task.py` — trzy funkcje do zaimplementowania: `load_shipments`, `rows_with_missing_data`, `drop_missing_weather`
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
 
 ## Praca w notebooku
@@ -31,8 +31,8 @@ Dane TransLine mają 15 przesyłek z jakimś brakiem. Które wiersze, które kol
 1. Otwórz `lesson.ipynb`.
 2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
 3. Zobacz `rows_with_missing_data(df)` — potwierdź, które kolumny są naprawdę dotknięte i ile wierszy.
-4. Zdecyduj (i bądź gotów/gotowa to obronić), czemu usunięcie wierszy to dobra decyzja dla `weather`, a uzupełnienie medianą to dobra decyzja dla `driver_experience_years`.
-5. Potwierdź, że `clean_shipments(df)` nie zostawia żadnych braków danych.
+4. Zdecyduj (i bądź gotów/gotowa to obronić), czemu usunięcie wierszy to dobra decyzja dla `weather` — i czemu `driver_experience_years` też wymaga naprawy, ale nie teraz: uzupełnienie medianą wymaga policzenia tej mediany, a to wyliczenie nie jest bezpieczne, zanim wiesz, które wiersze mogą je informować. Lekcja 3 się tym zajmie.
+5. Potwierdź, że `drop_missing_weather(df)` nie zostawia żadnych braków w `weather`, a `driver_experience_years` wciąż ma braki — tak ma być.
 
 ## Self-check
 
@@ -46,7 +46,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
 
 ## Zadanie domowe
 
-W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania uzasadniające różne podejście do obu kolumn i zanotuj, co zmieniłoby Twoją decyzję (np. gdyby `weather` brakowało w 30% wierszy, a nie ~1%).
+W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania, czemu usunięcie wierszy dla `weather` jest bezpieczne przed podziałem, a uzupełnienie `driver_experience_years` medianą — jeszcze nie.
 
 ## Refleksja
 

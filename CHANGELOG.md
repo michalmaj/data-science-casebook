@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Case 1's brief never disclosed that `weather` isn't known at prediction time** until five lessons after a student first sees it as a seemingly-useful column (#41)
 - **Eight places across Case 1/2/3** where an exemplar or README's interpretation outran what the underlying analysis actually supported — comparing regression coefficients across differently-scaled features without a units caveat, a "floor" claim that was backwards for most of the data, an operational threshold recommended without a precision/recall check, cluster-stability testing conflated with K-means initialization sensitivity, and more (#44)
 - **Two more instances of the same fragility class** — `check.py` tests asserting a cluster property against a specific KMeans label number, which sklearn gives no ordering guarantee for across versions — found and fixed after #47's initial pass missed them, closing the class out repo-wide (#51)
+- **Case 1 taught target-aware EDA and a baseline model before the train/test split existed** — the split moved from Lesson 5 to a new Lesson 3 ("the sealed envelope"), EDA (Lesson 4) and the baseline (merged into Lesson 5 with the first model) now compute everything from `train_df` only; the underlying model, split, and final numbers are unchanged (#55)
 
 ### Changed
 

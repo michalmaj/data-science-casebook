@@ -8,13 +8,13 @@ Four cases, each a full analytical cycle, with guidance decreasing as you go —
 
 | Case | Guidance | Lessons | Estimated time |
 |---|---|---:|---:|
-| Case 1 — Regression | Heavily guided | 8 | 275-355 min (~4.5-6 hr) |
+| Case 1 — Regression | Heavily guided | 8 | 280-360 min (~4.5-6 hr) |
 | Case 2 — Classification | Guided | 8 | 290-370 min (~5-6 hr) |
 | Case 3 — Clustering | Guided, less interpretive support | 8 | 330-420 min (~5.5-7 hr) |
 | Capstone (required) | Guided capstone (constrained choice) | 6 | 295-365 min (~5-6 hr) |
 | Capstone (optional extras) | Ungraded, Lesson 7 all paths / Lesson 8 LendWell only | 2 | ~85-110 min (~1.5-2 hr) |
 
-**Total for the 30 required lessons: roughly 1190-1510 minutes (~20-25 hours).** Add the two optional Capstone lessons and it's closer to 1275-1620 minutes (~21-27 hours). These are the same per-lesson editorial estimates from each lesson's own README — not measured, just summed.
+**Total for the 30 required lessons: roughly 1195-1515 minutes (~20-25 hours).** Add the two optional Capstone lessons and it's closer to 1280-1625 minutes (~21-27 hours). These are the same per-lesson editorial estimates from each lesson's own README — not measured, just summed.
 
 **Recommended order: Case 1 → Case 2 → Case 3 → Capstone**, matching the root README's listed order. Each case removes a support the previous one relied on:
 

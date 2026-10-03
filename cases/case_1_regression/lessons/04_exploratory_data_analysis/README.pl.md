@@ -1,29 +1,29 @@
-# Lekcja 3 — Eksploracyjna analiza danych
+# Lekcja 4 — Eksploracyjna analiza danych
 
 **Szacowany czas:** 30-40 min
 
 ## Efekty uczenia się
 
-- Będziesz umieć policzyć i odczytać macierz korelacji, żeby znaleźć kolumny numeryczne faktycznie powiązane z targetem.
+- Będziesz umieć policzyć i odczytać macierz korelacji, żeby znaleźć kolumny numeryczne faktycznie powiązane z targetem — wyłącznie na zbiorze treningowym.
 - Będziesz umieć porównać średnie w grupach, żeby wykryć wpływ zmiennej kategorycznej na target.
 - Będziesz umieć rozpoznać, kiedy silnie skorelowana kolumna i tak nie nadaje się do użycia, bo nie byłaby znana w momencie predykcji.
 
 ## Głos mentora
 
-"Dane są już czyste — dobrze. Nie sięgaj jeszcze po model. Najpierw popatrz. Połowę tego, co 'odkryjesz' modelując za wcześnie, widać już na macierzy korelacji i wykresie słupkowym, a patrzenie jest dużo tańsze niż dopasowywanie modelu."
+"Dane są już podzielone — dobrze. Nie sięgaj jeszcze po model. Najpierw popatrz, wyłącznie na wiersze treningowe. Połowę tego, co 'odkryjesz' modelując za wcześnie, widać już na macierzy korelacji i wykresie słupkowym, a patrzenie jest dużo tańsze niż dopasowywanie modelu."
 
 ## Cel lekcji
 
-Sprawdzić, które kolumny faktycznie zmieniają się razem z `delay_minutes`, używając korelacji i porównań grupowych — i zauważyć, gdzie sama korelacja wprowadza w błąd.
+Sprawdzić, które kolumny faktycznie zmieniają się razem z `delay_minutes`, używając korelacji i porównań grupowych na danych treningowych — i zauważyć, gdzie sama korelacja wprowadza w błąd.
 
 ## Pytanie analityczne dnia
 
-Z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki, a co tylko wygląda, jakby powinno?
+Z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki, a co tylko wygląda, jakby powinno — oceniając wyłącznie na wierszach, na które wolno nam patrzeć?
 
 ## Co dostajesz
 
-- Wyczyszczone dane z Lekcji 2 (odtworzone tutaj przez `load_clean_shipments`)
-- `task.py` — cztery funkcje do zaimplementowania: `load_clean_shipments`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
+- Podzielone dane z Lekcji 3 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`)
+- `task.py` — sześć funkcji do zaimplementowania: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
 - `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę, w tym Twoje pierwsze wykresy
 
 ## Praca w notebooku
@@ -34,6 +34,7 @@ Z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki,
 4. Zobacz macierz korelacji — która kolumna numeryczna ma najsilniejszy związek z `delay_minutes`?
 5. Porównaj korelację `num_stops` i `actual_duration_min` z celem — jedna to prawdziwy sygnał, druga jest zwodnicza. Ustal, czemu.
 6. Zobacz wykres słupkowy pogody — zauważ, że nigdy nie pojawiła się w macierzy korelacji. To też jedyna kolumna, którą kierownik operacyjny TransLine już w Lekcji 1 oznaczył jako niemożliwą do poznania, zanim przesyłka wyjedzie z magazynu — miej obie te rzeczy na uwadze przy zadaniu domowym poniżej.
+7. Zauważ, że `test_df` jest tworzony przez `split_shipments`, ale nigdzie dalej w tym notebooku nie jest używany — to jest celowe, nie przeoczenie.
 
 ## Self-check
 

@@ -22,7 +22,7 @@ Mając całą tę wiedzę, co TransLine powinno faktycznie zrobić — i jak bar
 
 ## Co dostajesz
 
-- Te same podzielone dane i model co w Lekcji 5-7 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
+- Te same podzielone dane co w Lekcji 3, i ten sam model co w Lekcjach 5-7 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
 - `task.py` — jedna nowa funkcja, `final_scorecard`, która zestawia obok siebie każdy predyktor zbudowany w tym case'ie (model bazowy zero, model bazowy średnia, model) na tych samych danych testowych
 - `lesson.ipynb` — tym razem większość notebooka to sam szablon notatki decyzyjnej, nie kod
 
