@@ -1,10 +1,13 @@
-"""Reference solution for Lesson 3. Do not open this before attempting task.py."""
+"""Reference solution for Lesson 4. Do not open this before attempting task.py."""
 
 from pathlib import Path
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "transport_delays.csv"
+
+RANDOM_STATE = 20260707
 
 NUMERIC_COLUMNS = [
     "distance_km",
@@ -17,20 +20,32 @@ NUMERIC_COLUMNS = [
 ]
 
 
-def load_clean_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
+def load_shipments(path: Path = DATA_PATH) -> pd.DataFrame:
     df = pd.read_csv(path)
-    df = df.dropna(subset=["weather"])
-    median_experience = df["driver_experience_years"].median()
-    return df.fillna({"driver_experience_years": median_experience})
+    return df.dropna(subset=["weather"])
 
 
-def correlation_matrix(df: pd.DataFrame) -> pd.DataFrame:
-    return df[NUMERIC_COLUMNS].corr()
+def split_shipments(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    train_df, test_df = train_test_split(df, test_size=0.2, random_state=RANDOM_STATE)
+    return train_df, test_df
 
 
-def correlation_with_target(df: pd.DataFrame, column: str) -> float:
-    return correlation_matrix(df).loc[column, "delay_minutes"]
+def impute_driver_experience(
+    train_df: pd.DataFrame, test_df: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    median_experience = train_df["driver_experience_years"].median()
+    train_df = train_df.fillna({"driver_experience_years": median_experience})
+    test_df = test_df.fillna({"driver_experience_years": median_experience})
+    return train_df, test_df
 
 
-def mean_delay_by_weather(df: pd.DataFrame) -> pd.Series:
-    return df.groupby("weather")["delay_minutes"].mean().sort_values(ascending=False)
+def correlation_matrix(train_df: pd.DataFrame) -> pd.DataFrame:
+    return train_df[NUMERIC_COLUMNS].corr()
+
+
+def correlation_with_target(train_df: pd.DataFrame, column: str) -> float:
+    return correlation_matrix(train_df).loc[column, "delay_minutes"]
+
+
+def mean_delay_by_weather(train_df: pd.DataFrame) -> pd.Series:
+    return train_df.groupby("weather")["delay_minutes"].mean().sort_values(ascending=False)

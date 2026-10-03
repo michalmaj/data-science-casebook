@@ -1,29 +1,29 @@
-# Lesson 3 — Exploratory Data Analysis
+# Lesson 4 — Exploratory Data Analysis
 
 **Estimated time:** 30-40 min
 
 ## Learning outcomes
 
-- You'll be able to compute and read a correlation matrix to find which numeric columns actually move with the target.
+- You'll be able to compute and read a correlation matrix to find which numeric columns actually move with the target — on the training split only.
 - You'll be able to compare group means to detect a categorical variable's effect on the target.
 - You'll be able to recognize when a strongly correlated column still can't be used, because it wouldn't be known at prediction time.
 
 ## Mentor's note
 
-"Data's clean now — good. Don't reach for a model yet. Look first. Half of what you'll 'discover' by modeling too early, you can already see in a correlation matrix and a bar chart, and it's a lot cheaper to look than to fit."
+"Data's split now — good. Don't reach for a model yet. Look first, on the training rows only. Half of what you'll 'discover' by modeling too early, you can already see in a correlation matrix and a bar chart, and it's a lot cheaper to look than to fit."
 
 ## Lesson goal
 
-Find out which columns actually move with `delay_minutes`, using correlation and group comparisons — and notice where correlation alone is misleading.
+Find out which columns actually move with `delay_minutes`, using correlation and group comparisons on the training data — and notice where correlation alone is misleading.
 
 ## Today's analytical question
 
-Of everything TransLine recorded, what actually predicts a shipment's delay, and what only looks like it should?
+Of everything TransLine recorded, what actually predicts a shipment's delay, and what only looks like it should — judged only on the rows we're allowed to look at?
 
 ## What you're given
 
-- The cleaned data from Lesson 2 (reproduced here via `load_clean_shipments`)
-- `task.py` — four functions to implement: `load_clean_shipments`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
+- The training split from Lesson 3 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`)
+- `task.py` — six functions to implement: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
 - `lesson.ipynb` — the notebook where you'll do the actual work, including your first plots
 
 ## Working in the notebook
@@ -34,6 +34,7 @@ Of everything TransLine recorded, what actually predicts a shipment's delay, and
 4. Look at the correlation matrix — which numeric column has the strongest relationship with `delay_minutes`?
 5. Compare `num_stops` and `actual_duration_min`'s correlation with the target — one is a real signal, the other is deceptive. Figure out why.
 6. Look at the weather bar chart — notice it never appeared in the correlation matrix at all. It's also the one column TransLine's ops manager flagged back in Lesson 1 as unknowable before a shipment leaves the depot — keep both facts in mind for the homework below.
+7. Notice `test_df` is produced by `split_shipments` but never used anywhere else in this notebook — that's deliberate, not an oversight.
 
 ## Self-check
 
