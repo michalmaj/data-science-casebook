@@ -37,7 +37,7 @@ How much precision is Meridian Outlet willing to give up to catch more actual re
 5. Call `predict_at_threshold` at 0.5, 0.3, and 0.2 on `val_df` — watch the number of flagged orders grow.
 6. Call `classification_metrics` at each threshold on `val_df` — watch recall rise, and precision move too.
 7. Connect the two kinds of mistakes to what they actually mean: a false positive wrongly flags a good order, a false negative lets a real return slip through unflagged.
-8. In the last cell, retrain on the full `train_df` and check your chosen threshold on `test_df` — the one time this lesson touches it, and, in fact, the first time anywhere in this case that `test_df` is used for anything beyond being split off. By this point the features, the model, and the threshold are all already fixed — nothing about `test_df`'s numbers is allowed to change any of them now.
+8. In the last cell, retrain on the full `train_df` and check your chosen threshold on `test_df` — the one time this lesson touches it, and, in fact, the first time anywhere in this case that `test_df` is used to evaluate a model. (Lesson 5 did look at `test_df` once, but only to count customer overlap with `train_df` — a fact about the split's structure, not a performance number.) By this point the features, the model, and the threshold are all already fixed — nothing about `test_df`'s numbers is allowed to change any of them now.
 
 ## Self-check
 

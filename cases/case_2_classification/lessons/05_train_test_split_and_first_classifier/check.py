@@ -79,8 +79,9 @@ def test_validation_splits_never_touch_the_final_test_set():
     # these functions on test_df directly (pytest only sees task.py/
     # solution.py, not lesson.ipynb) — see the lesson's README for why the
     # notebook itself is written to never do that. What this test CAN pin
-    # down is that the validation-style splits used for comparison are
-    # built only from train_df and never share a row with test_df.
+    # down is that splits built this way from train_df never share a row
+    # with test_df — i.e. a validation experiment following this lesson's
+    # pattern cannot accidentally be scored against the final holdout.
     df = lesson.load_and_merge_orders()
     train_df, test_df = lesson.split_orders(df)
     row_fit_df, row_val_df = lesson.split_orders(train_df)
@@ -114,4 +115,4 @@ def test_predict_return_in_sample_still_misses_every_return_at_default_threshold
     assert cm.tolist() == [[482, 0], [78, 0]]
 
     acc = accuracy_score(actual, predicted)
-    assert abs(acc - (482 / 560)) < 1e-9
+    assert abs(acc - 0.8607142857142858) < 1e-9
