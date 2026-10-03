@@ -16,6 +16,8 @@
 
 Obniżyć próg decyzyjny poniżej 0.5 i zobaczyć, jak precision, recall i F1 zmieniają się względem siebie — łącząc każdy wybór z realnym kosztem biznesowym.
 
+Każdy podział w tej lekcji (`train_df`/`test_df`, potem `fit_df`/`val_df`) to podział wierszowy z Lekcji 5, celowo: ta lekcja dostraja model pod scenariusz A (jak dobrze model ocenia kolejne zamówienia klientów, których Meridian Outlet już zna), nie scenariusz B (zupełnie nowi klienci) — zobacz Lekcję 5, jeśli jeszcze nie widziałeś/widziałaś, co to rozróżnienie znaczy i czemu ma znaczenie.
+
 ## Pytanie analityczne dnia
 
 Ile precision Meridian Outlet jest skłonny poświęcić, żeby złapać więcej rzeczywistych zwrotów — i gdzie sensownie postawić tę granicę?

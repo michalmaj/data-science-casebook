@@ -8,7 +8,7 @@ Can we identify, before or shortly after an order ships, which orders from Merid
 
 ## 2. Approach
 
-I loaded and merged Meridian's Orders and Customers sheets (`discount_percent`, `previous_returns_count`, `account_age_days` as features, `is_returned` as target), split 80/20 stratified by the target to preserve the ~14% return rate in both sets, and fit a logistic regression on the training set. I compared a majority-class baseline (always predict "not returned") against the model at three thresholds — 0.5 (default), 0.3, and 0.2 — compared on a held-out validation split, then confirmed once on the test set at the chosen threshold.
+I loaded and merged Meridian's Orders and Customers sheets (`discount_percent`, `previous_returns_count`, `account_age_days` as features, `is_returned` as target), split 80/20 stratified by the target to preserve the ~14% return rate in both sets — a row-level split, meaning this evaluates the model on *future orders from customers already in the data*, not on brand-new customers (see Lesson 5 for what changes under a customer-level split) — and fit a logistic regression on the training set. I compared a majority-class baseline (always predict "not returned") against the model at three thresholds — 0.5 (default), 0.3, and 0.2 — compared on a held-out validation split, then confirmed once on the test set at the chosen threshold.
 
 ## 3. Results
 
@@ -32,6 +32,7 @@ Recall matters more than precision here — but only under an assumption that sh
 
 - (Resolved as of Lesson 6's validation-split fix — kept here as a reminder of what to watch for.) Earlier drafts of this lesson chose the 0.2 threshold by comparing precision/recall directly on the test set, which would have reused it for a tuning decision. Lesson 6 now compares thresholds on a held-out validation split instead, and touches the test set exactly once, for the final number reported above — so this limitation no longer applies to this analysis, but it's exactly the mistake to watch for in your own work.
 - With only 98 returned orders in the full dataset (and 20 in the test set), the precision/recall estimates above have real sampling noise — a few orders going the other way would move these numbers non-trivially.
+- This analysis answers "does the model work on known customers' next orders?", not "does it work on brand-new customers?" — Lesson 5's group-split comparison found broadly similar numbers for this dataset (test ROC-AUC 0.643 row-split vs. 0.672 group-split), but that gap could be much larger for a business whose customer-level features are built from running order history rather than fixed attributes assigned at signup. Revisit this choice if Meridian Outlet's real feature pipeline ever changes shape.
 
 ## 7. Recommendation
 

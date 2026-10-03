@@ -16,6 +16,8 @@
 
 Sweep the decision threshold down from 0.5, and see how precision, recall, and F1 trade off as you do — connecting each choice to a real business cost.
 
+Every split in this lesson (`train_df`/`test_df`, then `fit_df`/`val_df`) is the row-level split from Lesson 5, by design: this lesson is tuning for scenario A (how well the model scores future orders from customers Meridian Outlet already knows), not scenario B (brand-new customers) — see Lesson 5 if you haven't already, for what that distinction means and why it matters.
+
 ## Today's analytical question
 
 How much precision is Meridian Outlet willing to give up to catch more actual returns — and where's a reasonable place to draw that line?
