@@ -37,7 +37,7 @@ Ile precision Meridian Outlet jest skłonny poświęcić, żeby złapać więcej
 5. Wywołaj `predict_at_threshold` przy 0.5, 0.3 i 0.2 na `val_df` — obserwuj, jak rośnie liczba oflagowanych zamówień.
 6. Wywołaj `classification_metrics` przy każdym progu na `val_df` — obserwuj, jak rośnie recall i jak zmienia się precision.
 7. Połącz dwa rodzaje błędów z tym, co naprawdę oznaczają: fałszywy alarm (FP) niesłusznie flaguje dobre zamówienie, a przeoczony przypadek (FN) pozwala prawdziwemu zwrotowi przejść bez flagi.
-8. W ostatniej komórce doucz model na pełnym `train_df` i sprawdź wybrany próg na `test_df` — jedyny raz, kiedy ta lekcja go dotyka.
+8. W ostatniej komórce doucz model na pełnym `train_df` i sprawdź wybrany próg na `test_df` — jedyny raz, kiedy ta lekcja go dotyka, i w zasadzie pierwszy raz w całym tym case'ie, kiedy `test_df` jest użyty do oceny modelu. (Lekcja 5 zerknęła na `test_df` raz, ale tylko żeby zliczyć nakładanie się klientów z `train_df` — fakt o strukturze podziału, nie liczba o skuteczności.) W tym momencie cechy, model i próg są już ustalone — żadna liczba z `test_df` nie może już nic z tego zmienić.
 
 ## Self-check
 
