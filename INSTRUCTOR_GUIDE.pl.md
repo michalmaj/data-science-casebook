@@ -8,13 +8,13 @@ Cztery case'y, każdy pełny cykl analityczny, z malejącym poziomem prowadzenia
 
 | Case | Prowadzenie | Lekcje | Szacowany czas |
 |---|---|---:|---:|
-| Case 1 — Regresja | Intensywnie prowadzony | 8 | 275-355 min (~4,5-6 godz.) |
+| Case 1 — Regresja | Intensywnie prowadzony | 8 | 280-360 min (~4,5-6 godz.) |
 | Case 2 — Klasyfikacja | Prowadzony | 8 | 290-370 min (~5-6 godz.) |
 | Case 3 — Klasteryzacja | Prowadzony, mniejsze wsparcie interpretacyjne | 8 | 330-420 min (~5,5-7 godz.) |
 | Projekt końcowy (wymagane) | Prowadzony projekt końcowy (ograniczony wybór) | 6 | 295-365 min (~5-6 godz.) |
 | Projekt końcowy (opcjonalne) | Nieoceniane, Lekcja 7 wszystkie ścieżki / Lekcja 8 tylko LendWell | 2 | ~85-110 min (~1,5-2 godz.) |
 
-**Suma dla 30 wymaganych lekcji: mniej więcej 1190-1510 minut (~20-25 godzin).** Dodając dwie opcjonalne lekcje projektu końcowego, to bliżej 1275-1620 minut (~21-27 godzin). To te same edytorskie szacunki z README każdej lekcji — nie zmierzone, tylko zsumowane.
+**Suma dla 30 wymaganych lekcji: mniej więcej 1195-1515 minut (~20-25 godzin).** Dodając dwie opcjonalne lekcje projektu końcowego, to bliżej 1280-1625 minut (~21-27 godzin). To te same edytorskie szacunki z README każdej lekcji — nie zmierzone, tylko zsumowane.
 
 **Rekomendowana kolejność: Case 1 → Case 2 → Case 3 → Projekt końcowy**, zgodnie z kolejnością wymienioną w głównym README. Każdy case usuwa jakieś wsparcie, na którym opierał się poprzedni:
 
