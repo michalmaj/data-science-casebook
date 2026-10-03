@@ -50,6 +50,26 @@ def test_residuals_are_uncorrelated_with_every_in_model_feature():
         assert abs(corr) < 1e-6
 
 
+def test_residual_diagnostics_in_this_lesson_use_train_not_test():
+    # OLS guarantees residuals average ~0 (and are uncorrelated with every
+    # in-model feature) only on the data the model was fit on. If this
+    # lesson's residual diagnostics were ever pointed at test_df instead of
+    # train_df — reopening the held-out set for a diagnosis that could feed
+    # back into a modeling decision — that guarantee would no longer hold
+    # and this test would catch it: the test-set mean residual is a real,
+    # non-negligible number, not a numerical-precision artifact near zero.
+    df = lesson.load_shipments()
+    train_df, test_df = lesson.split_shipments(df)
+    train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
+    model = lesson.fit_model(train_df)
+
+    train_residuals = lesson.compute_residuals(model, train_df)
+    test_residuals = lesson.compute_residuals(model, test_df)
+
+    assert abs(train_residuals.mean()) < 1e-6
+    assert abs(test_residuals.mean()) > 0.05
+
+
 def test_mean_residual_by_weather_reveals_the_missing_predictor():
     df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
