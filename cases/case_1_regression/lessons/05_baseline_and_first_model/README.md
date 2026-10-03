@@ -47,7 +47,7 @@ All tests should pass once `task.py` is complete.
 
 ## Homework
 
-In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and note what you'd need to do to bring `weather` — which had a real effect in Lesson 4 but isn't in `FEATURE_COLUMNS` — into the model.
+In `lesson.ipynb`'s "Your notes" cell, state by how much (in minutes of MAE) the model beats the fair baseline, and note what you'd need to do to bring `weather` — which had a real effect in Lesson 4 but isn't in `FEATURE_COLUMNS` — into the model. This is a reflection question, not a next step to actually carry out: once you've seen a model's test-set score, honestly adding a feature means re-splitting on fresh data, not quietly refitting and rescoring on the same `test_df`.
 
 ## Reflection
 

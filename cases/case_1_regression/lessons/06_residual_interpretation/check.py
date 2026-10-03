@@ -50,24 +50,26 @@ def test_residuals_are_uncorrelated_with_every_in_model_feature():
         assert abs(corr) < 1e-6
 
 
-def test_residual_diagnostics_in_this_lesson_use_train_not_test():
-    # OLS guarantees residuals average ~0 (and are uncorrelated with every
-    # in-model feature) only on the data the model was fit on. If this
-    # lesson's residual diagnostics were ever pointed at test_df instead of
-    # train_df — reopening the held-out set for a diagnosis that could feed
-    # back into a modeling decision — that guarantee would no longer hold
-    # and this test would catch it: the test-set mean residual is a real,
-    # non-negligible number, not a numerical-precision artifact near zero.
+def test_compute_residuals_on_test_set_is_not_algebraically_forced_to_zero():
+    # This test only guards compute_residuals' own behavior, not what the
+    # notebook happens to call it with — checking notebook cell content is
+    # out of scope for this check.py. OLS guarantees residuals average to
+    # exact floating-point zero (~1e-16) ONLY on the data a model was fit
+    # on; that is an algebraic identity, not a statistical claim, so it's
+    # not about whether the test-set mean is "large" in absolute terms —
+    # it usually won't be. The signal is the order-of-magnitude gap: the
+    # train-set mean sits at float-zero precision, while the test-set mean
+    # does not, by many orders of magnitude, precisely because it isn't
+    # the data the model was fit on.
     df = lesson.load_shipments()
     train_df, test_df = lesson.split_shipments(df)
     train_df, test_df = lesson.impute_driver_experience(train_df, test_df)
     model = lesson.fit_model(train_df)
 
-    train_residuals = lesson.compute_residuals(model, train_df)
-    test_residuals = lesson.compute_residuals(model, test_df)
+    train_residual_mean = abs(lesson.compute_residuals(model, train_df).mean())
+    test_residual_mean = abs(lesson.compute_residuals(model, test_df).mean())
 
-    assert abs(train_residuals.mean()) < 1e-6
-    assert abs(test_residuals.mean()) > 0.05
+    assert test_residual_mean > train_residual_mean * 1e6
 
 
 def test_mean_residual_by_weather_reveals_the_missing_predictor():

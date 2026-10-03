@@ -47,7 +47,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
 
 ## Zadanie domowe
 
-W komórce "Your notes" w `lesson.ipynb` napisz, o ile (w minutach MAE) model pobija sprawiedliwy model bazowy, i zanotuj, co musiałbyś/musiałabyś zrobić, żeby wprowadzić do modelu `weather` — która miała realny wpływ w Lekcji 4, ale nie jest w `FEATURE_COLUMNS`.
+W komórce "Your notes" w `lesson.ipynb` napisz, o ile (w minutach MAE) model pobija sprawiedliwy model bazowy, i zanotuj, co musiałbyś/musiałabyś zrobić, żeby wprowadzić do modelu `weather` — która miała realny wpływ w Lekcji 4, ale nie jest w `FEATURE_COLUMNS`. To pytanie do refleksji, nie kolejny krok do faktycznego wykonania: uczciwe dodanie cechy po zobaczeniu wyniku na teście wymaga nowego podziału na świeżych danych, a nie potajemnego przeuczenia i ponownej oceny na tym samym `test_df`.
 
 ## Refleksja
 
