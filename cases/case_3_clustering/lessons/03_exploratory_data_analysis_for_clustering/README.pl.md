@@ -5,7 +5,7 @@
 ## Efekty uczenia się
 
 - Będziesz umieć sprawdzić korelacje między cechami, gdy nie ma targetu, względem którego mógłbyś je zweryfikować.
-- Będziesz umieć rozpoznać, kiedy dwie cechy niosą w dużej mierze ten sam sygnał, i wyciągnąć z tego wnioski przed klasteryzacją na obu.
+- Będziesz umieć rozpoznać, kiedy kilka cech niesie w dużej mierze ten sam sygnał — w tym kiedy jedna jest dokładną funkcją wyliczoną z innych, nie tylko z nimi skorelowaną — i wyciągnąć z tego wnioski przed klasteryzacją na nich wszystkich.
 
 ## Głos mentora
 

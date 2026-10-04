@@ -11,11 +11,11 @@
 
 ## Mentor's note
 
-"A segment you can't reproduce isn't a segment, it's noise. Before you tell Aurora Stream to build a retention strategy around these clusters, check whether they actually survive being recomputed on a slightly different sample of subscribers."
+"A segment you can't reproduce isn't a segment, it's noise. Before you tell Aurora Stream to build a retention strategy around these clusters, check whether they actually survive being recomputed — on a slightly different sample of subscribers, with a different random start, and across more than just the two k values you've looked at so far."
 
 ## Lesson goal
 
-Test how much k=2's clustering labels change when refit on repeated 80% random subsamples and under different KMeans random initializations, then widen the comparison to k=3 and k=5 so the choice rests on a set of properties across several candidates, not just k=2 vs. k=4.
+Test how much k=2's clustering labels change when refit on repeated 80% random subsamples and under different KMeans random initializations, then widen the comparison to k=2 through k=5 so the choice rests on a set of properties across several candidates, not just k=2 vs. k=4.
 
 ## Today's analytical question
 
@@ -55,7 +55,7 @@ It's easy to say a segmentation is "stable" as if that were one fact. It isn't �
 | 4 | 0.444 | 0.971 | 12.7% |
 | 5 | 0.464 | 0.987 | 12.7% |
 
-k=2 leads on silhouette and is the most resample-stable of the four — and every one of them is equally stable to initialization. That combination, plus the simplicity of a two-group story, is why k=2 is this case's working choice — not because any single row or column "announced" it.
+k=2 leads on silhouette and is the most resample-stable of the four — and every one of them is equally stable to initialization. That combination, plus the simplicity of a two-group story, is why k=2 is this case's working choice — not because any single row or column "announced" it. One honest caveat: the exact resample-stability numbers for k=3/4/5 are somewhat specific to `subsample_stability`'s particular way of drawing an 80% subsample — a different (equally reasonable) subsampling method could shift them a little. k=2's perfect stability is robust regardless; the finer ranking among k=3/4/5 is not something to read too much into.
 
 ## Self-check
 

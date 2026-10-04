@@ -62,21 +62,22 @@ def subsample_stability(
 
 
 def initialization_stability(
-    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS
+    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS, random_state: int = RANDOM_STATE
 ) -> pd.DataFrame:
     """Measure how much KMeans(k) labels change across random initializations
     on the FULL data (no resampling) — a different question from
     subsample_stability's sampling-sensitivity check.
 
     TODO: fit a baseline sklearn.cluster.KMeans(n_clusters=k,
-    random_state=seeds[0], n_init=10) on df[FEATURE_COLUMNS] and keep its
-    labels. Then for each seed in seeds, fit a fresh KMeans with that same
+    random_state=random_state, n_init=10) on df[FEATURE_COLUMNS] and keep
+    its labels — the same random_state subsample_stability uses as its own
+    baseline, so none of the seeds below is just comparing the baseline to
+    itself. Then for each seed in seeds, fit a fresh KMeans with that same
     k, random_state=seed, n_init=10 on the SAME full df[FEATURE_COLUMNS]
     (no subsampling), and compute sklearn.metrics.adjusted_rand_score
     between the baseline's labels and this seed's labels. Collect one row
     per seed into a DataFrame with columns "seed" and "adjusted_rand_index"
-    (the first row, seed=seeds[0], compares the baseline to itself and
-    will be exactly 1.0) and return it.
+    and return it.
     """
     raise NotImplementedError("initialization_stability is not implemented yet")
 

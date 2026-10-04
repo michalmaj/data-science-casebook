@@ -76,9 +76,9 @@ def subsample_stability(
 
 
 def initialization_stability(
-    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS
+    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS, random_state: int = RANDOM_STATE
 ) -> pd.DataFrame:
-    baseline_model = KMeans(n_clusters=k, random_state=seeds[0], n_init=10)
+    baseline_model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
     baseline_labels = baseline_model.fit_predict(df[FEATURE_COLUMNS])
 
     rows = []

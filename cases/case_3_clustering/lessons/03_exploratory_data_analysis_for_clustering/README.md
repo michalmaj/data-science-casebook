@@ -5,7 +5,7 @@
 ## Learning outcomes
 
 - You'll be able to check feature correlations when there's no target to validate them against.
-- You'll be able to recognize when two features are carrying largely the same signal, and reason about what that means before clustering on both.
+- You'll be able to recognize when several features are carrying largely the same signal — including when one is an exact derived function of the others, not just correlated with them — and reason about what that means before clustering on all of them.
 
 ## Mentor's note
 

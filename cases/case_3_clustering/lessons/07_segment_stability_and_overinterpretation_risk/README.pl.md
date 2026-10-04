@@ -11,11 +11,11 @@
 
 ## Głos mentora
 
-"Segment, którego nie da się odtworzyć, nie jest segmentem, tylko szumem. Zanim powiesz Aurora Stream, żeby zbudowali strategię retencji wokół tych klastrów, sprawdź, czy w ogóle przetrwają ponowne policzenie na nieco innej próbce subskrybentów."
+"Segment, którego nie da się odtworzyć, nie jest segmentem, tylko szumem. Zanim powiesz Aurora Stream, żeby zbudowali strategię retencji wokół tych klastrów, sprawdź, czy w ogóle przetrwają ponowne policzenie — na nieco innej próbce subskrybentów, z innym losowym startem, i dla więcej niż tylko dwóch wartości k, które sprawdziłeś/sprawdziłaś do tej pory."
 
 ## Cel lekcji
 
-Sprawdzić, jak bardzo zmieniają się etykiety k=2 przy ponownym dopasowaniu na powtarzanych 80% losowych podpróbkach i przy różnych losowych inicjalizacjach KMeans, a potem rozszerzyć porównanie na k=3 i k=5, tak żeby decyzja opierała się na zestawie właściwości dla kilku kandydatów, nie tylko na k=2 kontra k=4.
+Sprawdzić, jak bardzo zmieniają się etykiety k=2 przy ponownym dopasowaniu na powtarzanych 80% losowych podpróbkach i przy różnych losowych inicjalizacjach KMeans, a potem rozszerzyć porównanie na k=2 do k=5, tak żeby decyzja opierała się na zestawie właściwości dla kilku kandydatów, nie tylko na k=2 kontra k=4.
 
 ## Pytanie analityczne dnia
 
@@ -55,7 +55,7 @@ Gdybyś widział/widziała tylko 80% tych subskrybentów, czy znalazłbyś/znala
 | 4 | 0,444 | 0,971 | 12,7% |
 | 5 | 0,464 | 0,987 | 12,7% |
 
-k=2 prowadzi w silhouette i jest najbardziej stabilne przy próbkowaniu z tych czterech — a wszystkie są równie stabilne wobec inicjalizacji. Ta kombinacja, plus prostota historii o dwóch grupach, jest powodem, czemu k=2 jest roboczym wyborem tego case'u — nie dlatego, że jakiś pojedynczy wiersz czy kolumna to "ogłosiły".
+k=2 prowadzi w silhouette i jest najbardziej stabilne przy próbkowaniu z tych czterech — a wszystkie są równie stabilne wobec inicjalizacji. Ta kombinacja, plus prostota historii o dwóch grupach, jest powodem, czemu k=2 jest roboczym wyborem tego case'u — nie dlatego, że jakiś pojedynczy wiersz czy kolumna to "ogłosiły". Jedno szczere zastrzeżenie: konkretne liczby stabilności przy próbkowaniu dla k=3/4/5 są trochę specyficzne dla tego, jak `subsample_stability` dokładnie losuje 80% podpróbkę — inna, równie uzasadniona metoda próbkowania mogłaby je trochę przesunąć. Idealna stabilność k=2 jest odporna niezależnie od tego; dokładny ranking między k=3/4/5 nie jest czymś, w co warto wczytywać się za dużo.
 
 ## Self-check
 
