@@ -31,6 +31,10 @@ Czy te cztery cechy faktycznie niosą cztery różne sygnały, czy niektóre z n
 - Policz macierz korelacji między czterema cechami.
 - Przyjrzyj się konkretnie `tenure_days` — jak odnosi się do pozostałych trzech?
 
+## Jedna z tych trzech to nie tylko korelacja
+
+Zobacz, jak faktycznie liczony jest `avg_minutes_per_session` — to samo zapytanie SQL, które używa każda lekcja, wyciąga `AVG(minutes_watched)` obok `SUM(minutes_watched)` i `COUNT(...)` z tych samych wierszy. Dla każdego subskrybenta, który zalogował przynajmniej jedną sesję, to dokładny iloraz dwóch innych (`total_minutes_watched / session_count`), nie niezależnie zmierzony sygnał, który przypadkiem porusza się razem z nimi. Grupowanie na tych trzech plus `tenure_days` to nie grupowanie na czterech niezależnych wymiarach z silną relacją między trzema — to bliżej dwóch niezależnych wymiarów, gdzie wymiar zaangażowania widokowego jest liczony w odległości euklidesowej niemal trzy razy (potwierdza to szybkie PCA na czterech przeskalowanych cechach: jeden komponent wyjaśnia ok. 73% wariancji, a wszystkie trzy kolumny dotyczące oglądania mają na niego niemal identyczny wkład).
+
 ## Self-check
 
 Z katalogu tej lekcji odpal:
@@ -48,5 +52,3 @@ Jedno zdanie: trzy cechy korelują ze sobą powyżej 0.9. Co to sugeruje co do l
 ## Refleksja
 
 Mentor pyta: `session_count`, `total_minutes_watched` i `avg_minutes_per_session` korelują ze sobą powyżej 0.94, podczas gdy `tenure_days` prawie z nimi nie koreluje (wszystkie poniżej 0.1). Gdybyś musiał/musiała opisać subskrybentów Aurora Stream za pomocą tylko dwóch liczb zamiast czterech, które dwie byś wybrał/wybrała, i dlaczego?
-
-Jedna z tych trzech to nie tylko korelacja — zobacz, jak faktycznie liczony jest `avg_minutes_per_session` (to samo zapytanie SQL, które używa każda lekcja: `AVG(minutes_watched)` obok `SUM(minutes_watched)` i `COUNT(...)`). To dokładny iloraz dwóch innych (`total_minutes_watched / session_count`), nie niezależnie zmierzony sygnał, który przypadkiem porusza się razem z nimi. Grupowanie na tych trzech plus `tenure_days` to nie grupowanie na czterech niezależnych wymiarach z silną relacją między trzema — to bliżej dwóch niezależnych wymiarów, gdzie jeden jest liczony w odległości euklidesowej niemal dwa razy.
