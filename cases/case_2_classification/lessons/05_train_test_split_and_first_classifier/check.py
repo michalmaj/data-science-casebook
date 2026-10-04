@@ -73,15 +73,16 @@ def test_split_orders_row_level_does_not_guarantee_disjoint_customers_within_tra
 
 def test_validation_splits_never_touch_the_final_test_set():
     # The core methodological property this lesson must not violate: every
-    # demonstration here (the threshold-0.5 catch-rate check, and the
-    # row-vs-group comparison) operates on train_df or a further split of
-    # train_df — never on test_df. This can't catch a notebook that calls
-    # these functions on test_df directly (pytest only sees task.py/
-    # solution.py, not lesson.ipynb) — see the lesson's README for why the
-    # notebook itself is written to never do that. What this test CAN pin
-    # down is that splits built this way from train_df never share a row
-    # with test_df — i.e. a validation experiment following this lesson's
-    # pattern cannot accidentally be scored against the final holdout.
+    # demonstration here — the customer-overlap check, the threshold-0.5
+    # catch-rate check, and the row-vs-group comparison — reads only
+    # train_df or a further split of train_df, never test_df's own rows.
+    # This can't catch a notebook that reads test_df directly (pytest only
+    # sees task.py/solution.py, not lesson.ipynb) — see the lesson's README
+    # for why the notebook itself is written to never do that. What this
+    # test CAN pin down is that splits built this way from train_df never
+    # share a row with test_df — i.e. any demonstration following this
+    # lesson's pattern (customer overlap included) cannot accidentally
+    # read from, or be scored against, the final holdout.
     df = lesson.load_and_merge_orders()
     train_df, test_df = lesson.split_orders(df)
     row_fit_df, row_val_df = lesson.split_orders(train_df)
