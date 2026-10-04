@@ -48,3 +48,5 @@ Jedno zdanie: trzy cechy korelują ze sobą powyżej 0.9. Co to sugeruje co do l
 ## Refleksja
 
 Mentor pyta: `session_count`, `total_minutes_watched` i `avg_minutes_per_session` korelują ze sobą powyżej 0.94, podczas gdy `tenure_days` prawie z nimi nie koreluje (wszystkie poniżej 0.1). Gdybyś musiał/musiała opisać subskrybentów Aurora Stream za pomocą tylko dwóch liczb zamiast czterech, które dwie byś wybrał/wybrała, i dlaczego?
+
+Jedna z tych trzech to nie tylko korelacja — zobacz, jak faktycznie liczony jest `avg_minutes_per_session` (to samo zapytanie SQL, które używa każda lekcja: `AVG(minutes_watched)` obok `SUM(minutes_watched)` i `COUNT(...)`). To dokładny iloraz dwóch innych (`total_minutes_watched / session_count`), nie niezależnie zmierzony sygnał, który przypadkiem porusza się razem z nimi. Grupowanie na tych trzech plus `tenure_days` to nie grupowanie na czterech niezależnych wymiarach z silną relacją między trzema — to bliżej dwóch niezależnych wymiarów, gdzie jeden jest liczony w odległości euklidesowej niemal dwa razy.
