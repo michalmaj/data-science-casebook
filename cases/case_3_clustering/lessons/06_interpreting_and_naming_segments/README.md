@@ -10,11 +10,11 @@
 
 ## Mentor's note
 
-"Lesson 5 didn't just create noise — silhouette score clearly pointed at k=2. So let's stop comparing solutions and actually interpret one. Fit it, look at what separates the two clusters, and give them names a business person would actually use."
+"Lesson 5 didn't just create noise — among the solutions you compared, k=2 came out as a strong candidate: the best silhouette score, and a robust one, since it held up even when you swapped out the redundant engagement features. That's enough reason to actually interpret one instead of comparing forever. Fit it, look at what separates the two clusters, and give them names a business person would actually use."
 
 ## Lesson goal
 
-Compute per-cluster feature profiles for the k=2 solution Lesson 5 pointed to, and translate the result into business-meaningful segment names.
+Compute per-cluster feature profiles for k=2 — a strong candidate among the solutions Lesson 5 compared — and translate the result into business-meaningful segment names.
 
 ## Today's analytical question
 
