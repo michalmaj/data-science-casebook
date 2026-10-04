@@ -21,6 +21,7 @@ K = 2
 FRACTION = 0.8
 SEEDS = [0, 1, 2, 3, 4]
 RANDOM_STATE = 42
+K_VALUES = [2, 3, 4, 5]
 
 
 def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
@@ -58,3 +59,50 @@ def subsample_stability(
     and "adjusted_rand_index" and return it.
     """
     raise NotImplementedError("subsample_stability is not implemented yet")
+
+
+def initialization_stability(
+    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS
+) -> pd.DataFrame:
+    """Measure how much KMeans(k) labels change across random initializations
+    on the FULL data (no resampling) — a different question from
+    subsample_stability's sampling-sensitivity check.
+
+    TODO: fit a baseline sklearn.cluster.KMeans(n_clusters=k,
+    random_state=seeds[0], n_init=10) on df[FEATURE_COLUMNS] and keep its
+    labels. Then for each seed in seeds, fit a fresh KMeans with that same
+    k, random_state=seed, n_init=10 on the SAME full df[FEATURE_COLUMNS]
+    (no subsampling), and compute sklearn.metrics.adjusted_rand_score
+    between the baseline's labels and this seed's labels. Collect one row
+    per seed into a DataFrame with columns "seed" and "adjusted_rand_index"
+    (the first row, seed=seeds[0], compares the baseline to itself and
+    will be exactly 1.0) and return it.
+    """
+    raise NotImplementedError("initialization_stability is not implemented yet")
+
+
+def stability_comparison_table(
+    df: pd.DataFrame,
+    k_values: list[int] = K_VALUES,
+    fraction: float = FRACTION,
+    seeds: list[int] = SEEDS,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    """For each k in k_values, report silhouette, worst-case resample
+    stability, and the smallest cluster's share — so k is chosen by
+    comparing a set of properties, not by any single number.
+
+    TODO: for each k in k_values: fit sklearn.cluster.KMeans(n_clusters=k,
+    random_state=random_state, n_init=10) on df[FEATURE_COLUMNS] once to
+    get labels, then sklearn.metrics.silhouette_score on the same
+    columns/labels. Call subsample_stability(df, k=k, fraction=fraction,
+    seeds=seeds, random_state=random_state) and take the minimum of its
+    "adjusted_rand_index" column as "resample_stability_min_ari". Compute
+    the smallest cluster's share of len(df) from the same labels as
+    "smallest_cluster_share" (value_counts of the labels, take the
+    smallest count, divide by len(df)). Collect one row per k into a
+    DataFrame with columns "k", "silhouette", "resample_stability_min_ari",
+    "smallest_cluster_share" (in that order, one row per k_values entry,
+    same order as k_values) and return it.
+    """
+    raise NotImplementedError("stability_comparison_table is not implemented yet")

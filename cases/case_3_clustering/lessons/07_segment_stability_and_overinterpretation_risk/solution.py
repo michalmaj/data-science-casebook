@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
-from sklearn.metrics import adjusted_rand_score
+from sklearn.metrics import adjusted_rand_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "aurora_stream.sqlite"
@@ -22,6 +22,7 @@ K = 2
 FRACTION = 0.8
 SEEDS = [0, 1, 2, 3, 4]
 RANDOM_STATE = 42
+K_VALUES = [2, 3, 4, 5]
 
 
 def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
@@ -71,4 +72,47 @@ def subsample_stability(
         sub_series = pd.Series(sub_labels, index=sample_idx)
         ari = adjusted_rand_score(baseline_series.loc[sample_idx], sub_series)
         rows.append({"seed": seed, "adjusted_rand_index": ari})
+    return pd.DataFrame(rows)
+
+
+def initialization_stability(
+    df: pd.DataFrame, k: int = K, seeds: list[int] = SEEDS
+) -> pd.DataFrame:
+    baseline_model = KMeans(n_clusters=k, random_state=seeds[0], n_init=10)
+    baseline_labels = baseline_model.fit_predict(df[FEATURE_COLUMNS])
+
+    rows = []
+    for seed in seeds:
+        model = KMeans(n_clusters=k, random_state=seed, n_init=10)
+        labels = model.fit_predict(df[FEATURE_COLUMNS])
+        ari = adjusted_rand_score(baseline_labels, labels)
+        rows.append({"seed": seed, "adjusted_rand_index": ari})
+    return pd.DataFrame(rows)
+
+
+def stability_comparison_table(
+    df: pd.DataFrame,
+    k_values: list[int] = K_VALUES,
+    fraction: float = FRACTION,
+    seeds: list[int] = SEEDS,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    rows = []
+    for k in k_values:
+        model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+        labels = model.fit_predict(df[FEATURE_COLUMNS])
+        sil = silhouette_score(df[FEATURE_COLUMNS], labels)
+        resample = subsample_stability(
+            df, k=k, fraction=fraction, seeds=seeds, random_state=random_state
+        )
+        min_ari = resample["adjusted_rand_index"].min()
+        smallest_share = pd.Series(labels).value_counts().min() / len(labels)
+        rows.append(
+            {
+                "k": k,
+                "silhouette": sil,
+                "resample_stability_min_ari": min_ari,
+                "smallest_cluster_share": smallest_share,
+            }
+        )
     return pd.DataFrame(rows)
