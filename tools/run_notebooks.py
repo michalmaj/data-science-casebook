@@ -26,6 +26,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 # than keeping this list in sync by hand when a new multi-branch lesson is
 # added.
 MULTI_BRANCH_NOTEBOOKS: dict[str, list[str]] = {
+    "cases/capstone/lessons/02_data_preparation/lesson.ipynb": [
+        "clinic_wait_times",
+        "lendwell_loan_default",
+        "retail_store_segments",
+    ],
+    "cases/capstone/lessons/03_exploration/lesson.ipynb": [
+        "clinic_wait_times",
+        "lendwell_loan_default",
+        "retail_store_segments",
+    ],
     "cases/capstone/lessons/04_modeling/lesson.ipynb": [
         "clinic_wait_times",
         "lendwell_loan_default",
