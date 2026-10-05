@@ -23,8 +23,10 @@ Czy Twój pierwszy model faktycznie radzi sobie lepiej niż najprostszy możliwy
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — siedem funkcji: `load_dataset` (bez czyszczenia, zastępuje starą `load_clean_dataset`), `split_dataset` (działa dla dowolnego zbioru — przyjmuje opcjonalny `stratify_column`, żeby zachować balans klas między train/test przy klasyfikacji), `impute_missing` (uzupełnia braki statystykami wyłącznie ze zbioru treningowego, w kolumnach cech, które wskażesz, zastosowanymi do obu zbiorów), `scale_features` (standaryzuje cechy do zerowej średniej/jednostkowej wariancji, potrzebna przed klasteryzacją — zwraca też dopasowany scaler), oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — siedem funkcji: `load_dataset` (bez czyszczenia, zastępuje starą `load_clean_dataset`), `split_dataset` (działa dla dowolnego zbioru — przyjmuje opcjonalny `stratify_column`, żeby zachować balans klas między train/test przy klasyfikacji), `impute_missing` (uzupełnia braki statystykami wyłącznie ze zbioru treningowego, w kolumnach cech, które wskażesz, zastosowanymi do obu zbiorów), `scale_features` (standaryzuje cechy — zdecyduj samodzielnie, czy Twoja technika tego wymaga, i uzasadnij to w swoich notatkach; zwraca też dopasowany scaler), oraz po jednej funkcji dopasowującej na technikę: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — notebook, w którym dopasujesz swój baseline i model
+
+Podział poniżej używa tego samego sposobu co w Lekcji 2 (i w Lekcji 3, dla dwóch ścieżek predykcyjnych) — ta lekcja nie wprowadza nowego podziału, tylko ponownie wykorzystuje ten, na którym opierały się już Twoje kroki jakości danych i eksploracji.
 
 ## Praca w notebooku
 
@@ -44,7 +46,7 @@ Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Od tej lekcj
 
 ## Zadanie domowe
 
-Dwa do trzech zdań: używając konkretnego zestawu cech, który wybrałeś/wybrałaś (sugerowanego albo własnego), o ile lepszy jest Twój model od baseline'u i czy ta różnica jest wystarczająco duża, żeby miała znaczenie dla Twojego pytania z Lekcji 1?
+Dwa do trzech zdań: używając konkretnego zestawu cech, który wybrałeś/wybrałaś (sugerowanego albo własnego), o ile lepszy jest Twój model od baseline'u i czy ta różnica jest wystarczająco duża, żeby miała znaczenie dla Twojego pytania z Lekcji 1? Jeśli jesteś na ścieżce klasteryzacji, dopisz też jedno zdanie, czemu przeskalowałeś/przeskalowałaś cechy przed dopasowaniem (albo czemu nie).
 
 ## Refleksja
 

@@ -11,10 +11,10 @@ Four cases, each a full analytical cycle, with guidance decreasing as you go —
 | Case 1 — Regression | Heavily guided | 8 | 280-360 min (~4.5-6 hr) |
 | Case 2 — Classification | Guided | 8 | 290-370 min (~5-6 hr) |
 | Case 3 — Clustering | Guided, less interpretive support | 8 | 330-420 min (~5.5-7 hr) |
-| Capstone (required) | Guided capstone (constrained choice) | 6 | 295-365 min (~5-6 hr) |
+| Capstone (required) | Guided capstone (constrained choice) | 6 | 315-390 min (~5.5-6.5 hr) |
 | Capstone (optional extras) | Ungraded, Lesson 7 all paths / Lesson 8 LendWell only | 2 | ~85-110 min (~1.5-2 hr) |
 
-**Total for the 30 required lessons: roughly 1195-1515 minutes (~20-25 hours).** Add the two optional Capstone lessons and it's closer to 1280-1625 minutes (~21-27 hours). These are the same per-lesson editorial estimates from each lesson's own README — not measured, just summed.
+**Total for the 30 required lessons: roughly 1215-1540 minutes (~20-26 hours).** Add the two optional Capstone lessons and it's closer to 1300-1650 minutes (~22-28 hours). These are the same per-lesson editorial estimates from each lesson's own README — not measured, just summed.
 
 **Recommended order: Case 1 → Case 2 → Case 3 → Capstone**, matching the root README's listed order. Each case removes a support the previous one relied on:
 
@@ -38,6 +38,10 @@ These are real mistakes — this course's own reference material had every one o
 **What it looked like in this course:** Case 1's `load_clean_shipments` computed a median for `driver_experience_years` from the whole dataset before any split existed (fixed in PR #34). Capstone's `load_clean_dataset` did the same thing generically for any column with gaps (fixed in PR #35, same underlying bug pattern).
 
 **What would catch it:** Rubric criterion 4 (Modeling/evaluation correctness) — "Developing" level explicitly names "preprocessing fit before the split." If grading by hand without running `check.py`, look for whether `impute_*`/`scale_*` functions take `train_df` and `test_df` as separate arguments and only ever compute statistics from `train_df`.
+
+### Target-aware exploration before the train/test split existed (Capstone)
+
+**What it looked like in this course:** Capstone Lessons 2-3 computed missing-value fill statistics and feature/target correlations on the whole dataset — including rows that would later become `test_df` in Lesson 4 — for the two predictive paths (clinic wait times, loan default). The split itself, once it happened in Lesson 4, was correct; the problem was that two lessons' worth of exploration happened before it existed. Fixed by moving `split_dataset`/`impute_missing` into Lesson 2 for those two paths, so Lesson 3's correlation matrix is computed on `train_df` only. The clustering path (retail stores) keeps its original whole-dataset cleaning and exploration — there's no test set to protect in the same sense for an unsupervised problem, and forcing one in would have been a mechanical, not a principled, fix.
 
 ### Fitting KMeans on unscaled features (Capstone)
 

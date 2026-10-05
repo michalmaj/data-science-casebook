@@ -26,6 +26,7 @@ DATASET_MENU = [
 ]
 RANDOM_STATE = 42
 CLUSTER_STABILITY_SEEDS = [0, 1, 2, 3, 4]
+K_VALUES = [2, 3, 4, 5, 6]
 
 
 def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
@@ -88,6 +89,36 @@ def fit_classification_baseline_and_model(
     return baseline, model
 
 
+def split_for_validation(
+    train_df: pd.DataFrame,
+    val_size: float = 0.25,
+    random_state: int = RANDOM_STATE,
+    stratify_column: str | None = None,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    stratify = train_df[stratify_column] if stratify_column else None
+    fit_df, val_df = train_test_split(
+        train_df, test_size=val_size, random_state=random_state, stratify=stratify
+    )
+    return fit_df, val_df
+
+
+def metrics_at_threshold(
+    model: LogisticRegression,
+    df: pd.DataFrame,
+    target_column: str,
+    feature_columns: list[str],
+    threshold: float,
+) -> dict[str, float]:
+    proba = model.predict_proba(df[feature_columns])[:, 1]
+    preds = (proba >= threshold).astype(int)
+    y_true = df[target_column]
+    return {
+        "precision": precision_score(y_true, preds, zero_division=0),
+        "recall": recall_score(y_true, preds, zero_division=0),
+        "f1": f1_score(y_true, preds, zero_division=0),
+    }
+
+
 def fit_clustering_model(
     df: pd.DataFrame, feature_columns: list[str], k: int = 3, random_state: int = RANDOM_STATE
 ) -> KMeans:
@@ -116,9 +147,11 @@ def evaluate_classification(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> dict[str, float]:
     baseline_preds = np.full(len(test_df), baseline)
-    model_preds = model.predict(test_df[feature_columns])
+    proba = model.predict_proba(test_df[feature_columns])[:, 1]
+    model_preds = (proba >= threshold).astype(int)
     y_true = test_df[target_column]
     return {
         "baseline_precision": precision_score(y_true, baseline_preds, zero_division=0),
@@ -133,6 +166,21 @@ def evaluate_classification(
 def evaluate_clustering(model: KMeans, df: pd.DataFrame, feature_columns: list[str]) -> float:
     labels = model.predict(df[feature_columns])
     return silhouette_score(df[feature_columns], labels)
+
+
+def cluster_metrics_by_k(
+    df: pd.DataFrame,
+    feature_columns: list[str],
+    k_values: list[int] = K_VALUES,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    rows = []
+    for k in k_values:
+        model = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+        labels = model.fit_predict(df[feature_columns])
+        sil = silhouette_score(df[feature_columns], labels)
+        rows.append({"k": k, "inertia": model.inertia_, "silhouette": sil})
+    return pd.DataFrame(rows)
 
 
 def cluster_stability(

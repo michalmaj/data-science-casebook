@@ -78,3 +78,27 @@ def test_clean_dataset_matches_known_fill_values(name, column, expected_value):
     cleaned = lesson.clean_dataset(df)
     filled_values = cleaned.loc[original_missing_idx, column]
     assert (filled_values == expected_value).all()
+
+
+def test_split_dataset_is_disjoint_and_covers_whole_dataset():
+    df = lesson.load_dataset("lendwell_loan_default")
+    train_df, test_df = lesson.split_dataset(df, stratify_column="defaulted")
+    assert len(train_df) == 320
+    assert len(test_df) == 80
+    assert set(train_df.index).isdisjoint(set(test_df.index))
+    assert set(train_df.index) | set(test_df.index) == set(df.index)
+
+
+def test_impute_missing_uses_only_train_statistics():
+    df = lesson.load_dataset("lendwell_loan_default")
+    train_df, test_df = lesson.split_dataset(df, stratify_column="defaulted")
+    features = ["employment_years"]
+    imputed_train, imputed_test = lesson.impute_missing(train_df, test_df, features)
+    assert imputed_train["employment_years"].isna().sum() == 0
+    assert imputed_test["employment_years"].isna().sum() == 0
+    expected_fill = train_df["employment_years"].median()
+    original_missing_in_test = test_df.index[test_df["employment_years"].isna()]
+    if len(original_missing_in_test) > 0:
+        assert (
+            imputed_test.loc[original_missing_in_test, "employment_years"] == expected_fill
+        ).all()

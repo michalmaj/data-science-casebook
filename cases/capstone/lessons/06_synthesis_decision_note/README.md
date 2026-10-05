@@ -23,13 +23,13 @@ Given everything you now know, what should your client actually do — and how c
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — the eleven functions from Lessons 4-5, reproduced, plus three new ones: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (use only the one that matches your dataset)
+- `task.py` — the eleven functions from Lessons 4-5, reproduced (`evaluate_classification` now takes an optional `threshold`), plus three new ones: `final_regression_scorecard`, `final_classification_scorecard` (also takes `threshold` — pass whatever you locked in during Lesson 5), `final_clustering_summary` (use only the one that matches your dataset)
 - `lesson.ipynb` — this time, most of the notebook is the decision note template itself, not code
 
 ## Working in the notebook
 
 1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run only the code cell matching your dataset's problem type to generate your scorecard or segment summary.
+2. Once `task.py` is filled in, run only the code cell matching your dataset's problem type to generate your scorecard or segment summary — for the LendWell path, set `CHOSEN_THRESHOLD` to whatever you locked in during Lesson 5's validation sweep, not 0.5 by default.
 3. Fill in each of the seven decision-note sections below it, in plain language, using what you learned across Lessons 1-5.
 4. There is no separate homework this lesson — the completed decision note is the deliverable for the whole capstone.
 

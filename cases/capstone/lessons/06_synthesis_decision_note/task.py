@@ -143,6 +143,7 @@ def evaluate_classification(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> dict[str, float]:
     """Compare baseline and model precision/recall/F1 on held-out test_df, same as Lesson 5.
 
@@ -150,11 +151,14 @@ def evaluate_classification(
     sklearn.metrics (use zero_division=0 in every call). Build a baseline
     prediction array the same length as test_df, filled with `baseline`.
     Compute baseline_precision/baseline_recall/baseline_f1 by comparing
-    that array to test_df[target_column]. Compute model predictions via
-    model.predict(test_df[feature_columns]) and compute
+    that array to test_df[target_column]. Compute model probabilities via
+    model.predict_proba(test_df[feature_columns])[:, 1], turn them into
+    predictions via (proba >= threshold).astype(int), and compute
     model_precision/model_recall/model_f1 the same way. Return a dict
     with keys "baseline_precision", "baseline_recall", "baseline_f1",
-    "model_precision", "model_recall", "model_f1".
+    "model_precision", "model_recall", "model_f1". Pass whatever
+    threshold you locked in during Lesson 5's validation sweep — not a
+    new one tuned here against test_df.
     """
     raise NotImplementedError("evaluate_classification is not implemented yet")
 
@@ -220,13 +224,14 @@ def final_classification_scorecard(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> pd.DataFrame:
     """Turn evaluate_classification's result into a two-row decision-note table.
 
     TODO: call evaluate_classification(baseline, model, test_df,
-    target_column, feature_columns) to get a metrics dict. Build and
-    return a pandas.DataFrame with columns "precision", "recall", "f1",
-    each containing [metrics["baseline_<metric>"],
+    target_column, feature_columns, threshold) to get a metrics dict.
+    Build and return a pandas.DataFrame with columns "precision",
+    "recall", "f1", each containing [metrics["baseline_<metric>"],
     metrics["model_<metric>"]], indexed by ["baseline", "model"] in that
     order.
     """

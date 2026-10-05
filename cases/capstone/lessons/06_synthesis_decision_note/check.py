@@ -62,6 +62,29 @@ def test_final_classification_scorecard_shape_and_values():
     assert abs(scorecard.loc["model", "f1"] - 0.11764705882352941) < 1e-9
 
 
+def test_final_classification_scorecard_at_chosen_threshold():
+    clf_df = lesson.load_dataset("lendwell_loan_default")
+    train_df, test_df = lesson.split_dataset(clf_df, stratify_column="defaulted")
+    features = [
+        "loan_amount",
+        "annual_income",
+        "credit_score",
+        "debt_to_income_ratio",
+        "employment_years",
+        "previous_defaults",
+    ]
+    train_df, test_df = lesson.impute_missing(train_df, test_df, features)
+    target = "defaulted"
+    baseline, model = lesson.fit_classification_baseline_and_model(train_df, target, features)
+    scorecard = lesson.final_classification_scorecard(
+        baseline, model, test_df, target, features, threshold=0.3
+    )
+    assert list(scorecard.index) == ["baseline", "model"]
+    assert abs(scorecard.loc["model", "precision"] - 0.4117647058823529) < 1e-9
+    assert abs(scorecard.loc["model", "recall"] - 0.5384615384615384) < 1e-9
+    assert abs(scorecard.loc["model", "f1"] - 0.4666666666666667) < 1e-9
+
+
 def test_final_clustering_summary_shape_and_values():
     cluster_df = lesson.load_dataset("retail_store_segments")
     features = [

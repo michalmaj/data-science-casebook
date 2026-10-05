@@ -23,6 +23,7 @@ DATASET_MENU = [
 ]
 RANDOM_STATE = 42
 CLUSTER_STABILITY_SEEDS = [0, 1, 2, 3, 4]
+K_VALUES = [2, 3, 4, 5, 6]
 
 
 def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
@@ -105,6 +106,47 @@ def fit_classification_baseline_and_model(
     raise NotImplementedError("fit_classification_baseline_and_model is not implemented yet")
 
 
+def split_for_validation(
+    train_df: pd.DataFrame,
+    val_size: float = 0.25,
+    random_state: int = RANDOM_STATE,
+    stratify_column: str | None = None,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Carve a (fit_df, val_df) pair out of train_df, for tuning decisions like a threshold.
+
+    TODO: import train_test_split from sklearn.model_selection (already
+    imported above if you've done the other functions). If
+    stratify_column is not None, pass train_df[stratify_column] as the
+    stratify argument. Otherwise pass stratify=None. Call it with
+    test_size=val_size and random_state=random_state. Return the result
+    as (fit_df, val_df), in that order. This never touches test_df — the
+    whole point is to have somewhere to try out candidate thresholds
+    without peeking at the data your final evaluation depends on.
+    """
+    raise NotImplementedError("split_for_validation is not implemented yet")
+
+
+def metrics_at_threshold(
+    model: LogisticRegression,
+    df: pd.DataFrame,
+    target_column: str,
+    feature_columns: list[str],
+    threshold: float,
+) -> dict[str, float]:
+    """Compute precision/recall/f1 for model's predictions at a specific threshold.
+
+    TODO: import precision_score, recall_score, f1_score from
+    sklearn.metrics (use zero_division=0). Call
+    model.predict_proba(df[feature_columns])[:, 1] to get the positive-
+    class probability for each row, then build predictions as
+    (proba >= threshold).astype(int). Compare those predictions to
+    df[target_column] and return {"precision": ..., "recall": ...,
+    "f1": ...}. Call this on val_df (from split_for_validation) while
+    you're still deciding on a threshold — never on test_df.
+    """
+    raise NotImplementedError("metrics_at_threshold is not implemented yet")
+
+
 def fit_clustering_model(
     df: pd.DataFrame, feature_columns: list[str], k: int = 3, random_state: int = RANDOM_STATE
 ) -> KMeans:
@@ -143,19 +185,25 @@ def evaluate_classification(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> dict[str, float]:
-    """Compare baseline and model precision/recall/F1 on held-out test_df.
+    """Compare baseline and model precision/recall/F1 on held-out test_df, at a given threshold.
 
     TODO: import precision_score, recall_score, f1_score from
     sklearn.metrics (use zero_division=0 in every call, same convention
     as Case 2). Build a baseline prediction array the same length as
     test_df, filled with `baseline`. Compute
     baseline_precision/baseline_recall/baseline_f1 by comparing that
-    array to test_df[target_column]. Compute model predictions via
-    model.predict(test_df[feature_columns]) and compute
+    array to test_df[target_column]. Compute model probabilities via
+    model.predict_proba(test_df[feature_columns])[:, 1], turn them into
+    predictions via (proba >= threshold).astype(int), and compute
     model_precision/model_recall/model_f1 the same way. Return a dict
     with keys "baseline_precision", "baseline_recall", "baseline_f1",
-    "model_precision", "model_recall", "model_f1".
+    "model_precision", "model_recall", "model_f1". The default
+    threshold=0.5 matches calling model.predict() directly — only pass a
+    different threshold once you've chosen one on a validation split
+    (see split_for_validation/metrics_at_threshold below), never by
+    trying different values against test_df itself.
     """
     raise NotImplementedError("evaluate_classification is not implemented yet")
 
@@ -173,6 +221,31 @@ def evaluate_clustering(model: KMeans, df: pd.DataFrame, feature_columns: list[s
     test set plays for regression/classification.
     """
     raise NotImplementedError("evaluate_clustering is not implemented yet")
+
+
+def cluster_metrics_by_k(
+    df: pd.DataFrame,
+    feature_columns: list[str],
+    k_values: list[int] = K_VALUES,
+    random_state: int = RANDOM_STATE,
+) -> pd.DataFrame:
+    """Compare inertia and silhouette across several k values, instead of trusting one default.
+
+    TODO: for each k in k_values: build a KMeans(n_clusters=k,
+    random_state=random_state, n_init=10), fit_predict it on
+    df[feature_columns], compute
+    sklearn.metrics.silhouette_score(df[feature_columns], labels), and
+    collect {"k": k, "inertia": model.inertia_, "silhouette": sil}.
+    Return the collected rows as a pandas.DataFrame. fit_clustering_model
+    defaults to k=3, but that default is a starting point, not a
+    verdict — look at how inertia and silhouette actually move across k
+    before deciding whether to use it. Don't expect them to agree with
+    each other: a lower silhouette at k=3 than at some other k doesn't
+    make that other k the "true" number of segments, any more than a
+    higher one would make k=3 provably correct — see Case 3's Lesson 5
+    for the same tension.
+    """
+    raise NotImplementedError("cluster_metrics_by_k is not implemented yet")
 
 
 def cluster_stability(

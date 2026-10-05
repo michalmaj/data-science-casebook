@@ -32,6 +32,8 @@ Każde kryterium jest oceniane na jednym z czterech poziomów: **Wzorowy**, **Do
 - **Rozwijający się:** Obsługuje problemy jakościowe mechanicznie ("uzupełnij braki") bez wyjaśnienia dlaczego, albo bez sprawdzenia wycieku danych.
 - **Niewystarczający:** Problemy jakościowe są pominięte, zignorowane lub wprowadzone (np. użycie informacji dostępnej dopiero po zdarzeniu jako cechy).
 
+**Uwaga:** "niezbalansowanie klas" i "niezgodność skal" to przykłady, nie checklista, którą każdy projekt musi wykazać — projekt klasteryzacyjny nie ma klas do zbalansowania, i to nie jest brak.
+
 ### 3. Eksploracja i uzasadnienie decyzji (20%)
 
 - **Wzorowy:** Każda decyzja modelowa (wybór cech, strategia podziału, preprocessing) jest wyraźnie powiązana z konkretnym wnioskiem z eksploracji.
@@ -45,6 +47,8 @@ Każde kryterium jest oceniane na jednym z czterech poziomów: **Wzorowy**, **Do
 - **Dobry:** Podział train/test jest poprawny, baseline obecny, ale walidacja do decyzji strojenia (np. progu klasyfikacji) bywa pomijana.
 - **Rozwijający się:** Model jest dopasowany i oceniony, ale z luką metodologiczną (np. preprocessing dopasowany przed podziałem, próg strojony na podstawie wyników na zbiorze testowym).
 - **Niewystarczający:** Brak baseline'u, brak oceny na danych odłożonych, albo wynik na zbiorze treningowym przedstawiony tak, jakby był generalizacją.
+
+**Dla projektu klasteryzacyjnego konkretnie:** nie ma dyscypliny train/validation/test do sprawdzenia w sensie nadzorowanym, i żadna pojedyncza metryka nie ogłasza "poprawnego" k. Wzorowy poziom oznacza tutaj połączenie separacji (np. silhouette), stabilności (przy resamplingu i/lub inicjalizacji) i wrażliwości na zestaw cech w uzasadniony wybór — oraz jawne traktowanie wyniku jako roboczej hipotezy, nie odkrytej prawdy o populacji. "k=2 miało najwyższy silhouette, więc jest poprawne" to twierdzenie na poziomie Rozwijający się, nie Wzorowy, mimo że cytuje realną liczbę.
 
 ### 5. Interpretacja i ograniczenia (15%)
 

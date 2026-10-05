@@ -116,9 +116,11 @@ def evaluate_classification(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> dict[str, float]:
     baseline_preds = np.full(len(test_df), baseline)
-    model_preds = model.predict(test_df[feature_columns])
+    proba = model.predict_proba(test_df[feature_columns])[:, 1]
+    model_preds = (proba >= threshold).astype(int)
     y_true = test_df[target_column]
     return {
         "baseline_precision": precision_score(y_true, baseline_preds, zero_division=0),
@@ -181,8 +183,11 @@ def final_classification_scorecard(
     test_df: pd.DataFrame,
     target_column: str,
     feature_columns: list[str],
+    threshold: float = 0.5,
 ) -> pd.DataFrame:
-    metrics = evaluate_classification(baseline, model, test_df, target_column, feature_columns)
+    metrics = evaluate_classification(
+        baseline, model, test_df, target_column, feature_columns, threshold
+    )
     return pd.DataFrame(
         {
             "precision": [metrics["baseline_precision"], metrics["model_precision"]],

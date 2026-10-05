@@ -23,13 +23,13 @@ Mając całą tę wiedzę, co Twój klient powinien faktycznie zrobić — i jak
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — jedenaście funkcji z Lekcji 4-5, odtworzonych, plus trzy nowe: `final_regression_scorecard`, `final_classification_scorecard`, `final_clustering_summary` (użyj tylko tej, która pasuje do Twojego zbioru)
+- `task.py` — jedenaście funkcji z Lekcji 4-5, odtworzonych (`evaluate_classification` przyjmuje teraz opcjonalny `threshold`), plus trzy nowe: `final_regression_scorecard`, `final_classification_scorecard` (też przyjmuje `threshold` — podaj ten, który wybrałeś/wybrałaś w Lekcji 5), `final_clustering_summary` (użyj tylko tej, która pasuje do Twojego zbioru)
 - `lesson.ipynb` — tym razem większość notebooka to sam szablon notatki decyzyjnej, nie kod
 
 ## Praca w notebooku
 
 1. Otwórz `lesson.ipynb`.
-2. Gdy `task.py` będzie kompletny, uruchom tylko komórkę kodu pasującą do typu problemu Twojego zbioru, żeby wygenerować swój scorecard albo podsumowanie segmentów.
+2. Gdy `task.py` będzie kompletny, uruchom tylko komórkę kodu pasującą do typu problemu Twojego zbioru, żeby wygenerować swój scorecard albo podsumowanie segmentów — dla ścieżki LendWell ustaw `CHOSEN_THRESHOLD` na wartość, którą wybrałeś/wybrałaś w Lekcji 5, nie domyślnie na 0,5.
 3. Wypełnij każdą z siedmiu sekcji notatki decyzyjnej poniżej, prostym językiem, wykorzystując to, czego nauczyłeś/nauczyłaś się w Lekcjach 1-5.
 4. W tej lekcji nie ma osobnego zadania domowego — ukończona notatka decyzyjna jest deliverable'em dla całego capstone'u.
 

@@ -32,6 +32,8 @@ Each criterion is scored at one of four levels: **Exemplary**, **Proficient**, *
 - **Developing:** Handles quality issues mechanically ("fill missing values") without explaining why, or without checking for leakage.
 - **Insufficient:** Quality issues are missed, ignored, or introduced (e.g. using post-outcome information as a feature).
 
+**Note:** "class imbalance" and "scale mismatches" are examples, not a checklist every project must exhibit — a clustering project has no class imbalance to report, and that's not a gap.
+
 ### 3. Exploration and justification of decisions (20%)
 
 - **Exemplary:** Every modeling decision (feature choice, split strategy, preprocessing) is traced back to a specific finding from exploration.
@@ -45,6 +47,8 @@ Each criterion is scored at one of four levels: **Exemplary**, **Proficient**, *
 - **Proficient:** Train/test split is correct and a baseline is present, though validation for tuning decisions (e.g. a classification threshold) may be skipped.
 - **Developing:** A model is fit and evaluated, but with a methodological gap (e.g. preprocessing fit before the split, a threshold tuned by looking at test-set results).
 - **Insufficient:** No baseline, no held-out evaluation, or training-set performance presented as if it were generalization.
+
+**For a clustering project specifically:** there's no train/validation/test discipline to check in the supervised sense, and no single metric crowns a "correct" k. Exemplary here means combining separation (e.g. silhouette), stability (across resamples and/or initializations), and feature-set sensitivity into a justified choice — and explicitly treating the result as a working hypothesis, not a discovered truth about the population. "k=2 had the highest silhouette, so it's correct" is a Developing-level claim, not an Exemplary one, even though it cites a real number.
 
 ### 5. Interpretation and limitations (15%)
 

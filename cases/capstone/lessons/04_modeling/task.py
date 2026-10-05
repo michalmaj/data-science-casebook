@@ -28,10 +28,10 @@ def load_dataset(name: str, data_dir: Path = DATA_DIR) -> pd.DataFrame:
     """Load the dataset called `name` — no cleaning yet.
 
     TODO: read data_dir / f"{name}.csv" with pandas.read_csv and return it.
-    Missing values are handled later, after the train/test split, by
-    impute_missing — not here. Imputing before splitting would leak
-    information from the test set into the values used to fill the
-    training set.
+    Missing values are handled after the train/test split, by
+    impute_missing — the same split-then-impute recipe you already used
+    in Lesson 2 (and, for the two predictive paths, in Lesson 3's
+    exploration too).
     """
     raise NotImplementedError("load_dataset is not implemented yet")
 
@@ -83,11 +83,14 @@ def scale_features(
     with scaler.fit_transform(df[feature_columns]). Return (df, scaler) —
     keeping the fitted scaler around, instead of discarding it, is what
     would let you consistently transform new data with the same
-    statistics later. Used only by the clustering path — KMeans measures
-    distance directly on feature values, so unscaled features with
-    different magnitudes (e.g. monthly_revenue in the tens of thousands
-    vs. return_rate as a small decimal) would dominate the distance
-    metric regardless of which features actually separate the data.
+    statistics later. Before you call this: decide for yourself whether
+    your chosen technique is sensitive to the relative scale of its
+    input features (does it measure distance directly, the way KMeans
+    does?), and whether your own feature set has columns on very
+    different scales (e.g. a revenue figure in the tens of thousands next
+    to a rate between 0 and 1). If both are true, scaling first is the
+    right call — and now you can say why, instead of applying it because
+    a docstring told you to.
     """
     raise NotImplementedError("scale_features is not implemented yet")
 
