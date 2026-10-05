@@ -11,10 +11,10 @@ Cztery case'y, każdy pełny cykl analityczny, z malejącym poziomem prowadzenia
 | Case 1 — Regresja | Intensywnie prowadzony | 8 | 280-360 min (~4,5-6 godz.) |
 | Case 2 — Klasyfikacja | Prowadzony | 8 | 290-370 min (~5-6 godz.) |
 | Case 3 — Klasteryzacja | Prowadzony, mniejsze wsparcie interpretacyjne | 8 | 330-420 min (~5,5-7 godz.) |
-| Projekt końcowy (wymagane) | Prowadzony projekt końcowy (ograniczony wybór) | 6 | 295-365 min (~5-6 godz.) |
+| Projekt końcowy (wymagane) | Prowadzony projekt końcowy (ograniczony wybór) | 6 | 315-390 min (~5,5-6,5 godz.) |
 | Projekt końcowy (opcjonalne) | Nieoceniane, Lekcja 7 wszystkie ścieżki / Lekcja 8 tylko LendWell | 2 | ~85-110 min (~1,5-2 godz.) |
 
-**Suma dla 30 wymaganych lekcji: mniej więcej 1195-1515 minut (~20-25 godzin).** Dodając dwie opcjonalne lekcje projektu końcowego, to bliżej 1280-1625 minut (~21-27 godzin). To te same edytorskie szacunki z README każdej lekcji — nie zmierzone, tylko zsumowane.
+**Suma dla 30 wymaganych lekcji: mniej więcej 1215-1540 minut (~20-26 godzin).** Dodając dwie opcjonalne lekcje projektu końcowego, to bliżej 1300-1650 minut (~22-28 godzin). To te same edytorskie szacunki z README każdej lekcji — nie zmierzone, tylko zsumowane.
 
 **Rekomendowana kolejność: Case 1 → Case 2 → Case 3 → Projekt końcowy**, zgodnie z kolejnością wymienioną w głównym README. Każdy case usuwa jakieś wsparcie, na którym opierał się poprzedni:
 
@@ -38,6 +38,10 @@ To realne błędy — własny materiał referencyjny tego kursu miał każdy z n
 **Jak to wyglądało w tym kursie:** `load_clean_shipments` w Case 1 liczyło medianę `driver_experience_years` z całego datasetu, zanim jakikolwiek split w ogóle istniał (naprawione w PR #34). `load_clean_dataset` w Projekcie końcowym robiło to samo generycznie dla dowolnej kolumny z brakami (naprawione w PR #35, ten sam wzorzec błędu).
 
 **Co by to złapało:** Kryterium 4 rubryki (Poprawność modelowania/oceny) — poziom "Rozwijający się" explicite wymienia "preprocessing dopasowany przed splitem". Przy ocenianiu ręcznym bez uruchamiania `check.py`: sprawdź, czy funkcje `impute_*`/`scale_*` przyjmują `train_df` i `test_df` jako osobne argumenty i liczą statystyki wyłącznie z `train_df`.
+
+### Eksploracja świadoma targetu, zanim istniał podział train/test (Projekt końcowy)
+
+**Jak to wyglądało w tym kursie:** Lekcje 2-3 Projektu końcowego liczyły statystyki wypełniające braki i korelacje cech z targetem na całym datasetcie — włącznie z wierszami, które później trafiały do `test_df` w Lekcji 4 — dla dwóch ścieżek predykcyjnych (czas oczekiwania w klinice, default pożyczki). Sam split, kiedy już następował w Lekcji 4, był poprawny; problemem było to, że dwie lekcje eksploracji działy się, zanim ten split zaistniał. Naprawione przez przeniesienie `split_dataset`/`impute_missing` do Lekcji 2 dla tych dwóch ścieżek, więc macierz korelacji z Lekcji 3 jest teraz liczona wyłącznie na `train_df`. Ścieżka klasteryzacji (sklepy detaliczne) zachowuje swoje oryginalne czyszczenie i eksplorację na całym zbiorze — nie ma zbioru testowego do ochrony w tym samym sensie dla problemu nienadzorowanego, a wmuszenie go byłoby poprawką mechaniczną, nie merytoryczną.
 
 ### Dopasowanie KMeans na nieprzeskalowanych cechach (Projekt końcowy)
 
