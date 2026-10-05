@@ -85,18 +85,41 @@ def test_numeric_correlations_shape_columns_and_diagonal(name, expected_shape, e
         assert abs(corr.loc[column, column] - 1.0) < 1e-9
 
 
+def test_numeric_correlations_on_train_only_matches_known_value_clinic():
+    df = lesson.load_dataset("clinic_wait_times")
+    train_df, _ = lesson.split_dataset(df)
+    features = ["num_patients_ahead", "staff_on_duty", "hour_of_day", "patient_age"]
+    train_df, _ = lesson.impute_missing(train_df, train_df, features)
+    corr = lesson.numeric_correlations(train_df[features + ["wait_time_minutes"]])
+    assert abs(corr.loc["num_patients_ahead", "wait_time_minutes"] - 0.8256493664929789) < 1e-9
+
+
+def test_numeric_correlations_on_train_only_matches_known_values_loans():
+    df = lesson.load_dataset("lendwell_loan_default")
+    train_df, _ = lesson.split_dataset(df, stratify_column="defaulted")
+    features = [
+        "loan_amount",
+        "annual_income",
+        "credit_score",
+        "debt_to_income_ratio",
+        "employment_years",
+        "previous_defaults",
+    ]
+    train_df, _ = lesson.impute_missing(train_df, train_df, features)
+    corr = lesson.numeric_correlations(train_df[features + ["defaulted"]])
+    assert abs(corr.loc["credit_score", "defaulted"] - (-0.2776526119495156)) < 1e-9
+    assert abs(corr.loc["debt_to_income_ratio", "defaulted"] - 0.2592966373755708) < 1e-9
+
+
 @pytest.mark.parametrize(
-    ("name", "col_a", "col_b", "expected_value"),
+    ("col_a", "col_b", "expected_value"),
     [
-        ("clinic_wait_times", "num_patients_ahead", "wait_time_minutes", 0.8212027396179216),
-        ("lendwell_loan_default", "credit_score", "defaulted", -0.2802107743801826),
-        ("lendwell_loan_default", "debt_to_income_ratio", "defaulted", 0.24167306839178965),
-        ("retail_store_segments", "monthly_revenue", "foot_traffic", 0.8418692750767021),
-        ("retail_store_segments", "monthly_revenue", "avg_transaction_value", 0.8440744982364937),
+        ("monthly_revenue", "foot_traffic", 0.8418692750767021),
+        ("monthly_revenue", "avg_transaction_value", 0.8440744982364937),
     ],
 )
-def test_numeric_correlations_matches_known_values(name, col_a, col_b, expected_value):
-    df = lesson.load_clean_dataset(name)
+def test_numeric_correlations_matches_known_values_retail(col_a, col_b, expected_value):
+    df = lesson.load_clean_dataset("retail_store_segments")
     corr = lesson.numeric_correlations(df)
     assert abs(corr.loc[col_a, col_b] - expected_value) < 1e-9
 

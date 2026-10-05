@@ -1,11 +1,12 @@
 # Lekcja 3 — Eksploracja
 
-**Szacowany czas:** 40-50 min
+**Szacowany czas:** 45-55 min
 
 ## Efekty uczenia się
 
 - Będziesz umieć zbadać relacje między cechami numerycznymi w wybranym przez siebie datasetcie, bez wcześniejszej lekcji wskazującej istotne kolumny.
 - Będziesz umieć wyrobić sobie wstępny, oparty na dowodach pogląd na to, które cechy Twojego datasetu prawdopodobnie mają znaczenie dla Twojego własnego pytania z Lekcji 1.
+- Będziesz umieć wyjaśnić, czemu dla zbioru z targetem, zbadanie związku cechy z targetem mówi Ci coś uczciwego tylko wtedy, gdy liczysz je wyłącznie na `train_df`.
 
 ## Głos mentora
 
@@ -22,13 +23,15 @@ Które liczbowe cechy Twojego zbioru danych wyglądają na najbardziej powiązan
 ## Co dostajesz
 
 - Ten sam zbiór danych, który wybrałeś/wybrałaś w Lekcji 1
-- `task.py` — dwie funkcje: `load_clean_dataset` (Lekcje 1-2 połączone) i jedna nowa funkcja, `numeric_correlations`
+- `task.py` — cztery funkcje: `load_dataset`, `split_dataset`, `impute_missing` (dla dwóch ścieżek predykcyjnych — badasz relacje tylko na `train_df`, ten sam podział i sposób wypełniania co w Lekcji 2), `load_clean_dataset` (Lekcje 1-2 połączone, dla ścieżki segmentacji, która nie ma podziału do ochrony) oraz `numeric_correlations`, używana przez obie ścieżki
 - `lesson.ipynb` — notebook, w którym przeprowadzisz eksplorację
+
+Jeśli Twoja ścieżka ma target, który próbujesz przewidzieć, eksploracja w tej lekcji — włącznie z korelacją cechy z targetem — patrzy wyłącznie na `train_df`. Zobaczenie, jak cecha wiąże się z targetem, używając wierszy, które później trafią do Twojego zbioru testowego, to właśnie ten typ podglądu, przez który oryginalny krok EDA w Case 1 wyciekał informację, zanim naprawił to PR #55 — ta lekcja nie powtarza tego błędu.
 
 ## Praca w notebooku
 
-- Wczytaj i wyczyść swój zbiór danych w jednym kroku.
-- Policz macierz korelacji cech liczbowych.
+- Jeśli wybrałeś/wybrałaś `clinic_wait_times` lub `lendwell_loan_default`: najpierw podziel (ten sam sposób co w Lekcji 2), imputuj `train_df`/`test_df`, potem policz macierz korelacji tylko na `train_df`.
+- Jeśli wybrałeś/wybrałaś `retail_store_segments`: wczytaj i wyczyść cały zbiór w jednym kroku, tak jak wcześniej — tutaj nie ma podziału do ochrony dla problemu segmentacji.
 - Posortuj zależności, żeby zobaczyć, które wyróżniają się na plus lub na minus.
 
 ## Self-check
@@ -39,7 +42,7 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy sprawdzają same liczby korelacji — nie mogą powiedzieć Ci, które zależności faktycznie mają znaczenie dla Twojego konkretnego pytania.
+Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy sprawdzają same liczby korelacji, oraz to, że dwie ścieżki predykcyjne liczą je wyłącznie na `train_df` — nie mogą powiedzieć Ci, które zależności faktycznie mają znaczenie dla Twojego konkretnego pytania.
 
 ## Zadanie domowe
 
