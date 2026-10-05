@@ -5,7 +5,7 @@
 ## Learning outcomes
 
 - You'll be able to check feature correlations when there's no target to validate them against.
-- You'll be able to recognize when two features are carrying largely the same signal, and reason about what that means before clustering on both.
+- You'll be able to recognize when several features are carrying largely the same signal — including when one is an exact derived function of the others, not just correlated with them — and reason about what that means before clustering on all of them.
 
 ## Mentor's note
 
@@ -30,6 +30,10 @@ Do these four features actually carry four different signals, or are some of the
 - Load the scaled per-subscriber table again.
 - Compute the correlation matrix between the four features.
 - Look specifically at `tenure_days` — how does it relate to the other three?
+
+## One of these three isn't just correlated
+
+Look at how `avg_minutes_per_session` is actually computed — the same SQL query every lesson uses pulls `AVG(minutes_watched)` alongside `SUM(minutes_watched)` and `COUNT(...)` from the same rows. For every subscriber who has logged at least one session, it's an exact ratio of the other two (`total_minutes_watched / session_count`), not an independently-measured signal that happens to move together with them. Clustering on all three plus `tenure_days` isn't clustering on four independent dimensions with a strong relationship between three — it's closer to two independent dimensions, with the viewing-engagement one counted roughly three times over in the Euclidean distance (confirmed by a quick PCA on the four scaled features: one component explains about 73% of the variance, with all three viewing columns loading on it almost equally).
 
 ## Self-check
 

@@ -8,7 +8,7 @@ Czy baza subskrybentów Aurora Stream faktycznie dzieli się na odrębne grupy b
 
 ## 2. Podejście
 
-Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowałem/am je za pomocą `StandardScaler`, i dopasowałem/am KMeans dla kilku wartości k. Porównałem/am inertia i silhouette score dla różnych k, sprawdziłem/am stabilność przypisań do klastrów przy resamplingu, i zdecydowałem/am się na k=2.
+Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowałem/am je za pomocą `StandardScaler`, i dopasowałem/am KMeans dla kilku wartości k. Porównałem/am inertia i silhouette score dla różnych k, sprawdziłem/am stabilność przypisań do klastrów przy resamplingu i przy losowej inicjalizacji KMeans, sprawdziłem/am, jak bardzo wynik zależy od użytych cech (odporny przy k=2, mniej przy drobniejszym k), i zdecydowałem/am się na k=2.
 
 ## 3. Wyniki (finalna tabela segmentów, k=2)
 
@@ -19,7 +19,7 @@ Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_c
 
 ## 4. Wybór k i sprawdzenie stabilności
 
-Inertia i silhouette score nie zgadzały się co do jednego "najlepszego" k, więc decydującym czynnikiem była stabilność: ponowne uruchomienie KMeans dla pięciu różnych zresamplowanych seedów dało k=2 idealnie spójne przypisanie segmentów (ARI = 1,0 za każdym razem), co jest silniejszym praktycznym argumentem niż którakolwiek z metryk osobno — segmentacja, która się przetasowuje przy innym seedzie losowym, nie jest taką, na której zespół retencyjny Aurora Stream może zbudować trwałą ofertę.
+Inertia i silhouette score nie zgadzały się co do jednego "najlepszego" k — inertia nie ma wyraźnego łokcia w całym zakresie k=2 do 8, a silhouette osiąga szczyt przy k=2, ale nie uszeregowuje czysto resztę zakresu. k=2 jest najmocniejszym kandydatem na podstawie całego zestawu dowodów razem: najlepszy silhouette score z testowanych, idealna stabilność przy resamplingu (ARI = 1,0 dla pięciu przetasowanych seedów, najlepsza z testowanych k), brak wrażliwości na losową inicjalizację KMeans dla żadnego testowanego k, segmentacja, która przetrwała zamianę dwóch z trzech redundantnych cech zaangażowania na jedną reprezentatywną, i historia o dwóch segmentach wystarczająco prosta, żeby zespół retencyjny mógł na niej faktycznie działać. Żadne z tego nie dowodzi, że dwa segmenty to liczba, która "naprawdę" istnieje w bazie subskrybentów Aurora Stream — oznacza, że k=2 jest prostą, stabilną i interpretowalną segmentacją *roboczą*, którą warto potraktować jako hipotezę operacyjną do sprawdzenia, a nie odkrytym faktem o populacji.
 
 ## 5. Interpretacja segmentów
 
@@ -29,6 +29,8 @@ Dwa segmenty rozdzielają się niemal wyłącznie na zaangażowaniu w oglądanie
 
 - (Rozwiązane) We wcześniejszych wersjach tej analizy profile segmentów były raportowane w ustandaryzowanych jednostkach (z-score) — poprawne do dopasowania KMeans, ale niezrozumiałe bezpośrednio dla nietechnicznego interesariusza. Zostało to naprawione: tabele segmentów klastrują na ustandaryzowanych cechach wewnętrznie, ale raportują rzeczywiste liczby sesji, minuty oglądania i staż każdego segmentu w oryginalnych jednostkach.
 - Segment 1 (81 subskrybentów, 27% bazy) jest znacząco mniejszy niż Segment 0 — każda oferta retencyjna skierowana do niego będzie testowana na mniejszej populacji, więc wczesne odczyty jej skuteczności powinny być traktowane ostrożnie, dopóki nie zbierze się więcej danych.
+- Ta analiza sprawdziła stabilność przy resamplingu i przy losowej inicjalizacji KMeans, ale nie stabilność w czasie — dane to jedno 90-dniowe zdjęcie czasowe, więc nie ma sposobu, by na tej podstawie samej stwierdzić, czy te same dwa segmenty pojawiłyby się znowu w następnym kwartale.
+- Podział k=2 jest odporny na odrzucenie dwóch z trzech silnie skorelowanych cech zaangażowania (liczby sesji i dokładnie wyliczonej średniej liczby minut na sesję) — ale ta odporność nie utrzymuje się przy drobniejszych k, gdzie wybór cech widocznie zmienia, który subskrybent trafia do którego klastra. Traktuj k=2 jako naprawdę stabilny gruby podział, nie jako dowód, że jakakolwiek drobniejsza segmentacja tej populacji byłaby równie godna zaufania.
 
 ## 7. Rekomendacja
 
@@ -38,4 +40,4 @@ Zaproponować dwie ścieżki retencyjne jako hipotezę do przetestowania, nie ja
 
 ## Dlaczego to dobra odpowiedź
 
-Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny** (sekcja 4), ponieważ wybór k jest uzasadniony stabilnością przy resamplingu, nie tylko tym, które k dało najlepszą pojedynczą metrykę — a liczba ARI=1,0 jest podana precyzyjnie, nie ogólnikowo. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając realne, konkretne ograniczenie — mniejszy rozmiar Segmentu 1 (sekcja 6) i co to oznacza dla ostrożności przy testowaniu — zamiast ogólnikowego zastrzeżenia, i będąc konkretnym co do tego, które cechy faktycznie rozdzielają segmenty (sekcja 5), zamiast opisywać klastry tylko ich rozmiarem.
+Ta notatka zasługuje na "Wzorowy" w **Poprawności modelowania/oceny** (sekcja 4), ponieważ wybór k jest uzasadniony całym zestawem dowodów — silhouette, stabilność przy resamplingu, stabilność przy inicjalizacji, odporność na wybór cech — a nie jedną metryką, i ponieważ wyraźnie powstrzymuje się od nazwania k=2 "prawdziwą" liczbą segmentów. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, nazywając realne, konkretne ograniczenia (sekcja 6) — mniejszy rozmiar Segmentu 1, co nie zostało sprawdzone (stabilność w czasie), i gdzie odporność wyniku k=2 się kończy (wrażliwość na wybór cech przy drobniejszym k) — zamiast ogólnikowych zastrzeżeń, i będąc konkretnym co do tego, które cechy faktycznie rozdzielają segmenty (sekcja 5), zamiast opisywać klastry tylko ich rozmiarem.

@@ -5,7 +5,7 @@
 ## Efekty uczenia się
 
 - Będziesz umieć sprawdzić korelacje między cechami, gdy nie ma targetu, względem którego mógłbyś je zweryfikować.
-- Będziesz umieć rozpoznać, kiedy dwie cechy niosą w dużej mierze ten sam sygnał, i wyciągnąć z tego wnioski przed klasteryzacją na obu.
+- Będziesz umieć rozpoznać, kiedy kilka cech niesie w dużej mierze ten sam sygnał — w tym kiedy jedna jest dokładną funkcją wyliczoną z innych, nie tylko z nimi skorelowaną — i wyciągnąć z tego wnioski przed klasteryzacją na nich wszystkich.
 
 ## Głos mentora
 
@@ -30,6 +30,10 @@ Czy te cztery cechy faktycznie niosą cztery różne sygnały, czy niektóre z n
 - Wczytaj ponownie przeskalowaną tabelę per subskrybent.
 - Policz macierz korelacji między czterema cechami.
 - Przyjrzyj się konkretnie `tenure_days` — jak odnosi się do pozostałych trzech?
+
+## Jedna z tych trzech to nie tylko korelacja
+
+Zobacz, jak faktycznie liczony jest `avg_minutes_per_session` — to samo zapytanie SQL, które używa każda lekcja, wyciąga `AVG(minutes_watched)` obok `SUM(minutes_watched)` i `COUNT(...)` z tych samych wierszy. Dla każdego subskrybenta, który zalogował przynajmniej jedną sesję, to dokładny iloraz dwóch innych (`total_minutes_watched / session_count`), nie niezależnie zmierzony sygnał, który przypadkiem porusza się razem z nimi. Grupowanie na tych trzech plus `tenure_days` to nie grupowanie na czterech niezależnych wymiarach z silną relacją między trzema — to bliżej dwóch niezależnych wymiarów, gdzie wymiar zaangażowania widokowego jest liczony w odległości euklidesowej niemal trzy razy (potwierdza to szybkie PCA na czterech przeskalowanych cechach: jeden komponent wyjaśnia ok. 73% wariancji, a wszystkie trzy kolumny dotyczące oglądania mają na niego niemal identyczny wkład).
 
 ## Self-check
 

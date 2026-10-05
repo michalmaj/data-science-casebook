@@ -10,11 +10,11 @@
 
 ## Głos mentora
 
-"Lekcja 5 nie stworzyła tylko szumu — silhouette score wyraźnie wskazał k=2. Przestańmy więc porównywać rozwiązania i rzeczywiście zinterpretujmy jedno z nich. Dopasuj je, zobacz, co odróżnia dwa klastry, i nadaj im nazwy, których faktycznie użyłby ktoś z biznesu."
+"Lekcja 5 nie stworzyła tylko szumu — spośród porównanych rozwiązań k=2 wypadło jako mocny kandydat: najlepszy silhouette score, do tego odporny, bo utrzymał się nawet po zamianie redundantnych cech engagement. To wystarczający powód, żeby przestać porównywać i rzeczywiście zinterpretować jedno rozwiązanie. Dopasuj je, zobacz, co odróżnia dwa klastry, i nadaj im nazwy, których faktycznie użyłby ktoś z biznesu."
 
 ## Cel lekcji
 
-Policzyć profile cech per klaster dla rozwiązania k=2 wskazanego przez Lekcję 5 i przełożyć wynik na biznesowo zrozumiałe nazwy segmentów.
+Policzyć profile cech per klaster dla k=2 — mocnego kandydata spośród rozwiązań porównanych w Lekcji 5 — i przełożyć wynik na biznesowo zrozumiałe nazwy segmentów.
 
 ## Pytanie analityczne dnia
 

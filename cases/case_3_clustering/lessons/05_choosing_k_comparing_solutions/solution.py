@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import adjusted_rand_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
 DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "aurora_stream.sqlite"
@@ -19,6 +19,7 @@ FEATURE_COLUMNS = [
 ]
 K_VALUES = list(range(2, 9))
 RANDOM_STATE = 42
+REDUCED_FEATURE_COLUMNS = ["total_minutes_watched", "tenure_days"]
 
 
 def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
@@ -56,3 +57,18 @@ def cluster_metrics_by_k(
         sil = silhouette_score(df[FEATURE_COLUMNS], labels)
         rows.append({"k": k, "inertia": model.inertia_, "silhouette": sil})
     return pd.DataFrame(rows)
+
+
+def compare_feature_sets(df: pd.DataFrame, k: int, random_state: int = RANDOM_STATE) -> pd.Series:
+    model_full = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+    labels_full = model_full.fit_predict(df[FEATURE_COLUMNS])
+    silhouette_full = silhouette_score(df[FEATURE_COLUMNS], labels_full)
+
+    model_reduced = KMeans(n_clusters=k, random_state=random_state, n_init=10)
+    labels_reduced = model_reduced.fit_predict(df[REDUCED_FEATURE_COLUMNS])
+    silhouette_reduced = silhouette_score(df[REDUCED_FEATURE_COLUMNS], labels_reduced)
+
+    ari = adjusted_rand_score(labels_full, labels_reduced)
+    return pd.Series(
+        {"ari": ari, "silhouette_full": silhouette_full, "silhouette_reduced": silhouette_reduced}
+    )

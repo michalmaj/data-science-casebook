@@ -19,6 +19,7 @@ FEATURE_COLUMNS = [
 ]
 K_VALUES = list(range(2, 9))
 RANDOM_STATE = 42
+REDUCED_FEATURE_COLUMNS = ["total_minutes_watched", "tenure_days"]
 
 
 def load_scaled_features(path: Path = DATA_PATH) -> pd.DataFrame:
@@ -47,3 +48,23 @@ def cluster_metrics_by_k(
     in the same order as k_values) and return it.
     """
     raise NotImplementedError("cluster_metrics_by_k is not implemented yet")
+
+
+def compare_feature_sets(df: pd.DataFrame, k: int, random_state: int = RANDOM_STATE) -> pd.Series:
+    """Fit KMeans at the same k on FEATURE_COLUMNS vs. REDUCED_FEATURE_COLUMNS and compare.
+
+    TODO: fit sklearn.cluster.KMeans(n_clusters=k, random_state=random_state,
+    n_init=10) on df[FEATURE_COLUMNS] (fit_predict) and compute its
+    silhouette_score on the same columns/labels — call this
+    "silhouette_full". Fit a second, fresh KMeans with the same
+    n_clusters/random_state/n_init on df[REDUCED_FEATURE_COLUMNS] instead,
+    compute its own silhouette_score — "silhouette_reduced". Compute
+    sklearn.metrics.adjusted_rand_score between the two label arrays —
+    "ari". Return a pandas Series with index
+    ["ari", "silhouette_full", "silhouette_reduced"] in that order.
+
+    This isn't about finding the "correct" feature set — it's about seeing
+    whether the segmentation you'd report changes depending on which
+    columns you handed KMeans in the first place.
+    """
+    raise NotImplementedError("compare_feature_sets is not implemented yet")
