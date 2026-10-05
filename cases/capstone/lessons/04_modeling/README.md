@@ -23,8 +23,10 @@ Does your first model actually do better than the simplest possible baseline for
 ## What you're given
 
 - The same dataset you picked in Lesson 1
-- `task.py` — seven functions: `load_dataset` (no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset — takes an optional `stratify_column` to keep class balance across train/test for classification), `impute_missing` (fills missing values using training-set statistics only, in the feature columns you specify, applied to both train and test), `scale_features` (standardizes features to zero mean/unit variance, needed before clustering — also returns the fitted scaler), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
+- `task.py` — seven functions: `load_dataset` (no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset — takes an optional `stratify_column` to keep class balance across train/test for classification), `impute_missing` (fills missing values using training-set statistics only, in the feature columns you specify, applied to both train and test), `scale_features` (standardizes features — decide for yourself whether your technique needs this, and justify it in your notes; also returns the fitted scaler), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
 - `lesson.ipynb` — the notebook where you'll fit your baseline and model
+
+The split below uses the same recipe as Lesson 2 (and Lesson 3, for the two predictive paths) — this lesson doesn't introduce a new split, it reuses the one your data quality and exploration steps already relied on.
 
 ## Working in the notebook
 
@@ -44,7 +46,7 @@ All tests should pass once `task.py` is complete. Starting this lesson, these ch
 
 ## Homework
 
-Two to three sentences: using the specific feature set you chose (whether the suggested one or your own), how much better is your model than the baseline, and is that difference big enough to matter for your Lesson 1 question?
+Two to three sentences: using the specific feature set you chose (whether the suggested one or your own), how much better is your model than the baseline, and is that difference big enough to matter for your Lesson 1 question? If you're on the clustering path, also say in one sentence why you scaled your features before fitting (or didn't).
 
 ## Reflection
 
