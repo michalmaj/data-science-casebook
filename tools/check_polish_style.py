@@ -20,10 +20,14 @@ _INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
 
 # Matches dual-gender pairs like "zrobiłeś/zrobiłaś", "musiał/musiała",
 # "gotów/gotowa" — a word ending in a past-tense/adjective gender marker,
-# a slash, then the feminine counterpart.
+# a slash, then the feminine counterpart. The feminine side can carry its
+# own trailing "ś" (the direct 2nd-person form, "zrobiłaś") in addition to
+# the plain 3rd-person/adjective form ("zrobiła", "gotowa") — both occur in
+# this repo's prose, and missing the "ś" variant was an earlier false
+# negative that let real dual-gender forms through uncaught.
 _DUAL_GENDER_RE = re.compile(
     r"\b[A-Za-zĄąĘęÓóŁłŚśŻżŹźĆćŃń]*(?:ł[aeiouy]?ś?|ów|gotów)"
-    r"/[A-Za-zĄąĘęÓóŁłŚśŻżŹźĆćŃń]*(?:ł[aeiouy]|owa)\b"
+    r"/[A-Za-zĄąĘęÓóŁłŚśŻżŹźĆćŃń]*(?:ł[aeiouy]ś?|owa)\b"
 )
 
 # English-style decimal point in prose, e.g. "0.5" where Polish prose should
