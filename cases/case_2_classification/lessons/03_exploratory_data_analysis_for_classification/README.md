@@ -2,39 +2,23 @@
 
 **Estimated time:** 35-45 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to measure how imbalanced a binary target actually is before building any model around it.
-- You'll be able to compute a rate-by-category breakdown to find which factors are genuinely associated with the outcome.
-- You'll be able to tell a factor that merely "looks interesting" apart from one with a real, measurable relationship to the target.
+The data is merged now — the real question: which signals are actually worth building a model around, and which just look interesting? Before we touch a single classifier, let's get a feel for what predicts a return and what doesn't.
 
-## Mentor's note
+Today's question: how imbalanced are Meridian Outlet's returns, and which recorded factors — product category, discount, or a customer's own return history — actually move the needle?
 
-"Merged data in hand — now the real question: which of these signals are actually worth building a model around, and which just look interesting? Before you touch a single classifier, get a feel for what predicts a return and what doesn't."
+## What you need to do
 
-## Lesson goal
+- The same `data/orders.xlsx` from Lessons 1-2.
+- In `task.py`, implement four functions: `load_and_merge_orders`, `class_balance`, `return_rate_by_category`, `correlation_with_return`.
+- In the notebook: look at `class_balance(df)` — note how rare returns actually are. Look at `return_rate_by_category(df)` — which category returns most, which returns least. Compare `correlation_with_return` for `discount_percent`, `previous_returns_count`, and `account_age_days` — which one is the strongest numeric signal.
 
-Explore Meridian Outlet's merged order data to find which factors are actually associated with a return, and get an honest read on how rare returns are in the first place.
+## What to watch for
 
-## Today's analytical question
+With a target this imbalanced, intuition from regression doesn't carry over directly: a high correlation or a high accuracy number can mean something quite different once one class dominates by sheer count. That's next lesson's topic — for now, just see how rare returns are.
 
-How imbalanced are Meridian Outlet's returns, and which recorded factors — product category, discount, or a customer's own return history — actually move the needle?
-
-## What you're given
-
-- The same `data/orders.xlsx` from Lessons 1-2
-- `task.py` — four functions to implement: `load_and_merge_orders`, `class_balance`, `return_rate_by_category`, `correlation_with_return`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Look at `class_balance(df)` — note how rare returns actually are.
-4. Look at `return_rate_by_category(df)` — which category returns most, which returns least?
-5. Compare `correlation_with_return` for `discount_percent`, `previous_returns_count`, and `account_age_days` — which one is the strongest numeric signal?
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -42,12 +26,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-In `lesson.ipynb`'s "Your notes" cell, write two to three sentences: given how rare returns are, what's wrong with judging a future classifier purely on accuracy?
-
-## Reflection
-
-The mentor asks: if 14% of orders get returned, what accuracy would a model get by always predicting "not returned," without looking at a single feature? Would you call that a good model?
+In the "Your notes" cell, write: given how rare returns are, what's wrong with judging a future classifier purely on accuracy? And: if 14% of orders get returned, what accuracy would a model get by always predicting "not returned," without looking at a single feature? Would that be a good model?

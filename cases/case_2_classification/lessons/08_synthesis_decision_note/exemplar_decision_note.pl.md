@@ -1,6 +1,6 @@
 # Wzorcowa notatka decyzyjna — Case 2 (Meridian Outlet)
 
-*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 2. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żebyś mógł/mogła porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
+*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 2. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żeby można było porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
 
 ## 1. Pytanie biznesowe
 
@@ -8,17 +8,17 @@ Czy możemy zidentyfikować, przed wysyłką lub krótko po niej, które zamówi
 
 ## 2. Podejście
 
-Wczytałem/am i połączyłem/am arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzieliłem/am 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach — podział wierszowy, co znaczy, że ta analiza ocenia model na *kolejnych zamówieniach klientów już obecnych w danych*, nie na zupełnie nowych klientach (zobacz Lekcję 5, co się zmienia przy podziale po kliencie) — i dopasowałem/am regresję logistyczną na treningowym. Porównałem/am baseline większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — porównanych na odłożonym zbiorze walidacyjnym, a następnie potwierdzonych raz na zbiorze testowym przy wybranym progu.
+Wczytano i połączono arkusze Orders i Customers Meridian (`discount_percent`, `previous_returns_count`, `account_age_days` jako cechy, `is_returned` jako cel), podzielono 80/20 ze stratyfikacją względem celu, żeby zachować ok. 14% stopę zwrotów w obu zbiorach — podział wierszowy, co znaczy, że ta analiza ocenia model na *kolejnych zamówieniach klientów już obecnych w danych*, nie na zupełnie nowych klientach (zobacz Lekcję 5, co się zmienia przy podziale po kliencie) — i dopasowano regresję logistyczną na treningowym. Porównano model bazowy większościowy (zawsze przewiduj "nie zwrócone") z modelem przy trzech progach — 0,5 (domyślny), 0,3 i 0,2 — porównanych na odłożonym zbiorze walidacyjnym, a następnie potwierdzonych raz na zbiorze testowym przy wybranym progu.
 
 ## 3. Wyniki
 
 | Predyktor | Precision | Recall | F1 |
 |---|---:|---:|---:|
-| Baseline większościowy | 0,000 | 0,000 | 0,000 |
+| Model bazowy większościowy | 0,000 | 0,000 | 0,000 |
 | Model @ próg 0,5 | 0,000 | 0,000 | 0,000 |
 | Model @ próg 0,2 | 0,244 | 0,550 | 0,338 |
 
-Przy domyślnym progu 0,5 model oznacza tylko 1 z 140 zamówień testowych — w praktyce nigdy nie przewiduje "zwrócone", funkcjonalnie identyczny z baseline'em większościowym. Obniżenie progu do 0,2 jest tym, co faktycznie czyni model użytecznym: wychwytuje 55% prawdziwych zwrotów, kosztem tego, że ok. 3 na 4 oznaczone zamówienia okazują się w porządku.
+Przy domyślnym progu 0,5 model oznacza tylko 1 z 140 zamówień testowych — w praktyce nigdy nie przewiduje "zwrócone", funkcjonalnie identyczny z modelem bazowym większościowym. Obniżenie progu do 0,2 jest tym, co faktycznie czyni model użytecznym: wychwytuje 55% prawdziwych zwrotów, kosztem tego, że ok. 3 na 4 oznaczone zamówienia okazują się w porządku.
 
 ## 4. Wybór progu i metryki
 
@@ -26,7 +26,7 @@ Recall ma tu większe znaczenie niż precision — ale tylko przy założeniu, k
 
 ## 5. Komunikowanie ryzyka
 
-"55% recall przy 24% precision" oznacza: spośród każdych 100 zamówień naprawdę zmierzających ku zwrotowi, ten system wychwytuje do weryfikacji ok. 55 z nich — a spośród każdych 4 oznaczonych zamówień, tylko 1 faktycznie wróci. To realny filtr, nie rzut monetą (baseline większościowy wychwytuje 0), ale nie jest to pewny wynik ryzyka dla pojedynczego zamówienia — traktuj oznaczenie jako "warte drugiego spojrzenia", nie "to zamówienie zostanie zwrócone".
+"55% recall przy 24% precision" oznacza: spośród każdych 100 zamówień naprawdę zmierzających ku zwrotowi, ten system wychwytuje do weryfikacji ok. 55 z nich — a spośród każdych 4 oznaczonych zamówień, tylko 1 faktycznie wróci. To realny filtr, nie rzut monetą (model bazowy większościowy wychwytuje 0), ale nie jest to pewny wynik ryzyka dla pojedynczego zamówienia — traktuj oznaczenie jako "warte drugiego spojrzenia", nie "to zamówienie zostanie zwrócone".
 
 ## 6. Ograniczenia
 
