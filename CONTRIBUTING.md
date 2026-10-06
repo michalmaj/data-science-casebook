@@ -34,6 +34,8 @@ Every `lesson.ipynb` starts with a `%load_ext autoreload` / `%autoreload 2` cell
 
 Every `README.md`/`README.pl.md` starts with a `**Estimated time:** X-Y min` line and a `## Learning outcomes` section (2-4 bullets, "You'll be able to...") right after the title, before the lesson's opening section (usually "Mentor's note"). The time range is an editorial estimate, not a measured fact — base it on the case's guidance level and the lesson's actual `task.py` workload, and ground every learning-outcome bullet in what that specific lesson's functions and analytical question actually teach, not generic filler.
 
+**Pilot exception:** Case 1's lessons use a different, leaner section structure (`Why we're doing this` / `What you need to do` / `What to watch for` / `Check your work`, varying by lesson, no separate `Learning outcomes` or `Mentor's note` headers) as a UX pilot — see its lessons for the pattern. This hasn't been propagated to Case 2, Case 3, or the Capstone yet; follow the contract above for those until it is.
+
 **Self-containment convention**: if a lesson needs a function that an earlier lesson in the same case already defined (e.g. `load_dataset`, `split_dataset`), reproduce it byte-for-byte in the new lesson's `task.py`/`solution.py` — never import it from another lesson's module. Lessons must be runnable and gradable in isolation; a student jumping straight to Lesson 5 shouldn't need Lesson 3's files to exist. This means some duplication across a case's lessons is expected and intentional, not a bug to clean up.
 
 **`check.py` module-loading pattern**: every `check.py` in this repo uses the same boilerplate to load either `task.py` or `solution.py` at runtime:
@@ -61,7 +63,7 @@ Every tracked `*.md` file needs a `.pl.md` sibling (`tools/check_bilingual_pairs
 
 The checker also verifies EN/PL structural parity: each pair must have the same sequence of Markdown header levels (`#`, `##`, `###`, ...). It compares structure only, not prose — so a longer or shorter translation never fails the check — but adding, removing, or reordering a section in one language without mirroring it in the other will.
 
-Code, docstrings, comments, and commit messages are English-only — including inside notebooks. `lesson.ipynb` markdown cells are English-only even in lessons whose `README.pl.md` is Polish; only the brief is bilingual, not the workspace.
+Code, docstrings, comments, and commit messages are English-only — including inside notebooks. `lesson.ipynb` markdown cells are English-only even in lessons whose `README.pl.md` is Polish; only the brief is bilingual, not the workspace. **Pilot exception:** Case 1 Lesson 1's notebook pilots a bilingual *section header* convention (`## First look / Pierwszy rzut oka`) — only short navigational headers get an inline Polish gloss; one-line instructions and all code stay English-only, and no second notebook file is created. Not yet applied beyond that one lesson.
 
 ## Regenerating a case's data
 

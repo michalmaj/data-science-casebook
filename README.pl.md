@@ -11,6 +11,12 @@ Od niejasnego problemu do uzasadnionego wniosku.
 
 Każdy case opowiada małą historię: organizacja ma problem, dane są niepełne lub niejednoznaczne, ktoś oczekuje odpowiedzi, a Ty decydujesz, co można uczciwie z nich wywnioskować. Kurs zakłada, że masz już podstawy Pythona i pierwsze zetknięcie z konceptami machine learningu.
 
+## Jeśli jesteś studentem
+
+Najkrótsza ścieżka: Case 1 → Lekcja 1 → `README.pl.md` → `task.py` → `pytest` → `lesson.ipynb`.
+
+Zacznij od [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — przeczytaj tam `README.pl.md`, uzupełnij `task.py`, sprawdź się przez `uv run pytest`, a potem otwórz notebook. Ta pierwsza lekcja wyjaśnia dokładniej, jak zbudowana jest każda kolejna.
+
 ## Struktura kursu
 
 Cztery case'y, każdy to pełny cykl analityczny, z malejącym poziomem wsparcia:
@@ -45,7 +51,7 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i ma tę
 - `task.py` — funkcje, które implementujesz (każda ma docstring `TODO` wyjaśniający co zrobić)
 - `solution.py` — referencyjna implementacja (nie zaglądaj przed próbą rozwiązania `task.py`)
 - `check.py` — self-check; uruchom go z katalogu lekcji poleceniem `uv run pytest`
-- `lesson.ipynb` — notebook, w którym faktycznie pracujesz nad lekcją
+- `lesson.ipynb` — notebook, w którym pracujesz nad lekcją
 - `README.md` / `README.pl.md` — brief lekcji
 
 `task.py` to miejsce, w którym implementujesz rozwiązanie; `lesson.ipynb` to miejsce, w którym je uruchamiasz, widzisz wyniki i piszesz interpretację — traktuj notebook jak swój raport analityczny, nie jak brudnopis do pisania kodu od zera.
@@ -57,9 +63,7 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i ma tę
 3. Z katalogu lekcji uruchom `uv run pytest`, żeby sprawdzić swoją pracę.
 4. Otwórz `lesson.ipynb` i przejdź przez analizę i refleksję.
 
-Jeśli edytujesz `task.py` po tym, jak już zaimportowałeś/aś go w działającym notebooku, zrestartuj kernel (albo ponownie uruchom komórkę z importem) — Python cache'uje zaimportowane moduły, więc samo ponowne uruchomienie komórki nie podłapie zmiany.
-
-Zacznij od `cases/case_1_regression/lessons/01_defining_the_question/`.
+Jeśli edytujesz `task.py` po tym, jak już zaimportowałeś go w działającym notebooku, zrestartuj kernel (albo ponownie uruchom komórkę z importem) — Python cache'uje zaimportowane moduły, więc samo ponowne uruchomienie komórki nie podłapie zmiany.
 
 ## Dwujęzyczność
 
@@ -67,7 +71,7 @@ Każdy plik Markdown ma polski odpowiednik (`README.md` → `README.pl.md`). Ang
 
 ## Współtworzenie
 
-Zobacz [`CONTRIBUTING.pl.md`](CONTRIBUTING.pl.md) po lokalne komendy deweloperskie, kontrakt dwujęzyczny i jak dodać lekcję lub case. Znalazłeś/znalazłaś błąd w lekcji, problem z tłumaczeniem, albo chcesz zaproponować nowy case lub lekcję? [Otwórz issue](https://github.com/michalmaj/data-science-casebook/issues/new/choose) — wybór szablonu skieruje Cię do właściwego formularza.
+Zobacz [`CONTRIBUTING.pl.md`](CONTRIBUTING.pl.md) po lokalne komendy deweloperskie, kontrakt dwujęzyczny i jak dodać lekcję lub case. Trafiasz na błąd w lekcji, problem z tłumaczeniem, albo chcesz zaproponować nowy case lub lekcję? [Otwórz issue](https://github.com/michalmaj/data-science-casebook/issues/new/choose) — wybór szablonu skieruje Cię do właściwego formularza.
 
 ## Licencja
 

@@ -2,38 +2,25 @@
 
 **Estimated time:** 40-50 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to compute a model's residuals and treat them as data to be studied, not just an accuracy score.
-- You'll be able to group residuals by a categorical variable to spot a systematic pattern instead of random noise.
-- You'll be able to connect a residual pattern back to a variable the model was never given, and state what that means for the model's blind spot.
+A model that's wrong isn't the problem — every model is wrong somewhere. The problem is not knowing *where*. If the errors are random noise, fine, that's the best you can do. If they line up with something specific, that's not noise — that's a signal you're ignoring.
 
-## Mentor's note
+Today's question: are Lesson 5's model's mistakes random, or do they follow a pattern — and if there's a pattern, what does it point to?
 
-"A model that's wrong isn't the problem — every model is wrong somewhere. The problem is not knowing *where*. If your errors are random noise, fine, that's the best you can do. If they line up with something specific, that's not noise — that's a clue you're ignoring."
+## What you need to do
 
-## Lesson goal
+- The same split as Lesson 3, and the same model as Lesson 5, reproduced here (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`).
+- In `task.py`, implement three new functions: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`.
+- In the notebook: confirm the residuals' correlation with every feature already in the model is essentially zero, then look at the mean residual by weather.
 
-Diagnose what Lesson 5's model is systematically getting wrong, and connect that back to a variable it was never given.
+## What to watch for
 
-## Today's analytical question
+Zero correlation between residuals and features already in the model is guaranteed by how linear regression fits its coefficients — it's not a sign of quality. The check that actually tells you something is the mean residual by weather, because `weather` was never given to the model, so a pattern there isn't mathematically forced.
 
-Are this model's mistakes random, or do they follow a pattern — and if there's a pattern, what does it point to?
+This lesson analyzes residuals on the *training* set, not the test set — and that's fine, because we're not evaluating performance here, we're looking for a pattern in the model's errors to understand what it's missing. That's a different question from "how well does this generalize," which Lesson 5 already settled on the test set.
 
-## What you're given
-
-- The same split as Lesson 3, and the same model as Lesson 5, reproduced here (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
-- `task.py` — three new functions to implement on top of those: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Confirm the residuals' correlation with every feature already in the model is essentially zero — then think about *why* that's guaranteed, not a sign of quality.
-4. Look at the mean residual by weather — this is the check that actually tells you something, because `weather` was never given to the model.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -41,12 +28,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-In `lesson.ipynb`'s "Your notes" cell, state in plain language what the model gets wrong and for which shipments, and propose one fix that doesn't require collecting new data.
-
-## Reflection
-
-The mentor asks: this lesson analyzed residuals on the *training* set, not the test set. Lesson 5 was strict about never touching test data until final scoring. Why is it still fair to look at training residuals here — what are we using them for that's different from evaluating performance?
+In the "Your notes" cell, state in plain language what the model gets wrong and for which shipments, and propose one fix that doesn't require collecting new data.

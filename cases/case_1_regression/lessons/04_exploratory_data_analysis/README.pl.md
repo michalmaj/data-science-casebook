@@ -2,41 +2,25 @@
 
 **Szacowany czas:** 30-40 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć policzyć i odczytać macierz korelacji, żeby znaleźć kolumny numeryczne faktycznie powiązane z targetem — wyłącznie na zbiorze treningowym.
-- Będziesz umieć porównać średnie w grupach, żeby wykryć wpływ zmiennej kategorycznej na target.
-- Będziesz umieć rozpoznać, kiedy silnie skorelowana kolumna i tak nie nadaje się do użycia, bo nie byłaby znana w momencie predykcji.
+Dane są już podzielone — dobrze. Nie sięgaj jeszcze po model. Najpierw popatrz, wyłącznie na wiersze treningowe. Połowę tego, co "odkryjesz" modelując za wcześnie, widać już na macierzy korelacji i wykresie słupkowym, a patrzenie jest dużo tańsze niż dopasowywanie modelu.
 
-## Głos mentora
+Pytanie na dziś: z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki, a co tylko wygląda, jakby powinno — oceniając wyłącznie na wierszach, na które wolno nam patrzeć?
 
-"Dane są już podzielone — dobrze. Nie sięgaj jeszcze po model. Najpierw popatrz, wyłącznie na wiersze treningowe. Połowę tego, co 'odkryjesz' modelując za wcześnie, widać już na macierzy korelacji i wykresie słupkowym, a patrzenie jest dużo tańsze niż dopasowywanie modelu."
+## Co masz zrobić
 
-## Cel lekcji
+- Podzielone dane z Lekcji 3 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`).
+- W `task.py` zaimplementuj sześć funkcji: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`.
+- W notebooku: zobacz histogramy, macierz korelacji (która kolumna numeryczna ma najsilniejszy związek z `delay_minutes`?), i porównaj korelację `num_stops` i `actual_duration_min` z celem — jedna to prawdziwy sygnał, druga jest zwodnicza. Ustal, czemu.
 
-Sprawdzić, które kolumny faktycznie zmieniają się razem z `delay_minutes`, używając korelacji i porównań grupowych na danych treningowych — i zauważyć, gdzie sama korelacja wprowadza w błąd.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Wykres słupkowy pogody nigdy nie pojawia się w macierzy korelacji, bo `weather` jest kategoryczna — ale to też jedyna kolumna, którą kierownik operacyjny TransLine już w Lekcji 1 oznaczył jako niemożliwą do poznania, zanim przesyłka wyjedzie z magazynu. Miej obie te rzeczy na uwadze przy zadaniu poniżej.
 
-Z tego, co TransLine zapisało, co naprawdę przewiduje opóźnienie przesyłki, a co tylko wygląda, jakby powinno — oceniając wyłącznie na wierszach, na które wolno nam patrzeć?
+`test_df` jest tworzony przez `split_shipments`, ale nigdzie dalej w tym notebooku nie jest używany — to jest celowe, nie przeoczenie.
 
-## Co dostajesz
-
-- Podzielone dane z Lekcji 3 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`)
-- `task.py` — sześć funkcji do zaimplementowania: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
-- `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę, w tym Twoje pierwsze wykresy
-
-## Praca w notebooku
-
-1. Otwórz `lesson.ipynb`.
-2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
-3. Zobacz histogramy — coś skośnego albo zaskakującego?
-4. Zobacz macierz korelacji — która kolumna numeryczna ma najsilniejszy związek z `delay_minutes`?
-5. Porównaj korelację `num_stops` i `actual_duration_min` z celem — jedna to prawdziwy sygnał, druga jest zwodnicza. Ustal, czemu.
-6. Zobacz wykres słupkowy pogody — zauważ, że nigdy nie pojawiła się w macierzy korelacji. To też jedyna kolumna, którą kierownik operacyjny TransLine już w Lekcji 1 oznaczył jako niemożliwą do poznania, zanim przesyłka wyjedzie z magazynu — miej obie te rzeczy na uwadze przy zadaniu domowym poniżej.
-7. Zauważ, że `test_df` jest tworzony przez `split_shipments`, ale nigdzie dalej w tym notebooku nie jest używany — to jest celowe, nie przeoczenie.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -44,12 +28,4 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
-
-## Zadanie domowe
-
-W komórce "Your notes" w `lesson.ipynb` wypisz kolumny, które weźmiesz do modelowania w następnej lekcji, i te, które odpuścisz — z jednym zdaniem uzasadnienia dla każdej.
-
-## Refleksja
-
-Mentor pyta: `actual_duration_min` jest *zdefiniowane* jako `planned_duration_min + delay_minutes`, a jednak jego korelacja z `delay_minutes` jest bliska zeru. Jeśli kolumna może być matematycznie związana z Twoim celem i mimo to wykazywać słabą korelację, co to mówi o ufaniu samej macierzy korelacji?
+W komórce "Your notes" wypisz kolumny, które weźmiesz do modelowania w następnej lekcji, i te, które odpuścisz — z jednym zdaniem uzasadnienia dla każdej. I: `actual_duration_min` jest *zdefiniowane* jako `planned_duration_min + delay_minutes`, a jednak jego korelacja z `delay_minutes` jest bliska zeru. Jeśli kolumna może być matematycznie związana z celem i mimo to wykazywać słabą korelację — co to mówi o ufaniu samej macierzy korelacji?

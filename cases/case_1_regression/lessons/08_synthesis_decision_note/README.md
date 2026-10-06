@@ -2,38 +2,23 @@
 
 **Estimated time:** 40-50 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to assemble every prior lesson's model and baseline into one comparison table a non-technical stakeholder can actually read.
-- You'll be able to write a decision note that states a recommendation, its confidence, and its limitations in plain language.
-- You'll be able to decide what's genuinely actionable from seven lessons of analysis and what deliberately isn't.
+Seven lessons of code, and TransLine's ops manager will never read a line of it. What they'll read is what you write today. The baseline, the model, the blind spot, what's actionable and what isn't — all of it only matters if you can say it plainly enough that someone who's never seen a p-value can act on it.
 
-## Mentor's note
+Today's question: given everything you now know, what should TransLine actually do — and how confident should they be?
 
-"Seven lessons of code, and TransLine's ops manager will never read a line of it. What they'll read is what you write today. Everything you found — the baseline, the model, the blind spot, what's actionable and what isn't — only matters if you can say it plainly enough that someone who's never seen a p-value can act on it."
+## What you need to do
 
-## Lesson goal
+- The same split data as Lesson 3, and the same model as Lessons 5-7 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`).
+- In `task.py`, implement one new function, `final_scorecard` — it lays out every predictor this case has built (zero-baseline, mean-baseline, model) side by side on the same held-out data.
+- In the notebook: run the code cell to generate the scorecard, then fill in the seven decision-note sections below it, in plain language, using what you learned across Lessons 1-7. There's no separate homework — the completed decision note is the deliverable for all of Case 1. For an extra exercise: compress the whole note into a 3-sentence executive summary, as if the ops manager only has thirty seconds.
 
-Assemble everything from Lessons 1-7 into a decision note TransLine could actually receive and act on.
+## What to watch for
 
-## Today's analytical question
+The note should be exactly as confident as the evidence actually supports — no more. If a feature (e.g. `weather`) never made it into the model, that's a limitation to state, not something to leave out. The recommendation should give one concrete action, not restate the MAE number.
 
-Given everything you now know, what should TransLine actually do — and how confident should they be?
-
-## What you're given
-
-- The same split data as Lesson 3, and the same model as Lessons 5-7 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
-- `task.py` — one new function, `final_scorecard`, that lays out every predictor this case has built (zero-baseline, mean-baseline, model) side by side on the same held-out data
-- `lesson.ipynb` — this time, most of the notebook is the decision note template itself, not code
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the code cell to generate the scorecard.
-3. Fill in each of the seven decision-note sections below it, in plain language, using what you learned across Lessons 1-7.
-4. There is no separate homework this lesson — the completed decision note is the deliverable for all of Case 1.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -41,12 +26,6 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete. This checks the scorecard numbers — it cannot check your decision note's writing, which is graded on communication and interpretation (see [`ASSESSMENT_RUBRIC.md`](../../../../ASSESSMENT_RUBRIC.md) and this lesson's [`exemplar_decision_note.md`](exemplar_decision_note.md) for a model answer).
+This checks the scorecard numbers — it can't check your decision note's writing, which is graded on communication and interpretation (see [`ASSESSMENT_RUBRIC.md`](../../../../ASSESSMENT_RUBRIC.md) and this lesson's [`exemplar_decision_note.md`](exemplar_decision_note.md) for a model answer).
 
-## Homework
-
-None separately — but if you want an extra exercise, try compressing your entire decision note into a 3-sentence executive summary, as if the ops manager only has thirty seconds.
-
-## Reflection
-
-The mentor asks: if you had to cut one section of your decision note to fit on a single slide, which one would you keep, and which would you cut — and what does that choice tell you about what actually matters to TransLine?
+If you had to cut one section to fit the note on a single slide, which one would you keep, and which would you cut — and what does that choice tell you about what actually matters to TransLine?

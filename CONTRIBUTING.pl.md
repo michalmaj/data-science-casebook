@@ -32,7 +32,9 @@ Każda lekcja znajduje się w `cases/<case>/lessons/<NN_nazwa_lekcji>/` i potrze
 
 Każdy `lesson.ipynb` zaczyna się od komórki `%load_ext autoreload` / `%autoreload 2` (zaraz po komórce markdown z wprowadzeniem) — to dzięki temu edycje `task.py` pojawiają się w działającym notebooku bez restartu kernela.
 
-Każdy `README.md`/`README.pl.md` zaczyna się od linii `**Estimated time:** X-Y min` (`**Szacowany czas:**` po polsku) i sekcji `## Learning outcomes` (`## Efekty uczenia się`, 2-4 punkty, "Będziesz umieć...") zaraz po tytule, przed pierwszą sekcją lekcji (zazwyczaj "Mentor's note"). Zakres czasu to edytorska ocena, nie zmierzony fakt — oprzyj go na poziomie prowadzenia case'u i realnym obciążeniu implementacyjnym `task.py` tej lekcji, a każdy punkt efektów uczenia się uzasadnij tym, czego faktycznie uczą funkcje i pytanie analityczne tej konkretnej lekcji, nie generycznym wypełniaczem.
+Każdy `README.md`/`README.pl.md` zaczyna się od linii `**Estimated time:** X-Y min` (`**Szacowany czas:**` po polsku) i sekcji `## Learning outcomes` (`## Efekty uczenia się`, 2-4 punkty, "Będziesz umieć...") zaraz po tytule, przed pierwszą sekcją lekcji (zazwyczaj "Mentor's note"). Zakres czasu to edytorska ocena, nie zmierzony fakt — oprzyj go na poziomie prowadzenia case'u i realnym obciążeniu implementacyjnym `task.py` tej lekcji, a każdy punkt efektów uczenia się uzasadnij tym, czego uczą funkcje i pytanie analityczne tej konkretnej lekcji, nie generycznym wypełniaczem.
+
+**Wyjątek pilotażowy:** lekcje Case 1 używają innej, prostszej struktury sekcji (`Po co to robimy` / `Co masz zrobić` / `Na co zwrócić uwagę` / `Sprawdź się`, zmiennej zależnie od lekcji, bez osobnych nagłówków "Efekty uczenia się" czy "Głos mentora") jako pilotażu UX — zobacz jej lekcje po wzorzec. To nie zostało jeszcze przeniesione na Case 2, Case 3 ani Capstone; dla nich obowiązuje kontrakt powyżej, aż do propagacji.
 
 **Zasada samodzielności (self-containment)**: jeśli lekcja potrzebuje funkcji, którą zdefiniowała już wcześniejsza lekcja w tym samym case'ie (np. `load_dataset`, `split_dataset`), odtwórz ją bajt-w-bajt w `task.py`/`solution.py` nowej lekcji — nigdy nie importuj jej z modułu innej lekcji. Lekcje muszą dać się uruchomić i ocenić w izolacji; student przechodzący od razu do Lekcji 5 nie powinien potrzebować plików z Lekcji 3. Oznacza to, że pewne powtórzenia między lekcjami case'a są oczekiwane i celowe, nie błędem do posprzątania.
 
@@ -61,7 +63,7 @@ Każdy śledzony przez git plik `*.md` potrzebuje polskiego odpowiednika (`tools
 
 Checker weryfikuje też strukturalną zgodność EN/PL: każda para musi mieć tę samą sekwencję poziomów nagłówków Markdown (`#`, `##`, `###`...). Porównuje wyłącznie strukturę, nie treść — więc dłuższe albo krótsze tłumaczenie nigdy nie zawiedzie sprawdzenia — ale dodanie, usunięcie albo przestawienie sekcji w jednym języku bez odzwierciedlenia tego w drugim już tak.
 
-Kod, docstringi, komentarze i komunikaty commitów są wyłącznie po angielsku — również wewnątrz notebooków. Komórki markdown w `lesson.ipynb` są wyłącznie po angielsku, nawet w lekcjach, których `README.pl.md` jest po polsku; tylko brief jest dwujęzyczny, nie przestrzeń robocza.
+Kod, docstringi, komentarze i komunikaty commitów są wyłącznie po angielsku — również wewnątrz notebooków. Komórki markdown w `lesson.ipynb` są wyłącznie po angielsku, nawet w lekcjach, których `README.pl.md` jest po polsku; tylko brief jest dwujęzyczny, nie przestrzeń robocza. **Wyjątek pilotażowy:** notebook Lekcji 1 Case 1 pilotuje dwujęzyczne *nagłówki sekcji* (`## First look / Pierwszy rzut oka`) — tylko krótkie nagłówki nawigacyjne dostają polski dopisek inline; jednoliniowe instrukcje i cały kod zostają wyłącznie po angielsku, i nie powstaje drugi plik notebooka. Jeszcze nie zastosowane poza tą jedną lekcją.
 
 ## Regenerowanie danych case'a
 

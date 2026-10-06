@@ -1,6 +1,6 @@
 # Wzorcowa notatka decyzyjna — Case 1 (TransLine)
 
-*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 1. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żebyś mógł/mogła porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
+*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 1. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żeby można było porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
 
 ## 1. Pytanie biznesowe
 
@@ -8,7 +8,7 @@ Czy możemy przewidzieć, o ile minut opóźni się dostawa TransLine, na podsta
 
 ## 2. Podejście
 
-Użyłem/am danych o dostawach TransLine (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` jako cechy, `delay_minutes` jako cel), podzieliłem/am 80/20 na train/test z ustalonym seedem, a następnie uzupełniłem/am niewielką liczbę brakujących wartości `driver_experience_years` medianą wyłącznie ze zbioru treningowego, zastosowaną do obu zbiorów. Porównałem/am dwa baseline'y — zawsze przewidujący 0 minut opóźnienia i zawsze przewidujący średnie opóźnienie ze zbioru treningowego — z regresją liniową dopasowaną na czterech cechach. Wszystkie trzy zostały ocenione na tym samym odłożonym zbiorze testowym.
+Wykorzystano dane o dostawach TransLine (`distance_km`, `num_stops`, `driver_experience_years`, `vehicle_age_years` jako cechy, `delay_minutes` jako cel), podzielono je 80/20 na zbiór treningowy i testowy z ustalonym seedem, a następnie uzupełniono niewielką liczbę brakujących wartości `driver_experience_years` medianą wyłącznie ze zbioru treningowego, zastosowaną do obu zbiorów. Porównano dwa modele bazowe — zawsze przewidujący 0 minut opóźnienia i zawsze przewidujący średnie opóźnienie ze zbioru treningowego — z regresją liniową dopasowaną na czterech cechach. Wszystkie trzy zostały ocenione na tym samym odłożonym zbiorze testowym.
 
 ## 3. Wyniki
 
@@ -41,4 +41,4 @@ Wdrożyć model liniowy jako flagę do triażu, nie jako obietnicę czasu dostaw
 
 ## Dlaczego to dobra odpowiedź
 
-Ta notatka zasługuje na "Wzorowy" w kryterium **Poprawność modelowania/oceny**, ponieważ każda liczba w tabeli Wyników pochodzi z tego samego odłożonego zbioru testowego, a dwa baseline'y sprawiają, że faktyczny wkład modelu ("1,9 minuty lepiej niż samo zgadywanie średniej") jest czytelny, zamiast ukryty za jedną efektowną liczbą. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, ponieważ sekcja 4 nie mówi tylko "model ma ograniczenia" — nazywa konkretnie pogodę, wyjaśnia *dlaczego* została wykluczona (dostępność cech w momencie predykcji, nie przeoczenie), i przewiduje *jak* ta luka objawi się w błędach (gorzej konkretnie w dni złej pogody). Sekcja 7 zasługuje na "Wzorowy" w **Komunikacji**, bo rekomendacja to konkretna granica zastosowania ("flaga do triażu, nie obietnica dla klienta"), a nie powtórzenie liczby MAE.
+Ta notatka zasługuje na "Wzorowy" w kryterium **Poprawność modelowania/oceny**, ponieważ każda liczba w tabeli Wyników pochodzi z tego samego odłożonego zbioru testowego, a dwa modele bazowe sprawiają, że wkład modelu ("1,9 minuty lepiej niż samo zgadywanie średniej") jest czytelny, zamiast ukryty za jedną efektowną liczbą. Zasługuje na "Wzorowy" w **Interpretacji i ograniczeniach**, ponieważ sekcja 4 nie mówi tylko "model ma ograniczenia" — nazywa konkretnie pogodę, wyjaśnia *dlaczego* została wykluczona (dostępność cech w momencie predykcji, nie przeoczenie), i przewiduje *jak* ta luka objawi się w błędach (gorzej konkretnie w dni złej pogody). Sekcja 7 zasługuje na "Wzorowy" w **Komunikacji**, bo rekomendacja to konkretna granica zastosowania ("flaga do triażu, nie obietnica dla klienta"), a nie powtórzenie liczby MAE.
