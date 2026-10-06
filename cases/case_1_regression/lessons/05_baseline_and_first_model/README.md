@@ -16,7 +16,7 @@ Today's question: if TransLine had no model and just guessed the same number eve
 
 ## What to watch for
 
-This lesson computes the mean-baseline's value from `train_df` in both calls to `predict_mean_baseline` — even the one scored against `test_df`. That's still fair, because the mean is only *applied* to the test set, not computed from it — the same logic as Lesson 3's imputation. Computing `correlation_with_target` on `test_df` would not be fair, because there the test set itself would be the source of the statistic, not just its recipient.
+This lesson computes the mean-baseline's value from `train_df` in both calls to `predict_mean_baseline` — even the one scored against `test_df`. That's still fair. Why? And why would computing `correlation_with_target` on `test_df` not be?
 
 ## Check your work
 

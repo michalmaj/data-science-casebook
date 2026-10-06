@@ -16,9 +16,9 @@ Today's question: are Lesson 5's model's mistakes random, or do they follow a pa
 
 ## What to watch for
 
-Zero correlation between residuals and features already in the model is guaranteed by how linear regression fits its coefficients — it's not a sign of quality. The check that actually tells you something is the mean residual by weather, because `weather` was never given to the model, so a pattern there isn't mathematically forced.
+The residuals' correlation with every feature already in the model comes out essentially zero — think about why that's guaranteed by how linear regression fits its coefficients, rather than a sign of quality. The check that actually tells you something is the mean residual by weather, because `weather` was never given to the model.
 
-This lesson analyzes residuals on the *training* set, not the test set — and that's fine, because we're not evaluating performance here, we're looking for a pattern in the model's errors to understand what it's missing. That's a different question from "how well does this generalize," which Lesson 5 already settled on the test set.
+This lesson analyzes residuals on the *training* set, not the test set — Lesson 5 was strict about never touching test data until final scoring. Why is it still fair to look at training residuals here — what are we using them for that's different from evaluating performance?
 
 ## Check your work
 

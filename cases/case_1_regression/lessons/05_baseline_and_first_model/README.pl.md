@@ -16,7 +16,7 @@ Pytanie na dziś: jeśli TransLine nie miałoby żadnego modelu i po prostu zgad
 
 ## Na co zwrócić uwagę
 
-Ta lekcja liczy wartość modelu bazowego na średniej z `train_df` w obu wywołaniach `predict_mean_baseline` — nawet tym ocenianym względem `test_df`. To wciąż jest uczciwe, bo średnia jest tylko *stosowana* do zbioru testowego, nie wyliczona z niego — tak samo jak imputacja w Lekcji 3. Liczenie `correlation_with_target` na `test_df` by już nie było bezpieczne, bo tam sam zbiór testowy byłby źródłem statystyki, nie jej odbiorcą.
+Ta lekcja liczy wartość modelu bazowego na średniej z `train_df` w obu wywołaniach `predict_mean_baseline` — nawet tym ocenianym względem `test_df`. To wciąż jest uczciwe. Czemu? I czemu liczenie `correlation_with_target` na `test_df` już by uczciwe nie było?
 
 ## Sprawdź się
 

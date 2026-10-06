@@ -16,7 +16,7 @@ Pytanie na dziś: gdy już wydzielimy dane, na których uczciwie przetestujemy w
 
 ## Na co zwrócić uwagę
 
-`test_df` w tej lekcji nie jest dotykany poza zliczeniem brakujących wartości i uzupełnieniem ich liczbą wyliczoną z treningu. To jest różnica, która decyduje: uzupełnienie braków w zbiorze testowym statystyką z treningu jest bezpieczne, bo zbiór testowy nie wpływa na tę statystykę — tylko ją otrzymuje. Liczenie tej samej statystyki z samego zbioru testowego już by nie było bezpieczne.
+`test_df` w tej lekcji nie jest dotykany poza zliczeniem brakujących wartości i uzupełnieniem ich liczbą wyliczoną z treningu. Uzupełnienie braków w zbiorze testowym statystyką z treningu jest bezpieczne — ale czemu? I czemu liczenie tej samej statystyki z samego zbioru testowego już by bezpieczne nie było?
 
 ## Sprawdź się
 

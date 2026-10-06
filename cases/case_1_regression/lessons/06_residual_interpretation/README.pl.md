@@ -16,9 +16,9 @@ Pytanie na dziś: czy błędy modelu z Lekcji 5 są przypadkowe, czy mają wzorz
 
 ## Na co zwrócić uwagę
 
-Zerowa korelacja reszt z cechami, które model już ma, jest gwarantowana przez sposób, w jaki regresja liniowa dopasowuje współczynniki — nie oznacza dobrej jakości modelu. Sprawdzeniem, które faktycznie coś mówi, jest średnia reszta wg pogody — bo `weather` nigdy nie zostało podane modelowi, więc wzorzec tam nie jest wymuszony matematycznie.
+Korelacja reszt z cechami, które model już ma, wychodzi praktycznie zerowa — zastanów się, czemu to jest gwarantowane przez sposób, w jaki regresja liniowa dopasowuje współczynniki, a nie oznaka dobrej jakości modelu. Sprawdzeniem, które faktycznie coś mówi, jest średnia reszta wg pogody, bo `weather` nigdy nie zostało podane modelowi.
 
-Ta lekcja analizuje reszty na zbiorze *treningowym*, nie testowym — i to jest w porządku, bo nie oceniamy tu skuteczności modelu, tylko szukamy wzorca w jego błędach, żeby zrozumieć, co model przeocza. To inne pytanie niż "jak dobrze model generalizuje", które Lekcja 5 już rozstrzygnęła na zbiorze testowym.
+Ta lekcja analizuje reszty na zbiorze *treningowym*, nie testowym — Lekcja 5 była bardzo restrykcyjna co do nietykania danych testowych przed finalną oceną. Czemu tutaj mimo to jest w porządku patrzeć na reszty treningowe — do czego ich używamy, że różni się to od oceny skuteczności?
 
 ## Sprawdź się
 

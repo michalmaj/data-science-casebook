@@ -16,7 +16,7 @@ Today's question: once we set aside data to test on honestly, what's actually le
 
 ## What to watch for
 
-`test_df` in this lesson never gets touched beyond counting its missing values and filling them with a number derived from training. That distinction is what makes it safe: filling test's own gaps with a train-only statistic is fine, because the test set doesn't influence that statistic — it only receives it. Computing the same statistic from the test set itself would not be safe.
+`test_df` in this lesson never gets touched beyond counting its missing values and filling them with a number derived from training. Filling test's own gaps with a train-only statistic is safe — but why? And why would computing that same statistic from the test set itself not be?
 
 ## Check your work
 
