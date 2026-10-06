@@ -12,7 +12,7 @@ Pytanie na dziś: mając to wszystko, co teraz wiadomo, co Meridian Outlet powin
 
 - Te same wyczyszczone, podzielone dane i model co w Lekcjach 5-7 (odtworzone tutaj przez `load_and_merge_orders`, `split_orders`, `fit_classifier`).
 - W `task.py` zaimplementuj jedną nową funkcję, `final_scorecard` — zestawia obok siebie każdy predyktor zbudowany w tym case'ie (model bazowy większościowy, model przy domyślnym progu, model przy wybranym progu) na tych samych danych testowych.
-- W notebooku: odpal komórkę kodu, żeby wygenerować scorecard, a potem wypełnij siedem sekcji notatki decyzyjnej pod nią, prostym językiem, wykorzystując to, czego nauczyłeś się w Lekcjach 1-7. Nie ma osobnego zadania domowego — kompletna notatka decyzyjna jest deliverable'em całego Case'u 2. Dla dodatkowego ćwiczenia: skompresuj całą notatkę do trzyzdaniowego podsumowania wykonawczego, jakby menedżer operacyjny miał tylko trzydzieści sekund.
+- W notebooku: odpal komórkę kodu, żeby wygenerować scorecard, a potem wypełnij siedem sekcji notatki decyzyjnej pod nią, prostym językiem, wykorzystując wiedzę z Lekcji 1-7. Nie ma osobnego zadania domowego — kompletna notatka decyzyjna jest deliverable'em całego Case'u 2. Dla dodatkowego ćwiczenia: skompresuj całą notatkę do trzyzdaniowego podsumowania wykonawczego, jakby menedżer operacyjny miał tylko trzydzieści sekund.
 
 ## Na co zwrócić uwagę
 
