@@ -2,39 +2,23 @@
 
 **Szacowany czas:** 35-45 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć ponownie dopasować model na różnych podzestawach cech, żeby sprawdzić, czy historia współczynnika przetrwa dodanie skorelowanych zmiennych.
-- Będziesz umieć odróżnić współczynnik, który możesz interpretować przyczynowo, od takiego, którego wolno Ci użyć tylko do predykcji.
-- Będziesz umieć zdecydować, na podstawie konkretnego testu, a nie intuicji, które wnioski są bezpieczne do przekazania klientowi jako rekomendacja przyczynowa.
+Już wiadomo, co koreluje z opóźnieniem i co poprawia predykcję. Żadne z tych dwóch nie mówi, co *zmienić*, żeby naprawić opóźnienie. To trzy różne pytania, a TransLine zaraz zada to trzecie — bo to jedyne, na które może coś poradzić.
 
-## Głos mentora
+Pytanie na dziś: którym współczynnikom modelu można zaufać na tyle, żeby zbudować na nich rekomendację, a których nie wolno w ogóle interpretować?
 
-"Znalazłeś/znalazłaś to, co koreluje z opóźnieniem, i to, co poprawia predykcję. Żadne z tych dwóch nie mówi Ci, co *zmienić*, żeby naprawić opóźnienie. To trzy różne pytania, a TransLine zaraz zada Ci to trzecie — bo to jedyne, na które faktycznie mogą coś poradzić."
+## Co masz zrobić
 
-## Cel lekcji
+- Te same podzielone dane co w Lekcji 3 i to samo podejście do dopasowania modelu co w Lekcji 5 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`).
+- W `task.py` zaimplementuj dwie nowe funkcje: `fit_model_on` (trenowanie na dowolnym zestawie cech, nie tylko stałym) i `coefficient_for` (odczyt współczynnika konkretnej cechy).
+- W notebooku: porównaj współczynnik `num_stops` wytrenowany samodzielnie vs. razem z innymi cechami — zauważ, jak mało się zmienia. Porównaj współczynnik `distance_km` wytrenowany samodzielnie vs. razem z `planned_duration_min` — zauważ, jak bardzo się zmienia, i sprawdź ich korelację, żeby zrozumieć czemu.
 
-Nauczyć się konkretnego sposobu sprawdzania, czy historia stojąca za współczynnikiem jest wiarygodna — przez sprawdzenie, czy przetrwa dodanie innych, skorelowanych zmiennych do modelu.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Konkretny sposób sprawdzenia, czy historia za współczynnikiem jest wiarygodna: sprawdzić, czy przetrwa dodanie innych, skorelowanych zmiennych do modelu. Współczynnik, który się nie zmienia, zasługuje na więcej zaufania niż ten, który skacze w zależności od tego, co jeszcze jest w modelu — ale stabilność współczynnika to wciąż nie dowód przyczynowości, tylko argument za tym, że warto go dalej sprawdzać.
 
-Którym współczynnikom modelu możesz zaufać na tyle, żeby zbudować na nich rekomendację, a których w ogóle nie masz prawa interpretować?
-
-## Co dostajesz
-
-- Te same podzielone dane co w Lekcji 3, i to samo podejście do dopasowania modelu co w Lekcji 5 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`)
-- `task.py` — dwie nowe funkcje: `fit_model_on` (trenowanie na dowolnym zestawie cech, nie tylko stałym) i `coefficient_for` (odczyt współczynnika konkretnej cechy)
-- `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
-
-## Praca w notebooku
-
-1. Otwórz `lesson.ipynb`.
-2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
-3. Porównaj współczynnik `num_stops` wytrenowany samodzielnie vs. razem z innymi cechami — zauważ, jak mało się zmienia.
-4. Porównaj współczynnik `distance_km` wytrenowany samodzielnie vs. razem z `planned_duration_min` — zauważ, jak bardzo się zmienia, i dlaczego (sprawdź ich korelację).
-5. Przeczytaj komórki dyskusyjne i zastanów się, na które czynniki TransLine mogłoby realnie wpłynąć.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -42,12 +26,4 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
-
-## Zadanie domowe
-
-W komórce "Your notes" w `lesson.ipynb` wybierz jeden czynnik i oddziel to, co faktycznie wiesz (skorelowany? predykcyjny?), od tego, czego się tylko domyślasz (przyczynowy? możliwy do zaadresowania?).
-
-## Refleksja
-
-Mentor pyta: współczynnik `num_stops` był stabilny w różnych zestawach cech, co jest dobrym znakiem — ale sama stabilność to wciąż nie dowód przyczynowości. Jaki jest konkretny sposób, w jaki `num_stops` mógłby być proxy dla czegoś innego, zamiast bezpośrednią przyczyną opóźnienia?
+W komórce "Your notes" wybierz jeden czynnik i oddziel to, co wiesz na pewno (skorelowany? predykcyjny?), od tego, czego się tylko domyślasz (przyczynowy? możliwy do zaadresowania?). I: współczynnik `num_stops` był stabilny w różnych zestawach cech, co jest dobrym znakiem — jaki jest konkretny sposób, w jaki `num_stops` mógłby być proxy dla czegoś innego, zamiast bezpośrednią przyczyną opóźnienia?

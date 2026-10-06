@@ -2,39 +2,23 @@
 
 **Szacowany czas:** 35-45 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć dobrać inną, uzasadnioną strategię czyszczenia dla każdej kolumny zamiast jednego uniwersalnego `dropna()`.
-- Będziesz umieć rozpoznać, kiedy usunięcie wierszy jest właściwą decyzją, a kiedy lepsza jest imputacja, na podstawie tego, co brak w danej konkretnej kolumnie faktycznie oznacza.
-- Będziesz umieć rozpoznać, które decyzje czyszczące można bezpiecznie podjąć zanim istnieje podział train/test (stała reguła na poziomie wiersza), a które muszą zaczekać do momentu po podziale (statystyka wyliczona z danych).
+W Lekcji 1 znalazłeś dwie kolumny z brakami i zastanawiałeś się, co z nimi zrobić. "To zależy" było dobrym instynktem — teraz trzeba to rozstrzygnąć konkretnie. Brakująca wartość `weather` i brakująca wartość `driver_experience_years` to nie ten sam rodzaj problemu i nie zasługują na to samo rozwiązanie.
 
-## Głos mentora
+Dane TransLine mają 15 przesyłek z jakimś brakiem. Pytanie na dziś: które wiersze, które kolumny, i co właściwie trzeba zrobić z każdym z nich?
 
-"Ostatnio znalazłeś/znalazłaś dwie kolumny z brakami i zapytałem, co byś z nimi zrobił/zrobiła. 'To zależy' było dobrym instynktem — teraz zróbmy to konkretnie. Brakująca wartość `weather` i brakująca wartość `driver_experience_years` to nie ten sam rodzaj problemu i nie zasługują na to samo rozwiązanie."
+## Co masz zrobić
 
-## Cel lekcji
+- Ten sam `data/transport_delays.csv` z Lekcji 1.
+- W `task.py` zaimplementuj `load_shipments`, `rows_with_missing_data`, `drop_missing_weather`.
+- W notebooku: sprawdź `rows_with_missing_data(df)` i potwierdź, które kolumny są dotknięte i ile wierszy. Zdecyduj — i przygotuj się to obronić — czemu usunięcie wierszy jest dobrą decyzją dla `weather`, a `driver_experience_years` też wymaga naprawy, ale nie teraz. Uzupełnienie medianą wymaga policzenia tej mediany, a to wyliczenie nie jest bezpieczne, zanim wiadomo, które wiersze mogą ją informować — tym zajmie się Lekcja 3.
 
-Zdecydować — i uzasadnić — konkretne działanie czyszczące dla każdej kolumny z brakami danych, a nie jedno uniwersalne `dropna()`.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Nie każdą decyzję czyszczącą można podjąć w tym samym momencie. Usunięcie wiersza to stała reguła na poziomie wiersza — nie zależy od pozostałych danych, więc jest bezpieczne już teraz. Uzupełnienie medianą to statystyka wyliczona z danych — jeśli policzysz ją przed podziałem na zbiór treningowy i testowy, informacja z testu wycieknie do treningu. Dlatego `drop_missing_weather(df)` nie zostawia żadnych braków w `weather`, ale `driver_experience_years` wciąż ma braki po tej lekcji — tak ma być.
 
-Dane TransLine mają 15 przesyłek z jakimś brakiem. Które wiersze, które kolumny, i co właściwie powinniśmy z każdym z nich zrobić?
-
-## Co dostajesz
-
-- Ten sam `data/transport_delays.csv` z Lekcji 1
-- `task.py` — trzy funkcje do zaimplementowania: `load_shipments`, `rows_with_missing_data`, `drop_missing_weather`
-- `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
-
-## Praca w notebooku
-
-1. Otwórz `lesson.ipynb`.
-2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
-3. Zobacz `rows_with_missing_data(df)` — potwierdź, które kolumny są naprawdę dotknięte i ile wierszy.
-4. Zdecyduj (i bądź gotów/gotowa to obronić), czemu usunięcie wierszy to dobra decyzja dla `weather` — i czemu `driver_experience_years` też wymaga naprawy, ale nie teraz: uzupełnienie medianą wymaga policzenia tej mediany, a to wyliczenie nie jest bezpieczne, zanim wiesz, które wiersze mogą je informować. Lekcja 3 się tym zajmie.
-5. Potwierdź, że `drop_missing_weather(df)` nie zostawia żadnych braków w `weather`, a `driver_experience_years` wciąż ma braki — tak ma być.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -42,12 +26,4 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
-
-## Zadanie domowe
-
-W komórce "Your notes" w `lesson.ipynb` napisz dwa-trzy zdania, czemu usunięcie wierszy dla `weather` jest bezpieczne przed podziałem, a uzupełnienie `driver_experience_years` medianą — jeszcze nie.
-
-## Refleksja
-
-Mentor pyta: jeśli TransLine powie Ci później, że brakujące wartości `weather` pochodziły z tego samego tygodnia (awaria czujnika, nie coś losowego), czy to zmienia, czy usunięcie tych wierszy było dobrą decyzją?
+W komórce "Your notes" zapisz: czemu usunięcie wierszy dla `weather` jest bezpieczne przed podziałem, a uzupełnienie `driver_experience_years` medianą — jeszcze nie. I: gdyby TransLine powiedziało później, że braki w `weather` pochodziły z tego samego tygodnia (awaria czujnika, nie coś losowego) — zmienia to, czy usunięcie tych wierszy wciąż było dobrą decyzją?

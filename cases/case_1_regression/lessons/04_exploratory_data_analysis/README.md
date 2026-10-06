@@ -2,41 +2,25 @@
 
 **Estimated time:** 30-40 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to compute and read a correlation matrix to find which numeric columns actually move with the target — on the training split only.
-- You'll be able to compare group means to detect a categorical variable's effect on the target.
-- You'll be able to recognize when a strongly correlated column still can't be used, because it wouldn't be known at prediction time.
+The data is split now — good. Don't reach for a model yet. Look first, training rows only. Half of what you'd "discover" by modeling too early is already visible in a correlation matrix and a bar chart, and looking is a lot cheaper than fitting a model.
 
-## Mentor's note
+Today's question: of what TransLine recorded, what actually predicts a shipment's delay, and what only looks like it should — judged on the rows we're allowed to look at?
 
-"Data's split now — good. Don't reach for a model yet. Look first, on the training rows only. Half of what you'll 'discover' by modeling too early, you can already see in a correlation matrix and a bar chart, and it's a lot cheaper to look than to fit."
+## What you need to do
 
-## Lesson goal
+- The split data from Lesson 3 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`).
+- In `task.py`, implement six functions: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`.
+- In the notebook: look at the histograms, the correlation matrix (which numeric column has the strongest relationship with `delay_minutes`?), and compare `num_stops`'s and `actual_duration_min`'s correlation with the target — one is a real signal, the other is misleading. Work out why.
 
-Find out which columns actually move with `delay_minutes`, using correlation and group comparisons on the training data — and notice where correlation alone is misleading.
+## What to watch for
 
-## Today's analytical question
+The weather bar chart never shows up in the correlation matrix, because `weather` is categorical — but it's also the one column TransLine's ops manager already flagged in Lesson 1 as unknowable before a shipment leaves the depot. Keep both of those in mind for the prompt below.
 
-Of everything TransLine recorded, what actually predicts a shipment's delay, and what only looks like it should — judged only on the rows we're allowed to look at?
+`test_df` gets created by `split_shipments`, but nothing further in this notebook uses it — that's deliberate, not an oversight.
 
-## What you're given
-
-- The training split from Lesson 3 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`)
-- `task.py` — six functions to implement: `load_shipments`, `split_shipments`, `impute_driver_experience`, `correlation_matrix`, `correlation_with_target`, `mean_delay_by_weather`
-- `lesson.ipynb` — the notebook where you'll do the actual work, including your first plots
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Look at the histograms — anything skewed or surprising?
-4. Look at the correlation matrix — which numeric column has the strongest relationship with `delay_minutes`?
-5. Compare `num_stops` and `actual_duration_min`'s correlation with the target — one is a real signal, the other is deceptive. Figure out why.
-6. Look at the weather bar chart — notice it never appeared in the correlation matrix at all. It's also the one column TransLine's ops manager flagged back in Lesson 1 as unknowable before a shipment leaves the depot — keep both facts in mind for the homework below.
-7. Notice `test_df` is produced by `split_shipments` but never used anywhere else in this notebook — that's deliberate, not an oversight.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -44,12 +28,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-In `lesson.ipynb`'s "Your notes" cell, list the columns you'd bring into modeling next lesson, and the ones you'd leave out — with one sentence each on why.
-
-## Reflection
-
-The mentor asks: `actual_duration_min` is *defined* as `planned_duration_min + delay_minutes`, yet its correlation with `delay_minutes` is nearly zero. If a column can be mathematically related to your target and still show a weak correlation, what does that tell you about trusting a correlation matrix on its own?
+In the "Your notes" cell, list which columns you'll carry into modeling next lesson and which you'll drop — one sentence of justification each. And: `actual_duration_min` is *defined* as `planned_duration_min + delay_minutes`, yet its correlation with `delay_minutes` is close to zero. If a column can be mathematically tied to the target and still show weak correlation, what does that say about trusting the correlation matrix on its own?

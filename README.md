@@ -11,6 +11,12 @@ From messy questions to defensible conclusions.
 
 Each case tells a small story: an organization has a problem, the data is incomplete or ambiguous, someone expects an answer, and you decide what can honestly be concluded from it. This course assumes you already have Python fundamentals and a first pass at machine learning concepts.
 
+## If you're a student
+
+The shortest path: Case 1 → Lesson 1 → `README.md` → `task.py` → `pytest` → `lesson.ipynb`.
+
+Start at [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — read its `README.md`, fill in `task.py`, check your work with `uv run pytest`, then open the notebook. That first lesson walks through how every later one is built in more detail.
+
 ## Course structure
 
 Four cases, each a full analytical cycle, with the amount of guidance decreasing as you go:
@@ -58,8 +64,6 @@ Each lesson lives in `cases/<case>/lessons/<NN_lesson_name>/` and follows the sa
 4. Open `lesson.ipynb` and work through the analysis and reflection.
 
 If you edit `task.py` after already importing it in a running notebook, restart the kernel (or re-run the import cell) — Python caches imported modules, so a plain re-run of a cell won't pick up your change.
-
-Start at `cases/case_1_regression/lessons/01_defining_the_question/`.
 
 ## Bilingual
 

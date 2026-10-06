@@ -2,38 +2,23 @@
 
 **Szacowany czas:** 40-50 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć złożyć modele i wartości bazowe ze wszystkich poprzednich lekcji w jedną tabelę porównawczą, którą przeczyta osoba nietechniczna.
-- Będziesz umieć napisać notatkę decyzyjną, która podaje rekomendację, poziom pewności i ograniczenia prostym językiem.
-- Będziesz umieć zdecydować, co z siedmiu lekcji analizy jest naprawdę do wykorzystania, a co świadomie nie.
+Siedem lekcji kodu, a kierownik operacyjny TransLine nigdy nie przeczyta z niego ani linii. Przeczyta to, co napiszesz dzisiaj. Model bazowy, model, ślepy punkt, co jest możliwe do zaadresowania, a co nie — wszystko to ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć wystarczająco prosto, żeby ktoś, kto nigdy nie widział p-value, mógł na tej podstawie działać.
 
-## Głos mentora
+Pytanie na dziś: mając całą tę wiedzę, co TransLine powinno zrobić — i jak bardzo powinno być tego pewne?
 
-"Siedem lekcji kodu, a kierownik operacyjny TransLine nigdy nie przeczyta z niego ani linii. Przeczyta to, co napiszesz dzisiaj. Wszystko, co znalazłeś/znalazłaś — model bazowy, model, ślepy punkt, co jest możliwe do zaadresowania, a co nie — ma znaczenie tylko wtedy, gdy potrafisz to powiedzieć wystarczająco prosto, żeby ktoś, kto nigdy nie widział p-value, mógł na tej podstawie działać."
+## Co masz zrobić
 
-## Cel lekcji
+- Te same podzielone dane co w Lekcji 3 i ten sam model co w Lekcjach 5-7 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`).
+- W `task.py` zaimplementuj jedną nową funkcję, `final_scorecard` — zestawia obok siebie każdy predyktor zbudowany w tym case'ie (model bazowy zero, model bazowy średnia, model) na tych samych danych testowych.
+- W notebooku: odpal komórkę z kodem, żeby wygenerować tabelę wyników, a potem wypełnij siedem sekcji notatki decyzyjnej pod nią, prostym językiem, korzystając z tego, czego nauczyłeś się w Lekcjach 1-7. Nie ma osobnego zadania domowego — kompletna notatka decyzyjna jest deliverable dla całego Case'u 1. Jeśli chcesz dodatkowe ćwiczenie: skompresuj całą notatkę do trzech zdań podsumowania wykonawczego, jakby kierownik operacyjny miał tylko trzydzieści sekund.
 
-Złożyć wszystko z Lekcji 1-7 w notatkę decyzyjną, którą TransLine mogłoby faktycznie otrzymać i na podstawie której mogłoby działać.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Notatka ma być tak pewna, jak faktycznie pozwalają na to dowody — nie bardziej. Jeśli jakaś cecha (np. `weather`) nigdy nie trafiła do modelu, to ograniczenie notatki, nie coś, co można przemilczeć. Rekomendacja ma dać jedną konkretną akcję, nie powtórzenie liczby MAE.
 
-Mając całą tę wiedzę, co TransLine powinno faktycznie zrobić — i jak bardzo powinno być tego pewne?
-
-## Co dostajesz
-
-- Te same podzielone dane co w Lekcji 3, i ten sam model co w Lekcjach 5-7 (odtworzone tutaj przez `load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
-- `task.py` — jedna nowa funkcja, `final_scorecard`, która zestawia obok siebie każdy predyktor zbudowany w tym case'ie (model bazowy zero, model bazowy średnia, model) na tych samych danych testowych
-- `lesson.ipynb` — tym razem większość notebooka to sam szablon notatki decyzyjnej, nie kod
-
-## Praca w notebooku
-
-1. Otwórz `lesson.ipynb`.
-2. Po uzupełnieniu `task.py` odpal komórkę z kodem, żeby wygenerować tabelę wyników.
-3. Wypełnij każdą z siedmiu sekcji notatki decyzyjnej pod nią, prostym językiem, korzystając z tego, czego nauczyłeś/nauczyłaś się w Lekcjach 1-7.
-4. Nie ma osobnego zadania domowego w tej lekcji — kompletna notatka decyzyjna jest deliverable dla całego Case'u 1.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -41,12 +26,6 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. To sprawdza liczby w tabeli wyników — nie może sprawdzić Twojej notatki decyzyjnej, która jest oceniana pod kątem komunikacji i interpretacji (zobacz [`ASSESSMENT_RUBRIC.pl.md`](../../../../ASSESSMENT_RUBRIC.pl.md) oraz [`exemplar_decision_note.pl.md`](exemplar_decision_note.pl.md) tej lekcji po wzorcową odpowiedź).
+To sprawdza liczby w tabeli wyników — nie może sprawdzić Twojej notatki decyzyjnej, która jest oceniana pod kątem komunikacji i interpretacji (zobacz [`ASSESSMENT_RUBRIC.pl.md`](../../../../ASSESSMENT_RUBRIC.pl.md) oraz [`exemplar_decision_note.pl.md`](exemplar_decision_note.pl.md) tej lekcji po wzorcową odpowiedź).
 
-## Zadanie domowe
-
-Brak osobnego — ale jeśli chcesz dodatkowe ćwiczenie, spróbuj skompresować całą swoją notatkę decyzyjną do trzech zdań podsumowania wykonawczego, jakby kierownik operacyjny miał tylko trzydzieści sekund.
-
-## Refleksja
-
-Mentor pyta: gdybyś musiał/musiała wyciąć jedną sekcję swojej notatki decyzyjnej, żeby zmieścić się na jednym slajdzie, którą byś zostawił/zostawiła, a którą wyciął/wycięła — i co ten wybór mówi o tym, co faktycznie ma znaczenie dla TransLine?
+Którą sekcję warto zostawić, a którą wyciąć, żeby notatka zmieściła się na jednym slajdzie? Co ten wybór mówi o tym, co ma znaczenie dla TransLine?

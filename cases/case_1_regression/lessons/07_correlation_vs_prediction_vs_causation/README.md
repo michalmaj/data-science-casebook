@@ -2,39 +2,23 @@
 
 **Estimated time:** 35-45 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to refit a model on different feature subsets to test whether a coefficient's story survives adding correlated variables.
-- You'll be able to distinguish a coefficient you can interpret causally from one you're only entitled to use for prediction.
-- You'll be able to decide, with a concrete test rather than intuition, which findings are safe to hand a stakeholder as a causal recommendation.
+You already know what's correlated with delay and what improves prediction. Neither one tells you what to *change* to fix the delay. Those are three different questions, and TransLine is about to ask you the third one — because that's the one they can actually act on.
 
-## Mentor's note
+Today's question: which of the model's coefficients can you trust enough to build a recommendation on, and which are you not entitled to interpret at all?
 
-"You've found what's correlated with delay, and you've found what improves prediction. Neither one tells you what to *change* to fix the delay. Those are three different questions, and TransLine is about to ask you the third one — because that's the one they can actually act on."
+## What you need to do
 
-## Lesson goal
+- The same split data as Lesson 3, and the same model-fitting approach as Lesson 5 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`).
+- In `task.py`, implement two new functions: `fit_model_on` (fit on any feature list, not just the fixed set) and `coefficient_for` (look up one feature's coefficient).
+- In the notebook: compare `num_stops`'s coefficient fit alone vs. fit alongside the other features — note how little it moves. Compare `distance_km`'s coefficient fit alone vs. fit alongside `planned_duration_min` — note how much it moves, and check their correlation to see why.
 
-Learn a concrete way to tell whether a coefficient's story is trustworthy — by checking whether it survives adding other correlated variables to the model.
+## What to watch for
 
-## Today's analytical question
+A concrete way to tell whether a coefficient's story is trustworthy: check whether it survives adding other correlated variables to the model. A coefficient that doesn't move deserves more trust than one that jumps around depending on what else is in the model — but a stable coefficient still isn't proof of causation, only a reason to keep investigating it.
 
-Which of the model's coefficients can you trust enough to build a recommendation on, and which are you not entitled to interpret at all?
-
-## What you're given
-
-- The same split data as Lesson 3, and the same model-fitting approach as Lesson 5 (reproduced here via `load_shipments`, `split_shipments`, `impute_driver_experience`)
-- `task.py` — two new functions: `fit_model_on` (fit on any feature list, not just the fixed set) and `coefficient_for` (look up one feature's coefficient)
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Compare `num_stops`'s coefficient fit alone vs. fit alongside the other features — note how little it moves.
-4. Compare `distance_km`'s coefficient fit alone vs. fit alongside `planned_duration_min` — note how much it moves, and why (check their correlation).
-5. Read the discussion cells and think through which factors TransLine could plausibly act on.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -42,12 +26,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-In `lesson.ipynb`'s "Your notes" cell, pick one factor and separate out what you actually know (correlated? predictive?) from what you're only guessing at (causal? actionable?).
-
-## Reflection
-
-The mentor asks: `num_stops`'s coefficient was stable across feature sets, which is a good sign — but stability alone still isn't proof of causation. What's a concrete way you could imagine `num_stops` being a proxy for something else, rather than a direct cause of delay?
+In the "Your notes" cell, pick one factor and separate out what you know for sure (correlated? predictive?) from what you're only guessing at (causal? actionable?). And: `num_stops`'s coefficient was stable across feature sets, which is a good sign — what's a concrete way `num_stops` could be a proxy for something else, rather than a direct cause of delay?

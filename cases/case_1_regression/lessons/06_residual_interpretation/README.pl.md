@@ -2,38 +2,25 @@
 
 **Szacowany czas:** 40-50 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć policzyć reszty modelu i traktować je jako dane do zbadania, nie tylko wynik dokładności.
-- Będziesz umieć zgrupować reszty wg zmiennej kategorycznej, żeby wychwycić systematyczny wzorzec zamiast losowego szumu.
-- Będziesz umieć powiązać wzorzec w resztach ze zmienną, której model nigdy nie dostał, i nazwać, co to oznacza dla ślepej plamki modelu.
+Model, który się myli, to nie problem — każdy model gdzieś się myli. Problemem jest nie wiedzieć, *gdzie*. Jeśli błędy są przypadkowym szumem, to najlepsze, co można osiągnąć. Jeśli układają się w konkretny wzorzec, to nie szum — to sygnał, który ignorujemy.
 
-## Głos mentora
+Pytanie na dziś: czy błędy modelu z Lekcji 5 są przypadkowe, czy mają wzorzec — a jeśli mają, na co wskazują?
 
-"Model, który się myli, to nie problem — każdy model gdzieś się myli. Problemem jest nie wiedzieć, *gdzie*. Jeśli Twoje błędy to przypadkowy szum, dobrze, to najlepsze, co można osiągnąć. Jeśli układają się w konkretny wzorzec, to nie szum — to sygnał, który ignorujesz."
+## Co masz zrobić
 
-## Cel lekcji
+- Ten sam podział co w Lekcji 3 i ten sam model co w Lekcji 5, odtworzone tutaj (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`).
+- W `task.py` zaimplementuj trzy nowe funkcje: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`.
+- W notebooku: potwierdź, że korelacja reszt z każdą cechą już w modelu jest praktycznie zerowa, a potem zobacz średnią resztę wg pogody.
 
-Zdiagnozować, co model z Lekcji 5 systematycznie robi źle, i połączyć to ze zmienną, której nigdy nie dostał.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Korelacja reszt z cechami, które model już ma, wychodzi praktycznie zerowa — zastanów się, czemu to jest gwarantowane przez sposób, w jaki regresja liniowa dopasowuje współczynniki, a nie oznaka dobrej jakości modelu. Sprawdzeniem, które faktycznie coś mówi, jest średnia reszta wg pogody, bo `weather` nigdy nie zostało podane modelowi.
 
-Czy błędy tego modelu są przypadkowe, czy mają wzorzec — a jeśli mają, na co wskazują?
+Ta lekcja analizuje reszty na zbiorze *treningowym*, nie testowym — Lekcja 5 była bardzo restrykcyjna co do nietykania danych testowych przed finalną oceną. Czemu tutaj mimo to jest w porządku patrzeć na reszty treningowe — do czego ich używamy, że różni się to od oceny skuteczności?
 
-## Co dostajesz
-
-- Ten sam podział co w Lekcji 3, i ten sam model co w Lekcji 5, odtworzone tutaj (`load_shipments`, `split_shipments`, `impute_driver_experience`, `fit_model`)
-- `task.py` — trzy nowe funkcje do zaimplementowania: `compute_residuals`, `mean_residual_by_weather`, `residual_correlation_with_feature`
-- `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
-
-## Praca w notebooku
-
-1. Otwórz `lesson.ipynb`.
-2. Po uzupełnieniu `task.py` odpal notebook od góry do dołu.
-3. Potwierdź, że korelacja reszt z każdą cechą już w modelu jest praktycznie zerowa — potem zastanów się, *czemu* to jest gwarantowane, a nie oznaka dobrej jakości.
-4. Zobacz średnią resztę wg pogody — to jest sprawdzenie, które faktycznie coś mówi, bo `weather` nigdy nie zostało podane modelowi.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -41,12 +28,4 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
-
-## Zadanie domowe
-
-W komórce "Your notes" w `lesson.ipynb` napisz prostym językiem, co model robi źle i dla jakich przesyłek, i zaproponuj jedną poprawkę, która nie wymaga zbierania nowych danych.
-
-## Refleksja
-
-Mentor pyta: ta lekcja analizowała reszty na zbiorze *treningowym*, nie testowym. Lekcja 5 była bardzo restrykcyjna co do nietykania danych testowych przed finalną oceną. Czemu tutaj mimo to jest w porządku patrzeć na reszty treningowe — do czego ich używamy, że różni się to od oceny skuteczności?
+W komórce "Your notes" napisz prostym językiem, co model robi źle i dla jakich przesyłek, i zaproponuj jedną poprawkę, która nie wymaga zbierania nowych danych.
