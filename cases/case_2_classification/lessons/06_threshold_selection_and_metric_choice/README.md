@@ -2,44 +2,33 @@
 
 **Estimated time:** 40-50 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to sweep a decision threshold and read how precision, recall, and F1 trade off against each other as it moves.
-- You'll be able to carve out a validation split so a threshold decision never gets tuned against the same data used for the final evaluation.
-- You'll be able to connect a threshold choice to its real business cost, instead of picking the number with the best-looking metric.
+We saw the model assign real probabilities, but the default threshold hid all of it. Now we choose the threshold ourselves — and see exactly what we trade away every time we lower it.
 
-## Mentor's note
+We sweep the decision threshold down from 0.5, and see how precision, recall, and F1 trade off as we do — connecting each choice to a real business cost.
 
-"You saw the model assign real probabilities, but the default threshold hid all of it. Now you get to choose the threshold yourself — and see exactly what you trade away every time you lower it."
+Every split in this lesson (`train_df`/`test_df`, then `fit_df`/`val_df`) is the row-level split from Lesson 5, by design: this lesson is tuning for scenario A (how well the model scores future orders from customers Meridian Outlet already knows), not scenario B (brand-new customers) — see Lesson 5 for what that distinction means, if it isn't already clear.
 
-## Lesson goal
+Today's question: how much precision is Meridian Outlet willing to give up to catch more actual returns — and where's a reasonable place to draw that line?
 
-Sweep the decision threshold down from 0.5, and see how precision, recall, and F1 trade off as you do — connecting each choice to a real business cost.
+## What you need to do
 
-Every split in this lesson (`train_df`/`test_df`, then `fit_df`/`val_df`) is the row-level split from Lesson 5, by design: this lesson is tuning for scenario A (how well the model scores future orders from customers Meridian Outlet already knows), not scenario B (brand-new customers) — see Lesson 5 if you haven't already, for what that distinction means and why it matters.
+- The same `data/orders.xlsx` from Lessons 1-5.
+- In `task.py`, implement six functions: `load_and_merge_orders`, `split_orders`, `split_for_validation`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`.
+- In the notebook:
+  1. Confirm `split_orders`/`fit_classifier` reproduce the exact same model as Lesson 5.
+  2. Call `split_for_validation` on `train_df` to carve out `fit_df`/`val_df` — you'll compare thresholds on `val_df`, not on `test_df`.
+  3. Call `predict_at_threshold` at 0.5, 0.3, and 0.2 on `val_df` — watch the number of flagged orders grow.
+  4. Call `classification_metrics` at each threshold on `val_df` — watch recall rise, and precision move too.
+  5. Connect the two kinds of mistakes to what they actually mean: a false positive wrongly flags a good order, a false negative lets a real return slip through unflagged.
+  6. In the last cell, retrain on the full `train_df` and check your chosen threshold on `test_df` — the one time this lesson touches it, and, in fact, the first time anywhere in this case that `test_df` is used to evaluate a model (Lesson 5 did look at `test_df` once, but only to count customer overlap with `train_df` — a fact about the split's structure, not a performance number). By this point the features, the model, and the threshold are all already fixed — nothing about `test_df`'s numbers is allowed to change any of them now.
 
-## Today's analytical question
+## What to watch for
 
-How much precision is Meridian Outlet willing to give up to catch more actual returns — and where's a reasonable place to draw that line?
+This is the first point anywhere in this case where `test_df` actually scores the model — not counting customer overlap, not checking structure, but measuring performance. It happens right at the end, once the features, model, and threshold are already locked.
 
-## What you're given
-
-- The same `data/orders.xlsx` from Lessons 1-5
-- `task.py` — six functions to implement: `load_and_merge_orders`, `split_orders`, `split_for_validation`, `fit_classifier`, `predict_at_threshold`, `classification_metrics`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run the notebook top to bottom.
-3. Confirm `split_orders`/`fit_classifier` reproduce the exact same model as Lesson 5.
-4. Call `split_for_validation` on `train_df` to carve out `fit_df`/`val_df` — you'll compare thresholds on `val_df`, not on `test_df`.
-5. Call `predict_at_threshold` at 0.5, 0.3, and 0.2 on `val_df` — watch the number of flagged orders grow.
-6. Call `classification_metrics` at each threshold on `val_df` — watch recall rise, and precision move too.
-7. Connect the two kinds of mistakes to what they actually mean: a false positive wrongly flags a good order, a false negative lets a real return slip through unflagged.
-8. In the last cell, retrain on the full `train_df` and check your chosen threshold on `test_df` — the one time this lesson touches it, and, in fact, the first time anywhere in this case that `test_df` is used to evaluate a model. (Lesson 5 did look at `test_df` once, but only to count customer overlap with `train_df` — a fact about the split's structure, not a performance number.) By this point the features, the model, and the threshold are all already fixed — nothing about `test_df`'s numbers is allowed to change any of them now.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -47,12 +36,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-In `lesson.ipynb`'s "Your notes" cell, write two to three sentences: pick a threshold you'd actually recommend to Meridian Outlet, and justify it in terms of the cost of a false positive versus a false negative.
-
-## Reflection
-
-The mentor asks: your validation-set numbers predicted what threshold 0.2 would do. When you finally looked at `test_df` in the last cell, did the real numbers land close to what validation predicted, or did they move quite a bit? What would a big gap between the two have told you — and why is it safer to find that out *after* you've already committed to a threshold, rather than while you're still choosing one?
+In the "Your notes" cell, pick a threshold worth recommending to Meridian Outlet, and justify it in terms of the cost of a false positive versus a false negative. And: the validation-set numbers predicted what threshold 0.2 would do — the last cell produces the real number on `test_df`. Does it land close to what validation predicted, or does it move quite a bit? What would a big gap between the two tell you — and why is it safer to find that out *after* a threshold is chosen, rather than while still choosing one?

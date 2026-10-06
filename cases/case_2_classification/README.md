@@ -10,4 +10,8 @@
 
 **What "new data" means here:** this case evaluates the model on *future orders from customers Meridian Outlet already has on file* — not on orders from customers it has never seen at all. Those are different questions with different answers; Lesson 5 shows you exactly how and why.
 
+## New since Case 1
+
+You already know the mechanics (`task.py`, `solution.py`, `pytest`, the notebook) — this case doesn't repeat that. What's actually new: the target is binary and rare (14% of orders), so a single accuracy number can hide a model that's worthless in practice; a classifier also needs a decision threshold chosen on purpose, not a model alone. Watch closely in Lessons 4-6 for how a misleadingly high accuracy, a threshold, and a metric choice each get interrogated before anything is taken at face value.
+
 Lessons in this case live under `lessons/`, numbered in the order you should work through them.
