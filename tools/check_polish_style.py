@@ -30,6 +30,17 @@ _DUAL_GENDER_RE = re.compile(
     r"/[A-Za-zĄąĘęÓóŁłŚśŻżŹźĆćŃń]*(?:ł[aeiouy]ś?|owa)\b"
 )
 
+# Short adjective pairs that don't fit the participle pattern above (no "ł"
+# or "ów" stem) but are just as gendered — "sam/sama", "gotowy/gotowa",
+# "pewny/pewna". Kept as an explicit list rather than widening the main
+# regex, which would start matching unrelated word pairs.
+_SHORT_ADJECTIVE_PAIRS = [
+    "sam/sama",
+    "gotowy/gotowa",
+    "pewny/pewna",
+    "zdecydowany/zdecydowana",
+]
+
 # English-style decimal point in prose, e.g. "0.5" where Polish prose should
 # read "0,5". Only meaningful outside of code, which is stripped before this
 # runs.
@@ -84,6 +95,10 @@ def check_file(path: Path) -> list[str]:
     warnings = []
 
     dual_gender_hits = sorted(set(_DUAL_GENDER_RE.findall(raw)))
+    lowered_raw = raw.lower()
+    for pair in _SHORT_ADJECTIVE_PAIRS:
+        if pair in lowered_raw:
+            dual_gender_hits.append(pair)
     if dual_gender_hits:
         joined = ", ".join(dual_gender_hits)
         warnings.append(f"dual-gender forms (zrobiłeś/zrobiłaś style): {joined}")

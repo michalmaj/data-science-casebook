@@ -2,39 +2,18 @@
 
 **Estimated time:** 55-65 min
 
-## Learning outcomes
+## The decision to make
 
-- You'll be able to apply the same generic split/impute/(scale) sequence regardless of whether your problem turns out to be regression, classification, or clustering.
-- You'll be able to fit a baseline and a first real model matching whichever technique your own chosen dataset actually calls for.
-- You'll be able to state what "one generic pipeline across three techniques" buys you, and where it stops being enough for your specific problem.
+This is where the path actually splits. Regression, classification, clustering — whichever the chosen dataset calls for, fit a baseline first. If it can't be beaten, there's no model yet — there's a coincidence.
 
-## Mentor's note
+The split below uses the same recipe as Lesson 2 (and Lesson 3, for the two predictive paths) — this lesson doesn't introduce a new split, it reuses the one the data-quality and exploration steps already relied on.
 
-"This is where the path actually splits. Regression, classification, clustering — whichever your dataset calls for, fit a baseline first. If you can't beat a baseline, you don't have a model yet, you have a coincidence."
+## What you have to work with
 
-## Lesson goal
+- `task.py` — seven functions: `load_dataset` (no cleaning, replaces the old `load_clean_dataset`), `split_dataset`, `impute_missing`, `scale_features` (standardizes features — decide for yourself whether the chosen technique needs this, and justify it in your notes; also returns the fitted scaler), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one matching the chosen dataset).
+- In the notebook: set `DATASET_NAME`, run the cell that loads, splits, imputes, and (for clustering) scales, then fits a model. Compare it to the baseline.
 
-Split your data, fit a baseline, and fit a first real model — using whichever technique your chosen dataset actually calls for.
-
-## Today's analytical question
-
-Does your first model actually do better than the simplest possible baseline for your problem?
-
-## What you're given
-
-- The same dataset you picked in Lesson 1
-- `task.py` — seven functions: `load_dataset` (no cleaning, replaces the old `load_clean_dataset`), `split_dataset` (works for any dataset — takes an optional `stratify_column` to keep class balance across train/test for classification), `impute_missing` (fills missing values using training-set statistics only, in the feature columns you specify, applied to both train and test), `scale_features` (standardizes features — decide for yourself whether your technique needs this, and justify it in your notes; also returns the fitted scaler), and one fit function per technique: `fit_regression_baseline_and_model`, `fit_classification_baseline_and_model`, `fit_clustering_model` (use only the one that matches your dataset)
-- `lesson.ipynb` — the notebook where you'll fit your baseline and model
-
-The split below uses the same recipe as Lesson 2 (and Lesson 3, for the two predictive paths) — this lesson doesn't introduce a new split, it reuses the one your data quality and exploration steps already relied on.
-
-## Working in the notebook
-
-- Set `DATASET_NAME` to match what you picked in Lesson 1 — the preview cell shows your train/test split sizes.
-- Run the cell below it — it loads, splits, imputes (using training-set statistics only), and, for clustering, scales your dataset, then fits your model, all in one place.
-- Compare your model to the baseline.
-
-## Self-check
+## Justify it
 
 From this lesson's folder, run:
 
@@ -42,12 +21,6 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete. Starting this lesson, these checks verify both structure/reasonableness (shapes, convergence, "the model beats the baseline on training data") and exact values for the suggested feature sets (e.g. the baseline itself, the number of model coefficients) — they confirm your generic functions behave correctly, not that your particular feature choices are the best ones. There's no single correct model once you're choosing your own features, and these checks don't grade that choice.
+Starting this lesson, these checks verify both structure/reasonableness and exact values for the suggested feature sets — they confirm the generic functions behave correctly, not that a particular feature choice is the best one. There's no single correct model once features are chosen independently, and these checks don't grade that choice.
 
-## Homework
-
-Two to three sentences: using the specific feature set you chose (whether the suggested one or your own), how much better is your model than the baseline, and is that difference big enough to matter for your Lesson 1 question? If you're on the clustering path, also say in one sentence why you scaled your features before fitting (or didn't).
-
-## Reflection
-
-The mentor asks: a model that fits the training data well isn't automatically a model that will work on new data. What would make you suspicious that this model is just memorizing its training set rather than learning something real?
+Two to three sentences: using the chosen feature set (suggested or independent), how much better is the model than the baseline, and is that difference big enough to matter for the Lesson 1 question? On the clustering path, add one sentence justifying the decision to scale features before fitting (or not). And: a model that fits the training data well isn't automatically a model that will work on new data. What would raise suspicion that this model is just memorizing its training set rather than learning something real?

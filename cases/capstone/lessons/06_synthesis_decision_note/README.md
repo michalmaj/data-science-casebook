@@ -2,38 +2,18 @@
 
 **Estimated time:** 60-75 min
 
-## Learning outcomes
+## The decision to make
 
-- You'll be able to assemble your own case's baseline, model, and evaluation results into one scorecard, in whichever format matches your problem type.
-- You'll be able to write a decision note for the client you chose in Lesson 1, stating a recommendation and its confidence honestly.
-- You'll be able to decide what your own client should actually do, having built and defended every step of the analysis yourself.
+Five lessons of code, and the client will never read a line of it. What they'll read is what gets written today. The baseline, the model, how well it generalized to data it never saw — all of it only matters if it can be said plainly enough that someone who's never fit a model can act on it.
 
-## Mentor's note
+Given everything now known: what should the client actually do — and how confident should they be?
 
-"Five lessons of code, and your client will never read a line of it. What they'll read is what you write today. Everything you found — the baseline, the model, how well it generalized to data it never saw — only matters if you can say it plainly enough that someone who's never fit a model can act on it."
+## What you have to work with
 
-## Lesson goal
+- `task.py` — the eleven functions from Lessons 4-5, reproduced (`evaluate_classification` now takes an optional `threshold`), plus three new ones: `final_regression_scorecard`, `final_classification_scorecard` (also takes `threshold` — pass whatever was locked in during Lesson 5), `final_clustering_summary`.
+- In the notebook: generate the scorecard or segment summary (for the LendWell path, set `CHOSEN_THRESHOLD` to whatever was locked in during Lesson 5, not 0.5 by default), then fill in the seven decision-note sections, using what was learned across Lessons 1-5. There's no separate homework — the completed decision note is the deliverable for the whole capstone.
 
-Assemble everything from Lessons 1-5 into a decision note your Lesson 1 client could actually receive and act on.
-
-## Today's analytical question
-
-Given everything you now know, what should your client actually do — and how confident should they be?
-
-## What you're given
-
-- The same dataset you picked in Lesson 1
-- `task.py` — the eleven functions from Lessons 4-5, reproduced (`evaluate_classification` now takes an optional `threshold`), plus three new ones: `final_regression_scorecard`, `final_classification_scorecard` (also takes `threshold` — pass whatever you locked in during Lesson 5), `final_clustering_summary` (use only the one that matches your dataset)
-- `lesson.ipynb` — this time, most of the notebook is the decision note template itself, not code
-
-## Working in the notebook
-
-1. Open `lesson.ipynb`.
-2. Once `task.py` is filled in, run only the code cell matching your dataset's problem type to generate your scorecard or segment summary — for the LendWell path, set `CHOSEN_THRESHOLD` to whatever you locked in during Lesson 5's validation sweep, not 0.5 by default.
-3. Fill in each of the seven decision-note sections below it, in plain language, using what you learned across Lessons 1-5.
-4. There is no separate homework this lesson — the completed decision note is the deliverable for the whole capstone.
-
-## Self-check
+## Justify it
 
 From this lesson's folder, run:
 
@@ -41,12 +21,6 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete. This checks the scorecard and segment-summary numbers — it cannot check your decision note's writing, which is graded on communication and interpretation (see [`ASSESSMENT_RUBRIC.md`](../../../../ASSESSMENT_RUBRIC.md) and this lesson's [`exemplar_decision_note.md`](exemplar_decision_note.md) for a model answer).
+This checks the scorecard and segment-summary numbers — it can't check the decision note's writing, which is graded on communication and interpretation (see [`ASSESSMENT_RUBRIC.md`](../../../../ASSESSMENT_RUBRIC.md) and this lesson's [`exemplar_decision_note.md`](exemplar_decision_note.md) for a model answer).
 
-## Homework
-
-None separately — but if you want an extra exercise, try compressing your entire decision note into a 3-sentence executive summary, as if your client only has thirty seconds.
-
-## Reflection
-
-The mentor asks: if you had to cut one section of your decision note to fit on a single slide, which one would you keep, and which would you cut — and what does that choice tell you about what actually matters to your client?
+For an extra exercise: compress the whole decision note into a 3-sentence executive summary, as if the client only has thirty seconds. And: which section of the note would be worth keeping, and which cutting, to fit it on a single slide — and what does that choice say about what actually matters to the client?

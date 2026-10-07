@@ -2,36 +2,23 @@
 
 **Estimated time:** 40-50 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to decide which columns genuinely describe the behavior you want to segment on, versus which don't belong in the model.
-- You'll be able to scale features so no single one dominates a distance-based algorithm purely because of its raw units.
+Session counts range from 0 to 65, minutes watched from 0 to thousands, tenure in hundreds of days. Feed that straight into a distance-based algorithm and tenure will swamp everything else. That needs fixing before anything gets clustered.
 
-## Mentor's note
+Today's question: which of Aurora Stream's subscriber features actually belong in a clustering model, and what happens to them once they're all on the same scale?
 
-"Session counts range from 0 to 65, minutes watched from 0 to thousands, tenure in hundreds of days. Feed that straight into a distance-based algorithm and tenure will swamp everything else. Fix that before you cluster anything."
+## What you need to do
 
-## Lesson goal
+- The same `data/aurora_stream.sqlite` from Lesson 1.
+- In `task.py`, implement `load_subscriber_features`, `scale_features`.
+- In the notebook: load the per-subscriber table again, scale the four behavioral features. Confirm the scaled columns actually have mean 0 and standard deviation 1.
 
-Decide which columns actually describe viewing behavior, and scale them so no single feature dominates distance calculations.
+## What to watch for
 
-## Today's analytical question
+The feature with the largest raw range wins the distance calculation, not the one with the most business meaning — unless everything's on the same scale. That's what scaling actually does: it doesn't make a feature more meaningful, it just removes an advantage that came purely from units.
 
-Which of Aurora Stream's subscriber features actually belong in a clustering model, and what happens to them once they're all on the same scale?
-
-## What you're given
-
-- The same `data/aurora_stream.sqlite` from Lesson 1
-- `task.py` — two functions to implement: `load_subscriber_features`, `scale_features`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-- Load the per-subscriber table again.
-- Scale the four behavioral features.
-- Confirm the scaled columns actually have mean 0 and standard deviation 1.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -39,12 +26,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-One sentence: why weren't `plan_tier` and `country` included in `scale_features`?
-
-## Reflection
-
-The mentor asks: `tenure_days` ranges from 35 to 895 — nearly 25x. `session_count` ranges from 0 to 65. Before scaling, which of these two features would have dominated a distance calculation, and by roughly how much?
+One sentence: why weren't `plan_tier` and `country` included in `scale_features`? And: `tenure_days` ranges from 35 to 895 — nearly 25x. `session_count` ranges from 0 to 65. Before scaling, which of these two features would have dominated a distance calculation, and by roughly how much?

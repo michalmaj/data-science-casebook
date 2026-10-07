@@ -1,6 +1,6 @@
 # Wzorcowa notatka decyzyjna — Case 3 (Aurora Stream)
 
-*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 3. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żebyś mógł/mogła porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
+*To jest wzorcowa odpowiedź, napisana po ukończeniu całego Case'u 3. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żeby można było porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować.*
 
 ## 1. Pytanie biznesowe
 
@@ -8,7 +8,7 @@ Czy baza subskrybentów Aurora Stream faktycznie dzieli się na odrębne grupy b
 
 ## 2. Podejście
 
-Wyciągnąłem/am cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowałem/am je za pomocą `StandardScaler`, i dopasowałem/am KMeans dla kilku wartości k. Porównałem/am inertia i silhouette score dla różnych k, sprawdziłem/am stabilność przypisań do klastrów przy resamplingu i przy losowej inicjalizacji KMeans, sprawdziłem/am, jak bardzo wynik zależy od użytych cech (odporny przy k=2, mniej przy drobniejszym k), i zdecydowałem/am się na k=2.
+Wyciągnięto cztery cechy zaangażowania/stażu na subskrybenta (`session_count`, `total_minutes_watched`, `avg_minutes_per_session`, `tenure_days`) przez SQL, ustandaryzowano je za pomocą `StandardScaler`, i dopasowano KMeans dla kilku wartości k. Porównano inertia i silhouette score dla różnych k, sprawdzono stabilność przypisań do klastrów przy resamplingu i przy losowej inicjalizacji KMeans, sprawdzono, jak bardzo wynik zależy od użytych cech (odporny przy k=2, mniej przy drobniejszym k), i zdecydowano się na k=2.
 
 ## 3. Wyniki (finalna tabela segmentów, k=2)
 

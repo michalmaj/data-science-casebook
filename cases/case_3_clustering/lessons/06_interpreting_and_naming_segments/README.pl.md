@@ -2,38 +2,23 @@
 
 **Szacowany czas:** 45-60 min
 
-## Efekty uczenia się
+## Po co to robimy
 
-- Będziesz umieć nazwać i opisać segmenty K-means na podstawie średnich wartości cech w surowych jednostkach, nie ich przeskalowanych/z-score'owych odpowiedników.
-- Będziesz umieć ocenić, czy cecha definiująca segment jest faktycznie na tyle wyraźna, żeby na niej działać, czy to różnica zbyt mała, żeby miała operacyjne znaczenie.
-- Będziesz umieć sprawdzić decyzję o nazwie względem zmiennej, której klasteryzacja nigdy nie widziała (np. poziom planu), i wiedzieć, że zgodność tam jest sugestywna, nie jest potwierdzeniem.
+Lekcja 5 nie stworzyła tylko szumu — spośród porównanych rozwiązań k=2 wypadło jako mocny kandydat: najlepszy silhouette score, do tego odporny, bo utrzymał się nawet po zamianie redundantnych cech engagement. To wystarczający powód, żeby przestać porównywać i rzeczywiście zinterpretować jedno rozwiązanie. Dopasujmy je, zobaczmy, co odróżnia dwa klastry, i nadajmy im nazwy, których faktycznie użyłby ktoś z biznesu.
 
-## Głos mentora
+Pytanie na dziś: co właściwie odróżnia dwa segmenty Aurora Stream, i jakie nazwy warto im dać?
 
-"Lekcja 5 nie stworzyła tylko szumu — spośród porównanych rozwiązań k=2 wypadło jako mocny kandydat: najlepszy silhouette score, do tego odporny, bo utrzymał się nawet po zamianie redundantnych cech engagement. To wystarczający powód, żeby przestać porównywać i rzeczywiście zinterpretować jedno rozwiązanie. Dopasuj je, zobacz, co odróżnia dwa klastry, i nadaj im nazwy, których faktycznie użyłby ktoś z biznesu."
+## Co masz zrobić
 
-## Cel lekcji
+- Ten sam plik `data/aurora_stream.sqlite` co w Lekcjach 1-5.
+- W `task.py` zaimplementuj `load_scaled_features`, `segment_profiles`.
+- W notebooku: wczytaj ponownie przeskalowaną tabelę per subskrybent, policz `segment_profiles` dla rozwiązania k=2 (mocnego kandydata spośród rozwiązań porównanych w Lekcji 5). Porównaj trzy kolumny intensywności oglądania oraz `tenure_days` między dwoma klastrami. Sprawdź, czy poziom planu lub kraj pokrywają się z klastrami, mimo że klasteryzacja nigdy ich nie widziała.
 
-Policzyć profile cech per klaster dla k=2 — mocnego kandydata spośród rozwiązań porównanych w Lekcji 5 — i przełożyć wynik na biznesowo zrozumiałe nazwy segmentów.
+## Na co zwrócić uwagę
 
-## Pytanie analityczne dnia
+Zgodność z poziomem planu czy krajem, jeśli się pojawi, jest sugestywna, nie jest potwierdzeniem — klasteryzacja nigdy nie widziała tych kolumn, więc pokrycie się z nimi mówi coś o tym, co segmenty mogą reprezentować, ale nie dowodzi, że segmenty są "prawdziwe" w jakimś głębszym sensie.
 
-Co właściwie odróżnia dwa segmenty Aurora Stream i jak nazwałbyś/nazwałabyś każdy z nich?
-
-## Co dostajesz
-
-- Ten sam plik `data/aurora_stream.sqlite` co w Lekcjach 1-5
-- `task.py` — dwie funkcje do zaimplementowania: `load_scaled_features`, `segment_profiles`
-- `lesson.ipynb` — notebook, w którym wykonasz właściwą pracę
-
-## Praca w notebooku
-
-- Wczytaj ponownie przeskalowaną tabelę per subskrybent.
-- Policz `segment_profiles` dla rozwiązania k=2.
-- Porównaj trzy kolumny intensywności oglądania oraz tenure_days między dwoma klastrami.
-- Sprawdź, czy poziom planu lub kraj pokrywają się z klastrami, mimo że klasteryzacja nigdy ich nie widziała.
-
-## Self-check
+## Sprawdź się
 
 Z katalogu tej lekcji odpal:
 
@@ -41,12 +26,4 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny.
-
-## Zadanie domowe
-
-Jedno zdanie: jeden segment jest mały i wyraźnie wysoko zaangażowany, drugi duży i wyraźnie nisko zaangażowany, a staż (tenure) prawie się między nimi nie różni. Jak nazwałbyś/nazwałabyś te dwa segmenty i co powiedziałbyś/powiedziałabyś Aurora Stream, żeby robili inaczej dla każdego z nich?
-
-## Refleksja
-
-Mentor pyta: ten podział na dwa klastry to tak naprawdę tylko "poziom zaangażowania" — tenure_days, plan_tier i country nie odegrały żadnej roli w rozdzieleniu grup, bo klasteryzacja widziała wyłącznie cztery przeskalowane cechy liczbowe. Na jakie realne różnice między subskrybentami ta segmentacja może być całkowicie ślepa?
+Jedno zdanie: jeden segment jest mały i wyraźnie wysoko zaangażowany, drugi duży i wyraźnie nisko zaangażowany, a staż (tenure) prawie się między nimi nie różni. Jakie nazwy warto dać tym dwóm segmentom, i co warto powiedzieć Aurora Stream o tym, co robić inaczej dla każdego z nich? I: ten podział na dwa klastry to tak naprawdę tylko "poziom zaangażowania" — `tenure_days`, `plan_tier` i `country` nie odegrały żadnej roli w rozdzieleniu grup, bo klasteryzacja widziała wyłącznie cztery przeskalowane cechy liczbowe. Na jakie realne różnice między subskrybentami ta segmentacja może być całkowicie ślepa?
