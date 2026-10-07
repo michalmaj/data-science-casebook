@@ -12,7 +12,7 @@ Zdecyduj też samodzielnie, która technika — regresja, klasyfikacja czy klast
 
 - Trzy zbiory danych w `data/`: `clinic_wait_times.csv`, `lendwell_loan_default.csv`, `retail_store_segments.csv` — każdy z lekkim briefem w `README.md` case'u, bez podanej zmiennej celu ani metryki.
 - W `task.py` zaimplementuj `list_datasets`, `load_dataset`, `missing_value_counts`.
-- W notebooku: wypisz dostępne zbiory, wczytaj ten, który wybrałeś, sprawdź jego kształt i braki danych, i zapisz swoje pytanie analityczne, zmienną celu i metrykę sukcesu.
+- W notebooku: wypisz dostępne zbiory, wczytaj wybrany zbiór, sprawdź jego kształt i braki danych, i zapisz swoje pytanie analityczne, zmienną celu i metrykę sukcesu.
 
 ## Uzasadnij
 
