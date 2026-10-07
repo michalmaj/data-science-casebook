@@ -4,7 +4,7 @@
 
 ## Decyzja do podjęcia
 
-Ta lekcja nie jest oceniana — potraktuj ją jako rundę bonusową. Sześć lekcji temu wybrano dataset z kolumną lub dwiema, których wcześniejsze lekcje nigdy nie pozwoliły użyć. Użyjmy jednej naprawdę i spakujmy cały krok preprocessingu tak, jak przekazałoby się go komuś innemu, zamiast trzech funkcji, które trzeba wywołać w dokładnie właściwej kolejności.
+Ta lekcja nie jest oceniana — potraktuj ją jako rundę bonusową. Sześć lekcji temu wybrano zbiór danych z kolumną lub dwiema, których wcześniejsze lekcje nigdy nie pozwoliły użyć. Użyjmy jednej naprawdę i spakujmy cały krok preprocessingu tak, jak przekazałoby się go komuś innemu, zamiast trzech funkcji, które trzeba wywołać w dokładnie właściwej kolejności.
 
 ## Masz do dyspozycji
 

@@ -8,13 +8,13 @@ Czy Riverside Community Clinic może przewidzieć, jak długo pacjent będzie cz
 
 ## 2. Podejście
 
-Wczytano dane kliniki, podzielono je 80/20 na train/test, a następnie zaimputowano niewielką liczbę brakujących wartości `staff_on_duty` medianą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Kolumna `department` też ma braki, ale nie została użyta jako cecha, więc nigdy nie została zaimputowana. Porównano baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
+Wczytano dane kliniki, podzielono je 80/20 na train/test, a następnie zaimputowano niewielką liczbę brakujących wartości `staff_on_duty` medianą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Kolumna `department` też ma braki, ale nie została użyta jako cecha, więc nigdy nie została zaimputowana. Porównano model bazowy na średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
 
 ## 3. Wyniki
 
 | Predyktor | MAE (min) |
 |---|---:|
-| Baseline (średni czas oczekiwania) | 18,57 |
+| Model bazowy (średni czas oczekiwania) | 18,57 |
 | Model liniowy | 10,60 |
 
 Błąd modelu na zbiorze testowym (10,60 minuty) jest zbliżony do jego błędu treningowego z Lekcji 4, co jest dobrym znakiem — oznacza to, że model generalizuje na pacjentów, których nigdy nie widział podczas dopasowania, nie tylko na tych, na których był trenowany.

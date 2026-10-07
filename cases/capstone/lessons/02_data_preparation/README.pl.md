@@ -14,7 +14,7 @@ Cokolwiek brakowało w Lekcji 1, nie zaklejaj tego byle jak. Zdecyduj świadomie
 
 ## Zanim zdecydujesz
 
-Jeśli zbiór ma target, który próbujesz przewidzieć, podział train/test musi nastąpić przed policzeniem jakiejkolwiek wartości wypełniającej braki — nie po. Dla zbioru bez targetu (klasteryzacja) ten problem w ogóle nie istnieje.
+Jeśli zbiór ma zmienną celu, którą próbujesz przewidzieć, podział train/test musi nastąpić przed policzeniem jakiejkolwiek wartości wypełniającej braki — nie po. Dla zbioru bez zmiennej celu (klasteryzacja) ten problem w ogóle nie istnieje.
 
 ## Uzasadnij
 

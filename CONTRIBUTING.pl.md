@@ -67,6 +67,24 @@ Checker weryfikuje też strukturalną zgodność EN/PL: każda para musi mieć t
 
 Kod, docstringi, komentarze i komunikaty commitów są wyłącznie po angielsku — również wewnątrz notebooków. Komórki markdown w `lesson.ipynb` są wyłącznie po angielsku, nawet w lekcjach, których `README.pl.md` jest po polsku; tylko brief jest dwujęzyczny, nie przestrzeń robocza. **Wyjątek pilotażowy:** każdy notebook lekcji w Case 1-3 i Capstone pilotuje dwujęzyczne *nagłówki sekcji* (`## First look / Pierwszy rzut oka`) — tylko krótkie nagłówki nawigacyjne dostają polski dopisek inline; jednoliniowe instrukcje, dłuższe akapity objaśniające i cały kod zostają wyłącznie po angielsku, i nie powstaje drugi plik notebooka. Główna narracja wciąż mieszka w `README.pl.md`, nie w notebooku. Nagłówki w Capstone są bardziej zadaniowe niż tutorialowe tam, gdzie to pasuje do treści (np. `## Decide what matters` zamiast `## Explore the data`) — zgodnie z decyzyjnym tonem jego lekcji, nie jako reguła do wymuszania wszędzie.
 
+## Terminologia polska
+
+Kilka terminów ustaliło się do jednej konsekwentnej formy we wszystkich czterech case'ach po finalnym przeglądzie słownika — nowa treść lekcji powinna z nimi być zgodna, nie wprowadzać wariantów:
+
+- **baseline** → `model bazowy` (nigdy goły anglicyzm `baseline'u`/`baseline'em`)
+- **feature** → `cecha`
+- **target** → `zmienna celu` (we wcześniejszych case'ach spotykane też jako `kolumna celu`/`cel`; dla nowej treści preferowana jest `zmienna celu`)
+- **decision threshold** → `próg decyzyjny` (nie `próg klasyfikacji`)
+- **confusion matrix** → `macierz pomyłek`
+- **precision / recall** → zostają po angielsku, konsekwentnie, nie tłumaczone na `precyzja`/`czułość` — to zgodne z dokładnymi nazwami metryk scikit-learn, które studenci widzą w kodzie i wyniku, oraz z konwencją polskiego pisarstwa o ML, które zwyczajowo zostawia te dwa terminy po angielsku nawet w polskiej prozie
+- **accuracy** → gołe "accuracy" jest w porządku; jednorazowa glosa przy pierwszym wprowadzeniu (`dokładność (accuracy)`) również jest w porządku, bo w przeciwieństwie do precision/recall ten termin ma naprawdę naturalny polski odpowiednik w codziennym użyciu
+- **silhouette** → zostaje po angielsku, nigdy nie tłumaczone
+- **inertia** → glosowane raz przy pierwszym użyciu (`bezwładność (inertia)`), dalej po angielsku
+- **cluster vs. segment** → `klaster` dla surowego wyniku algorytmu, `segment` gdy już zinterpretowany/nazwany jako biznesowa grupa — zachowaj to rozróżnienie
+- **held-out** → `odłożony` (`zbiór odłożony`, `dane odłożone`)
+
+Historyczne wpisy w `CHANGELOG.md`/`.pl.md` nie są przepisywane retroaktywnie, kiedy terminologia się zmienia — opisują to, co było prawdą w momencie, w którym zostały napisane.
+
 ## Regenerowanie danych case'a
 
 Zbiór danych każdego case'a jest generowany przez `cases/<case>/data/generate.py`, z ustalonym seedem losowym — ponowne uruchomienie odtwarza dokładnie ten sam plik bajt-w-bajt (CSV/SQLite) albo semantycznie (Excel). Jeśli zmieniasz logikę generowania danych case'a (nowa kolumna, inny wzorzec braków, inna liczba wierszy), uruchom ponownie `generate.py`, a potem sprawdź każdy `check.py` w tym case'ie pod kątem wartości referencyjnych, które zakładały stare dane — zmiana schematu danych bardzo prawdopodobnie przesunie zahardkodowane liczby dalej w lekcjach.

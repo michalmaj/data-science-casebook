@@ -22,7 +22,7 @@ uv run pytest
 
 Like Lessons 4-7, these checks verify exact values — they confirm the `reason_codes`/`reason_code_frequency` code behaves correctly, not that the underlying model or feature set is the right call.
 
-None — this lesson is optional and ungraded. The mentor asks five questions, no code required — write two or three sentences on whichever interests you most in the "Your notes" cell:
+None — this lesson is optional and ungraded. Five questions, no code required — write two or three sentences on whichever interests you most in the "Your notes" cell:
 
 1. This dataset has no demographic columns. What would it take — and who would need to give it — to actually check whether this model denies certain groups of applicants disproportionately?
 2. `debt_to_income_ratio` shows up in the top-3 reasons for every single denied applicant in the test set. Does that make it a fair basis for a lending decision, a red flag that it might be standing in for something else, or both — and how would you tell the difference?
