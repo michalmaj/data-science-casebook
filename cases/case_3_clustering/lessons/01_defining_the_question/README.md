@@ -2,36 +2,19 @@
 
 **Estimated time:** 35-45 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to write SQL that joins and aggregates normalized tables into one row-per-entity table ready for analysis.
-- You'll be able to frame an analytical question for clustering, where there's no target column to check your work against.
+New case, new format — SQLite this time. Two tables, no messy Excel tricks, just real SQL. Let's get the shape of the data, then build the one table we'll actually work from.
 
-## Mentor's note
+Today's question: what does a single, complete row of subscriber behavior actually look like, once Aurora Stream's raw session logs are joined and aggregated?
 
-"New case, new format — SQLite this time. Two tables, no messy Excel tricks, just real SQL. Get the shape of the data, then build the one table you'll actually work from."
+## What you need to do
 
-## Lesson goal
+- `data/aurora_stream.sqlite` — two tables, `subscribers` and `sessions`.
+- In `task.py`, implement `list_tables`, `load_subscriber_features`.
+- In the notebook: list the tables, load the joined, per-subscriber feature table. Notice which subscribers have zero sessions — decide what that means.
 
-Get your first look at Aurora Stream's subscriber data, and write the SQL that turns two normalized tables into one per-subscriber table ready for clustering.
-
-## Today's analytical question
-
-What does a single, complete row of subscriber behavior actually look like, once Aurora Stream's raw session logs are joined and aggregated?
-
-## What you're given
-
-- `data/aurora_stream.sqlite` — two tables, `subscribers` and `sessions`
-- `task.py` — two functions to implement: `list_tables`, `load_subscriber_features`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-- List the tables.
-- Load the joined, per-subscriber feature table.
-- Notice which subscribers have zero sessions — decide what that means.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -39,12 +22,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-One sentence: what would go wrong if you used an INNER JOIN instead of a LEFT JOIN here?
-
-## Reflection
-
-The mentor asks: two subscribers have zero sessions. Are they candidates for a "ghost" segment, or should they be excluded from the analysis entirely? There's no single right answer — just be ready to defend yours.
+One sentence: what would go wrong with an INNER JOIN instead of a LEFT JOIN here? And: two subscribers have zero sessions. Are they candidates for a "ghost" segment, or should they be excluded from the analysis entirely? There's no single right answer — just write down the reasoning.

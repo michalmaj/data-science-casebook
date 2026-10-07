@@ -2,38 +2,17 @@
 
 **Estimated time:** 50-60 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to test a clustering solution's stability by refitting it on repeated random subsamples and comparing labels with an adjusted Rand index.
-- You'll be able to tell apart four different things people call "stability": sensitivity to resampling, sensitivity to KMeans's random initialization, sensitivity to which features were used, and stability over time — and state plainly which of these this lesson's data actually can, and can't, speak to.
-- You'll be able to compare several plausible k candidates — not just two — across stability, silhouette, and segment size at once, instead of looking for one number to settle it.
-- You'll be able to decide, with that comparison in hand, whether a segment is solid enough to build a retention strategy around.
+A segment you can't reproduce isn't a segment, it's noise. Before telling Aurora Stream to build a retention strategy around these clusters, let's check whether they actually survive being recomputed — on a slightly different sample of subscribers, with a different random start, and across more than just the two k values looked at so far.
 
-## Mentor's note
+Today's question: if you'd only seen 80% of these subscribers, would you have found the same segments?
 
-"A segment you can't reproduce isn't a segment, it's noise. Before you tell Aurora Stream to build a retention strategy around these clusters, check whether they actually survive being recomputed — on a slightly different sample of subscribers, with a different random start, and across more than just the two k values you've looked at so far."
+## What you need to do
 
-## Lesson goal
-
-Test how much k=2's clustering labels change when refit on repeated 80% random subsamples and under different KMeans random initializations, then widen the comparison to k=2 through k=5 so the choice rests on a set of properties across several candidates, not just k=2 vs. k=4.
-
-## Today's analytical question
-
-If you'd only seen 80% of these subscribers, would you have found the same segments?
-
-## What you're given
-
-- The same `data/aurora_stream.sqlite` from Lessons 1-6
-- `task.py` — four functions to implement: `load_scaled_features`, `subsample_stability`, `initialization_stability`, `stability_comparison_table`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-- Load the scaled per-subscriber table again.
-- Run `subsample_stability` at the default k=2 and look at the agreement scores.
-- Run it again at k=4 and compare.
-- Run `initialization_stability` at k=2, then at k=3, 4, and 5 — see whether any of them are sensitive to KMeans's random start the way they might be to resampling.
-- Run `stability_comparison_table` for k=2, 3, 4, 5 and look at silhouette, resample-stability, and smallest-cluster-share side by side.
+- The same `data/aurora_stream.sqlite` from Lessons 1-6.
+- In `task.py`, implement four functions: `load_scaled_features`, `subsample_stability`, `initialization_stability`, `stability_comparison_table`.
+- In the notebook: load the scaled per-subscriber table again. Run `subsample_stability` at the default k=2 and look at the agreement scores, then again at k=4. Run `initialization_stability` at k=2, 3, 4, and 5 — see whether any of them are sensitive to KMeans's random start the way they might be to resampling. Run `stability_comparison_table` for k=2, 3, 4, 5 and look at silhouette, resample-stability, and smallest-cluster-share side by side.
 
 ## Four different questions called "stability"
 
@@ -57,7 +36,7 @@ It's easy to say a segmentation is "stable" as if that were one fact. It isn't �
 
 k=2 leads on silhouette and is the most resample-stable of the four — and every one of them is equally stable to initialization. That combination, plus the simplicity of a two-group story, is why k=2 is this case's working choice — not because any single row or column "announced" it. One honest caveat: the exact resample-stability numbers for k=3/4/5 are somewhat specific to `subsample_stability`'s particular way of drawing an 80% subsample — a different (equally reasonable) subsampling method could shift them a little. k=2's perfect stability is robust regardless; the finer ranking among k=3/4/5 is not something to read too much into.
 
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -65,12 +44,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-One sentence: k=2's subsample agreement is perfect on every seed; k=4's is high but not perfect, and both are perfectly stable to initialization. What does the *difference between those two kinds of stability* tell you about where k=4's extra fragility actually comes from?
-
-## Reflection
-
-The mentor asks: perfect stability at k=2 — under resampling *and* under initialization — doesn't mean the 2-segment story is the "true" one. It means it's the most reproducible candidate you tested, on the data you have, under the perturbations you checked. What would you still want to check before treating "high-engagement vs. low-engagement" as a permanent fact about Aurora Stream's subscribers, rather than a snapshot of one 90-day window?
+One sentence: k=2's subsample agreement is perfect on every seed; k=4's is high but not perfect, and both are perfectly stable to initialization. What does the *difference between those two kinds of stability* tell you about where k=4's extra fragility actually comes from? And: perfect stability at k=2 — under resampling *and* under initialization — doesn't mean the 2-segment story is the "true" one. It means it's the most reproducible candidate tested, on the data available, under the perturbations checked. What would you still want to check before treating "high-engagement vs. low-engagement" as a permanent fact about Aurora Stream's subscribers, rather than a snapshot of one 90-day window?

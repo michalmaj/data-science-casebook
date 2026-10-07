@@ -2,36 +2,19 @@
 
 **Estimated time:** 40-50 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to make a business case for segmentation before fitting any model.
-- You'll be able to fit a first `KMeans` model at an arbitrary k and read its cluster sizes critically, not as proof the split is meaningful yet.
+Aurora Stream doesn't want a model for its own sake — they want to know if "treat every subscriber the same" is actually the wrong call. Let's find out: fit a KMeans model, pick some round number of clusters for now, and see what falls out. Whether it's the *right* number is next lesson's problem.
 
-## Mentor's note
+Today's question: if we split subscribers into a handful of groups using nothing but their viewing behavior, do we get groups that look meaningfully different in size — and does that alone tell us anything worth acting on?
 
-"Aurora Stream doesn't want a model for its own sake — they want to know if 'treat every subscriber the same' is actually the wrong call. Let's find out. Fit a KMeans model, pick some round number of clusters for now, and see what falls out. Don't worry yet about whether it's the *right* number — that's next lesson's problem."
+## What you need to do
 
-## Lesson goal
+- The same `data/aurora_stream.sqlite` from Lessons 1-3.
+- In `task.py`, implement `load_scaled_features`, `fit_kmeans`.
+- In the notebook: load the scaled per-subscriber table again, fit `fit_kmeans` with its default `k=4` and check the resulting inertia. Look at how many subscribers landed in each of the four clusters.
 
-Make the business case for segmentation, then fit a first `KMeans` model on Aurora Stream's four scaled features at an arbitrary `k`.
-
-## Today's analytical question
-
-If you split subscribers into a handful of groups using nothing but their viewing behavior, do you get groups that look meaningfully different in size — and does that alone tell you anything worth acting on?
-
-## What you're given
-
-- The same `data/aurora_stream.sqlite` from Lessons 1-3
-- `task.py` — two functions to implement: `load_scaled_features`, `fit_kmeans`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-- Load the scaled per-subscriber table again.
-- Fit `fit_kmeans` with its default `k=4` and check the resulting inertia.
-- Look at how many subscribers landed in each of the four clusters.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -39,12 +22,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-One sentence: two of the four clusters are noticeably smaller than the other two. What would you want to check before recommending Aurora Stream build a retention offer around one of the smaller ones?
-
-## Reflection
-
-The mentor asks: right now `k=4` was picked with no real justification — it's just a round number. What does it mean for a business recommendation if the "segments" you're about to describe depend on a number nobody has defended yet?
+One sentence: two of the four clusters are noticeably smaller than the other two. What would you want to check before recommending Aurora Stream build a retention offer around one of the smaller ones? And: `k=4` was picked with no real justification — it's just a round number. What does it mean for a business recommendation if the "segments" you're about to describe depend on a number nobody has defended yet?

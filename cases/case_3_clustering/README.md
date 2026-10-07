@@ -8,4 +8,8 @@
 
 **What you'll build across this case:** a segmentation of Aurora Stream's subscribers based on their viewing behavior, using `KMeans`, plus a decision note explaining what each segment looks like, how stable the segments are, and what Aurora Stream should do about it.
 
+## New since the previous cases
+
+There's no target variable here, and no classic train/test split — nothing to predict, so nothing to score a prediction against. The question this case asks isn't "how accurate is the model?" the way Cases 1 and 2 did. It's closer to: is the segmentation you're proposing stable, interpretable, and useful enough to act on?
+
 Lessons in this case live under `lessons/`, numbered in the order you should work through them.

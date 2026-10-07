@@ -2,38 +2,23 @@
 
 **Estimated time:** 45-60 min
 
-## Learning outcomes
+## Why we're doing this
 
-- You'll be able to name and profile K-means segments using their raw-unit feature averages, not their scaled/z-score fit values.
-- You'll be able to judge whether a segment's defining trait is actually distinct enough to act on, versus a difference too small to matter operationally.
-- You'll be able to check a naming decision against a variable the clustering never saw (e.g. plan tier), and know that agreement there is suggestive, not confirmation.
+Lesson 5 didn't just create noise — among the solutions compared, k=2 came out as a strong candidate: the best silhouette score, and a robust one, since it held up even when the redundant engagement features got swapped out. That's enough reason to stop comparing and actually interpret one solution. Let's fit it, see what separates the two clusters, and give them names a business person would actually use.
 
-## Mentor's note
+Today's question: what actually separates Aurora Stream's two segments, and what would you call each one?
 
-"Lesson 5 didn't just create noise — among the solutions you compared, k=2 came out as a strong candidate: the best silhouette score, and a robust one, since it held up even when you swapped out the redundant engagement features. That's enough reason to actually interpret one instead of comparing forever. Fit it, look at what separates the two clusters, and give them names a business person would actually use."
+## What you need to do
 
-## Lesson goal
+- The same `data/aurora_stream.sqlite` from Lessons 1-5.
+- In `task.py`, implement `load_scaled_features`, `segment_profiles`.
+- In the notebook: load the scaled per-subscriber table again, compute `segment_profiles` for the k=2 solution (a strong candidate among the solutions Lesson 5 compared). Compare the three viewing-intensity columns and `tenure_days` between the two clusters. Check whether plan tier or country line up with the clusters, even though the clustering never saw them.
 
-Compute per-cluster feature profiles for k=2 — a strong candidate among the solutions Lesson 5 compared — and translate the result into business-meaningful segment names.
+## What to watch for
 
-## Today's analytical question
+Any agreement with plan tier or country is suggestive, not confirmation — the clustering never saw those columns, so lining up with them says something about what the segments might represent, but doesn't prove the segments are "real" in some deeper sense.
 
-What actually separates Aurora Stream's two segments, and what would you call each one?
-
-## What you're given
-
-- The same `data/aurora_stream.sqlite` from Lessons 1-5
-- `task.py` — two functions to implement: `load_scaled_features`, `segment_profiles`
-- `lesson.ipynb` — the notebook where you'll do the actual work
-
-## Working in the notebook
-
-- Load the scaled per-subscriber table again.
-- Compute `segment_profiles` for the k=2 solution.
-- Compare the three viewing-intensity columns and tenure_days between the two clusters.
-- Check whether plan tier or country line up with the clusters, even though the clustering never saw them.
-
-## Self-check
+## Check your work
 
 From this lesson's folder, run:
 
@@ -41,12 +26,4 @@ From this lesson's folder, run:
 uv run pytest
 ```
 
-All tests should pass once `task.py` is complete.
-
-## Homework
-
-One sentence: one segment is small and clearly high-engagement, the other is large and clearly low-engagement, and tenure barely differs between them. What would you name these two segments, and what would you tell Aurora Stream to do differently for each one?
-
-## Reflection
-
-The mentor asks: this 2-cluster split is really just "engagement level" — tenure_days, plan_tier, and country played no role in separating the groups, because the clustering only ever saw the four scaled numeric features. What real-world differences between subscribers might this segmentation be completely blind to?
+One sentence: one segment is small and clearly high-engagement, the other is large and clearly low-engagement, and tenure barely differs between them. What names would you give these two segments, and what would you tell Aurora Stream to do differently for each one? And: this 2-cluster split is really just "engagement level" — `tenure_days`, `plan_tier`, and `country` played no role in separating the groups, because the clustering only ever saw the four scaled numeric features. What real-world differences between subscribers might this segmentation be completely blind to?
