@@ -1,6 +1,6 @@
 # Wzorcowa notatka decyzyjna — Capstone (ścieżka regresji)
 
-*To jest wzorcowa odpowiedź dla jednej ścieżki capstone'u (regresja, Riverside Community Clinic), napisana po ukończeniu wszystkich 6 lekcji. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żebyś mógł/mogła porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować. Jeśli wybrałeś/aś inny zbiór (klasyfikacja albo klasteryzacja), ta notatka pokazuje format i głębię, jakiej oczekujemy — nie konkretną treść dla Twojego zbioru.*
+*To jest wzorcowa odpowiedź dla jednej ścieżki capstone'u (regresja, Riverside Community Clinic), napisana po ukończeniu wszystkich 6 lekcji. Nie czytaj jej przed napisaniem własnej — sensem tego ćwiczenia jest dojście do tych wniosków samodzielnie; ten plik istnieje, żeby można było porównać swoje rozumowanie z dobrą odpowiedzią później, nie żeby go skopiować. Dla innego wybranego zbioru (klasyfikacja albo klasteryzacja), ta notatka pokazuje format i głębię, jakiej oczekujemy — nie konkretną treść dla tego zbioru.*
 
 ## 1. Pytanie biznesowe
 
@@ -8,7 +8,7 @@ Czy Riverside Community Clinic może przewidzieć, jak długo pacjent będzie cz
 
 ## 2. Podejście
 
-Wczytałem/am dane kliniki, podzieliłem/am je 80/20 na train/test, a następnie zaimputowałem/am niewielką liczbę brakujących wartości `staff_on_duty` medianą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Kolumna `department` też ma braki, ale nie użyłem/am jej jako cechy, więc nigdy nie została zaimputowana. Porównałem/am baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
+Wczytano dane kliniki, podzielono je 80/20 na train/test, a następnie zaimputowano niewielką liczbę brakujących wartości `staff_on_duty` medianą policzoną wyłącznie ze zbioru treningowego (zastosowaną do obu zbiorów). Kolumna `department` też ma braki, ale nie została użyta jako cecha, więc nigdy nie została zaimputowana. Porównano baseline średniej (zawsze przewiduj średni czas oczekiwania ze zbioru treningowego) z regresją liniową dopasowaną na `num_patients_ahead`, `staff_on_duty`, `hour_of_day` i `patient_age`, przewidującą `wait_time_minutes`.
 
 ## 3. Wyniki
 
@@ -25,7 +25,7 @@ To, że MAE na zbiorze testowym (10,60) i MAE treningowe z Lekcji 4 mieszczą si
 
 ## 5. Interpretacja
 
-Średni błąd ~10,6 minuty oznacza, że klinika może teraz dać pacjentom spersonalizowane oszacowanie, które zwykle mieści się w granicach ok. 10,6 minuty od prawdy — realna poprawa względem obecnego płaskiego baseline'u, który zawsze mówi każdemu pacjentowi ok. 41,5 minuty i myli się średnio o ok. 18,6 minuty. To wystarczająco precyzyjne, żeby było użyteczne do ustawiania oczekiwań, ale nie na tyle precyzyjne, żeby obiecywać dokładny czas konkretnemu pacjentowi.
+Średni błąd ~10,6 minuty oznacza, że klinika może teraz dać pacjentom spersonalizowane oszacowanie, które zwykle mieści się w granicach ok. 10,6 minuty od prawdy — realna poprawa względem obecnego płaskiego modelu bazowego, który zawsze mówi każdemu pacjentowi ok. 41,5 minuty i myli się średnio o ok. 18,6 minuty. To wystarczająco precyzyjne, żeby było użyteczne do ustawiania oczekiwań, ale nie na tyle precyzyjne, żeby obiecywać dokładny czas konkretnemu pacjentowi.
 
 ## 6. Ograniczenia
 

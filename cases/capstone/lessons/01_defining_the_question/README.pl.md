@@ -2,37 +2,19 @@
 
 **Szacowany czas:** 45-55 min
 
-## Efekty uczenia się
+## Decyzja do podjęcia
 
-- Będziesz umieć wybrać dataset i samodzielnie zdefiniować pytanie analityczne, zmienną celu i metrykę sukcesu — bez narzuconego briefu wskazującego odpowiedź.
-- Będziesz umieć samodzielnie zdecydować, która technika (regresja, klasyfikacja czy klasteryzacja) faktycznie pasuje do problemu wybranego przez Ciebie klienta.
+W każdym poprzednim case'ie klient i pytanie były już dane. Tym razem wybierasz oba. Przeczytaj menu w `README.md` na poziomie case'u, wybierz klienta, którego problem Cię interesuje, i zamień jego niejasną skargę w coś, wobec czego dałoby się zbudować model — konkretne pytanie analityczne, zmienną celu i metrykę sukcesu.
 
-## Głos mentora
+Zdecyduj też samodzielnie, która technika — regresja, klasyfikacja czy klasteryzacja — faktycznie pasuje do problemu wybranego klienta. Nic w briefie tego nie podpowiada.
 
-"W każdym poprzednim case'ie dawałem Ci klienta i pytanie. Tym razem wybierasz oba. Przeczytaj menu, wybierz klienta, którego problem Cię interesuje, i zamień jego niejasną skargę w coś, wobec czego faktycznie dałoby się zbudować model."
+## Masz do dyspozycji
 
-## Cel lekcji
+- Trzy zbiory danych w `data/`: `clinic_wait_times.csv`, `lendwell_loan_default.csv`, `retail_store_segments.csv` — każdy z lekkim briefem w `README.md` case'u, bez podanej zmiennej celu ani metryki.
+- W `task.py` zaimplementuj `list_datasets`, `load_dataset`, `missing_value_counts`.
+- W notebooku: wypisz dostępne zbiory, wczytaj ten, który wybrałeś, sprawdź jego kształt i braki danych, i zapisz swoje pytanie analityczne, zmienną celu i metrykę sukcesu.
 
-Wybrać jednego klienta z menu projektu końcowego, wczytać jego dane i samodzielnie zdefiniować konkretne pytanie analityczne, zmienną celu i metrykę sukcesu, z którymi będziesz pracować przez resztę projektu.
-
-## Pytanie analityczne dnia
-
-Jeszcze go nie ma — to właśnie budujesz w tej lekcji. Któremu klientowi pomożesz i na jakie konkretne, mierzalne pytanie mu odpowiesz?
-
-## Co dostajesz
-
-- Trzy zbiory danych w `data/`: `clinic_wait_times.csv`, `lendwell_loan_default.csv`, `retail_store_segments.csv`
-- Lekkie briefy klienckie dla każdego w `README.md` na poziomie case'u — bez podanej zmiennej celu ani metryki
-- `task.py` — trzy funkcje do zaimplementowania: `list_datasets`, `load_dataset`, `missing_value_counts`
-- `lesson.ipynb` — notebook, w którym wybierzesz klienta i zaczniesz eksplorację
-
-## Praca w notebooku
-
-- Wypisz dostępne zbiory danych i przeczytaj ich briefy.
-- Wczytaj ten, który wybrałeś/wybrałaś, i sprawdź jego kształt i braki danych.
-- Zapisz własne pytanie analityczne, zmienną celu i metrykę sukcesu.
-
-## Self-check
+## Uzasadnij
 
 Z katalogu tej lekcji odpal:
 
@@ -40,12 +22,6 @@ Z katalogu tej lekcji odpal:
 uv run pytest
 ```
 
-Wszystkie testy powinny przejść, gdy `task.py` będzie kompletny. Te testy sprawdzają jedynie, czy Twoje funkcje wczytujące działają poprawnie dla wszystkich trzech zbiorów — nie mogą sprawdzić, którego klienta wybrałeś/wybrałaś ani czy Twoje pytanie jest dobre.
+Te testy sprawdzają jedynie, czy funkcje wczytujące działają poprawnie dla wszystkich trzech zbiorów — nie mogą sprawdzić, którego klienta wybrano, ani czy pytanie jest dobre.
 
-## Zadanie domowe
-
-Dwa do trzech zdań: dlaczego wybrałeś/wybrałaś akurat tę zmienną celu i tę metrykę? Ile kosztowałby Cię błędny wybór na tym etapie w dalszej części projektu?
-
-## Refleksja
-
-Mentor pyta: któremu z trzech klientów z menu najtrudniej byłoby odmówić, gdyby to był prawdziwy klient, nawet gdyby dane nie do końca wspierały odpowiedź na jego prawdziwe pytanie — i jak byś się temu przeciwstawił/przeciwstawiła?
+Dwa do trzech zdań: dlaczego akurat ta zmienna celu i ta metryka? Ile kosztowałby błędny wybór na tym etapie w dalszej części projektu? I: który z trzech klientów z menu byłby najtrudniejszy do odmówienia, gdyby to był prawdziwy klient, nawet gdyby dane nie do końca wspierały odpowiedź na jego prawdziwe pytanie — i jak warto by się temu przeciwstawić?
