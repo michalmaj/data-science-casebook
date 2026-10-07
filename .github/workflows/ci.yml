@@ -31,6 +31,8 @@ jobs:
         run: LESSON_MODULE=solution uv run --locked pytest
       - name: Check bilingual Markdown pairs
         run: uv run --locked python tools/check_bilingual_pairs.py
+      - name: Check local Markdown links
+        run: uv run --locked python tools/check_local_links.py
 
   notebooks:
     runs-on: ubuntu-latest

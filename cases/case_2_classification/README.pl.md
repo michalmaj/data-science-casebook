@@ -12,6 +12,6 @@
 
 ## Co nowego względem Case 1
 
-Mechanikę (`task.py`, `solution.py`, `pytest`, notebook) już znasz z Case 1 — ten case tego nie powtarza. Co faktycznie nowe: target jest binarny i rzadki (14% zamówień), więc pojedyncza liczba accuracy może skrywać model bezużyteczny w praktyce; klasyfikator potrzebuje też progu decyzyjnego wybranego świadomie, nie samego modelu. Obserwuj uważnie w Lekcjach 4-6, jak myląco wysoka accuracy, próg i wybór metryki są po kolei poddawane w wątpliwość, zamiast brać je na wiarę.
+Mechanikę (`task.py`, `solution.py`, `pytest`, notebook) już znasz z Case 1 — ten case tego nie powtarza. Co faktycznie nowe: zmienna celu jest binarna i rzadka (14% zamówień), więc pojedyncza liczba accuracy może skrywać model bezużyteczny w praktyce; klasyfikator potrzebuje też progu decyzyjnego wybranego świadomie, nie samego modelu. Obserwuj uważnie w Lekcjach 4-6, jak myląco wysoka accuracy, próg i wybór metryki są po kolei poddawane w wątpliwość, zamiast brać je na wiarę.
 
 Lekcje tego case'u znajdują się w `lessons/`, ponumerowane w kolejności, w jakiej należy przez nie przechodzić.

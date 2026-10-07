@@ -13,7 +13,7 @@ Zanim cokolwiek dopasujesz, zobacz, co faktycznie jest w danych. Zbadaj relacje 
 
 ## Zanim zdecydujesz
 
-Jeśli ścieżka ma target, eksploracja — włącznie z korelacją cechy z targetem — patrzy wyłącznie na `train_df`. Zobaczenie, jak cecha wiąże się z targetem, używając wierszy, które później trafią do zbioru testowego, to właśnie ten typ podglądu, przez który oryginalny krok EDA w Case 1 wyciekał informację, zanim naprawił to PR #55.
+Jeśli ścieżka ma zmienną celu, eksploracja — włącznie z korelacją cechy ze zmienną celu — patrzy wyłącznie na `train_df`. Zobaczenie, jak cecha wiąże się ze zmienną celu, używając wierszy, które później trafią do zbioru testowego, to właśnie ten typ podglądu, przez który oryginalny krok EDA w Case 1 wyciekał informację, zanim naprawił to PR #55.
 
 ## Uzasadnij
 

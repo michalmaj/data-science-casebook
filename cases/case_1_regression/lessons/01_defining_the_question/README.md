@@ -18,7 +18,7 @@ This is the first lesson, so a quick note on how every lesson here is built — 
 - **You don't touch `check.py`.** It's a `pytest` suite that checks your functions. From this lesson's folder, run `uv run pytest` — `5 passed` means all three functions behave as described; any `FAILED` names which function and why (read the error message, it usually says exactly what the test expected).
 - **`solution.py` is a lifeline, not a first step.** It holds the reference implementation. Open it once you're genuinely stuck after your own attempt — not before. The point of the exercise is reaching it yourself.
 - **`lesson.ipynb` is where you run your code and write the interpretation.** Open the notebook *after* `task.py` passes its tests — that's where you'll see the data, generate the first statistics, and record your conclusions in the "Your notes" cell.
-- **The lesson is done when:** `uv run pytest` reports `5 passed`, and `lesson.ipynb`'s notes cell is filled in with which columns look trustworthy and what you'd ask the client.
+- **The lesson is done when:** `uv run pytest` reports `5 passed`, and `lesson.ipynb`'s notes cell is filled in with which columns look trustworthy and what you'd ask the client. Then move on to the next lesson folder in order — `02_data_quality_and_cleaning/` — the same way for every lesson after this one.
 
 ## What you need to do
 

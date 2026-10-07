@@ -14,11 +14,11 @@ Wykorzystano dane o dostawach TransLine (`distance_km`, `num_stops`, `driver_exp
 
 | Predyktor | MAE (min) | RMSE (min) |
 |---|---:|---:|
-| Baseline zerowy | 16,80 | 20,50 |
-| Baseline średniej | 12,08 | 15,19 |
+| Model bazowy na zerze | 16,80 | 20,50 |
+| Model bazowy na średniej | 12,08 | 15,19 |
 | Model liniowy | 10,21 | 12,80 |
 
-Model liniowy pokonuje baseline średniej o ok. 1,9 minuty MAE — realna poprawa, ale nie dramatyczna.
+Model liniowy pokonuje model bazowy na średniej o ok. 1,9 minuty MAE — realna poprawa, ale nie dramatyczna.
 
 ## 4. Czego model nie widzi
 

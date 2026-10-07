@@ -43,10 +43,10 @@ Każde kryterium jest oceniane na jednym z czterech poziomów: **Wzorowy**, **Do
 
 ### 4. Poprawność modelowania/oceny (20%)
 
-- **Wzorowy:** Poprawna dyscyplina train/validation/test przez całość (brak wycieku danych, żadna decyzja dopasowania ani strojenia nie jest podejmowana na podstawie danych testowych); baseline obecny; metryka dopasowana do pytania biznesowego.
-- **Dobry:** Podział train/test jest poprawny, baseline obecny, ale walidacja do decyzji strojenia (np. progu klasyfikacji) bywa pomijana.
+- **Wzorowy:** Poprawna dyscyplina train/validation/test przez całość (brak wycieku danych, żadna decyzja dopasowania ani strojenia nie jest podejmowana na podstawie danych testowych); model bazowy obecny; metryka dopasowana do pytania biznesowego.
+- **Dobry:** Podział train/test jest poprawny, model bazowy obecny, ale walidacja do decyzji strojenia (np. progu decyzyjnego) bywa pomijana.
 - **Rozwijający się:** Model jest dopasowany i oceniony, ale z luką metodologiczną (np. preprocessing dopasowany przed podziałem, próg strojony na podstawie wyników na zbiorze testowym).
-- **Niewystarczający:** Brak baseline'u, brak oceny na danych odłożonych, albo wynik na zbiorze treningowym przedstawiony tak, jakby był generalizacją.
+- **Niewystarczający:** Brak modelu bazowego, brak oceny na danych odłożonych, albo wynik na zbiorze treningowym przedstawiony tak, jakby był generalizacją.
 
 **Dla projektu klasteryzacyjnego konkretnie:** nie ma dyscypliny train/validation/test do sprawdzenia w sensie nadzorowanym, i żadna pojedyncza metryka nie ogłasza "poprawnego" k. Wzorowy poziom oznacza tutaj połączenie separacji (np. silhouette), stabilności (przy resamplingu i/lub inicjalizacji) i wrażliwości na zestaw cech w uzasadniony wybór — oraz jawne traktowanie wyniku jako roboczej hipotezy, nie odkrytej prawdy o populacji. "k=2 miało najwyższy silhouette, więc jest poprawne" to twierdzenie na poziomie Rozwijający się, nie Wzorowy, mimo że cytuje realną liczbę.
 
@@ -77,7 +77,7 @@ Przejdź przez to, zanim uznasz notatkę decyzyjną za gotową:
 
 - [ ] Moje pytanie analityczne jest na tyle konkretne, że ktoś mógłby je obalić.
 - [ ] Sprawdziłem/am wyciek danych — żadna informacja ze zbioru testowego nie wpłynęła na preprocessing, wybór cech ani strojenie.
-- [ ] Mam baseline, a mój model faktycznie go pokonuje na danych odłożonych, nie treningowych.
+- [ ] Mam model bazowy, a mój model faktycznie go pokonuje na danych odłożonych, nie treningowych.
 - [ ] Każda liczba w mojej sekcji "Wyniki" pochodzi z danych, których mój model nigdy nie widział podczas dopasowania ani strojenia.
 - [ ] Podałem/am co najmniej dwa realne, specyficzne dla tego case'a ograniczenia — nie ogólnikowe.
 - [ ] Mógłbym/mogłabym przekazać tę notatkę komuś, kto nigdy nie otworzył notebooka, i ta osoba wiedziałaby, co robić.

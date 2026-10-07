@@ -13,9 +13,9 @@ Każdy case opowiada małą historię: organizacja ma problem, dane są niepełn
 
 ## Jeśli jesteś studentem
 
-Najkrótsza ścieżka: Case 1 → Lekcja 1 → `README.pl.md` → `task.py` → `pytest` → `lesson.ipynb`.
+Najpierw zainstaluj — zobacz **Szybki start** poniżej — a potem najkrótsza ścieżka to: Case 1 → Lekcja 1 → `README.pl.md` → `task.py` → `pytest` → `lesson.ipynb`.
 
-Zacznij od [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — przeczytaj tam `README.pl.md`, uzupełnij `task.py`, sprawdź się przez `uv run pytest`, a potem otwórz notebook. Ta pierwsza lekcja wyjaśnia dokładniej, jak zbudowana jest każda kolejna.
+Zacznij od [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — przeczytaj tam `README.pl.md`, uzupełnij `task.py`, sprawdź się przez `uv run pytest`, a potem otwórz notebook. Ta pierwsza lekcja wyjaśnia dokładniej, jak zbudowana jest każda kolejna, włącznie z tym, co zrobić po przejściu jej testów.
 
 ## Struktura kursu
 

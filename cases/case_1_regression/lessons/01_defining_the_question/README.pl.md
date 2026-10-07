@@ -18,7 +18,7 @@ To pierwsza lekcja, więc kilka słów o tym, jak jest zbudowana każda — to s
 - **Nie dotykasz `check.py`.** To zestaw testów `pytest`, który sprawdza Twoje funkcje. Z katalogu tej lekcji uruchom `uv run pytest` — `5 passed` oznacza, że wszystkie trzy funkcje działają zgodnie z opisem; każdy `FAILED` wskaże, która funkcja i dlaczego (czytaj komunikat błędu, zwykle mówi dokładnie, czego test oczekiwał).
 - **`solution.py` to koło ratunkowe, nie pierwszy krok.** Zawiera referencyjną implementację. Zajrzyj do niego, gdy naprawdę się zablokujesz po własnej próbie — nie przed nią. Rozwiązanie zadania polega na dojściu do niego samodzielnie.
 - **`lesson.ipynb` to miejsce, gdzie uruchamiasz swój kod i piszesz interpretację.** Otwórz notebook *po* tym, jak `task.py` przechodzi testy — tam zobaczysz dane, wygenerujesz pierwsze statystyki i zapiszesz wnioski w komórce "Your notes".
-- **Lekcja jest skończona, gdy:** `uv run pytest` daje `5 passed`, a w `lesson.ipynb` masz wypełnioną komórkę z notatkami o tym, które kolumny wyglądają wiarygodnie i co zapytałbyś klienta.
+- **Lekcja jest skończona, gdy:** `uv run pytest` daje `5 passed`, a w `lesson.ipynb` masz wypełnioną komórkę z notatkami o tym, które kolumny wyglądają wiarygodnie i co warto by zapytać klienta. Potem przejdź do kolejnego katalogu lekcji w porządku numerycznym — `02_data_quality_and_cleaning/` — tak samo przy każdej następnej lekcji.
 
 ## Co masz zrobić
 

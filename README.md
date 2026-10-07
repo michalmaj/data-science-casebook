@@ -13,9 +13,9 @@ Each case tells a small story: an organization has a problem, the data is incomp
 
 ## If you're a student
 
-The shortest path: Case 1 → Lesson 1 → `README.md` → `task.py` → `pytest` → `lesson.ipynb`.
+Install first — see **Getting started** below — then the shortest path is: Case 1 → Lesson 1 → `README.md` → `task.py` → `pytest` → `lesson.ipynb`.
 
-Start at [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — read its `README.md`, fill in `task.py`, check your work with `uv run pytest`, then open the notebook. That first lesson walks through how every later one is built in more detail.
+Start at [`cases/case_1_regression/lessons/01_defining_the_question/`](cases/case_1_regression/lessons/01_defining_the_question/) — read its `README.md`, fill in `task.py`, check your work with `uv run pytest`, then open the notebook. That first lesson walks through how every later one is built in more detail, including what to do once its checks pass.
 
 ## Course structure
 
